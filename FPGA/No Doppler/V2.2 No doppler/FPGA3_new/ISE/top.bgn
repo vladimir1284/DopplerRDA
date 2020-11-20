@@ -1,0 +1,272 @@
+Release 10.1 - Bitgen K.31 (nt)
+Copyright (c) 1995-2008 Xilinx, Inc.  All rights reserved.
+Loading device for application Rf_Device from file '2v1000.nph' in environment
+C:\Xilinx\10.1\ISE.
+   "TOP" is an NCD, version 3.2, device xc2v1000, package fg456, speed -4
+This design is using the default stepping level (major silicon revision) for
+this device (0). Unless your design is targeted at devices of this stepping
+level, it is recommended that you explicitly specify the stepping level of the
+parts you will be using. This will allow the tools to take advantage of any
+available performance and functional enhancements for this device. The latest
+stepping level for this device is '1'. Additional information on "stepping
+level" is available at support.xilinx.com.
+Opened constraints file TOP.pcf.
+
+Fri Feb 16 11:34:48 2018
+
+C:\Xilinx\10.1\ISE\bin\nt\unwrapped\bitgen.exe -intstyle ise -w -g DebugBitstream:No -g Binary:no -b -g CRC:Enable -g ConfigRate:4 -g CclkPin:PullUp -g M0Pin:PullUp -g M1Pin:PullUp -g M2Pin:PullUp -g ProgPin:PullUp -g DonePin:PullUp -g PowerdownPin:PullUp -g TckPin:PullUp -g TdiPin:PullUp -g TdoPin:PullUp -g TmsPin:PullUp -g UnusedPin:PullUp -g UserID:0xFFFFFFFF -g DCMShutdown:Disable -g DisableBandgap:No -g FreezeDCI:Yes -g StartUpClk:CClk -g DONE_cycle:4 -g GTS_cycle:5 -g GWE_cycle:6 -g LCK_cycle:NoWait -g Match_cycle:Auto -g Security:None -g DonePipe:No -g DriveDone:No -g Encrypt:No TOP.ncd 
+
+INFO:Bitgen:40 - Replacing "Auto" with "NoWait" for option "Match_cycle".  Most
+   commonly, bitgen has determined and will use a specific value instead of the
+   generic command-line value of "Auto".  Alternately, this message appears if
+   the same option is specified multiple times on the command-line.  In this
+   case, the option listed last will be used.
+Summary of Bitgen Options:
++----------------------+----------------------+
+| Option Name          | Current Setting      |
++----------------------+----------------------+
+| Compress             | (Not Specified)*     |
++----------------------+----------------------+
+| Readback             | (Not Specified)*     |
++----------------------+----------------------+
+| CRC                  | Enable**             |
++----------------------+----------------------+
+| DebugBitstream       | No**                 |
++----------------------+----------------------+
+| ConfigRate           | 4**                  |
++----------------------+----------------------+
+| StartupClk           | Cclk**               |
++----------------------+----------------------+
+| DCMShutdown          | Disable**            |
++----------------------+----------------------+
+| DisableBandgap       | No**                 |
++----------------------+----------------------+
+| CclkPin              | Pullup**             |
++----------------------+----------------------+
+| DonePin              | Pullup**             |
++----------------------+----------------------+
+| HswapenPin           | Pullup*              |
++----------------------+----------------------+
+| M0Pin                | Pullup**             |
++----------------------+----------------------+
+| M1Pin                | Pullup**             |
++----------------------+----------------------+
+| M2Pin                | Pullup**             |
++----------------------+----------------------+
+| PowerdownPin         | Pullup**             |
++----------------------+----------------------+
+| ProgPin              | Pullup**             |
++----------------------+----------------------+
+| TckPin               | Pullup**             |
++----------------------+----------------------+
+| TdiPin               | Pullup**             |
++----------------------+----------------------+
+| TdoPin               | Pullup**             |
++----------------------+----------------------+
+| TmsPin               | Pullup**             |
++----------------------+----------------------+
+| UnusedPin            | Pullup               |
++----------------------+----------------------+
+| GWE_cycle            | 6**                  |
++----------------------+----------------------+
+| GTS_cycle            | 5**                  |
++----------------------+----------------------+
+| LCK_cycle            | NoWait**             |
++----------------------+----------------------+
+| Match_cycle          | NoWait               |
++----------------------+----------------------+
+| DONE_cycle           | 4**                  |
++----------------------+----------------------+
+| Persist              | No*                  |
++----------------------+----------------------+
+| DriveDone            | No**                 |
++----------------------+----------------------+
+| DonePipe             | No**                 |
++----------------------+----------------------+
+| Security             | None**               |
++----------------------+----------------------+
+| UserID               | 0xFFFFFFFF**         |
++----------------------+----------------------+
+| ActivateGclk         | No*                  |
++----------------------+----------------------+
+| ActiveReconfig       | No*                  |
++----------------------+----------------------+
+| PartialMask0         | (Not Specified)*     |
++----------------------+----------------------+
+| PartialMask1         | (Not Specified)*     |
++----------------------+----------------------+
+| PartialMask2         | (Not Specified)*     |
++----------------------+----------------------+
+| PartialGclk          | (Not Specified)*     |
++----------------------+----------------------+
+| PartialLeft          | (Not Specified)*     |
++----------------------+----------------------+
+| PartialRight         | (Not Specified)*     |
++----------------------+----------------------+
+| Encrypt              | No**                 |
++----------------------+----------------------+
+| Key0                 | pick*                |
++----------------------+----------------------+
+| Key1                 | pick*                |
++----------------------+----------------------+
+| Key2                 | pick*                |
++----------------------+----------------------+
+| Key3                 | pick*                |
++----------------------+----------------------+
+| Key4                 | pick*                |
++----------------------+----------------------+
+| Key5                 | pick*                |
++----------------------+----------------------+
+| Keyseq0              | M*                   |
++----------------------+----------------------+
+| Keyseq1              | M*                   |
++----------------------+----------------------+
+| Keyseq2              | M*                   |
++----------------------+----------------------+
+| Keyseq3              | M*                   |
++----------------------+----------------------+
+| Keyseq4              | M*                   |
++----------------------+----------------------+
+| Keyseq5              | M*                   |
++----------------------+----------------------+
+| KeyFile              | (Not Specified)*     |
++----------------------+----------------------+
+| StartKey             | 0*                   |
++----------------------+----------------------+
+| StartCBC             | pick*                |
++----------------------+----------------------+
+| FreezeDCI            | Yes                  |
++----------------------+----------------------+
+| IEEE1532             | No*                  |
++----------------------+----------------------+
+| Binary               | No**                 |
++----------------------+----------------------+
+ *  Default setting.
+ ** The specified setting matches the default setting.
+
+Running DRC.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net iUSER_AP/SSI_clk2 is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net CONN_C_OUT<0> is sourced by
+   a combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net iUSER_AP/SSI_clk_int is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:367 - The signal <addr_flagsel_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <clki2_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <clki3_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <r1out_a_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <r1out_b_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <r2out_a_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <r2out_b_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <mid<0>_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <mid<1>_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <mid<2>_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <mid<3>_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <clkin0_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <clkin1_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <config_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <qttl_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <cid<0>_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <cid<1>_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <cid<2>_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <cid<3>_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B370.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B373.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B382.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B391.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B376.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B385.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B379.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B388.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B733.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B742.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B751.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B736.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B745.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B754.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B739.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B748.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B10.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B13.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B22.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B16.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B25.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B19.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B28.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B7.A>:<RAMB16_RAMB16A>.  The block is configured to
+   use an input parity pins. There is a dangling output parity pin.
+DRC detected 0 errors and 46 warnings.  Please see the previously displayed
+individual error or warning messages for more details.
+Creating bit map...
+Saving bit stream in "top.bit".
+Saving bit stream in "top.rbt".
+Bitstream generation is complete.

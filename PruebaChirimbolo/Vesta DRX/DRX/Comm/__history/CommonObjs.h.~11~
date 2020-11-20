@@ -1,0 +1,33 @@
+//---------------------------------------------------------------------------
+
+#ifndef CommonObjsH
+#define CommonObjsH
+
+
+#include <System.hpp>
+#include <InvokeRegistry.hpp>
+#include <XSBuiltIns.hpp>
+#include <Types.hpp>
+
+#pragma option -b.
+
+class TDRX_AuthHeader : public TSOAPHeader {
+private:
+  AnsiString fUserName;
+  AnsiString fToken;
+__published:
+  __property AnsiString UserName = { read=fUserName, write=fUserName };
+  __property AnsiString Token = { read=fToken, write=fToken };
+};
+
+class TDRX_Object : public TInvokableClass
+{
+public:
+  HRESULT STDMETHODCALLTYPE QueryInterface(const GUID& IID, void **Obj)
+						{ return GetInterface(IID, Obj) ? S_OK : E_NOINTERFACE; }
+  ULONG STDMETHODCALLTYPE AddRef() { return TInvokableClass::_AddRef();  }
+  ULONG STDMETHODCALLTYPE Release() { return TInvokableClass::_Release();  }
+};
+
+//---------------------------------------------------------------------------
+#endif

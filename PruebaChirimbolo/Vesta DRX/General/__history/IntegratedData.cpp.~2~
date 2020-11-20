@@ -1,0 +1,51 @@
+#include <vcl.h>
+#include <stdio.h>
+#include <fastmath.h>
+#include <exception>
+#include <iostream>
+#include <vcl.h>
+#include <mem.h>
+#pragma hdrstop
+
+#include "IntegratedData.h"
+#include "DataParameters.h"
+
+IntegratedData::IntegratedData(short Sectors, short Cells, short ReqElev, short ReqSpeed, short Mode){
+  NRays          = Sectors;
+  NBins          = Cells;
+  RequestedElev  = ReqElev;
+  RequestedSpeed = ReqSpeed;
+  DataMode       = Mode;
+
+  try {
+	 TheRawStuff.dBZData  = (float*)AllocMem(NRays * NBins * sizeof(float));
+	 TheRawStuff.dBTData  = (float*)AllocMem(NRays * NBins * sizeof(float));
+	 TheRawStuff.VData    = (float*)AllocMem(NRays * NBins * sizeof(float));
+	 TheRawStuff.WData    = (float*)AllocMem(NRays * NBins * sizeof(float));
+
+	 TheRawStuff.Noise     = (short*)AllocMem(NRays * sizeof(short));
+	 TheRawStuff.Azimuth   = (short*)AllocMem(NRays * sizeof(short));
+	 TheRawStuff.Elevation = (short*)AllocMem(NRays * sizeof(short));
+  }
+  catch(std::bad_alloc) {
+    exit(-1);
+  }
+
+  BinLength = (DataMode == LP_MODE) ? BIN_LENGTH_LP : BIN_LENGTH_SP;
+
+  StartDateTime = time(NULL);
+}
+
+IntegratedData::~IntegratedData(){
+	FreeMemory(TheRawStuff.dBZData);
+	FreeMemory(TheRawStuff.dBTData);
+	FreeMemory(TheRawStuff.VData);
+	FreeMemory(TheRawStuff.WData);
+
+	FreeMemory(TheRawStuff.Azimuth);
+	FreeMemory(TheRawStuff.Elevation);
+}
+
+
+
+

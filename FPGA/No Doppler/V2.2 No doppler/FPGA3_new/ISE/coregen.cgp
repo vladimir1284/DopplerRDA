@@ -1,0 +1,20 @@
+# Date: Thu Nov 10 21:19:01 2016
+SET addpads = False
+SET asysymbol = False
+SET busformat = BusFormatAngleBracketNotRipped
+SET createndf = False
+SET designentry = VHDL
+SET device = xc2v1000
+SET devicefamily = virtex2
+SET flowvendor = Foundation_iSE
+SET formalverification = False
+SET foundationsym = False
+SET implementationfiletype = Ngc
+SET package = fg456
+SET removerpms = False
+SET simulationfiles = Behavioral
+SET speedgrade = -4
+SET verilogsim = True
+SET vhdlsim = True
+SET workingdirectory = "D:\Robert\Proyecto Radar Doppler\Proyecto Cyclos_Cuba\FPGA\New_Cyclop\X Band\FPGA3_new\ISE\tmp"
+

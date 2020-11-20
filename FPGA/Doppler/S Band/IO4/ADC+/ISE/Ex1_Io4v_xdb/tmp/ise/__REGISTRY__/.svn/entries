@@ -1,0 +1,112 @@
+8
+
+dir
+58
+http://10.0.107.38/svn/Radar%20MRL-5MD/FPGA/IO4%20SBand/ADC+/ISE/Ex1_Io4v_xdb/tmp/ise/__REGISTRY__
+http://10.0.107.38/svn
+
+
+
+2012-02-17T12:24:07.015880Z
+58
+robert
+
+
+svn:special svn:externals svn:needs-lock
+
+ProjectNavigator
+dir
+
+cpldfit
+dir
+
+vlogcomp
+dir
+
+ProjectNavigatorGui
+dir
+
+ngcbuild
+dir
+
+XSLTProcess
+dir
+
+WebTalk
+dir
+
+taengine
+dir
+
+Autonym
+dir
+
+trce
+dir
+
+fuse
+dir
+
+xreport
+dir
+
+hprep6
+dir
+
+Cs
+dir
+
+bitgen
+dir
+
+tsim
+dir
+
+SrcCtrl
+dir
+
+map
+dir
+
+idem
+dir
+
+netgen
+dir
+
+ngc2edif
+dir
+
+par
+dir
+
+dumpngdio
+dir
+
+common
+dir
+
+ngdbuild
+dir
+
+_ProjRepoInternal_
+dir
+
+STE
+dir
+
+xpwr
+dir
+
+HierarchicalDesign
+dir
+
+runner
+dir
+
+vhpcomp
+dir
+
+xst
+dir
+

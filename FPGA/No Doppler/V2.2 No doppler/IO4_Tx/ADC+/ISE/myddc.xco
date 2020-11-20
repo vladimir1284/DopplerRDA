@@ -1,0 +1,69 @@
+# Xilinx CORE Generator 6.3.03i
+# Username = radar
+# COREGenPath = C:\Xilinx\coregen
+# ProjectPath = C:\cygwin\home\radar\refractivity\IO4\ADC+\ISE
+# ExpandedProjectPath = C:\cygwin\home\radar\refractivity\IO4\ADC+\ISE
+# OverwriteFiles = true
+# Core name: myddc
+# Number of Primitives in design: 15323
+# Number of CLBs used in design cannot be determined when there is no RPMed logic
+# Number of Slices used in design cannot be determined when there is no RPMed logic
+# Number of LUT sites used in design: 4605
+# Number of LUTs used in design: 3907
+# Number of REG used in design: 5317
+# Number of SRL16s used in design: 698
+# Number of Distributed RAM primitives used in design: 0
+# Number of Block Memories used in design: 2
+# Number of Dedicated Multipliers used in design: 0
+# Number of HU_SETs used: 0
+# 
+SET BusFormat = BusFormatAngleBracketNotRipped
+SET XilinxFamily = Virtex2
+SET OutputOption = OutputProducts
+SET FlowVendor = Foundation_iSE
+SET FormalVerification = None
+SET OutputProducts = ImpNetlist ASYSymbol VHDLSim VerilogSim
+SELECT Digital_Down_Converter Virtex2 Xilinx,_Inc. 1.0
+CSET frequency_resolution = 0.03
+CSET include_cfir_filter = true
+CSET frequency = 30.0
+CSET include_cic_filter = true
+CSET output_result_width = 30
+CSET cic_gain_output_width = 30
+CSET pfir_precision = 16
+CSET pfir_filter_type = Decimation
+CSET cic_decimation_range_high = 16383
+CSET offset_type = None
+CSET cfir_result_precision = 30
+CSET system_clock_rate = 100.0
+CSET pfir_filter_length = 55
+CSET increment_type = Programmable
+CSET cfir_coefficient_file = C:\cygwin\home\radar\refractivity\IO4\ADC+\1-7-10-45.coe
+CSET input_data_width = 14
+CSET cic_output_width = 24
+CSET pfir_reload_capable = false
+CSET cic_decimation_rate = 10
+CSET spurious_free_dynamic_range = 90.0
+CSET differential_delay = 1
+CSET pfir_result_precision = 30
+CSET pfir_decimation_rate = 5
+CSET input_sample_rate = 100.0
+CSET cic_gain_type = Fixed
+CSET pfir_coefficient_file = C:\cygwin\home\radar\refractivity\IO4\ADC+\sp-30-11-04-55.coe
+CSET cfir_response = Symmetric
+CSET phase_angle = 0.0
+CSET cic_decimation_range_low = 4
+CSET mixer_output_width = 24
+CSET cfir_filter_length = 45
+CSET pfir_response = Symmetric
+CSET number_cic_stages = 7
+CSET cic_gain_value = 4
+CSET cic_decimation_type = Fixed
+CSET include_pfir_filter = true
+CSET cfir_precision = 16
+CSET cfir_filter_type = Single_Rate
+CSET cfir_reload_capable = false
+CSET cfir_decimation_rate = 1
+CSET component_name = myddc
+GENERATE
+

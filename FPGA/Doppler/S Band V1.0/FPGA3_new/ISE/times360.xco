@@ -1,0 +1,71 @@
+##############################################################
+#
+# Xilinx Core Generator version K.31
+# Date: Sun Mar 18 01:13:49 2012
+#
+##############################################################
+#
+#  This file contains the customisation parameters for a
+#  Xilinx CORE Generator IP GUI. It is strongly recommended
+#  that you do not manually alter this file as it may cause
+#  unexpected and unsupported behavior.
+#
+##############################################################
+#
+# BEGIN Project Options
+SET addpads = False
+SET asysymbol = True
+SET busformat = BusFormatAngleBracketNotRipped
+SET createndf = False
+SET designentry = VHDL
+SET device = xc2v1000
+SET devicefamily = virtex2
+SET flowvendor = Foundation_iSE
+SET formalverification = False
+SET foundationsym = False
+SET implementationfiletype = Edif
+SET package = fg456
+SET removerpms = False
+SET simulationfiles = Behavioral
+SET speedgrade = -4
+SET verilogsim = True
+SET vhdlsim = True
+# END Project Options
+# BEGIN Select
+SELECT Multiplier family Xilinx,_Inc. 7.0
+# END Select
+# BEGIN Parameters
+CSET asynchronous_clear=false
+CSET ce_overrides=CE_Overrides_SCLR
+CSET clk_cycles_per_input=1
+CSET clock_enable=false
+CSET component_name=times360
+CSET create_rpm=true
+CSET load_done_output=false
+CSET memory_type=Distributed_Memory
+CSET multiplier_construction=Use_LUTs
+CSET multiplier_type=Parallel
+CSET nd=false
+CSET output_hold_register=false
+CSET output_options=Registered
+CSET output_width=23
+CSET pipelined=Minimum
+CSET port_a_data=Unsigned
+CSET port_a_input=Parallel
+CSET port_a_width=14
+CSET port_b_constant=true
+CSET port_b_constant_value=360
+CSET port_b_data=Unsigned
+CSET port_b_width=9
+CSET rdy=false
+CSET register_input=true
+CSET reload_options=Stop_During_Reload
+CSET reloadable=false
+CSET rfd=false
+CSET style=Rectangular_Shape
+CSET synchronous_clear=false
+CSET virtex2_multiplier_optimization=Area
+# END Parameters
+GENERATE
+# CRC: 6ccf63e5
+

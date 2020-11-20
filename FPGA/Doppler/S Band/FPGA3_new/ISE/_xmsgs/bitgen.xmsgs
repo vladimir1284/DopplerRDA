@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IMPORTANT: This is an internal file that has been generated
+     by the Xilinx ISE software.  Any direct editing or
+     changes made to this file may result in unpredictable
+     behavior or data corruption.  It is strongly advised that
+     users do not edit the contents of this file. -->
+<messages>
+<msg type="info" file="Bitgen" num="40" delta="unknown" >Replacing &quot;<arg fmt="%s" index="1">Auto</arg>&quot; with &quot;<arg fmt="%s" index="2">NoWait</arg>&quot; for option &quot;<arg fmt="%s" index="3">Match_cycle</arg>&quot;.  Most commonly, bitgen has determined and will use a specific value instead of the generic command-line value of &quot;Auto&quot;.  Alternately, this message appears if the same option is specified multiple times on the command-line.  In this case, the option listed last will be used.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="372" delta="unknown" >Gated clock. Clock net <arg fmt="%s" index="1">CONN_F_OUT&lt;0&gt;</arg> is sourced by a combinatorial pin. This is not good design practice. Use the CE pin to control the loading of data into the flip-flop.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="372" delta="unknown" >Gated clock. Clock net <arg fmt="%s" index="1">iUSER_AP/SSI_clk2</arg> is sourced by a combinatorial pin. This is not good design practice. Use the CE pin to control the loading of data into the flip-flop.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="372" delta="unknown" >Gated clock. Clock net <arg fmt="%s" index="1">iUSER_AP/SSI_clk_int</arg> is sourced by a combinatorial pin. This is not good design practice. Use the CE pin to control the loading of data into the flip-flop.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="unknown" >The signal &lt;<arg fmt="%s" index="1">addr_flagsel_IBUF</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="unknown" >The signal &lt;<arg fmt="%s" index="1">clki2_IBUF</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="unknown" >The signal &lt;<arg fmt="%s" index="1">clki3_IBUF</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="unknown" >The signal &lt;<arg fmt="%s" index="1">r1out_a_IBUF</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="unknown" >The signal &lt;<arg fmt="%s" index="1">r1out_b_IBUF</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="unknown" >The signal &lt;<arg fmt="%s" index="1">r2out_a_IBUF</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="unknown" >The signal &lt;<arg fmt="%s" index="1">r2out_b_IBUF</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="unknown" >The signal &lt;<arg fmt="%s" index="1">mid&lt;0&gt;_IBUF</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="unknown" >The signal &lt;<arg fmt="%s" index="1">mid&lt;1&gt;_IBUF</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="unknown" >The signal &lt;<arg fmt="%s" index="1">mid&lt;2&gt;_IBUF</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="unknown" >The signal &lt;<arg fmt="%s" index="1">mid&lt;3&gt;_IBUF</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="unknown" >The signal &lt;<arg fmt="%s" index="1">clkin0_IBUF</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="unknown" >The signal &lt;<arg fmt="%s" index="1">clkin1_IBUF</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="unknown" >The signal &lt;<arg fmt="%s" index="1">config_IBUF</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="unknown" >The signal &lt;<arg fmt="%s" index="1">qttl_IBUF</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="unknown" >The signal &lt;<arg fmt="%s" index="1">cid&lt;0&gt;_IBUF</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="unknown" >The signal &lt;<arg fmt="%s" index="1">cid&lt;1&gt;_IBUF</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="unknown" >The signal &lt;<arg fmt="%s" index="1">cid&lt;2&gt;_IBUF</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="367" delta="unknown" >The signal &lt;<arg fmt="%s" index="1">cid&lt;3&gt;_IBUF</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="1063" delta="unknown" >Dangling pins on block:&lt;<arg fmt="%s" index="1">iUSER_AP/myOUTFIFO/B370.A</arg>&gt;:&lt;<arg fmt="%s" index="2">RAMB16_RAMB16A</arg>&gt;.  The block is configured to use an input parity pins. There is a dangling output parity pin.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="1063" delta="unknown" >Dangling pins on block:&lt;<arg fmt="%s" index="1">iUSER_AP/myOUTFIFO/B373.A</arg>&gt;:&lt;<arg fmt="%s" index="2">RAMB16_RAMB16A</arg>&gt;.  The block is configured to use an input parity pins. There is a dangling output parity pin.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="1063" delta="unknown" >Dangling pins on block:&lt;<arg fmt="%s" index="1">iUSER_AP/myOUTFIFO/B382.A</arg>&gt;:&lt;<arg fmt="%s" index="2">RAMB16_RAMB16A</arg>&gt;.  The block is configured to use an input parity pins. There is a dangling output parity pin.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="1063" delta="unknown" >Dangling pins on block:&lt;<arg fmt="%s" index="1">iUSER_AP/myOUTFIFO/B391.A</arg>&gt;:&lt;<arg fmt="%s" index="2">RAMB16_RAMB16A</arg>&gt;.  The block is configured to use an input parity pins. There is a dangling output parity pin.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="1063" delta="unknown" >Dangling pins on block:&lt;<arg fmt="%s" index="1">iUSER_AP/myOUTFIFO/B376.A</arg>&gt;:&lt;<arg fmt="%s" index="2">RAMB16_RAMB16A</arg>&gt;.  The block is configured to use an input parity pins. There is a dangling output parity pin.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="1063" delta="unknown" >Dangling pins on block:&lt;<arg fmt="%s" index="1">iUSER_AP/myOUTFIFO/B385.A</arg>&gt;:&lt;<arg fmt="%s" index="2">RAMB16_RAMB16A</arg>&gt;.  The block is configured to use an input parity pins. There is a dangling output parity pin.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="1063" delta="unknown" >Dangling pins on block:&lt;<arg fmt="%s" index="1">iUSER_AP/myOUTFIFO/B379.A</arg>&gt;:&lt;<arg fmt="%s" index="2">RAMB16_RAMB16A</arg>&gt;.  The block is configured to use an input parity pins. There is a dangling output parity pin.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="1063" delta="unknown" >Dangling pins on block:&lt;<arg fmt="%s" index="1">iUSER_AP/myOUTFIFO/B388.A</arg>&gt;:&lt;<arg fmt="%s" index="2">RAMB16_RAMB16A</arg>&gt;.  The block is configured to use an input parity pins. There is a dangling output parity pin.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="1063" delta="unknown" >Dangling pins on block:&lt;<arg fmt="%s" index="1">iUSER_AP/myOUTFIFO/B733.A</arg>&gt;:&lt;<arg fmt="%s" index="2">RAMB16_RAMB16A</arg>&gt;.  The block is configured to use an input parity pins. There is a dangling output parity pin.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="1063" delta="unknown" >Dangling pins on block:&lt;<arg fmt="%s" index="1">iUSER_AP/myOUTFIFO/B742.A</arg>&gt;:&lt;<arg fmt="%s" index="2">RAMB16_RAMB16A</arg>&gt;.  The block is configured to use an input parity pins. There is a dangling output parity pin.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="1063" delta="unknown" >Dangling pins on block:&lt;<arg fmt="%s" index="1">iUSER_AP/myOUTFIFO/B751.A</arg>&gt;:&lt;<arg fmt="%s" index="2">RAMB16_RAMB16A</arg>&gt;.  The block is configured to use an input parity pins. There is a dangling output parity pin.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="1063" delta="unknown" >Dangling pins on block:&lt;<arg fmt="%s" index="1">iUSER_AP/myOUTFIFO/B736.A</arg>&gt;:&lt;<arg fmt="%s" index="2">RAMB16_RAMB16A</arg>&gt;.  The block is configured to use an input parity pins. There is a dangling output parity pin.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="1063" delta="unknown" >Dangling pins on block:&lt;<arg fmt="%s" index="1">iUSER_AP/myOUTFIFO/B745.A</arg>&gt;:&lt;<arg fmt="%s" index="2">RAMB16_RAMB16A</arg>&gt;.  The block is configured to use an input parity pins. There is a dangling output parity pin.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="1063" delta="unknown" >Dangling pins on block:&lt;<arg fmt="%s" index="1">iUSER_AP/myOUTFIFO/B754.A</arg>&gt;:&lt;<arg fmt="%s" index="2">RAMB16_RAMB16A</arg>&gt;.  The block is configured to use an input parity pins. There is a dangling output parity pin.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="1063" delta="unknown" >Dangling pins on block:&lt;<arg fmt="%s" index="1">iUSER_AP/myOUTFIFO/B739.A</arg>&gt;:&lt;<arg fmt="%s" index="2">RAMB16_RAMB16A</arg>&gt;.  The block is configured to use an input parity pins. There is a dangling output parity pin.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="1063" delta="unknown" >Dangling pins on block:&lt;<arg fmt="%s" index="1">iUSER_AP/myOUTFIFO/B748.A</arg>&gt;:&lt;<arg fmt="%s" index="2">RAMB16_RAMB16A</arg>&gt;.  The block is configured to use an input parity pins. There is a dangling output parity pin.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="1063" delta="unknown" >Dangling pins on block:&lt;<arg fmt="%s" index="1">iUSER_AP/myOUTFIFO/B10.A</arg>&gt;:&lt;<arg fmt="%s" index="2">RAMB16_RAMB16A</arg>&gt;.  The block is configured to use an input parity pins. There is a dangling output parity pin.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="1063" delta="unknown" >Dangling pins on block:&lt;<arg fmt="%s" index="1">iUSER_AP/myOUTFIFO/B13.A</arg>&gt;:&lt;<arg fmt="%s" index="2">RAMB16_RAMB16A</arg>&gt;.  The block is configured to use an input parity pins. There is a dangling output parity pin.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="1063" delta="unknown" >Dangling pins on block:&lt;<arg fmt="%s" index="1">iUSER_AP/myOUTFIFO/B22.A</arg>&gt;:&lt;<arg fmt="%s" index="2">RAMB16_RAMB16A</arg>&gt;.  The block is configured to use an input parity pins. There is a dangling output parity pin.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="1063" delta="unknown" >Dangling pins on block:&lt;<arg fmt="%s" index="1">iUSER_AP/myOUTFIFO/B16.A</arg>&gt;:&lt;<arg fmt="%s" index="2">RAMB16_RAMB16A</arg>&gt;.  The block is configured to use an input parity pins. There is a dangling output parity pin.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="1063" delta="unknown" >Dangling pins on block:&lt;<arg fmt="%s" index="1">iUSER_AP/myOUTFIFO/B25.A</arg>&gt;:&lt;<arg fmt="%s" index="2">RAMB16_RAMB16A</arg>&gt;.  The block is configured to use an input parity pins. There is a dangling output parity pin.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="1063" delta="unknown" >Dangling pins on block:&lt;<arg fmt="%s" index="1">iUSER_AP/myOUTFIFO/B19.A</arg>&gt;:&lt;<arg fmt="%s" index="2">RAMB16_RAMB16A</arg>&gt;.  The block is configured to use an input parity pins. There is a dangling output parity pin.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="1063" delta="unknown" >Dangling pins on block:&lt;<arg fmt="%s" index="1">iUSER_AP/myOUTFIFO/B28.A</arg>&gt;:&lt;<arg fmt="%s" index="2">RAMB16_RAMB16A</arg>&gt;.  The block is configured to use an input parity pins. There is a dangling output parity pin.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="1063" delta="unknown" >Dangling pins on block:&lt;<arg fmt="%s" index="1">iUSER_AP/myOUTFIFO/B7.A</arg>&gt;:&lt;<arg fmt="%s" index="2">RAMB16_RAMB16A</arg>&gt;.  The block is configured to use an input parity pins. There is a dangling output parity pin.
+</msg>
+
+</messages>
+

@@ -1,0 +1,51 @@
+{ Invokable interface ILogin }
+
+unit LoginWSIntf;
+
+interface
+
+uses InvokeRegistry, Types, XSBuiltIns;
+
+type
+  TUserInfo =
+  class( TRemotable )
+    private
+      fName : string;
+      fLevel : integer;
+    published
+      property Name : string read fName write fName;
+      property Level : integer read fLevel write fLevel;
+  end;
+
+  ILoginWS = interface(IInvokable)
+  ['{4646C2C8-182A-4B51-AB0D-58640B57A0A6}']
+    function Borrar_Usuario(Name: string): boolean; safecall;
+    function Get_ControllerLevel: Integer; safecall;
+    function Get_ControllerName: String; safecall;
+    function Get_InControl: boolean; safecall;
+    function Get_Usuarios: Integer; safecall;
+    function Login(UserName, Password: String): boolean; safecall;
+    function Logout: boolean; safecall;
+    function Modificar(Name, Password: String; Level: Integer): boolean; safecall;
+    function Nuevo_Usuario(Name, Password: String; Level: Integer): boolean; safecall;
+    function ReleaseControl: boolean; safecall;
+    function TakeControl: boolean; safecall;
+    function Usuario(Index: Integer): TUserInfo; safecall;
+
+    property ControllerName: string read Get_ControllerName;
+    property Usuarios: Integer read Get_Usuarios;
+    property InControl: boolean read Get_InControl;
+    property ControllerLevel: Integer read Get_ControllerLevel;
+  end;
+
+implementation
+
+uses CommunicationObj;
+
+initialization
+  { Invokable interfaces must be registered }
+  InvRegistry.RegisterInterface(TypeInfo(ILoginWS));
+  InvRegistry.RegisterHeaderClass(TypeInfo(ILoginWS), TAuthHeader);
+
+end.
+ 

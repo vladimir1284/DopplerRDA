@@ -1,0 +1,279 @@
+--------------------------------------------------------------------------------
+Release 10.1 Trace  (nt)
+Copyright (c) 1995-2008 Xilinx, Inc.  All rights reserved.
+
+C:\Xilinx\10.1\ISE\bin\nt\unwrapped\trce.exe -ise
+C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise
+-intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+
+Design file:              TOP.ncd
+Physical constraint file: TOP.pcf
+Device,package,speed:     xc2v1000,fg456,-4 (PRODUCTION 1.121 2008-01-09, STEPPING level 0)
+Report level:             error report
+
+Environment Variable      Effect 
+--------------------      ------ 
+NONE                      No environment variables were set
+--------------------------------------------------------------------------------
+
+INFO:Timing:2752 - To get complete path coverage, use the unconstrained paths 
+   option. All paths that are not constrained will be reported in the 
+   unconstrained paths section(s) of the report.
+INFO:Timing:3339 - The clock-to-out numbers in this timing report are based on 
+   a 50 Ohm transmission line loading model.  For the details of this model, 
+   and for more information on accounting for different loading conditions, 
+   please see the device datasheet.
+
+================================================================================
+Timing constraint: TS_osc3_pin = PERIOD TIMEGRP "osc3_pin" 100 MHz HIGH 50%;
+
+ 185 paths analyzed, 70 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors)
+ Minimum period is   4.990ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_diclk = PERIOD TIMEGRP "diclk" 100 MHz HIGH 50%;
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_drdy = PERIOD TIMEGRP "drdy" 100 MHz HIGH 50%;
+
+ 7190 paths analyzed, 577 endpoints analyzed, 10 failing endpoints
+ 10 timing errors detected. (10 setup errors, 0 hold errors)
+ Minimum period is  12.300ns.
+--------------------------------------------------------------------------------
+Slack:                  -1.150ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               iUSER_AP/iDDS_10/BU2/U0/i_has_sine.i_sin_op/opt_has_reg.i_reg/fd/output_1 (FF)
+  Destination:          iDACA/iDA13 (FF)
+  Requirement:          5.000ns
+  Data Path Delay:      5.954ns (Levels of Logic = 7)
+  Clock Path Skew:      -0.196ns (5.665 - 5.861)
+  Source Clock:         SCLK rising at 0.000ns
+  Destination Clock:    SCLK falling at 5.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: iUSER_AP/iDDS_10/BU2/U0/i_has_sine.i_sin_op/opt_has_reg.i_reg/fd/output_1 to iDACA/iDA13
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X8Y8.YQ        Tcko                  0.568   iUSER_AP/DDS_OUT<1>
+                                                       iUSER_AP/iDDS_10/BU2/U0/i_has_sine.i_sin_op/opt_has_reg.i_reg/fd/output_1
+    SLICE_X9Y8.F4        net (fanout=1)        0.285   iUSER_AP/DDS_OUT<0>
+    SLICE_X9Y8.COUT      Topcyf                0.868   DAC_A<0>
+                                                       iUSER_AP/Madd_DAC_IN_lut<0>_INV_0
+                                                       iUSER_AP/Madd_DAC_IN_cy<0>
+                                                       iUSER_AP/Madd_DAC_IN_cy<1>
+    SLICE_X9Y9.CIN       net (fanout=1)        0.000   iUSER_AP/Madd_DAC_IN_cy<1>
+    SLICE_X9Y9.COUT      Tbyp                  0.106   DAC_A<2>
+                                                       iUSER_AP/Madd_DAC_IN_cy<2>
+                                                       iUSER_AP/Madd_DAC_IN_cy<3>
+    SLICE_X9Y10.CIN      net (fanout=1)        0.000   iUSER_AP/Madd_DAC_IN_cy<3>
+    SLICE_X9Y10.COUT     Tbyp                  0.106   DAC_A<4>
+                                                       iUSER_AP/Madd_DAC_IN_cy<4>
+                                                       iUSER_AP/Madd_DAC_IN_cy<5>
+    SLICE_X9Y11.CIN      net (fanout=1)        0.000   iUSER_AP/Madd_DAC_IN_cy<5>
+    SLICE_X9Y11.COUT     Tbyp                  0.106   DAC_A<6>
+                                                       iUSER_AP/Madd_DAC_IN_cy<6>
+                                                       iUSER_AP/Madd_DAC_IN_cy<7>
+    SLICE_X9Y12.CIN      net (fanout=1)        0.000   iUSER_AP/Madd_DAC_IN_cy<7>
+    SLICE_X9Y12.COUT     Tbyp                  0.106   DAC_A<8>
+                                                       iUSER_AP/Madd_DAC_IN_cy<8>
+                                                       iUSER_AP/Madd_DAC_IN_cy<9>
+    SLICE_X9Y13.CIN      net (fanout=1)        0.000   iUSER_AP/Madd_DAC_IN_cy<9>
+    SLICE_X9Y13.COUT     Tbyp                  0.106   DAC_A<10>
+                                                       iUSER_AP/Madd_DAC_IN_cy<10>
+                                                       iUSER_AP/Madd_DAC_IN_cy<11>
+    SLICE_X9Y14.CIN      net (fanout=1)        0.000   iUSER_AP/Madd_DAC_IN_cy<11>
+    SLICE_X9Y14.Y        Tciny                 1.446   DAC_A<12>
+                                                       iUSER_AP/Madd_DAC_IN_cy<12>
+                                                       iUSER_AP/Madd_DAC_IN_xor<13>
+    AA10.O1              net (fanout=1)        1.868   DAC_A<13>
+    AA10.OTCLK1          Tioock                0.389   daa<13>
+                                                       iDACA/iDA13
+    -------------------------------------------------  ---------------------------
+    Total                                      5.954ns (3.801ns logic, 2.153ns route)
+                                                       (63.8% logic, 36.2% route)
+
+--------------------------------------------------------------------------------
+Slack:                  -0.991ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               iUSER_AP/iDDS_10/BU2/U0/i_has_sine.i_sin_op/opt_has_reg.i_reg/fd/output_1 (FF)
+  Destination:          iDACA/iDA12 (FF)
+  Requirement:          5.000ns
+  Data Path Delay:      5.795ns (Levels of Logic = 7)
+  Clock Path Skew:      -0.196ns (5.665 - 5.861)
+  Source Clock:         SCLK rising at 0.000ns
+  Destination Clock:    SCLK falling at 5.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: iUSER_AP/iDDS_10/BU2/U0/i_has_sine.i_sin_op/opt_has_reg.i_reg/fd/output_1 to iDACA/iDA12
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X8Y8.YQ        Tcko                  0.568   iUSER_AP/DDS_OUT<1>
+                                                       iUSER_AP/iDDS_10/BU2/U0/i_has_sine.i_sin_op/opt_has_reg.i_reg/fd/output_1
+    SLICE_X9Y8.F4        net (fanout=1)        0.285   iUSER_AP/DDS_OUT<0>
+    SLICE_X9Y8.COUT      Topcyf                0.868   DAC_A<0>
+                                                       iUSER_AP/Madd_DAC_IN_lut<0>_INV_0
+                                                       iUSER_AP/Madd_DAC_IN_cy<0>
+                                                       iUSER_AP/Madd_DAC_IN_cy<1>
+    SLICE_X9Y9.CIN       net (fanout=1)        0.000   iUSER_AP/Madd_DAC_IN_cy<1>
+    SLICE_X9Y9.COUT      Tbyp                  0.106   DAC_A<2>
+                                                       iUSER_AP/Madd_DAC_IN_cy<2>
+                                                       iUSER_AP/Madd_DAC_IN_cy<3>
+    SLICE_X9Y10.CIN      net (fanout=1)        0.000   iUSER_AP/Madd_DAC_IN_cy<3>
+    SLICE_X9Y10.COUT     Tbyp                  0.106   DAC_A<4>
+                                                       iUSER_AP/Madd_DAC_IN_cy<4>
+                                                       iUSER_AP/Madd_DAC_IN_cy<5>
+    SLICE_X9Y11.CIN      net (fanout=1)        0.000   iUSER_AP/Madd_DAC_IN_cy<5>
+    SLICE_X9Y11.COUT     Tbyp                  0.106   DAC_A<6>
+                                                       iUSER_AP/Madd_DAC_IN_cy<6>
+                                                       iUSER_AP/Madd_DAC_IN_cy<7>
+    SLICE_X9Y12.CIN      net (fanout=1)        0.000   iUSER_AP/Madd_DAC_IN_cy<7>
+    SLICE_X9Y12.COUT     Tbyp                  0.106   DAC_A<8>
+                                                       iUSER_AP/Madd_DAC_IN_cy<8>
+                                                       iUSER_AP/Madd_DAC_IN_cy<9>
+    SLICE_X9Y13.CIN      net (fanout=1)        0.000   iUSER_AP/Madd_DAC_IN_cy<9>
+    SLICE_X9Y13.COUT     Tbyp                  0.106   DAC_A<10>
+                                                       iUSER_AP/Madd_DAC_IN_cy<10>
+                                                       iUSER_AP/Madd_DAC_IN_cy<11>
+    SLICE_X9Y14.CIN      net (fanout=1)        0.000   iUSER_AP/Madd_DAC_IN_cy<11>
+    SLICE_X9Y14.X        Tcinx                 1.274   DAC_A<12>
+                                                       iUSER_AP/Madd_DAC_IN_xor<12>
+    AB10.O1              net (fanout=1)        1.881   DAC_A<12>
+    AB10.OTCLK1          Tioock                0.389   daa<12>
+                                                       iDACA/iDA12
+    -------------------------------------------------  ---------------------------
+    Total                                      5.795ns (3.629ns logic, 2.166ns route)
+                                                       (62.6% logic, 37.4% route)
+
+--------------------------------------------------------------------------------
+Slack:                  -0.945ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               iUSER_AP/iDDS_10/BU2/U0/i_has_sine.i_sin_op/opt_has_reg.i_reg/fd/output_3 (FF)
+  Destination:          iDACA/iDA13 (FF)
+  Requirement:          5.000ns
+  Data Path Delay:      5.749ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.196ns (5.665 - 5.861)
+  Source Clock:         SCLK rising at 0.000ns
+  Destination Clock:    SCLK falling at 5.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: iUSER_AP/iDDS_10/BU2/U0/i_has_sine.i_sin_op/opt_has_reg.i_reg/fd/output_3 to iDACA/iDA13
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X8Y9.YQ        Tcko                  0.568   iUSER_AP/DDS_OUT<3>
+                                                       iUSER_AP/iDDS_10/BU2/U0/i_has_sine.i_sin_op/opt_has_reg.i_reg/fd/output_3
+    SLICE_X9Y9.F4        net (fanout=1)        0.285   iUSER_AP/DDS_OUT<2>
+    SLICE_X9Y9.COUT      Topcyf                0.769   DAC_A<2>
+                                                       iUSER_AP/Madd_DAC_IN_lut<2>_INV_0
+                                                       iUSER_AP/Madd_DAC_IN_cy<2>
+                                                       iUSER_AP/Madd_DAC_IN_cy<3>
+    SLICE_X9Y10.CIN      net (fanout=1)        0.000   iUSER_AP/Madd_DAC_IN_cy<3>
+    SLICE_X9Y10.COUT     Tbyp                  0.106   DAC_A<4>
+                                                       iUSER_AP/Madd_DAC_IN_cy<4>
+                                                       iUSER_AP/Madd_DAC_IN_cy<5>
+    SLICE_X9Y11.CIN      net (fanout=1)        0.000   iUSER_AP/Madd_DAC_IN_cy<5>
+    SLICE_X9Y11.COUT     Tbyp                  0.106   DAC_A<6>
+                                                       iUSER_AP/Madd_DAC_IN_cy<6>
+                                                       iUSER_AP/Madd_DAC_IN_cy<7>
+    SLICE_X9Y12.CIN      net (fanout=1)        0.000   iUSER_AP/Madd_DAC_IN_cy<7>
+    SLICE_X9Y12.COUT     Tbyp                  0.106   DAC_A<8>
+                                                       iUSER_AP/Madd_DAC_IN_cy<8>
+                                                       iUSER_AP/Madd_DAC_IN_cy<9>
+    SLICE_X9Y13.CIN      net (fanout=1)        0.000   iUSER_AP/Madd_DAC_IN_cy<9>
+    SLICE_X9Y13.COUT     Tbyp                  0.106   DAC_A<10>
+                                                       iUSER_AP/Madd_DAC_IN_cy<10>
+                                                       iUSER_AP/Madd_DAC_IN_cy<11>
+    SLICE_X9Y14.CIN      net (fanout=1)        0.000   iUSER_AP/Madd_DAC_IN_cy<11>
+    SLICE_X9Y14.Y        Tciny                 1.446   DAC_A<12>
+                                                       iUSER_AP/Madd_DAC_IN_cy<12>
+                                                       iUSER_AP/Madd_DAC_IN_xor<13>
+    AA10.O1              net (fanout=1)        1.868   DAC_A<13>
+    AA10.OTCLK1          Tioock                0.389   daa<13>
+                                                       iDACA/iDA13
+    -------------------------------------------------  ---------------------------
+    Total                                      5.749ns (3.596ns logic, 2.153ns route)
+                                                       (62.6% logic, 37.4% route)
+
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_gNV2ES_FIFO_gFCKG_iGCLK_CLK0 = PERIOD TIMEGRP         
+"gNV2ES_FIFO_gFCKG_iGCLK_CLK0" TS_diclk HIGH 50%;
+
+ 1683 paths analyzed, 412 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors)
+ Minimum period is   7.987ns.
+--------------------------------------------------------------------------------
+
+
+Derived Constraint Report
+Derived Constraints for TS_diclk
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+|                               |   Period    |       Actual Period       |      Timing Errors        |      Paths Analyzed       |
+|           Constraint          | Requirement |-------------+-------------|-------------+-------------|-------------+-------------|
+|                               |             |   Direct    | Derivative  |   Direct    | Derivative  |   Direct    | Derivative  |
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+|TS_diclk                       |     10.000ns|          N/A|      7.987ns|            0|            0|            0|         1683|
+| TS_gNV2ES_FIFO_gFCKG_iGCLK_CLK|     10.000ns|      7.987ns|          N/A|            0|            0|         1683|            0|
+| 0                             |             |             |             |             |             |             |             |
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+
+1 constraint not met.
+
+
+Data Sheet report:
+-----------------
+All values displayed in nanoseconds (ns)
+
+Clock to Setup on destination clock diclk
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+diclk          |    7.987|         |         |         |
+---------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock drdy
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+drdy           |    8.812|         |    6.150|         |
+---------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock osc3_pin
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+osc3_pin       |    4.990|         |         |         |
+---------------+---------+---------+---------+---------+
+
+
+Timing summary:
+---------------
+
+Timing errors: 10  Score: 4472
+
+Constraints cover 9058 paths, 0 nets, and 2608 connections
+
+Design statistics:
+   Minimum period:  12.300ns   (Maximum frequency:  81.301MHz)
+
+
+Analysis completed Sat Mar 07 14:49:09 2020 
+--------------------------------------------------------------------------------
+
+Trace Settings:
+-------------------------
+Trace Settings 
+
+Peak Memory Usage: 129 MB
+
+
+

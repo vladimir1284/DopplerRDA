@@ -1,0 +1,10 @@
+NEWPROJECT "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/FPGA3_new/ISE/"
+SETPROJECT "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/FPGA3_new/ISE/"
+SET BusFormat = BusFormatAngleBracketNotRipped
+SET devicefamily = virtex2
+SET device = xc2v1000
+SET package = fg456
+SET speedgrade = -4
+SET FlowVendor = Foundation_iSE
+SET VerilogSim = True
+SET VHDLSim = True

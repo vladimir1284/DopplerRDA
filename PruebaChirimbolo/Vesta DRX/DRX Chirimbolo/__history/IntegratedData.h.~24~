@@ -1,0 +1,44 @@
+#ifndef IntegratedDataH
+#define IntegratedDataH
+#include "DataParameters.h"
+#include <math.h>
+#include "time.h"
+class IntegratedData
+{
+
+public:
+
+   typedef struct HalfDegreeData{
+        float *AverageAzimuth;
+        float *AverageElevation;
+        float *Frequency;
+		int   *NData;
+        int   *NPulses;
+		short *Mode;
+		float **dBZData;
+		float **SQIData;
+		float **CIData;
+		float **VData;
+		float **WData;
+} HalfDegreeData;
+
+       HalfDegreeData TheRawStuff;
+
+	   int  BinLength;
+	   int  DataMode;
+	   int  ReadCount;
+	   bool Full;
+	   bool Finished;
+	   int  BeamNumber;
+	   int  NRaysComplete;
+	   int  NRays;
+       int  NBins;
+	   time_t StartDateTime;
+	   time_t StopDateTime;
+	   float RequestedElev;
+
+	   IntegratedData(int beam, int Rays, int RawBins, int Mode, float RequestedElev);
+	   ~IntegratedData();
+};
+
+#endif           //RawDataH

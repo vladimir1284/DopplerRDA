@@ -1,0 +1,40 @@
+#ifndef   DRX_Sync_WSH
+#define   DRX_Sync_WSH
+
+#include <System.hpp>
+#include <InvokeRegistry.hpp>
+#include <XSBuiltIns.hpp>
+#include <Types.hpp>
+
+
+
+__interface INTERFACE_UUID("{3B5A50E1-1C23-4C59-AD1D-37CAFF4D1F13}") IDRX_Sync_WS : public IInvokable
+{
+public:
+	//pulse mode
+	virtual bool Get_Pulse_Mode() = 0;
+	//output mode
+	virtual bool Get_Output_Mode() = 0;
+	//sector mode
+	virtual int Get_Sector_Mode() = 0;
+	//PRF
+	virtual bool Get_PRF_Mode() = 0;
+	virtual int Get_PRF_Rate() = 0;
+
+	//pulse mode
+	virtual void Set_Pulso_Largo() = 0;
+	virtual void Set_Pulso_Corto(int rate) = 0;
+	virtual void Set_Pulso(bool Success) = 0;
+	//sector mode
+	virtual void Set_Sector_Mode(int mode) = 0;
+
+	virtual bool Get_Synch_Settling() = 0;
+	virtual bool Get_Synch_Changing() = 0;
+};
+typedef DelphiInterface<IDRX_Sync_WS> _di_IDRX_Sync_WS;
+
+
+#endif // DRX_Sync_WSH
+//---------------------------------------------------------------------------
+
+

@@ -1,0 +1,1 @@
+ngdbuild -ise "E:/Robert/Proyecto Radar CSB/NO Doppler/V_2/FPGA3_new/ISE/Ex1_Fpga3v.ise" -intstyle ise -dd _ngo  -aul -nt timestamp -i -p xc2v1000-fg456-4 "E:/Robert/Proyecto Radar CSB/NO Doppler/V_2/FPGA3_new/ISE/TOP.ngc" TOP.ngd

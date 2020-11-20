@@ -1,0 +1,230 @@
+#ifndef __DATATYPES_H_
+#define __DATATYPES_H_
+
+#include <InvokeRegistry.hpp>
+#include <XSBuiltIns.hpp>
+#include <Types.hpp>
+
+//=============================================================================
+
+typedef DynamicArray<int>    TIntegerArray;
+typedef DynamicArray<float>  TFloatArray;
+typedef DynamicArray<double> TDoubleArray;
+
+//=============================================================================
+
+#define NUMBUFFERS 5
+#define SAMPLES_PER_IP_CHAN 512
+
+//=============================================================================
+#define Success_Response "ok"
+#define Fail_Response    "fail"
+
+//commands...
+//stalo
+#define DRX_Get_Cmd             "drx_get"
+#define DRX_Put_Cmd             "drx_put"
+#define DRX_End_Cmd             "drx_end"
+
+#define Stalo_Output_Cmd        "stalo_output"
+#define Stalo_Ready_Cmd         "stalo_ready"
+#define Stalo_Frequency_Cmd     "stalo_frequency"
+#define RealStalo_Frequency_Cmd "real_stalo_frequency"
+#define Stalo_Power_Cmd         "stalo_power"
+#define Stalo_Temperature_Cmd   "stalo_temperature"
+#define Stalo_RF_Output_Cmd     "stalo_rf_output"
+#define Stalo_Init_Cmd          "stalo_init"
+
+//afc
+#define AFC_Tx_Frequency_Cmd     "afc_tx_frequency"
+#define AFC_IF_Frequency_Cmd     "afc_if_frequency"
+#define AFC_Tx_Power_Cmd         "afc_tx_power"
+#define AFC_Settling_Cmd         "afc_settling"
+#define AFC_ChangesInhibited_Cmd "afc_loop"
+#define AFC_ResetScan_Cmd        "afc_reset_scan"
+#define AFC_Tuned_Cmd            "afc_tuned"
+#define AFC_NCO_Cmd              "afc_nco"
+
+//Sync
+#define Sync_Sector_Mode_Cmd     "sync_sector_mode"
+#define Sync_Long_Pulse_Cmd      "sync_lp"
+#define Sync_Short_Pulse_Cmd     "sync_sp"
+#define Sync_Output_Pulse_Cmd    "sync_output"
+#define Sync_Settling_Cmd        "sync_settling"
+#define Sync_Changing_Cmd        "sync_changing"
+//drx
+#define DRX_StartDataFlow_Cmd    "drx_start_dataflow"
+#define DRX_Gathering_Cmd        "drx_gathering"
+#define DRX_PPI_Cmd              "drx_ppi"
+#define DRX_RHI_Cmd              "drx_rhi"
+#define DRX_Filter_Cmd           "drx_filter"
+#define DRX_Parameters_Cmd       "drx_parameters"
+#define DRX_Configuration_Cmd    "drx_config"
+#define DRX_Snapshot_Cmd         "drx_snapshot"
+
+
+#define MSG_TX_RX_Power  "TX_RX_Power"
+#define MSG_TX_Burst     "TX_Burst"
+#define MSG_TX_Spectrum  "TX_Spectrum"
+#define MSG_RX_dBZ       "RX_dBZ"
+#define MSG_RX_dBT       "RX_dBT"
+#define MSG_RX_V         "RX_V"
+#define MSG_RX_W         "RX_W"
+#define MSG_RX_SQI       "RX_SQI"
+#define MSG_RX_LOG       "RX_LOG"
+#define MSG_RX_SIG       "RX_SIG"
+#define MSG_RX_CCOR      "RX_CCOR"
+
+#define MSG_OBS_Start    "obs_start"
+#define MSG_OBS_Finalize "obs_finalize"
+#define MSG_OBS_Cancel   "obs_cancel"
+#define MSG_OBS_MOVE     "obs_movement"
+#define MSG_OBS_PING     "obs_ping"
+#define MSG_OBS_Error    "obs_error"
+#define MSG_PKG_PING     "pkg_ping"
+
+const short dtShort  = 0;
+const short dtUShort = 1;
+const short dtInt    = 2;
+const short dtUIint  = 3;
+const short dtInt64  = 4;
+const short dtFloat  = 5;
+const short dtDouble = 6;
+
+const int MaxPackageCount = 1000;
+const int CommandTimeout  = 10000;
+
+const int RxMsgRefreshTime  = 500;
+const int TxMsgRefreshTime  = 1000;
+
+//=============================================================================
+const int ConnectorA = 16;
+const int ConnectorB = 17;
+const int ConnectorC = 18;
+const int ConnectorD = 19;
+const int ConnectorE = 20;
+const int ConnectorF = 21;
+
+const int Code_DigitalOutput = ConnectorF;
+
+const int Code_Sync  = 28;
+
+const int Value_Pulse_Length     = 0;
+const int Value_PRF_Mode         = 1;
+const int Value_PRF_Rate         = 2;
+//const int Value_Sync_Output      = 4;
+const int Value_Calibration_Mode = 5;
+const int Value_Sync_Output      = 6;    // By Robert
+const int Value_Sector_Mode      = 8;
+const int Value_Sector_Direction = 16;
+
+const int FrequencyError = 50e4;
+
+const int smAzimut    = 0;
+const int smElevation = 1;
+const int smRays      = 2;
+
+const double TWOTO32  = 4294967296;
+const double CLOCKSPD = 100000000;
+
+const double Sample_Excluded = (double)0xFFFF;
+
+//=============================================================================
+
+const int LongPulse  = 0;
+const int ShortPulse = 1;
+const int SinglePRF  = 0;
+const int DualPRF    = 1;
+
+const int SP_Low_54_MODE  = 0;
+const int SP_High_54_MODE = 1;
+const int SP_Low_43_MODE  = 5;
+const int SP_High_43_MODE = 6;
+const int SP_Low_32_MODE  = 10;
+const int SP_High_32_MODE = 11;
+
+const int SP_54_MODE  = 0;
+const int SP_43_MODE  = 5;
+const int SP_32_MODE  = 10;
+const int SP_MODE     = 15;
+const int LP_MODE    = 20;
+const int LP_MODE1       = 4; //By Robert
+
+const int PRF_Rate_54   = 0;
+const int PRF_Rate_43   = 1;
+const int PRF_Rate_32   = 2;
+const int PRF_Rate_None = 3;
+
+//By Robert
+//const int PRF_Rate_54   = 1;
+//const int PRF_Rate_43   = 2;
+//const int PRF_Rate_32   = 3;
+//const int PRF_Rate_None = 0;
+
+//PRFs
+
+const int LP_PRF              = 250;
+const int SP_Single_PRF       = 1000;
+const int SP_Dual_32_Low_PRF  = 666;
+const int SP_Dual_43_Low_PRF  = 750;
+const int SP_Dual_54_Low_PRF  = 800;
+const int SP_Dual_32_High_PRF = 1000;
+const int SP_Dual_43_High_PRF = 1000;
+const int SP_Dual_54_High_PRF = 1000;
+
+// PRF_Rate * 5 + PRF_Change
+
+const int NUMBEROFBUFFERS = 20;
+const int NRAWPULSESOUT   = 1000;
+const int NREAD 		  = 20;
+const int NDUMPS 		  = 100;
+
+const int AntennaMaxValue = 16384;
+const double CONV_FACTOR  = (360.0/16384.0);    /*14 bits az/el */
+
+const int RAW_DATA_LENGTH_LP      = 1667;
+const int RAW_DATA_LENGTH_SP      = 1868;
+const int RAW_DATA_LENGTH_SP_DUAL = 1868;
+
+const int BIN_LENGTH_LP = 300;
+const int BIN_LENGTH_SP = 75;
+
+const int LPSize     = RAW_DATA_LENGTH_LP * 2 + 4;
+const int SPSize     = RAW_DATA_LENGTH_SP * 2 + 4;
+const int SPSizeDual = RAW_DATA_LENGTH_SP_DUAL * 2 + 4;
+
+const int NUMBEROFNOISESAMPLES = 50;
+
+const RAW_HALF_DEGREES = 726;
+	//   Setting Synchro
+const int   CodeSynchroHV = 268435456;     // by Robert
+const int   CodeSynchroTxMa = 536870912;
+const int   CodeSynchroRFG = 805306368;
+const int   CodeSynchroSW = 1073741824;
+const int   CodeSynchroPRFSetting =1342177280;
+  //------------------------------------------------
+
+//=============================================================================
+
+const INT64  SpeedLight = 3e8;
+const double PI = 3.14159;
+
+const INT64  IF = 30e6;
+
+//=============================================================================
+
+typedef struct RawPulseData{
+	short SPMode;
+	short PRFChange;
+	short PRFRate;
+	short PulseMode;
+	short NData;
+	short Azimuth;
+	short Elevation;
+	unsigned int SequenceNumber;
+	short  I[SPSize] ;
+	short  Q[SPSize];
+} RawPulseData;
+
+
+#endif /* __DATATYPES_H_ */

@@ -1,0 +1,10 @@
+# Output products list for <DDS_10>
+DDS_10.ngc
+DDS_10.v
+DDS_10.veo
+DDS_10.vhd
+DDS_10.vho
+DDS_10.xco
+DDS_10_dds_compiler_v1_1_xst_1.ngc_xst.xrpt
+DDS_10_flist.txt
+DDS_10_xmdf.tcl

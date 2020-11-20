@@ -1,0 +1,321 @@
+//---------------------------------------------------------------------------
+#pragma hdrstop
+
+#include "PackageManager.h"
+#include "DataParameters.h"
+#include "ObsManager.h"
+#include "ProcessingThread.h"
+#include "AFCprocessor.h"
+
+
+#include <math.h>
+#include "Site.h"
+#include "ZLibEx.hpp"
+#include "ShellDRX.h"
+
+//---------------------------------------------------------------------------
+
+#pragma package(smart_init)
+
+PackageManager::PackageManager(){
+	lock     = new TCriticalSection();
+	packages = new TQueue();
+
+	RxPackTime  = GetTickCount();
+	TxPackTime  = GetTickCount();
+
+	double Sector_Factor = (double)ThisSite->Sectors / (double)AntennaMaxValue;
+
+	StopDataFlow();
+	TheACFProcessingThread->OnNewData    = AFC_NewData;
+	TheProcessingThread->OnNewSectorData = Data_Sector;
+}
+
+PackageManager::~PackageManager(void){
+	TheACFProcessingThread->OnNewData    = NULL;
+	TheProcessingThread->OnNewSectorData = NULL;
+
+	ClearPackages();
+	packages->Free();
+	lock->Free();
+}
+
+void PackageManager::AddPackage(DRX_Data_Package* package){
+	lock->Enter();
+	__try{
+		if(packages->Count() < MaxPackageCount)
+			packages->Push(package);
+		else
+		    delete package;
+	}
+	__finally{
+		lock->Leave();
+	}
+}
+
+DRX_Data_Package* PackageManager::BuildPackage(String MsgType, short CellSize, short NData, short* Data){
+	DRX_Data_Package* package = new DRX_Data_Package();
+	package->InitMsg(MsgType, 0, 0, CellSize, dtShort, NData, Data);
+	return package;
+}
+
+DRX_Data_Package* PackageManager::BuildPackage(String MsgType, short CellSize, int Azimuth, int Elevation, short BufferDataType, int NData, void* Data){
+	DRX_Data_Package* package = new DRX_Data_Package();
+	short Az = Azimuth & 0xFFFF;
+	short El = Elevation & 0xFFFF;
+	short count = NData & 0xFFFF;
+	package->InitMsg(MsgType, CellSize, Az, El, BufferDataType, count, Data);
+
+	return package;
+}
+
+DRX_Data_Package* PackageManager::BuildPackage(String MsgType, short CellSize, short NData, HE_PINT32BUFFER Data){
+	DRX_Data_Package* package = new DRX_Data_Package();
+	short count = NData & 0xFFFF;
+
+	short* data  = new short[NData];
+	for(int i=0; i<NData; i++){
+		data[i] = Data[i] & 0xFFFF;
+	}
+	package->InitMsg(MsgType, CellSize, (short)0, (short)0, dtShort, count, data);
+	delete data;
+
+	return package;
+}
+
+void PackageManager::ClearPackages(){
+	lock->Enter();
+	__try{
+		while(packages->Count() > 0){
+			DRX_Data_Package* package = (DRX_Data_Package*)packages->Pop();
+			delete package;
+		}
+	}
+	__finally{
+		lock->Leave();
+	}
+}
+
+DRX_Data_Package* PackageManager::GetPackage(){
+	DRX_Data_Package* result = NULL;
+	lock->Enter();
+	__try{
+		if(packages->Count() > 0){
+			result = (DRX_Data_Package*)packages->Pop();
+		}
+	}
+	__finally{
+		lock->Leave();
+	}
+	return result;
+}
+
+void __fastcall PackageManager::PackageClientConnect(TIdContext *AContext){
+	LastAz = 0;
+	ClearPackages();
+
+	if(AContext->Connection->IOHandler->WriteBufferingActive()){
+		//AContext->Connection->IOHandler->WriteBufferCancel();
+	}
+}
+
+void __fastcall PackageManager::PackageClientExecute(TIdContext *AContext){
+	DRX_Data_Package* package = GetPackage();
+
+	if(package != NULL){
+		  bool allowed = ((package->DataType == MSG_TX_RX_Power) && tx_rx_power) ||
+						 ((package->DataType == MSG_TX_Burst   ) && tx_burst   ) ||
+						 ((package->DataType == MSG_TX_Spectrum) && tx_spectrum) ||
+						 ((package->DataType == MSG_RX_dBZ     ) && rx_dbz     ) ||
+						 ((package->DataType == MSG_RX_dBT     ) && rx_dbt     ) ||
+						 ((package->DataType == MSG_RX_V       ) && rx_v       ) ||
+						 ((package->DataType == MSG_RX_W       ) && rx_w       );
+
+		  if(allowed){
+			  AContext->Connection->IOHandler->WriteLn(package->DataType);
+			  String Response = AContext->Connection->IOHandler->ReadLn("", CommandTimeout);
+			  if(Response == Success_Response){
+				  AContext->Connection->IOHandler->Write((SmallInt)package->CellSize);
+				  AContext->Connection->IOHandler->Write((SmallInt)package->Az);
+				  AContext->Connection->IOHandler->Write((SmallInt)package->El);
+				  AContext->Connection->IOHandler->Write((SmallInt)package->BufferDataType);
+				  AContext->Connection->IOHandler->Write((SmallInt)package->NData);
+
+				  //  to compact the sent data
+				  void* pack;
+				  int PackSize;
+
+				  ZCompress(package->Data, package->BufferSize, pack, PackSize);
+				  TIdBytes Buffer;
+				  __try{
+					  Buffer.Length = PackSize;
+					  memcpy(&Buffer[0], pack, PackSize);
+					  AContext->Connection->IOHandler->Write(PackSize);
+					  AContext->Connection->IOHandler->Write(Buffer);
+				  }
+				  __finally{
+					Buffer.Length = 0;
+					FreeMemory(pack);
+				  }
+
+				  /*
+				  int PackSize = package->BufferSize;
+				  TIdBytes Buffer;
+				  __try{
+					  Buffer.Length = PackSize;
+					  memcpy(&Buffer[0], package->Data, PackSize);
+					  AContext->Connection->IOHandler->Write(PackSize);
+					  AContext->Connection->IOHandler->Write(Buffer);
+
+				  }
+				  __finally{
+					Buffer.Length = 0;
+				  }
+				  */
+
+				  //AContext->Connection->IOHandler->WriteBufferFlush();
+			  }
+			  else if(Response == Fail_Response){
+				if(package->DataType == MSG_TX_RX_Power) TX_RX_Power = false;
+				if(package->DataType == MSG_TX_Burst   ) TX_Burst    = false;
+				if(package->DataType == MSG_TX_Spectrum) TX_Spectrum = false;
+				if(package->DataType == MSG_RX_dBZ     ) RX_dBZ      = false;
+				if(package->DataType == MSG_RX_dBT     ) RX_dBT      = false;
+				if(package->DataType == MSG_RX_V       ) RX_V        = false;
+				if(package->DataType == MSG_RX_W       ) RX_W        = false;
+			  }
+			  else AContext->Connection->CheckForGracefulDisconnect();
+		  }
+
+		  delete package;
+	}
+	else{
+		AContext->Connection->CheckForGracefulDisconnect();
+		Sleep(10);
+	}
+}
+
+void __fastcall PackageManager::AFC_NewData(System::TObject* Sender, short Mode, __int64 IF, __int64 Tx, double power, HE_PINT32BUFFER data, FFTReal *fft){
+	if(GetTickCount() - TxPackTime > TxMsgRefreshTime){
+		short CurrentCellSize = (Mode == LP_MODE) ? BIN_LENGTH_LP : BIN_LENGTH_SP;
+
+		if(tx_burst)
+			AddPackage(BuildPackage(MSG_TX_Burst, CurrentCellSize, (short)SAMPLES_PER_IP_CHAN, data));
+
+		if(Shell_DRX->TX_Burst)
+			Shell_DRX->AddPackage(BuildPackage(MSG_TX_Burst, CurrentCellSize, (short)SAMPLES_PER_IP_CHAN, data));
+
+		if(tx_spectrum || Shell_DRX->TX_Spectrum){
+			short minIndex = 0.2 * fft->get_length();
+			short maxIndex = 0.4 * fft->get_length();
+			short count = maxIndex - minIndex + 1;
+
+			float* buffer = new float[count];
+
+			for(int i=minIndex; i<=maxIndex; i++){
+				buffer[i-minIndex] = fft->AbsOut[i];
+			}
+
+			if(tx_spectrum)
+				AddPackage(BuildPackage(MSG_TX_Spectrum, CurrentCellSize, minIndex, fft->get_length(), dtFloat, count, buffer));
+
+			if(Shell_DRX->TX_Spectrum)
+				Shell_DRX->AddPackage(BuildPackage(MSG_TX_Spectrum, CurrentCellSize, minIndex, fft->get_length(), dtFloat, count, buffer));
+
+			delete buffer;
+		}
+
+		TxPackTime = GetTickCount();
+	}
+}
+
+//---------------------------------------------------------------------------
+
+short PackageManager::Distance(short Ang1, short Ang2){
+	short result = abs(Ang1 - Ang2);
+	if(result > 8192)
+		result = AntennaMaxValue - result;
+
+	return result;
+}
+
+void __fastcall PackageManager::Data_Sector(System::TObject* Sender, short Az, short El, short rays, short mode, short ndata, float *Power, float *dBT, float *dBZ, float *V, float *W, float *SQI, float *LOG, float *SIG, float *CCOR) {
+	if(ThisSite->TheRadar->Gathering)
+		theObservationManager->ReceiveData(Az, El, mode, ndata, dBZ, dBT, V, W);
+
+	if((Distance(LastAz, Az) >= ThisSite->HalfSectorWidth) || (GetTickCount() - RxPackTime > RxMsgRefreshTime)){
+		short CurrentCellSize = (mode == LP_MODE) ? BIN_LENGTH_LP : BIN_LENGTH_SP;
+
+		if(tx_rx_power)
+			AddPackage(BuildPackage(MSG_TX_RX_Power, CurrentCellSize, Az, El, dtFloat, ndata, Power));
+
+		if(rx_dbz)
+			AddPackage(BuildPackage(MSG_RX_dBZ, CurrentCellSize, Az, El, dtFloat, ndata, dBZ));
+
+		if(rx_dbt)
+			AddPackage(BuildPackage(MSG_RX_dBT, CurrentCellSize, Az, El, dtFloat, ndata, dBT));
+
+		if(rx_v)
+			AddPackage(BuildPackage(MSG_RX_V, CurrentCellSize, Az, El, dtFloat, ndata, V));
+
+		if(rx_w)
+			AddPackage(BuildPackage(MSG_RX_W, CurrentCellSize, Az, El, dtFloat, ndata, W));
+
+		if((GetTickCount() - RxPackTime > RxMsgRefreshTime)){
+			if(Shell_DRX->TX_RX_Power)
+				Shell_DRX->AddPackage(BuildPackage(MSG_TX_RX_Power, CurrentCellSize, Az, El, dtFloat, ndata, Power));
+
+			if(Shell_DRX->RX_dBZ)
+				Shell_DRX->AddPackage(BuildPackage(MSG_RX_dBZ, CurrentCellSize, Az, El, dtFloat, ndata, dBZ));
+
+			if(Shell_DRX->RX_dBT)
+				Shell_DRX->AddPackage(BuildPackage(MSG_RX_dBT, CurrentCellSize, Az, El, dtFloat, ndata, dBT));
+
+			if(Shell_DRX->RX_V)
+				Shell_DRX->AddPackage(BuildPackage(MSG_RX_V, CurrentCellSize, Az, El, dtFloat, ndata, V));
+
+			if(Shell_DRX->RX_W)
+				Shell_DRX->AddPackage(BuildPackage(MSG_RX_W, CurrentCellSize, Az, El, dtFloat, ndata, W));
+
+			if(Shell_DRX->RX_SQI)
+				Shell_DRX->AddPackage(BuildPackage(MSG_RX_SQI, CurrentCellSize, Az, El, dtFloat, ndata, SQI));
+
+			if(Shell_DRX->RX_LOG)
+				Shell_DRX->AddPackage(BuildPackage(MSG_RX_LOG, CurrentCellSize, Az, El, dtFloat, ndata, LOG));
+
+			if(Shell_DRX->RX_SIG)
+				Shell_DRX->AddPackage(BuildPackage(MSG_RX_SIG, CurrentCellSize, Az, El, dtFloat, ndata, SIG));
+
+			if(Shell_DRX->RX_CCOR)
+				Shell_DRX->AddPackage(BuildPackage(MSG_RX_CCOR, CurrentCellSize, Az, El, dtFloat, ndata, CCOR));
+
+			RxPackTime = GetTickCount();
+		}
+
+		LastAz = Az;
+	}
+}
+
+void PackageManager::StartDataFlow(){
+	StopDataFlow();
+
+	tx_rx_power = true;
+	tx_burst    = true;
+	tx_spectrum = true;
+	rx_dbz      = true;
+	rx_dbt      = true;
+	rx_w        = true;
+	rx_v        = true;
+}
+
+void PackageManager::StopDataFlow(){
+	tx_rx_power = false;
+	tx_burst    = false;
+	tx_spectrum = false;
+	rx_dbz      = false;
+	rx_dbt      = false;
+	rx_w        = false;
+	rx_v        = false;
+
+	ClearPackages();
+}

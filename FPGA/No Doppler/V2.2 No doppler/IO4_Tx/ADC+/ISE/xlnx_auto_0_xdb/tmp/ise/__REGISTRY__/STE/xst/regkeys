@@ -1,0 +1,6 @@
+CommandLine
+C:\Xilinx\10.1\ISE\bin\nt64\unwrapped\xst.exe -ifn tmp\_cg\_bbx\DDS2_dds_compiler_v2_1_xst_1.scr -ofn tmp\_cg\_bbx\DDS2_dds_compiler_v2_1_xst_1_xst.log -intstyle silent -finalclean 1
+s
+FormatString
+xst [-ifn <InputFile>] [-ofn <OutputFile>] [-ise <iseProjectFile>] [--quiet] [-intstyle <Style>] [--deb <DebugLevel>] [--finalclean <Clean>] [--PcubeFlow] [--globOptFlow] [--XstNtrc]
+s

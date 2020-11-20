@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IMPORTANT: This is an internal file that has been generated
+     by the Xilinx ISE software.  Any direct editing or
+     changes made to this file may result in unpredictable
+     behavior or data corruption.  It is strongly advised that
+     users do not edit the contents of this file. -->
+<messages>
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iADC/i14</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iRD/iSEL5</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iRD/iSEL4</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iRD/iSEL3</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iRD/iSEL2</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iRD/iSEL1</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iWR/iAF5</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iWR/iAF4</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iWR/iAF3</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iWR/iAF1</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iWR/iAF0</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iWR/iFF5</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iWR/iFF4</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iWR/iFF3</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iWR/iFF2</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iWR/iFF1</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iWR/iFF0</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iUSER_AP/iq_out_fifoI/BU195</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iUSER_AP/iq_out_fifoI/BU428</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iUSER_AP/myDDCi/BU845</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iUSER_AP/myDDCi/BU1014</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iUSER_AP/myDDCi/BU9766</arg>&apos; has unconnected output pin
+</msg>
+
+</messages>
+

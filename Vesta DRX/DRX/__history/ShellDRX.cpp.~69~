@@ -1,0 +1,367 @@
+//---------------------------------------------------------------------------
+#include <vcl.h>
+#pragma hdrstop
+
+#include "Site.h"
+#include "ShellDRX.h"
+#include "DataParameters.h"
+#include "IntegratedData.h"
+#include "ProcessingThread.h"
+#include "FFTReal.h"
+#include "PackageManager.h"
+#include "AFCprocessor.h"
+
+//---------------------------------------------------------------------------
+
+#pragma package(smart_init)
+#pragma link "perfgrap"
+#pragma link "Chart"
+#pragma link "TeEngine"
+#pragma link "TeeProcs"
+#pragma link "Series"
+#pragma resource "*.dfm"
+
+TShell_DRX *Shell_DRX;
+
+//---------------------------------------------------------------------------
+__fastcall TShell_DRX::TShell_DRX(TComponent* Owner): TForm(Owner)
+{
+	Randomize();
+}
+
+void __fastcall TShell_DRX::FormCreate(TObject *Sender)
+{
+  lock     = new TCriticalSection();
+  packages = new TQueue();
+}
+
+void __fastcall TShell_DRX::ConnectionEvent(TIdContext *AThread ){
+  AThread->Connection->Socket->UseNagle = false;
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TShell_DRX::FormDestroy(TObject *Sender)
+{
+	ClearPackages();
+	packages->Free();
+	lock->Free();
+}
+
+void TShell_DRX::UpdateStalo(){
+	txTemp->Text         = FloatToStr(ThisSite->TheRadar->Stalo->Temperature);
+	txPow->Text          = FloatToStr(ThisSite->TheRadar->Stalo->Power);
+	txFrequency->Text    = FloatToStr(ThisSite->TheRadar->Stalo->Frequency);
+	txFreqSetpoint->Text = FloatToStr(ThisSite->TheRadar->GetSTALOFrequency());
+}
+
+void TShell_DRX::UpdateFilters(TDataFilter *filter){
+	txB0->Text = FormatFloat("0.00", filter->B0);
+	txB1->Text = FormatFloat("0.00", filter->B1);
+	txB2->Text = FormatFloat("0.00", filter->B2);
+	txB3->Text = FormatFloat("0.00", filter->B3);
+	txB4->Text = FormatFloat("0.00", filter->B4);
+	txC1->Text = FormatFloat("0.00", filter->C1);
+	txC2->Text = FormatFloat("0.00", filter->C2);
+	txC3->Text = FormatFloat("0.00", filter->C3);
+	txC4->Text = FormatFloat("0.00", filter->C4);
+
+	txMaxAngle->Text    = FormatFloat("0.00", filter->MaxAngle);
+	txMaxHeigh->Text    = IntToStr(filter->MaxHeigh);
+	txMaxDistance->Text = IntToStr(filter->MaxDistance);
+
+	ckSQI->Checked  = filter->SQI;
+	ckLOG->Checked  = filter->LOG;
+	ckSIG->Checked  = filter->SIG;
+	ckCCOR->Checked = filter->CCOR;
+
+	ckSpeckle->Checked = filter->Speckles;
+	txSpeckleDistance->Text = IntToStr(filter->SpeckleSize);
+}
+
+//---------------------------------------------------------------------------
+
+void __fastcall TShell_DRX::Filter_TimerTimer(TObject *Sender)
+{
+	UpdateFilters(TheProcessingThread->CurrentFilter);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TShell_DRX::InfoContainerChange(TObject *Sender)
+{
+	AFC_Timer->Enabled    = InfoContainer->ActivePageIndex == 0;
+	IQ_Timer->Enabled     = InfoContainer->ActivePageIndex == 1;
+	Filter_Timer->Enabled = InfoContainer->ActivePageIndex == 2;
+
+	switch (InfoContainer->ActivePageIndex) {
+		case 0:
+				UpdateAFC();
+				break;
+		case 1:
+				UpdateIQ();
+				break;
+		case 2:
+				UpdateStalo();
+				break;
+		case 3:
+				UpdateFilters(TheProcessingThread->CurrentFilter);
+				break;
+	}
+}
+//---------------------------------------------------------------------------
+
+void TShell_DRX::UpdateAFC(){
+	TxFreqLabel->Caption  = FormatFloat("0,000", TheACFProcessingThread->GetTxFrequencyEstimate());
+	AverageValue->Caption = FormatFloat("0,000", TheACFProcessingThread->GetIFFrequencyEstimate());
+	PowLabel->Caption     = FormatFloat("0.00", TheACFProcessingThread->GetTxPulsePowerEstimate());
+}
+
+void TShell_DRX::UpdateIQ(){
+	txAzimut->Text    = IntToStr(ThisSite->TheRadar->CurrentAzimut);
+	txElevation->Text = IntToStr(ThisSite->TheRadar->CurrentElevation);
+
+	if(ThisSite->TheRadar->PulseMode == LP_MODE){
+		rgPulse_Mode->ItemIndex = 0;
+	}
+	else{
+		rgPulse_Mode->ItemIndex = 1;
+		if(ThisSite->TheRadar->PRF_Rate == PRF_Rate_None){
+			rgPRF_Mode->ItemIndex = 0;
+		}
+		else{
+			rgPRF_Mode->ItemIndex = 1;
+			rgPRF_Rate->ItemIndex = ThisSite->TheRadar->PRF_Rate;
+		}
+	}
+}
+
+void __fastcall TShell_DRX::AFC_TimerTimer(TObject *Sender)
+{
+	UpdateAFC();
+	UpdateStalo();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TShell_DRX::IQ_TimerTimer(TObject *Sender)
+{
+	UpdateIQ();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TShell_DRX::timerWSTimer(TObject *Sender)
+{
+	if(!ThisSite->TheRadar->InitializatingSTALO){
+		theCommunicationServer->Active = true;
+		timerWS->Enabled = false;
+	}
+}
+
+bool TShell_DRX::allow_tx_rx_power(){
+	return (InfoContainer->ActivePageIndex == 1) && (IQ_Charts->ActivePageIndex == 0);
+}
+
+bool TShell_DRX::allow_tx_burst(){
+	return (InfoContainer->ActivePageIndex == 0) && (afcCharts->ActivePageIndex == 0);
+}
+
+bool TShell_DRX::allow_tx_spectrum(){
+	return (InfoContainer->ActivePageIndex == 0) && (afcCharts->ActivePageIndex == 1);
+}
+
+bool TShell_DRX::allow_rx_dbz(){
+	return (InfoContainer->ActivePageIndex == 1) && (IQ_Charts->ActivePageIndex == 2);
+}
+
+bool TShell_DRX::allow_rx_dbt(){
+	return (InfoContainer->ActivePageIndex == 1) && (IQ_Charts->ActivePageIndex == 1);
+}
+
+bool TShell_DRX::allow_rx_w(){
+	return (InfoContainer->ActivePageIndex == 1) && (IQ_Charts->ActivePageIndex == 4);
+}
+
+bool TShell_DRX::allow_rx_v(){
+	return (InfoContainer->ActivePageIndex == 1) && (IQ_Charts->ActivePageIndex == 3);
+}
+
+bool TShell_DRX::allow_rx_sqi(){
+	return (InfoContainer->ActivePageIndex == 1) && (IQ_Charts->ActivePageIndex == 5);
+}
+
+bool TShell_DRX::allow_rx_log(){
+	return (InfoContainer->ActivePageIndex == 1) && (IQ_Charts->ActivePageIndex == 7);
+}
+
+bool TShell_DRX::allow_rx_sig(){
+	return (InfoContainer->ActivePageIndex == 1) && (IQ_Charts->ActivePageIndex == 8);
+}
+
+bool TShell_DRX::allow_rx_ccor(){
+	return (InfoContainer->ActivePageIndex == 1) && (IQ_Charts->ActivePageIndex == 9);
+}
+
+void TShell_DRX::paint_tx_rx_power(DRX_Data_Package* package){
+	chartPower->Series[0]->Clear();
+	for(int i=0; i<package->NData; i++){
+		if(((float*)package->Data)[i] != Sample_Excluded)
+			chartPower->Series[0]->AddY(((float*)package->Data)[i], "", clRed);
+		else
+			chartPower->Series[0]->AddY(0, "", clRed);
+	}
+}
+
+void TShell_DRX::paint_tx_burst(DRX_Data_Package* package){
+	txChart->Series[0]->Clear();
+	for(int i=0; i<SAMPLES_PER_IP_CHAN; i++){
+		txChart->Series[0]->AddY(((short*)package->Data)[i], "", clRed);
+	}
+}
+
+void TShell_DRX::paint_tx_spectrum(DRX_Data_Package* package){
+	fftChart->Series[0]->Clear();
+
+	short minIndex = package->Az;
+	short maxIndex = minIndex + package->NData;
+
+	for(int i=minIndex; i<=maxIndex; i++){
+	  double x = i * 100e3 / package->El;
+	  double y = ((float*)package->Data)[i-minIndex] / 1000;
+
+	  fftChart->Series[0]->AddXY(x, y, "", clRed);
+	}
+
+}
+
+void TShell_DRX::paint_rx_dbz(DRX_Data_Package* package){
+	chartZ->Series[0]->Clear();
+	for(int i=0; i<package->NData; i++){
+		if(((float*)package->Data)[i] != Sample_Excluded)
+			chartZ->Series[0]->AddY(((float*)package->Data)[i], "", clRed);
+		else
+			chartZ->Series[0]->AddY(0, "", clRed);
+	}
+}
+
+void TShell_DRX::paint_rx_dbt(DRX_Data_Package* package){
+	chartT->Series[0]->Clear();
+	for(int i=0; i<package->NData; i++){
+		if(((float*)package->Data)[i] != Sample_Excluded)
+			chartT->Series[0]->AddY(((float*)package->Data)[i], "", clRed);
+		else
+			chartT->Series[0]->AddY(0, "", clRed);
+	}
+}
+
+void TShell_DRX::paint_rx_w(DRX_Data_Package* package){
+	chartW->Series[0]->Clear();
+	for(int i=0; i<package->NData; i++){
+		if(((float*)package->Data)[i] != Sample_Excluded)
+			Shell_DRX->chartW->Series[0]->AddY(((float*)package->Data)[i], "", clRed);
+		else
+			Shell_DRX->chartW->Series[0]->AddY(0, "", clRed);
+	}
+}
+
+void TShell_DRX::paint_rx_v(DRX_Data_Package* package){
+	chartSpeed->Series[0]->Clear();
+	for(int i=0; i<package->NData; i++){
+		if(((float*)package->Data)[i] != Sample_Excluded)
+			Shell_DRX->chartSpeed->Series[0]->AddY(((float*)package->Data)[i], "", clRed);
+		else
+			Shell_DRX->chartSpeed->Series[0]->AddY(0, "", clRed);
+	}
+}
+
+void TShell_DRX::paint_rx_sqi(DRX_Data_Package* package){
+	chartSQI->Series[0]->Clear();
+	for(int i=0; i<package->NData; i++){
+		Shell_DRX->chartSQI->Series[0]->AddY(((float*)package->Data)[i], "", clRed);
+	}
+}
+
+void TShell_DRX::paint_rx_log(DRX_Data_Package* package){
+	chartLOG->Series[0]->Clear();
+	for(int i=0; i<package->NData; i++){
+		Shell_DRX->chartLOG->Series[0]->AddY(((float*)package->Data)[i], "", clRed);
+	}
+}
+
+void TShell_DRX::paint_rx_sig(DRX_Data_Package* package){
+	chartSIG->Series[0]->Clear();
+	for(int i=0; i<package->NData; i++){
+		Shell_DRX->chartSIG->Series[0]->AddY(((float*)package->Data)[i], "", clRed);
+	}
+}
+
+void TShell_DRX::paint_rx_ccor(DRX_Data_Package* package){
+	chartCCOR->Series[0]->Clear();
+	for(int i=0; i<package->NData; i++){
+		Shell_DRX->chartCCOR->Series[0]->AddY(((float*)package->Data)[i], "", clRed);
+	}
+}
+
+DRX_Data_Package* TShell_DRX::GetPackage(){
+	DRX_Data_Package* result = NULL;
+	lock->Acquire();
+	__try{
+		if(packages->Count() > 0)
+			result = (DRX_Data_Package*)packages->Pop();
+	}
+	__finally{
+		lock->Release();
+	}
+	return result;
+}
+
+void TShell_DRX::AddPackage(DRX_Data_Package* package){
+	lock->Acquire();
+	__try{
+		if(packages->Count() < MaxPackageCount)
+			packages->Push(package);
+		else
+            delete package;
+	}
+	__finally{
+		lock->Release();
+	}
+}
+
+void TShell_DRX::ClearPackages(){
+	lock->Enter();
+	__try{
+		while(packages->Count() > 0){
+			DRX_Data_Package* package = (DRX_Data_Package*)packages->Pop();
+			delete package;
+		}
+	}
+	__finally{
+		lock->Leave();
+	}
+}
+
+//---------------------------------------------------------------------------
+
+void __fastcall TShell_DRX::SignalsTimer(TObject *Sender)
+{
+	DRX_Data_Package* package = GetPackage();
+
+	if(package != NULL){
+		__try{
+		  if((package->DataType == MSG_TX_RX_Power) && allow_tx_rx_power())       paint_tx_rx_power(package);
+		  else  if((package->DataType == MSG_TX_Burst) && allow_tx_burst())       paint_tx_burst(package);
+		  else  if((package->DataType == MSG_RX_dBZ) && allow_rx_dbz())           paint_rx_dbz(package);
+		  else  if((package->DataType == MSG_RX_dBT) && allow_rx_dbt())           paint_rx_dbt(package);
+		  else  if((package->DataType == MSG_RX_V) && allow_rx_v())               paint_rx_v(package);
+		  else  if((package->DataType == MSG_RX_W) && allow_rx_w())               paint_rx_w(package);
+		  else  if((package->DataType == MSG_RX_SQI) && allow_rx_sqi())           paint_rx_sqi(package);
+		  else  if((package->DataType == MSG_RX_LOG) && allow_rx_log())           paint_rx_log(package);
+		  else  if((package->DataType == MSG_RX_SIG) && allow_rx_sig())           paint_rx_sig(package);
+		  else  if((package->DataType == MSG_RX_CCOR) && allow_rx_ccor())         paint_rx_ccor(package);
+		  else  if((package->DataType == MSG_TX_Spectrum) && allow_tx_spectrum()) paint_tx_spectrum(package);
+		}
+		__finally{
+			delete package;
+		}
+	}
+}
+//---------------------------------------------------------------------------
+

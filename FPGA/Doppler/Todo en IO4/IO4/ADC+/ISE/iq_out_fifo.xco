@@ -1,0 +1,47 @@
+# Xilinx CORE Generator 6.3.03i; Cores Update # 1.1
+# Username = radar
+# COREGenPath = C:\Xilinx\coregen
+# ProjectPath = C:\cygwin\home\radar_2\doppler_dev\Io4v1\ADC+\ISE
+# ExpandedProjectPath = C:\cygwin\home\radar_2\doppler_dev\Io4v1\ADC+\ISE
+# OverwriteFiles = true
+# Core name: iq_out_fifo
+# Number of Primitives in design: 114
+# Number of CLBs used in design cannot be determined when there is no RPMed logic
+# Number of Slices used in design cannot be determined when there is no RPMed logic
+# Number of LUT sites used in design: 40
+# Number of LUTs used in design: 40
+# Number of REG used in design: 39
+# Number of SRL16s used in design: 0
+# Number of Distributed RAM primitives used in design: 0
+# Number of Block Memories used in design: 1
+# Number of Dedicated Multipliers used in design: 0
+# Number of HU_SETs used: 0
+# 
+SET BusFormat = BusFormatAngleBracketNotRipped
+SET XilinxFamily = Virtex2
+SET OutputOption = OutputProducts
+SET FlowVendor = Foundation_iSE
+SET FormalVerification = None
+SET OutputProducts = ImpNetlist ASYSymbol VHDLSim VerilogSim
+SELECT Asynchronous_FIFO Virtex2 Xilinx,_Inc. 5.1
+CSET read_error_sense = active_high
+CSET read_count_width = 2
+CSET write_acknowledge = false
+CSET create_rpm = false
+CSET read_acknowledge = false
+CSET read_count = false
+CSET write_error = false
+CSET almost_full_flag = false
+CSET almost_empty_flag = false
+CSET memory_type = block
+CSET read_error = false
+CSET fifo_depth = 31
+CSET component_name = iq_out_fifo
+CSET input_data_width = 32
+CSET write_count = false
+CSET write_acknowledge_sense = active_high
+CSET read_acknowledge_sense = active_high
+CSET write_error_sense = active_high
+CSET write_count_width = 2
+GENERATE
+

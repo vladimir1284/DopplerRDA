@@ -1,0 +1,27 @@
+# Xilinx CORE Generator 6.3i
+SELECT Direct_Digital_Synthesizer family Xilinx,_Inc. 5.0
+CSET accumulator_latency=One_Cycle
+CSET aclr_pin=false
+CSET channel_pin=false
+CSET channels=1
+CSET clock_enable=false
+CSET component_name=DDSV
+CSET create_rpm=false
+CSET dds_clock_rate=100.0
+CSET frequency_resolution=0.4
+CSET memory_type=Auto
+CSET negative_cosine=false
+CSET negative_sine=false
+CSET noise_shaping=Auto
+CSET output_frequencies=0.0
+CSET outputs_required=Sine
+CSET phase_increment=Programmable
+CSET phase_offset=Fixed
+CSET phase_offset_angles=0.0
+CSET pipelined=true
+CSET rdy_pin=false
+CSET rfd_pin=false
+CSET sclr_pin=false
+CSET spurious_free_dynamic_range=78.0
+GENERATE
+

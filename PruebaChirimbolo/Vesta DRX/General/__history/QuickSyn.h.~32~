@@ -1,0 +1,92 @@
+//---------------------------------------------------------------------------
+#ifndef QuickSynH
+#define QuickSynH
+
+#include <SyncObjs.hpp>
+
+#define ZylSerialPort
+#ifdef ZylSerialPort
+	#include "ZylSerialPort.hpp"
+#endif
+//---------------------------------------------------------------------------
+
+class QuickSyn{
+
+private:
+
+#ifdef ZylSerialPort
+	TZylSerialPort *ComPort;
+#endif
+
+	TCriticalSection* lock;
+	int staloPort;
+
+	String parameter;
+	String cmdResult;
+
+	bool fReady;
+	int  fBadTries;
+
+	bool fExtRef;
+	bool fRF_Unlocked;
+	bool fRef_Unlocked;
+	bool fRF_Output;
+	bool fVoltageErr;
+	bool fRefOutput;
+	bool fBlanking;
+	bool fLockRecovery;
+
+	INT64  fFrequency;
+	double fPower;
+	double fTemperature;
+	bool   fWaitingData;
+private:
+	bool TestPort(int Port);
+	bool SendCommand(String header, String parameter);
+	String QueryCommand(String header, String parameter);
+
+	String DecToHexString(INT64 value, short length);
+	INT64 HexStringToDec(String value, short length);
+	INT64 PowerXY(int base, int exp);
+	int HexDigit(char hexValue);
+
+	void __fastcall QuickSyn::OnReceive(TObject *Sender, AnsiString Buffer);
+	void __fastcall QuickSyn::OnDisconnect(TObject *Sender, AnsiString Buffer);
+public:
+	QuickSyn();
+	~QuickSyn();
+	void Reset();
+	void Update();
+
+	bool GetConnected();
+	void Connect();
+	void Disconnect();
+
+	void SetOutputON();
+	void SetOutputOff();
+	void SetFrequency(INT64 freq);
+	void SetPower(double power);
+
+	INT64  GetFrequency();
+	double GetPower();
+	double GetTemperature();
+	void   GetStatus();
+	bool   Ping();
+
+	bool GetExtRef();
+	bool GetRF_Unlocked();
+	bool GetRef_Unlocked();
+	bool GetRF_Output();
+	bool GetVoltageErr();
+	bool GetRefOutput();
+	bool GetBlanking();
+	bool GetLockRecovery();
+
+	__property bool   Connected   = {read= GetConnected};
+	__property bool   Ready       = {read= fReady};
+	__property double Power       = {read= fPower};
+	__property double Temperature = {read= fTemperature};
+	__property INT64  Frequency   = {read= fFrequency};
+};
+
+#endif

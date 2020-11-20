@@ -1,0 +1,25 @@
+
+Escribes por la FIFO 2
+
+Si esto se cumple es para el sincronismo
+
+D31  ----- 0     
+D30  ----- 0
+D29  ----- 0
+D28  ----- 1
+
+D27  ------ a 1 razon de PRF                en D5 y D4  00 3/4
+                                                        01 4/3 
+                                                        10 5/4
+
+D26  ------ a 1  PRF para PC en modo single     D3 y D2 00  300 Hz
+                                                        01  500 Hz
+                                                        10  900 Hz
+                                                        11  1125Hz
+
+D25 ------- a 1 Set PRf mode                   D1   0 single  
+                                                    1 dual
+
+
+D24         a 1 Set Pulse length               D0    0 PL
+                                                     1 PC

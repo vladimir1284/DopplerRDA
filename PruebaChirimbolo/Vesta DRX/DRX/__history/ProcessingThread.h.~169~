@@ -1,0 +1,93 @@
+//---------------------------------------------------------------------------
+
+#ifndef ProcessingThreadH
+#define ProcessingThreadH
+
+#include "DataParameters.h"
+#include "IntegratedData.h"
+#include "RawIQRead.h"
+#include "config.h"
+//---------------------------------------------------------------------------
+
+const int DATABUFFERS = 5;
+const int NDATA       = RAW_DATA_LENGTH_SP;
+
+typedef void __fastcall (__closure *TNewSectorDataEvent)(System::TObject* Sender, short Az, short El, short rays, short mode, short ndata, float *RawPower, float *TPower, float *Power, float *Doppler, float *Width, float *SQI, float *CI);
+
+//---------------------------------------------------------------------------
+class ProcessingThread : public TThread
+{
+private:
+	TNewSectorDataEvent FOnNewSectorData;
+
+public:
+   typedef struct HalfSectorData{
+		short RayCount;
+		short DataMode;
+		short NData;
+		int Azimuth;
+		int Elevation;
+		double raw_mag[NDATA];
+		double T0[NDATA];
+		double R0[NDATA];
+		double R1[NDATA * 2];
+		double R2[NDATA * 2];
+		double CI[NDATA];
+	  } HalfSectorData;
+
+	__property TNewSectorDataEvent OnNewSectorData = {read=FOnNewSectorData, write=FOnNewSectorData};
+
+private:
+		HalfSectorData HalfSector[2];
+		int    count;
+		int    CurrentSector;
+		bool   FirstSector;
+		bool   EnoughRays;
+		int    FilterStart;
+		double NoisePower;
+		int    UpdatedNoise;
+
+		float DopplerShift [NDATA];
+		float power        [NDATA];
+		float total_power [NDATA];
+		float SQI          [NDATA];
+		float CI           [NDATA];
+		float LOG          [NDATA];
+		float SIG          [NDATA];
+		float CCOR         [NDATA];
+		float width        [NDATA];
+		float raw_power    [NDATA];
+
+		double raw_i [NDATA];
+		double raw_q [NDATA];
+
+		int    HighFreqIndex;
+		int    LowFreqIndex;
+
+		RawPulseData   *PulseDataIn;
+		RawPulseData   *RawPulseDataIn;
+		RawIQRead      *TheRawIQ;
+		TDataFilter    *FilterData;
+		bool           Filtering;
+
+		void   InitHalfSector();
+
+		double GetVConvFactor(int mode);
+		double GetMaxUnfoldedSpeed(int mode);
+		void   ConvertToDB(float *Power, int NData, int mode);
+
+		void __fastcall PhaseCorrect(RawPulseData *);
+		void __fastcall IntegrateData();
+
+protected:
+		void __fastcall Execute();
+public:
+		__fastcall ProcessingThread(bool CreateSuspended);
+
+		void   SetFilter(TDataFilter* FilterInfo);
+		void   ResetFilter();
+};
+
+extern ProcessingThread* TheProcessingThread;
+//---------------------------------------------------------------------------
+#endif

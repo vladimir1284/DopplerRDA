@@ -1,0 +1,33 @@
+Release 10.1 - xst K.31 (nt)
+Copyright (c) 1995-2008 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to ./xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.14 secs
+ 
+--> 
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling vhdl file "E:/Robert/Pruebas lectura informacion angular/FPGA3_new/Src/UART.vhd" in Library work.
+ERROR:HDLParsers:3281 - "E:/Robert/Pruebas lectura informacion angular/FPGA3_new/Src/UART.vhd" Line 65. arch is not an architecture body for mod_m_counter in library work.
+ERROR:HDLParsers:3281 - "E:/Robert/Pruebas lectura informacion angular/FPGA3_new/Src/UART.vhd" Line 73. arch is not an architecture body for uart_rx in library work.
+ERROR:HDLParsers:164 - "E:/Robert/Pruebas lectura informacion angular/FPGA3_new/Src/UART.vhd" Line 76. parse error, unexpected PORT, expecting COMMA or CLOSEPAR
+ERROR:HDLParsers:3281 - "E:/Robert/Pruebas lectura informacion angular/FPGA3_new/Src/UART.vhd" Line 83. arch is not an architecture body for fifo in library work.
+ERROR:HDLParsers:164 - "E:/Robert/Pruebas lectura informacion angular/FPGA3_new/Src/UART.vhd" Line 93. parse error, unexpected GT
+ERROR:HDLParsers:3281 - "E:/Robert/Pruebas lectura informacion angular/FPGA3_new/Src/UART.vhd" Line 95. arch is not an architecture body for fifo in library work.
+ERROR:HDLParsers:164 - "E:/Robert/Pruebas lectura informacion angular/FPGA3_new/Src/UART.vhd" Line 99. parse error, unexpected END, expecting SEMICOLON
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.20 secs
+ 
+--> 
+
+Total memory usage is 120572 kilobytes
+
+Number of errors   :    7 (   0 filtered)
+Number of warnings :    0 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
+

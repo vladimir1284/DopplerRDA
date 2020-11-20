@@ -1,0 +1,22 @@
+#ifndef   DRX_Configuration_WSH
+#define   DRX_Configuration_WSH
+
+#include <System.hpp>
+#include <InvokeRegistry.hpp>
+#include <XSBuiltIns.hpp>
+#include <Types.hpp>
+#include "config.h"
+
+__interface INTERFACE_UUID("{17188213-9E75-42EA-869E-618CE9F9866F}") IDRX_Configuration_WS : public IInvokable
+{
+public:
+	virtual TSettings* Get_Configuration() = 0;
+	virtual void Set_Configuration(TSettings* data) = 0;
+};
+typedef DelphiInterface<IDRX_Configuration_WS> _di_IDRX_Configuration_WS;
+
+
+#endif // DRX_Configuration_WSH
+//---------------------------------------------------------------------------
+
+

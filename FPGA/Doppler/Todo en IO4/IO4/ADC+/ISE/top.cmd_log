@@ -1,0 +1,918 @@
+xst -intstyle ise -ifn __projnav/top.xst -ofn top.syr
+ngdbuild -intstyle ise -dd "c:\mide\cyclops-d\development\source\fpga\io4\adc+\ise/_ngo" -nt timestamp -uc Ex1_Io4v.ucf  -p xc2v1000-fg456-4 top.ngc top.ngd
+map -intstyle ise -p xc2v1000-fg456-4 -timing -ol med -t 1 -cm area -pr b -k 4 -c 100 -tx off -o top_map.ncd top.ngd top.pcf
+par -w -intstyle ise -ol med -t 1 top_map.ncd top.ncd top.pcf
+trce -intstyle ise -e 3 -l 3 -s 4 -xml top top.ncd -o top.twr top.pcf
+bitgen -intstyle ise -f top.ut top.ncd
+xst -intstyle ise -ifn __projnav/top.xst -ofn top.syr
+xst -intstyle ise -ifn __projnav/top.xst -ofn top.syr
+ngdbuild -intstyle ise -dd "c:\mide\cyclops-d\development\source\fpga\io4\adc+\ise/_ngo" -nt timestamp -uc Ex1_Io4v.ucf  -p xc2v1000-fg456-4 top.ngc top.ngd
+map -intstyle ise -p xc2v1000-fg456-4 -timing -ol med -t 1 -cm area -pr b -k 4 -c 100 -tx off -o top_map.ncd top.ngd top.pcf
+par -w -intstyle ise -ol med -t 1 top_map.ncd top.ncd top.pcf
+trce -intstyle ise -e 3 -l 3 -s 4 -xml top top.ncd -o top.twr top.pcf
+bitgen -intstyle ise -f top.ut top.ncd
+xst -intstyle ise -ifn __projnav/top.xst -ofn top.syr
+ngdbuild -intstyle ise -dd "c:\mide\cyclops-d\development\source\fpga\io4\adc+\ise/_ngo" -nt timestamp -uc Ex1_Io4v.ucf  -p xc2v1000-fg456-4 top.ngc top.ngd
+map -intstyle ise -p xc2v1000-fg456-4 -timing -ol med -t 1 -cm area -pr b -k 4 -c 100 -tx off -o top_map.ncd top.ngd top.pcf
+par -w -intstyle ise -ol med -t 1 top_map.ncd top.ncd top.pcf
+trce -intstyle ise -e 3 -l 3 -s 4 -xml top top.ncd -o top.twr top.pcf
+bitgen -intstyle ise -f top.ut top.ncd
+xst -intstyle ise -ifn __projnav/top.xst -ofn top.syr
+ngdbuild -intstyle ise -dd "c:\mide\cyclops-d\development\source\fpga\io4\adc+\ise/_ngo" -nt timestamp -uc Ex1_Io4v.ucf  -p xc2v1000-fg456-4 top.ngc top.ngd
+map -intstyle ise -p xc2v1000-fg456-4 -timing -ol med -t 1 -cm area -pr b -k 4 -c 100 -tx off -o top_map.ncd top.ngd top.pcf
+par -w -intstyle ise -ol med -t 1 top_map.ncd top.ncd top.pcf
+trce -intstyle ise -e 3 -l 3 -s 4 -xml top top.ncd -o top.twr top.pcf
+bitgen -intstyle ise -f top.ut top.ncd
+xst -intstyle ise -ifn __projnav/top.xst -ofn top.syr
+ngdbuild -intstyle ise -dd "c:\mide\cyclops-d\development\source\fpga\io4\adc+\ise/_ngo" -nt timestamp -uc Ex1_Io4v.ucf  -p xc2v1000-fg456-4 top.ngc top.ngd
+map -intstyle ise -p xc2v1000-fg456-4 -timing -ol med -t 1 -cm area -pr b -k 4 -c 100 -tx off -o top_map.ncd top.ngd top.pcf
+par -w -intstyle ise -ol med -t 1 top_map.ncd top.ncd top.pcf
+trce -intstyle ise -e 3 -l 3 -s 4 -xml top top.ncd -o top.twr top.pcf
+bitgen -intstyle ise -f top.ut top.ncd
+xst -ise "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+bitgen -ise "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+par -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/Todo en IO4/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/Todo en IO4/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/Todo en IO4/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/Todo en IO4/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/Todo en IO4/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/Todo en IO4/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/Todo en IO4/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/Todo en IO4/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/Todo en IO4/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/Todo en IO4/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/Todo en IO4/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd

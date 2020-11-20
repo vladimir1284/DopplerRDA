@@ -1,0 +1,19 @@
+//---------------------------------------------------------------------------
+
+
+#pragma hdrstop
+
+#include "CommonObjs.h"
+
+class TDRX_Object : public TInvokableClass
+{
+public:
+  HRESULT STDMETHODCALLTYPE QueryInterface(const GUID& IID, void **Obj)
+						{ return GetInterface(IID, Obj) ? S_OK : E_NOINTERFACE; }
+  ULONG STDMETHODCALLTYPE AddRef() { return TInvokableClass::_AddRef();  }
+  ULONG STDMETHODCALLTYPE Release() { return TInvokableClass::_Release();  }
+};
+
+//---------------------------------------------------------------------------
+
+#pragma package(smart_init)

@@ -1,0 +1,1197 @@
+unit Config;
+
+interface
+
+uses
+  ElbrusTypes;
+
+type
+  TConfig = class
+  public
+    constructor Create;
+    destructor  Destroy;  override;
+    procedure   Update;
+  private
+    fRadarID       : integer;
+    fObsDir        : string;
+    fSpeedAcc      : integer;
+    fAngleAcc      : integer;
+    fPackMethod    : integer;
+    fCh1Beam       : single;
+    fCh2Beam       : single;
+    fRadarTimeout  : integer;
+    fRadarRestTime : integer;
+    fTxRxTimeout   : integer;
+    fAutoObs       : boolean;
+    fAutoPowerOff  : boolean;
+    fSpeckleRemove : boolean;
+    fSpeckleRemoveAz : boolean;
+    fSpeckleUmbral : word;
+    fSpeckleUmbralAz : word;
+    fRTSpeckleRemove : boolean;
+    fRTSpeckleUmbral : word;
+    fSaveVariance  : boolean;
+    fClutterClear  : boolean;
+    fContinuosRegime  : boolean;
+    fClutterCells  : integer;
+    fThreshold1    : integer;
+    fThreshold2    : integer;
+    fRadarWarmTime : integer;
+    fTemperature   : double;
+    fPressure      : double;
+    //Sincronismo
+    fN1Source      : integer;
+    fPLRate        : cardinal;
+    fPLTimes       : CounterTimes;
+    fPCRate        : cardinal;
+    fPCTimes       : CounterTimes;
+    //Conversores AD
+    fAIGains       : AnalogGains;
+    //Video
+    fSampleRate    : cardinal;
+    fClockSource   : boolean;
+    fCh1Port       : integer;
+    fCh2Port       : integer;
+    fVideoGains    : VideoGains;
+    fOsciloscopePort : cardinal;
+    //Deva
+    fAngleCodeRate : integer;
+    fAngleClockwiseRotationX : boolean;
+    fAngleClockwiseRotationY : boolean;
+    fAngleClockwiseRotationZ : boolean;
+    //EMail
+    fSendMsgOnError : boolean;
+    fTargetAddress : string;
+    fSMTPServer : string;
+    fSMTPPort : integer;
+    fSMTPUser : string;
+    fSMTPPassword : string;
+    fSMTPFromAddress : string;
+
+    //Errors
+    fCheckPPIParam : boolean;
+
+    procedure SetTemperature  ( Value : double );
+    procedure SetPressure     ( Value : double );
+    procedure SetRadarID      ( Value : integer );
+    procedure SetObsDir       ( Value : string );
+    procedure SetSpeedAcc     ( Value : integer );
+    procedure SetAngleAcc     ( Value : integer );
+    procedure SetPackMethod   ( Value : integer );
+    procedure SetCh1Beam      ( Value : single );
+    procedure SetCh2Beam      ( Value : single );
+    procedure SetRadarTimeout ( Value : integer );
+    procedure SetRadarRestTime( Value : integer );
+    procedure SetTxRxTimeout  ( Value : integer );
+    procedure SetAutoObs      ( Value : boolean );
+    procedure SetAutoPowerOff ( Value : boolean );
+    procedure SetSpeckleRemove( Value : boolean );
+    procedure SetContinuosRegime( Value : boolean );
+    procedure SetSpeckleUmbral( Value : word );
+    procedure SetSaveVariance ( Value : boolean );
+    procedure SetClutterClear ( Value : boolean );
+    procedure SetClutterCells ( Value : integer );
+    procedure SetThreshold1   ( Value : integer );
+    procedure SetThreshold2   ( Value : integer );
+    procedure SetRadarWarmTime( Value : integer );
+
+    procedure SetN1Source(Value: integer);
+    procedure SetCh1Port      ( Value : integer );
+    procedure SetCh2Port      ( Value : integer );
+    procedure SetPLRate       ( Value : cardinal );
+    procedure SetPLTimes      ( Index : integer; Value : CounterCode );
+    function  GetPLTimes      ( Index : integer ) : CounterCode;
+    procedure SetPCRate       ( Value : cardinal );
+    procedure SetPCTimes      ( Index : integer; Value : CounterCode );
+    function  GetPCTimes      ( Index : integer ) : CounterCode;
+    //Conversores AD
+    procedure SetAIGains      ( Index : AIRange; Value : GainCode );
+    function  GetAIGains      ( Index : AIRange ) : GainCode;
+    //Video
+    procedure SetSampleRate   ( Value : cardinal );
+    procedure SetVideoGains   ( Index : integer; Value : VideoCode );
+    function  GetVideoGains   ( Index : integer ) : VideoCode;
+    procedure SetOsciloscopePort( Value : cardinal );
+    //Deva
+    procedure SetAngleCodeRate ( Value : integer );
+    procedure SetAngleClockwiseRotationX( Value : boolean );
+    procedure SetAngleClockwiseRotationY( Value : boolean );
+    procedure SetAngleClockwiseRotationZ( Value : boolean );
+     //EMail
+    procedure SetSendMsgOnError(const Value: boolean);
+    procedure SetSMTPPassword(const Value: string);
+    procedure SetSMTPPort(const Value: integer);
+    procedure SetSMTPServer(const Value: string);
+    procedure SetSMTPUser(const Value: string);
+    procedure SetTargetAddress(const Value: string);
+    procedure SetSMTPFromAddress(const Value: string);
+    //Ref Points
+    procedure SetCheckPPIParam(const Value: boolean);
+
+    procedure SetSpeckleRemoveAz(const Value: boolean);
+    procedure SetSpeckleUmbralAz(const Value: word);
+    procedure SetClockSource(const Value: boolean);
+  public
+    property ClockSource   : boolean read fClockSource   write SetClockSource;
+    property Temperature   : double  read fTemperature   write SetTemperature;
+    property Pressure      : double  read fPressure      write SetPressure;
+    property RadarID       : integer read fRadarID       write SetRadarID;
+    property ObsDir        : string  read fObsDir        write SetObsDir;
+    property Ch1Beam       : single  read fCh1Beam       write SetCh1Beam;
+    property Ch2Beam       : single  read fCh2Beam       write SetCh2Beam;
+    property SpeedAcc      : integer read fSpeedAcc      write SetSpeedAcc;
+    property AngleAcc      : integer read fAngleAcc      write SetAngleAcc;
+    property PackMethod    : integer read fPackMethod    write SetPackMethod;
+    property RadarTimeout  : integer read fRadarTimeout  write SetRadarTimeout;
+    property RadarRestTime : integer read fRadarRestTime write SetRadarRestTime;
+    property TxRxTimeout   : integer read fTxRxTimeout   write SetTxRxTimeout;
+    property AutoObs       : boolean read fAutoObs       write SetAutoObs;
+    property AutoPowerOff  : boolean read fAutoPowerOff  write SetAutoPowerOff;
+    property SpeckleRemove : boolean read fSpeckleRemove write SetSpeckleRemove;
+    property SpeckleRemoveAz : boolean read fSpeckleRemoveAz write SetSpeckleRemoveAz;
+    property CheckPPIParam   : boolean read fCheckPPIParam write SetCheckPPIParam;
+    property ContinuosRegime : boolean read fContinuosRegime write SetContinuosRegime;
+    property SpeckleUmbral   : word    read fSpeckleUmbral write SetSpeckleUmbral;
+    property SpeckleUmbralAz : word    read fSpeckleUmbralAz write SetSpeckleUmbralAz;
+    property SaveVariance  : boolean read fSaveVariance  write SetSaveVariance;
+    property ClutterClear  : boolean read fClutterClear  write SetClutterClear;
+    property ClutterCells  : integer read fClutterCells  write SetClutterCells;
+    property Threshold1    : integer read fThreshold1    write SetThreshold1;
+    property Threshold2    : integer read fThreshold2    write SetThreshold2;
+    property RadarWarmTime : integer read fRadarWarmTime write SetRadarWarmTime;
+
+    property N1Source      : integer  read fN1Source      write SetN1Source;
+    property PLRate        : cardinal read fPLRate        write SetPLRate;
+    property PLTimes[index: integer]: CounterCode read GetPLTimes  write SetPLTimes;
+    property PCRate        : cardinal  read fPCRate        write SetPCRate;
+    property PCTimes[index: integer]: CounterCode read GetPCTimes  write SetPCTimes;
+    property PC_Times: CounterTimes read fPCTimes;
+    property PL_Times: CounterTimes read fPLTimes;
+    //Conversores AD
+    property AIGains[index: AIRange]: GainCode read GetAIGains  write SetAIGains;
+    property AI_Gains : AnalogGains read fAIGains;
+    //Video
+    property SampleRate    : cardinal  read fSampleRate    write SetSampleRate;
+    property Ch1Port       : integer read fCh1Port       write SetCh1Port;
+    property Ch2Port       : integer read fCh2Port       write SetCh2Port;
+    property VideoGains[index: integer]: VideoCode read GetVideoGains  write SetVideoGains;
+    property Video_Gains : VideoGains read fVideoGains;
+    property OsciloscopePort : cardinal  read fOsciloscopePort  write SetOsciloscopePort;
+    //Deva
+    property AngleCodeRate : integer read fAngleCodeRate write SetAngleCodeRate;
+    property AngleClockwiseRotationX : boolean read fAngleClockwiseRotationX write SetAngleClockwiseRotationX;
+    property AngleClockwiseRotationY : boolean read fAngleClockwiseRotationY write SetAngleClockwiseRotationY;
+    property AngleClockwiseRotationZ : boolean read fAngleClockwiseRotationZ write SetAngleClockwiseRotationZ;
+
+    //EMail
+    property SendMsgOnError : boolean read fSendMsgOnError  write SetSendMsgOnError;
+    property TargetAddress : string   read fTargetAddress   write SetTargetAddress;
+    property SMTPServer : string      read fSMTPServer      write SetSMTPServer;
+    property SMTPPort : integer       read fSMTPPort        write SetSMTPPort;
+    property SMTPUser : string        read fSMTPUser        write SetSMTPUser;
+    property SMTPPassword : string    read fSMTPPassword    write SetSMTPPassword;
+    property SMTPFromAddress : string read fSMTPFromAddress write SetSMTPFromAddress;
+  private
+    function  LoadConfig : boolean;
+    procedure Defaults;
+  public
+    procedure SaveConfig;
+    procedure SaveOprConfig;
+  end;
+
+var
+  theConfiguration : TConfig = nil;
+
+implementation
+
+uses
+  Mutex,
+  RDAReg, Registry, Parameters, Deva, Elbrus, Users, SysUtils, DataUtils;
+
+const
+  ConfigurationMutexName = 'Elbrus_Configuration_Mutex';
+  PointFields = 8;
+
+var
+  ConfigurationMutex : TMutex  = nil;
+
+const
+  MutexTime                    = 1000;
+  DefaultRadarTimeout          = 10;  //minutes
+  DefaultRadarWarmTime         = 6;   //minutes
+  DefaultRadarRestTime         = 15;  //minutes
+  DefaultSpeckleUmbral         = 500; //meters
+  DefaultRTSpeckleUmbral       = 500; //meters
+  DefaultSpeckleUmbralAz       = 1; //Sectores
+  DefaultRTSpeckleUmbralAz     = 1; //Sectores
+  DefaultSendMsgOnError        = false;
+  DefaultTargetAddress         = '';
+  DefaultSMTPServer            = '127.0.0.1';
+  DefaultSMTPPort              = 25;
+  DefaulSMTPPassword           = 'Vesta';
+  DefaultSMTPUser              = 'God';
+  DefaultSMTPFromAddress       = '';
+  DefaultContinuosRegime       = false;
+  DefaultPressure              = 1024;
+  DefaultTemperature           = 25;
+  DefaultCheckPoints           = false;
+  DefaultPointCount            = 0;
+  DefaultCheckPPIParam         = true;
+  DefaultReferencePoints       = '';
+  DefaultRT_Port               = 8080;
+  DefaultRT_MaxClients         = 1;
+  DefaultRTSpeckle             = false;
+  DefaultClockSource           = false;
+  DefaultRadarID               = 0;
+  DefaultBeam1                 = 0.5;
+  DefaultBeam2                 = 1.5;
+  DefaultObsDir                = 'c:\';
+  DefaultSpeedAcc              = 10;
+  DefaultAngleAcc              = 10;
+  DefaultPackMethod            = 0;
+  DefaultTxRxTimeout           = 5;
+  DefaultAutoObs               = false;
+  DefaultAutoPowerOff          = false;
+  DefaultSpeckleRemove         = false;
+  DefaultSaveVariance          = false;
+  DefaultClutterClear          = false;
+  DefaultClutterCells          = 0;
+  DefaultThreshold1            = 0;
+  DefaultThreshold2            = 0;
+  DefaultRefPointsWarnTime     = 5;
+  DefaultRefPointsADFreq       = 1000000;
+  DefaultAutomaticRefPoints    = false;
+  DefaultSampleRate            = 1000000;
+  DefaultOsciloscopePort       = 8899;
+
+const
+  ConfigKey                  = RDARootKey + '\Configuration';
+  ClockSourceValue           = 'ClockSource';
+  RadarValue                 = 'RadarID';
+  ObsValue                   = 'Observations';
+  Beam1Value                 = 'Beam_Ch1';
+  Beam2Value                 = 'Beam_Ch2';
+  SpdAccValue                = 'SpeedAccuracy';
+  AngAccValue                = 'AngleAccuracy';
+  PMValue                    = 'PackMethod';
+  RTimeValue                 = 'Radar_Timeout';
+  ATimeValue                 = 'Alarm_Timeout';
+  AutoValue                  = 'Automatic_Obs';
+  AutoPOValue                = 'Automatic_Power_Off';
+  SpeckleValue               = 'Speckle_Remove';
+  SpeckleValueAz             = 'Speckle_RemoveAz';
+  RTSpeckleValue             = 'RTSpeckle_Remove';
+  RTSpeckleValueAz           = 'RTSpeckle_RemoveAz';
+  SpeckleUmbralValue         = 'Speckle_Umbral';
+  RTSpeckleUmbralValue       = 'RTSpeckle_Umbral';
+  SpeckleUmbralValueAz       = 'Speckle_UmbralAz';
+  RTSpeckleUmbralValueAz     = 'RTSpeckle_UmbralAz';
+  SaveVarValue               = 'Save_Variance';
+  ClutterValue               = 'Clutter_Suppresion';
+  ContinuosRegimeValue       = 'Continuos_Regime';
+  CCellsValue                = 'Clutter_Cells';
+  CTrhd1Value                = 'Clutter_Threshold1';
+  CTrhd2Value                = 'Clutter_Threshold2';
+  RadarWarmTimeValue         = 'RadarWarmTimeValue';
+  RadarRestTimeValue         = 'RadarRestTimeValue';
+  SendMsgOnErrorValue        = 'SendMsgOnError';
+  TargetAddressValue         = 'TargetAddress';
+  SMTPServerValue            = 'SMTPServer';
+  SMTPPortValue              = 'SMTPPort';
+  SMTPUserValue              = 'SMTPUser';
+  SMTPPasswordValue          = 'SMTPPassword';
+  SMTPFromAddressValue       = 'SMTPFromAddress';
+  PressureValue              = 'Pressure';
+  TemperatureValue           = 'Temperature';
+  CheckPointsValue           = 'CheckPoints';
+  PointCountValue            = 'PointCount';
+  ReferencePointsValue       = 'ReferencePoints';
+  CheckPPIParamValue         = 'CheckPPIParam';
+  RT_PortValue               = 'RT_Port';
+  RT_MaxClientsValue         = 'RT_MaxClients';
+  RefPointsWarnTimeValue     = 'RefPointsWarnTime';
+  RefPointsADFreqValue       = 'RefPointsADFreq';
+  AutomaticRefPointsValue    = 'AutomaticRefPoints';
+  OsciloscopePortValue       = 'OsciloscopePort';
+
+{ TConfig }
+
+constructor TConfig.Create;
+begin
+  inherited Create;
+  ConfigurationMutex := TMutex.Create(nil, false, ConfigurationMutexName);
+  Update;
+end;
+
+destructor TConfig.Destroy;
+begin
+  SaveConfig;
+  SaveOprConfig;
+  ConfigurationMutex.Free;
+  inherited;
+end;
+
+procedure TConfig.Update;
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        LoadConfig;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+function TConfig.LoadConfig: boolean;
+begin
+  result := true;
+  try
+    //Video
+    fSampleRate := LoadSampleRate;
+    fVideoGains := LoadVideoGains;
+    fCh1Port    := LoadCh1Port;
+    fCh2Port    := LoadCh2Port;
+    //Synchro PL
+    fPLRate := LoadPLRate;
+    fPLTimes := LoadPLTimes;
+    //Synchro PC
+    fPCRate := LoadPCRate;
+    fPCTimes := LoadPCTimes;
+    //Deva
+    fAngleCodeRate := LoadAngleCodeRate;
+    fAngleClockwiseRotationX := LoadAngleClockwiseRotationX;
+    fAngleClockwiseRotationY := LoadAngleClockwiseRotationY;
+    fAngleClockwiseRotationZ := LoadAngleClockwiseRotationZ;
+    //N1Source
+    fN1Source := LoadN1Source;
+    //Analog Input
+    fAIGains := LoadAIGains;
+    with TRDAReg.Create do
+      try
+        if OpenKey(ConfigKey, false)
+          then
+            try
+              if ValueExists(OsciloscopePortValue)
+                then fOsciloscopePort := ReadInteger(OsciloscopePortValue)
+                else fOsciloscopePort := DefaultOsciloscopePort;
+              if ValueExists(RadarValue)
+                then fRadarID := ReadInteger(RadarValue)
+                else fRadarID := DefaultRadarID;
+              if ValueExists(ObsValue)
+                then fObsDir := ReadString(ObsValue)
+                else fObsDir := DefaultObsDir;
+              if ValueExists(Beam1Value)
+                then fCh1Beam := ReadFloat(Beam1Value)
+                else fCh1Beam := DefaultBeam1;
+              if ValueExists(Beam2Value)
+                then fCh2Beam := ReadFloat(Beam2Value)
+                else fCh2Beam := DefaultBeam2;
+              if ValueExists(SpdAccValue)
+                then fSpeedAcc := ReadInteger(SpdAccValue)
+                else fSpeedAcc := DefaultSpeedAcc;
+              if ValueExists(AngAccValue)
+                then fAngleAcc := ReadInteger(AngAccValue)
+                else fAngleAcc := DefaultAngleAcc;
+              if ValueExists(ClockSourceValue)
+                then fClockSource := ReadBool(ClockSourceValue)
+                else fClockSource := DefaultClockSource;
+              if ValueExists(PMValue)
+                then fPackMethod := ReadInteger(PMValue)
+                else fPackMethod := DefaultPackMethod;
+              if ValueExists(ATimeValue)
+                then fTxRxTimeout := ReadInteger(ATimeValue)
+                else fTxRxTimeout := DefaultTxRxTimeout;
+              if ValueExists(AutoValue)
+                then fAutoObs := ReadBool(AutoValue)
+                else fAutoObs := DefaultAutoObs;
+              if ValueExists(AutoPOValue)
+                then fAutoPowerOff := ReadBool(AutoPOValue)
+                else fAutoPowerOff := DefaultAutoPowerOff;
+              if ValueExists(SpeckleValue)
+                then fSpeckleRemove := ReadBool(SpeckleValue)
+                else fSpeckleRemove := DefaultSpeckleRemove;
+              if ValueExists(SaveVarValue)
+                then fSaveVariance := ReadBool(SaveVarValue)
+                else fSaveVariance := DefaultSaveVariance;
+              if ValueExists(ClutterValue)
+                then fClutterClear := ReadBool(ClutterValue)
+                else fClutterClear := DefaultClutterClear;
+              if ValueExists(CCellsValue)
+                then fClutterCells := ReadInteger(CCellsValue)
+                else fClutterCells := DefaultClutterCells;
+              if ValueExists(CTrhd1Value)
+                then fThreshold1 := ReadInteger(CTrhd1Value)
+                else fThreshold1 := DefaultThreshold1;
+              if ValueExists(CTrhd2Value)
+                then fThreshold2 := ReadInteger(CTrhd2Value)
+                else fThreshold2 := DefaultThreshold2;
+              if ValueExists(RTSpeckleValue)
+                then fRTSpeckleRemove := ReadBool(RTSpeckleValue)
+                else fRTSpeckleRemove := DefaultRTSpeckle;
+              if ValueExists(ContinuosRegimeValue)
+                then fContinuosRegime := ReadBool(ContinuosRegimeValue)
+                else fContinuosRegime := DefaultContinuosRegime;
+              if ValueExists(SpeckleUmbralValue)
+                then fSpeckleUmbral := ReadInteger(SpeckleUmbralValue)
+                else fSpeckleUmbral := DefaultSpeckleUmbral;
+              if ValueExists(SpeckleUmbralValueAz)
+                then fSpeckleUmbralAz := ReadInteger(SpeckleUmbralValueAz)
+                else fSpeckleUmbralAz := DefaultSpeckleUmbralAz;
+              if ValueExists(RTimeValue)
+                then fRadarTimeout := ReadInteger(RTimeValue)
+                else fRadarTimeout := DefaultRadarTimeout;
+              if ValueExists(RTSpeckleUmbralValue)
+                then fRTSpeckleUmbral := ReadInteger(RTSpeckleUmbralValue)
+                else fRTSpeckleUmbral := DefaultRTSpeckleUmbral;
+              if ValueExists(RadarWarmTimeValue)
+                then fRadarWarmTime := ReadInteger(RadarWarmTimeValue)
+                else fRadarWarmTime := DefaultRadarWarmTime;
+              if ValueExists(RadarRestTimeValue)
+                then fRadarRestTime := ReadInteger(RadarRestTimeValue)
+                else fRadarRestTime := DefaultRadarRestTime;
+              if ValueExists(TemperatureValue)
+                then fTemperature := ReadFloat(TemperatureValue)
+                else fTemperature := DefaultTemperature;
+              if ValueExists(PressureValue)
+                then fPressure := ReadFloat(PressureValue)
+                else fPressure := DefaultPressure;
+              //Email
+              if ValueExists(SendMsgOnErrorValue)
+                then fSendMsgOnError := ReadBool(SendMsgOnErrorValue)
+                else fSendMsgOnError := DefaultSendMsgOnError;
+              if ValueExists(TargetAddressValue)
+                then fTargetAddress := ReadString(TargetAddressValue)
+                else fTargetAddress := DefaultTargetAddress;
+              if ValueExists(SMTPServerValue)
+                then fSMTPServer := ReadString(SMTPServerValue)
+                else fSMTPServer := DefaultSMTPServer;
+              if ValueExists(SMTPUserValue)
+                then fSMTPUser := ReadString(SMTPUserValue)
+                else fSMTPUser := DefaultSMTPUser;
+              if ValueExists(SMTPPasswordValue)
+                then fSMTPPassword := Users.Decode(ReadString(SMTPPasswordValue))
+                else fSMTPPassword := DefaulSMTPPassword;
+              if ValueExists(SMTPPortValue)
+                then fSMTPPort := ReadInteger(SMTPPortValue)
+                else fSMTPPort := DefaultSMTPPort;
+              if ValueExists(SMTPFromAddressValue)
+                then fSMTPFromAddress := ReadString(SMTPFromAddressValue)
+                else fSMTPFromAddress := DefaultSMTPFromAddress;
+              //Errors
+              if ValueExists(CheckPPIParamValue)
+                then fCheckPPIParam := ReadBool(CheckPPIParamValue)
+                else fCheckPPIParam := DefaultCheckPPIParam;
+            except
+              Defaults;
+            end
+          else Defaults;
+      finally
+        free;
+      end;
+  except
+    result := true;
+  end;
+end;
+
+procedure TConfig.SaveConfig;
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(ConfigKey, true)
+        then
+          begin
+            WriteInteger(OsciloscopePortValue, fOsciloscopePort);
+            WriteInteger(RadarValue, fRadarID);
+            WriteString(ObsValue, fObsDir);
+            WriteFloat(Beam1Value, fCh1Beam);
+            WriteFloat(Beam2Value, fCh2Beam);
+            WriteInteger(SpdAccValue, fSpeedAcc);
+            WriteInteger(AngAccValue, fAngleAcc);
+            WriteInteger(PMValue, fPackMethod);
+            WriteInteger(ATimeValue, fTxRxTimeout);
+            WriteBool(SpeckleValue, fSpeckleRemove );
+            WriteBool(SpeckleValueAz, fSpeckleRemoveAz );
+            WriteBool(SaveVarValue, fSaveVariance);
+            WriteBool(ClutterValue, fClutterClear);
+            WriteBool( CheckPPIParamValue, fCheckPPIParam);
+            WriteBool( ClockSourceValue, fClockSource);
+            WriteInteger(SpeckleUmbralValue, fSpeckleUmbral );
+            WriteInteger(SpeckleUmbralValueAz, fSpeckleUmbralAz );
+            WriteInteger(CCellsValue, fClutterCells);
+            WriteInteger(CTrhd1Value, fThreshold1);
+            WriteInteger(CTrhd2Value, fThreshold2);
+            WriteFloat( PressureValue, fPressure );
+            WriteFloat( TemperatureValue, fTemperature );
+            //Email
+            WriteInteger(SMTPPortValue, fSMTPPort);
+            WriteBool(SendMsgOnErrorValue, fSendMsgOnError);
+            WriteString(TargetAddressValue, fTargetAddress);
+            WriteString(SMTPServerValue, fSMTPServer);
+            WriteString(SMTPUserValue, fSMTPUser);
+            WriteString(SMTPPasswordValue, Users.Encode(fSMTPPassword));
+            WriteString(SMTPFromAddressValue, fSMTPFromAddress);
+          end;
+    finally
+      Free;
+    end;
+    //Video
+    SaveSampleRate( fSampleRate );
+    SaveVideoGains( fVideoGains );
+    SaveCh1Port( fCh1Port );
+    SaveCh2Port( fCh2Port );
+    //N1 Source
+    SaveN1Source( fN1Source );
+    //Deva
+    SaveAngleCodeRate( fAngleCodeRate );
+    SaveAngleClockwiseRotationX( fAngleClockwiseRotationX );
+    SaveAngleClockwiseRotationY( fAngleClockwiseRotationY );
+    SaveAngleClockwiseRotationZ( fAngleClockwiseRotationZ );
+    //Synchro PL
+    SavePLRate( fPLRate );
+    SavePLTimes( fPLTimes );
+    //Synchro PC
+    SavePCRate( fPCRate );
+    SavePCTimes( fPCTimes );
+    //Analog Inputs
+    SaveAIGains( fAIGains );
+end;
+
+procedure TConfig.SetAngleAcc(Value: integer);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fAngleAcc := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetSpeedAcc(Value: integer);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fSpeedAcc := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetObsDir(Value: string);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fObsDir := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetRadarID(Value: integer);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fRadarID := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetPackMethod(Value: integer);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fPackMethod := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetCh1Beam(Value: single);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fCh1Beam := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetCh2Beam(Value: single);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fCh2Beam := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetTxRxTimeout(Value: integer);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fTxRxTimeout := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetRadarTimeout(Value: integer);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fRadarTimeout := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetAutoObs(Value: boolean);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fAutoObs := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetClutterCells(Value: integer);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fClutterCells := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetClutterClear(Value: boolean);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fClutterClear := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetThreshold1(Value: integer);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fThreshold1 := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetThreshold2(Value: integer);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fThreshold2 := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetAutoPowerOff(Value: boolean);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fAutoPowerOff := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetSpeckleRemove(Value: boolean);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fSpeckleRemove := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetSaveVariance(Value: boolean);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fSaveVariance := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetAngleClockwiseRotationX(Value: boolean);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        AntennaThread.Suspend;
+        Sleep( 10 );
+        fAngleClockwiseRotationX := Value;
+        SaveAngleClockwiseRotationX( Value );
+      finally
+        Update_Encoder;
+        AntennaThread.Resume;
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetAngleClockwiseRotationY(Value: boolean);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        AntennaThread.Suspend;
+        Sleep( 10 );
+        fAngleClockwiseRotationY := Value;
+        SaveAngleClockwiseRotationY( Value );
+      finally
+        Update_Encoder;
+        AntennaThread.Resume;
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetAngleClockwiseRotationZ(Value: boolean);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        AntennaThread.Suspend;
+        Sleep( 10 );
+        fAngleClockwiseRotationZ := Value;
+        SaveAngleClockwiseRotationZ( Value );
+      finally
+        Update_Encoder;
+        AntennaThread.Resume;
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetAngleCodeRate(Value: integer);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        AntennaThread.Suspend;
+        Sleep( 10 );
+        Done_Encoder;
+        fAngleCodeRate := Value;
+      finally
+        Init_Encoder;
+        AntennaThread.Resume;
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetN1Source(Value: integer);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fN1Source := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetPCRate(Value: cardinal);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fPCRate := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetPLRate(Value: cardinal);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fPLRate := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetSampleRate(Value: cardinal);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fSampleRate := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetAIGains( Index : AIRange; Value : GainCode );
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fAIGains[ Index ] := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetPCTimes( Index : integer; Value : CounterCode );
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fPCTimes[ Index ] := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetPLTimes( Index : integer; Value : CounterCode );
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fPLTimes[ Index ] := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetCh1Port(Value: integer);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fCh1Port := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetCh2Port(Value: integer);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fCh2Port := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+function TConfig.GetPCTimes(Index: integer): CounterCode;
+begin
+  result := fPCTimes[ Index ];
+end;
+
+function TConfig.GetPLTimes(Index: integer): CounterCode;
+begin
+  result := fPLTimes[ Index ];
+end;
+
+function TConfig.GetAIGains(Index: AIRange): GainCode;
+begin
+  result := fAIGains[ Index ];
+end;
+
+procedure TConfig.SetRadarWarmTime(Value: integer);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fRadarWarmTime := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+function TConfig.GetVideoGains(Index: integer): VideoCode;
+begin
+  result := fVideoGains[ Index ];
+end;
+
+procedure TConfig.SetVideoGains(Index: integer; Value: VideoCode);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fVideoGains[ Index ] := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetRadarRestTime(Value: integer);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fRadarRestTime := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetSpeckleUmbral(Value: word);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fSpeckleUmbral := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetSendMsgOnError(const Value: boolean);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fSendMsgOnError := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetSMTPPassword(const Value: string);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fSMTPPassword := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetSMTPPort(const Value: integer);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fSMTPPort := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetSMTPServer(const Value: string);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fSMTPServer := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetSMTPUser(const Value: string);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fSMTPUser := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetTargetAddress(const Value: string);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fTargetAddress := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetSMTPFromAddress(const Value: string);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fSMTPFromAddress := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetContinuosRegime(Value: boolean);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fContinuosRegime := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetPressure(Value: double);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fPressure := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetTemperature(Value: double);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fTemperature := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetCheckPPIParam(const Value: boolean);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fCheckPPIParam := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SaveOprConfig;
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(ConfigKey, true)
+        then
+          begin
+            WriteBool(AutoValue, fAutoObs);
+            WriteBool(ContinuosRegimeValue, fContinuosRegime);
+            WriteBool(AutoPOValue, fAutoPowerOff);
+            WriteBool(RTSpeckleValue, fRTSpeckleRemove);
+            WriteInteger(RTSpeckleUmbralValue, fRTSpeckleUmbral);
+            WriteInteger(RadarWarmTimeValue, fRadarWarmTime);
+            WriteInteger(RadarRestTimeValue, fRadarRestTime);
+            WriteInteger(RTimeValue, fRadarTimeout);
+          end;
+    finally
+      Free;
+    end;
+end;
+
+procedure TConfig.SetSpeckleRemoveAz(const Value: boolean);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fSpeckleRemoveAz := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetSpeckleUmbralAz(const Value: word);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fSpeckleUmbralAz := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.SetClockSource(const Value: boolean);
+begin
+  if ConfigurationMutex.WaitFor(MutexTime)
+    then
+      try
+        fClockSource := Value;
+      finally
+        ConfigurationMutex.Release;
+      end;
+end;
+
+procedure TConfig.Defaults;
+begin
+  fRadarID               := DefaultRadarID;
+  fObsDir                := DefaultObsDir;
+  fCh1Beam               := DefaultBeam1;
+  fCh2Beam               := DefaultBeam2;
+  fSpeedAcc              := DefaultSpeedAcc;
+  fAngleAcc              := DefaultAngleAcc;
+  fClockSource           := DefaultClockSource;
+  fPackMethod            := DefaultPackMethod;
+  fTxRxTimeout           := DefaultTxRxTimeout;
+  fAutoObs               := DefaultAutoObs;
+  fAutoPowerOff          := DefaultAutoPowerOff;
+  fSpeckleRemove         := DefaultSpeckleRemove;
+  fSaveVariance          := DefaultSaveVariance;
+  fClutterClear          := DefaultClutterClear;
+  fClutterCells          := DefaultClutterCells;
+  fThreshold1            := DefaultThreshold1;
+  fThreshold2            := DefaultThreshold2;
+  fRTSpeckleRemove       := DefaultRTSpeckle;
+  fContinuosRegime       := DefaultContinuosRegime;
+  fSpeckleUmbral         := DefaultSpeckleUmbral;
+  fSpeckleUmbralAz       := DefaultSpeckleUmbralAz;
+  fRadarTimeout          := DefaultRadarTimeout;
+  fRTSpeckleUmbral       := DefaultRTSpeckleUmbral;
+  fRadarWarmTime         := DefaultRadarWarmTime;
+  fRadarRestTime         := DefaultRadarRestTime;
+  fTemperature           := DefaultTemperature;
+  fPressure              := DefaultPressure;
+  fSendMsgOnError        := DefaultSendMsgOnError;
+  fTargetAddress         := DefaultTargetAddress;
+  fSMTPServer            := DefaultSMTPServer;
+  fSMTPUser              := DefaultSMTPUser;
+  fSMTPPassword          := DefaulSMTPPassword;
+  fSMTPPort              := DefaultSMTPPort;
+  fSMTPFromAddress       := DefaultSMTPFromAddress;
+  fCheckPPIParam         := DefaultCheckPPIParam;
+  fSampleRate            := DefaultSampleRate;
+  fOsciloscopePort       := DefaultOsciloscopePort;
+  SaveOprConfig;
+  SaveConfig;
+end;
+
+procedure TConfig.SetOsciloscopePort(Value: cardinal);
+begin
+  fOsciloscopePort := value;
+end;
+
+end.
+

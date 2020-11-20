@@ -1,0 +1,6 @@
+Running DRC.
+WARNING:DesignRules:332 - Blockcheck: Dangling RAMB16B output. Pin DOB14 of comp
+   iRawFifo255x14/B7 is not connected.
+WARNING:DesignRules:332 - Blockcheck: Dangling RAMB16B output. Pin DOB15 of comp
+   iRawFifo255x14/B7 is not connected.
+DRC detected 0 errors and 2 warnings.

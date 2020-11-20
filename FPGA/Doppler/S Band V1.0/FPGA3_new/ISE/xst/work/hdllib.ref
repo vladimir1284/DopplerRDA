@@ -1,0 +1,37 @@
+AR conn_d rtl "C:/Proyecto Cyclos_Cuba/FPGA/Pruebas de exemplos/Example1/Src/conn_d_OUT.vhd" sub00/vhpl24 1241796388
+EN hsb1 NULL "C:/Proyecto Cyclos_Cuba/FPGA/Pruebas de exemplos/Example1/Src/HSB1.vhd" sub00/vhpl00 1241708952
+AR outputfifo outputfifo_a "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/FPGA3_new/ISE/outputfifo.vhd" sub00/vhpl20 1583612547
+PH config NULL "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/FPGA3_new/Src/User_Ap1.vhd" sub00/vhpl12 1583612566
+AR times360 times360_a "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/FPGA3_new/ISE/times360.vhd" sub00/vhpl30 1583612549
+AR he_wr_6f rtl "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/FPGA3_new/Common/HE_WR_6F.vhd" sub00/vhpl09 1583612563
+AR conn_e rtl "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/FPGA3_new/Src/conn_e_OUT.vhd" sub00/vhpl18 1244732551
+EN times360 NULL "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/FPGA3_new/ISE/times360.vhd" sub00/vhpl29 1583612548
+AR mod_m_cter behavioral "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/FPGA3_new/Src/mod_m_cter.vhd" sub00/vhpl32 1583612551
+AR he_rd_6f rtl "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/FPGA3_new/Common/V2_RD_6F.vhd" sub00/vhpl07 1583612561
+AR uart_tx behavioral "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/FPGA3_new/Src/UART_TX.vhd" sub00/vhpl34 1583612553
+AR user_ap example1 "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/FPGA3_new/Src/User_Ap1.vhd" sub00/vhpl14 1583612568
+EN mod_m_cter NULL "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/FPGA3_new/Src/mod_m_cter.vhd" sub00/vhpl31 1583612550
+AR hsb1 rtl "C:/Proyecto Cyclos_Cuba/FPGA/Pruebas de exemplos/Example1/Src/HSB1.vhd" sub00/vhpl01 1241708953
+EN top NULL "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/FPGA3_new/Common/TOP.vhd" sub00/vhpl15 1583612569
+AR top rtl "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/FPGA3_new/Common/TOP.vhd" sub00/vhpl16 1583612570
+EN user_ap NULL "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/FPGA3_new/Src/User_Ap1.vhd" sub00/vhpl13 1583612567
+EN mycounter NULL "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/FPGA3_new/ISE/myCounter.vhd" sub00/vhpl35 1583612554
+AR conn_f rtl "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/FPGA3_new/Src/conn_f_OUT.vhd" sub00/vhpl26 1244732553
+EN he_user NULL "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/FPGA3_new/Common/HE_USER.vhd" sub00/vhpl10 1583612564
+EN he_rd_6f NULL "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/FPGA3_new/Common/V2_RD_6F.vhd" sub00/vhpl06 1583612560
+EN he_rclk NULL "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/FPGA3_new/Common/HE_RWCLK.vhd" sub00/vhpl02 1583612556
+AR mycounter mycounter_a "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/FPGA3_new/ISE/myCounter.vhd" sub00/vhpl36 1583612555
+AR he_wclk rtl "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/FPGA3_new/Common/HE_RWCLK.vhd" sub00/vhpl05 1583612559
+EN lpfilter NULL "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/FPGA3_new/ISE/lpfilter.vhd" sub00/vhpl27 1583612544
+AR he_rclk rtl "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/FPGA3_new/Common/HE_RWCLK.vhd" sub00/vhpl03 1583612557
+AR lpfilter lpfilter_a "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/FPGA3_new/ISE/lpfilter.vhd" sub00/vhpl28 1583612545
+AR he_user rtl "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/FPGA3_new/Common/HE_USER.vhd" sub00/vhpl11 1583612565
+AR conn_c rtl "C:/Proyecto Cyclos_Cuba/FPGA/Pruebas de exemplos/Example1/Src/conn_c_OUT.vhd" sub00/vhpl22 1241796386
+EN he_wr_6f NULL "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/FPGA3_new/Common/HE_WR_6F.vhd" sub00/vhpl08 1583612562
+EN outputfifo NULL "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/FPGA3_new/ISE/outputfifo.vhd" sub00/vhpl19 1583612546
+EN conn_c NULL "C:/Proyecto Cyclos_Cuba/FPGA/Pruebas de exemplos/Example1/Src/conn_c_OUT.vhd" sub00/vhpl21 1241796385
+EN conn_d NULL "C:/Proyecto Cyclos_Cuba/FPGA/Pruebas de exemplos/Example1/Src/conn_d_OUT.vhd" sub00/vhpl23 1241796387
+EN conn_e NULL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/FPGA3_new/Src/conn_e_OUT.vhd" sub00/vhpl17 1244732550
+EN conn_f NULL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/FPGA3_new/Src/conn_f_OUT.vhd" sub00/vhpl25 1244732552
+EN he_wclk NULL "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/FPGA3_new/Common/HE_RWCLK.vhd" sub00/vhpl04 1583612558
+EN uart_tx NULL "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/FPGA3_new/Src/UART_TX.vhd" sub00/vhpl33 1583612552

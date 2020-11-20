@@ -1,0 +1,336 @@
+object GPS_Form: TGPS_Form
+  Left = 432
+  Top = 141
+  BorderStyle = bsToolWindow
+  Caption = 'GPS_Form'
+  ClientHeight = 233
+  ClientWidth = 217
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  FormStyle = fsStayOnTop
+  OldCreateOrder = False
+  Position = poDefault
+  Visible = True
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  PixelsPerInch = 96
+  TextHeight = 13
+  object PageControl1: TPageControl
+    Left = 0
+    Top = 0
+    Width = 217
+    Height = 233
+    ActivePage = TabSheet1
+    Align = alClient
+    TabOrder = 0
+    object TabSheet1: TTabSheet
+      Caption = 'Datos'
+      object GroupBox1: TGroupBox
+        Left = 1
+        Top = 3
+        Width = 207
+        Height = 201
+        Caption = 'Datos del Avion'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 0
+        object Label1: TLabel
+          Left = 24
+          Top = 27
+          Width = 36
+          Height = 13
+          Caption = 'Fecha'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label6: TLabel
+          Left = 10
+          Top = 179
+          Width = 50
+          Height = 13
+          Caption = 'Longitud'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label5: TLabel
+          Left = 20
+          Top = 148
+          Width = 40
+          Height = 13
+          Caption = 'Latitud'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label4: TLabel
+          Left = 3
+          Top = 118
+          Width = 57
+          Height = 13
+          Caption = 'Velocidad'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label3: TLabel
+          Left = 27
+          Top = 87
+          Width = 33
+          Height = 13
+          Caption = 'Curso'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label2: TLabel
+          Left = 32
+          Top = 57
+          Width = 28
+          Height = 13
+          Caption = 'Hora'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object LongitudeInput: TStaticText
+          Left = 64
+          Top = 176
+          Width = 137
+          Height = 17
+          Alignment = taCenter
+          AutoSize = False
+          BevelInner = bvNone
+          BevelOuter = bvNone
+          BorderStyle = sbsSingle
+          Color = clSkyBlue
+          ParentColor = False
+          TabOrder = 0
+        end
+        object LatitudeInput: TStaticText
+          Left = 64
+          Top = 145
+          Width = 137
+          Height = 17
+          Alignment = taCenter
+          AutoSize = False
+          BevelInner = bvNone
+          BevelOuter = bvNone
+          BorderStyle = sbsSingle
+          Color = clSkyBlue
+          ParentColor = False
+          TabOrder = 1
+        end
+        object CurseInput: TStaticText
+          Left = 64
+          Top = 85
+          Width = 137
+          Height = 17
+          Alignment = taCenter
+          AutoSize = False
+          BevelInner = bvNone
+          BevelOuter = bvNone
+          BorderStyle = sbsSingle
+          Color = clSkyBlue
+          ParentColor = False
+          TabOrder = 2
+        end
+        object VelocityInput: TStaticText
+          Left = 64
+          Top = 115
+          Width = 137
+          Height = 17
+          Alignment = taCenter
+          AutoSize = False
+          BevelInner = bvNone
+          BevelOuter = bvNone
+          BorderStyle = sbsSingle
+          Color = clSkyBlue
+          ParentColor = False
+          TabOrder = 3
+        end
+        object TimeInput: TStaticText
+          Left = 64
+          Top = 55
+          Width = 137
+          Height = 17
+          Alignment = taCenter
+          AutoSize = False
+          BevelInner = bvNone
+          BevelOuter = bvNone
+          BorderStyle = sbsSingle
+          Color = clSkyBlue
+          ParentColor = False
+          TabOrder = 4
+        end
+        object DateInput: TStaticText
+          Left = 64
+          Top = 25
+          Width = 137
+          Height = 17
+          Alignment = taCenter
+          AutoSize = False
+          BevelInner = bvNone
+          BevelOuter = bvNone
+          BorderStyle = sbsSingle
+          Color = clSkyBlue
+          ParentColor = False
+          TabOrder = 5
+        end
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'Configuracion'
+      ImageIndex = 1
+      DesignSize = (
+        209
+        205)
+      object Label7: TLabel
+        Left = 5
+        Top = 101
+        Width = 71
+        Height = 13
+        Caption = 'Color del Avion'
+        OnClick = Button1Click
+      end
+      object Button1: TButton
+        Left = 185
+        Top = 71
+        Width = 23
+        Height = 22
+        Caption = '...'
+        TabOrder = 0
+        OnClick = Button1Click
+      end
+      object RefreshInfo: TCheckBox
+        Left = 2
+        Top = 5
+        Width = 201
+        Height = 17
+        Caption = 'Refrescar Informacion'
+        TabOrder = 1
+        OnClick = RefreshInfoClick
+      end
+      object LocatePlane: TCheckBox
+        Left = 2
+        Top = 28
+        Width = 201
+        Height = 17
+        Caption = 'Localizar el Avion en el Mapa'
+        TabOrder = 2
+        OnClick = LocatePlaneClick
+      end
+      object DataSource: TLabeledEdit
+        Left = 2
+        Top = 72
+        Width = 180
+        Height = 21
+        EditLabel.Width = 108
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Ubicacion de los datos'
+        ReadOnly = True
+        TabOrder = 3
+      end
+      object ColorBox1: TColorBox
+        Left = 6
+        Top = 116
+        Width = 100
+        Height = 22
+        Anchors = [akTop, akRight]
+        ItemHeight = 16
+        TabOrder = 4
+        OnSelect = ColorBox1Select
+      end
+      object LabeledEdit1: TLabeledEdit
+        Left = 8
+        Top = 160
+        Width = 49
+        Height = 21
+        EditLabel.Width = 88
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Refrescar (seg)'
+        EditLabel.Font.Charset = DEFAULT_CHARSET
+        EditLabel.Font.Color = clWindowText
+        EditLabel.Font.Height = -11
+        EditLabel.Font.Name = 'MS Sans Serif'
+        EditLabel.Font.Style = [fsBold]
+        EditLabel.ParentFont = False
+        ReadOnly = True
+        TabOrder = 5
+        Text = '0'
+      end
+      object UpDown1: TUpDown
+        Left = 57
+        Top = 160
+        Width = 16
+        Height = 21
+        Associate = LabeledEdit1
+        Max = 30000
+        TabOrder = 6
+        OnClick = UpDown1Click
+      end
+      object LabeledEdit2: TLabeledEdit
+        Left = 120
+        Top = 160
+        Width = 27
+        Height = 21
+        EditLabel.Width = 76
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Tama'#241'o (pto)'
+        EditLabel.Font.Charset = DEFAULT_CHARSET
+        EditLabel.Font.Color = clWindowText
+        EditLabel.Font.Height = -11
+        EditLabel.Font.Name = 'MS Sans Serif'
+        EditLabel.Font.Style = [fsBold]
+        EditLabel.ParentFont = False
+        ReadOnly = True
+        TabOrder = 7
+        Text = '0'
+      end
+      object UpDown2: TUpDown
+        Left = 147
+        Top = 160
+        Width = 16
+        Height = 21
+        Associate = LabeledEdit2
+        TabOrder = 8
+        OnClick = UpDown2Click
+      end
+    end
+  end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 15000
+    OnTimer = Timer1Timer
+    Left = 176
+    Top = 8
+  end
+end

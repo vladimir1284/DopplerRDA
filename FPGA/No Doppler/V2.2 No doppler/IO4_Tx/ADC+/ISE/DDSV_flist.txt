@@ -1,0 +1,10 @@
+# Output products list for <DDSV>
+DDSV.ngc
+DDSV.v
+DDSV.veo
+DDSV.vhd
+DDSV.vho
+DDSV.xco
+DDSV_SINCOS_TABLE_TRIG_ROM.mif
+DDSV_flist.txt
+DDSV_xmdf.tcl

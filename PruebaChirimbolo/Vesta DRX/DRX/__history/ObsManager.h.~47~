@@ -1,0 +1,71 @@
+//---------------------------------------------------------------------------
+
+#ifndef ObsManagerH
+#define ObsManagerH
+
+#include <Classes.hpp>
+#include <SyncObjs.hpp>
+#include <Contnrs.hpp>
+#include <IdContext.hpp>
+#include "IntegratedData.h"
+#include "config.h"
+#include "ProcessingThread.h"
+
+//---------------------------------------------------------------------------
+
+class ObservationManager
+{
+	private:
+		TCriticalSection* lock;
+		TQueue* movements;
+		bool fErrorMsg;
+		bool fCancelMsg;
+		bool fFinalizeMsg;
+
+		bool PPI;
+		bool FirstSector;
+		int  CurrentSector;
+		int  Index;
+		int  StartSector;
+		int  FinalSector;
+		IntegratedData *TheIntegratedData;
+		bool Cancel;
+		bool AFC_Status;
+		double Sector_Factor;
+		bool   ValidData;
+		double SectorWidth;
+		double HalfSectorWidth;
+		double QuarterSectorWidth;
+		int    SectorCount;
+
+		void __fastcall StoreData(short mode, short ndata, short Az, short El, float *Power, float *TPower, float *Doppler, float *Width);
+		void ClearMovements();
+		IntegratedData* GetMovement();
+	public:
+		ObservationManager();
+		~ObservationManager(void);
+
+		void ReceiveData(short Az, short El, short mode, short ndata, float *Power, float *TPower, float *Doppler, float *Width);
+		void AcquirePPI(int Speed, int Elevation);
+		void AcquireRHI(int Speed, int Azimuth, int Start, int Final);
+		void CancelData();
+
+		void AddMovement(IntegratedData* movement);
+
+		void Cancel_Msg();
+		void Error_Msg();
+		void Finalize_Msg();
+
+		void __fastcall GatheringError(String error);
+
+		void __fastcall RCP_Connect(TIdContext *AContext);
+		void __fastcall RCP_Disconnect(TIdContext *AContext);
+		void __fastcall RCP_Execute(TIdContext *AContext);
+};
+
+//---------------------------------------------------------------------------
+
+extern ObservationManager* theObservationManager;
+extern ProcessingThread* TheProcessingThread;
+
+#endif

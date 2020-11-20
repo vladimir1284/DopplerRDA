@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/58/Radar%20MRL-5MD/FPGA/IO4%20SBand/ADC+/ISE/remote_sources
+END
+HE_WR_6F.vhd
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/58/Radar%20MRL-5MD/FPGA/IO4%20SBand/ADC+/ISE/remote_sources/HE_WR_6F.vhd
+END
+TOP.vhd
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/58/Radar%20MRL-5MD/FPGA/IO4%20SBand/ADC+/ISE/remote_sources/TOP.vhd
+END
+HE_ADC.vhd
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/58/Radar%20MRL-5MD/FPGA/IO4%20SBand/ADC+/ISE/remote_sources/HE_ADC.vhd
+END
+HE_DAC.vhd
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/58/Radar%20MRL-5MD/FPGA/IO4%20SBand/ADC+/ISE/remote_sources/HE_DAC.vhd
+END
+led.vhd
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/58/Radar%20MRL-5MD/FPGA/IO4%20SBand/ADC+/ISE/remote_sources/led.vhd
+END
+USER_AP_ADC.vhd
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/58/Radar%20MRL-5MD/FPGA/IO4%20SBand/ADC+/ISE/remote_sources/USER_AP_ADC.vhd
+END
+V2_RD_6F.vhd
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/58/Radar%20MRL-5MD/FPGA/IO4%20SBand/ADC+/ISE/remote_sources/V2_RD_6F.vhd
+END
+HE_SCLK.vhd
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/58/Radar%20MRL-5MD/FPGA/IO4%20SBand/ADC+/ISE/remote_sources/HE_SCLK.vhd
+END
+HE_USER.vhd
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/58/Radar%20MRL-5MD/FPGA/IO4%20SBand/ADC+/ISE/remote_sources/HE_USER.vhd
+END
+V2ES_RWC.vhd
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/58/Radar%20MRL-5MD/FPGA/IO4%20SBand/ADC+/ISE/remote_sources/V2ES_RWC.vhd
+END
+HE_RWCLK.vhd
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/58/Radar%20MRL-5MD/FPGA/IO4%20SBand/ADC+/ISE/remote_sources/HE_RWCLK.vhd
+END

@@ -1,0 +1,200 @@
+unit Deva;
+
+interface
+
+uses
+  SysUtils;
+
+// Driver
+procedure Init_Encoder;
+procedure Update_Encoder;
+procedure Done_Encoder;
+
+//General
+function ClockwiseX : boolean;
+function ClockwiseY : boolean;
+function ClockwiseZ : boolean;
+
+// Encoder
+function Read_Encoder_X : Cardinal;
+function Read_Encoder_Y : cardinal;
+function Read_Encoder_Z : cardinal;
+
+function Read_Encoder_Int_X : integer;
+function Read_Encoder_Int_Y : integer;
+function Read_Encoder_Int_Z : integer;
+
+procedure Write_Output( Output : byte; Value : boolean );
+procedure Write_Outputs( Channel : byte; Value : cardinal );
+procedure Write_IndividualOutputs( Channel : byte; Value : cardinal );
+function  Read_OutputCount : integer;
+
+procedure Write_Az( Value : longword );
+procedure Write_El( Value : longword );
+
+implementation
+
+uses
+  Encoder,
+  Parameters, Constants, Config;
+
+// Public procedures & functions
+
+var
+  Comp2_X : boolean = false;
+  Comp2_Y : boolean = false;
+  Comp2_Z : boolean = false;
+
+  X_Channel : integer = 0;
+  Y_Channel : integer = 1;
+  Z_Channel : integer = 2;
+
+//General
+function ClockwiseX : boolean;
+begin
+  result := Comp2_X;
+end;
+
+function ClockwiseY : boolean;
+begin
+  result := Comp2_Y;
+end;
+
+function ClockwiseZ : boolean;
+begin
+  result := Comp2_Z;
+end;
+
+function Read_Encoder_X : Cardinal;
+begin
+  Result := Read_Encoder(ABSOLUTE_32, X_Channel);
+  if Comp2_X
+    then Result := (not Result + 1) and $3FFF
+    else Result := result and $3FFF;
+end;
+
+function Read_Encoder_Y : cardinal;
+begin
+  Result := Read_Encoder(ABSOLUTE_32, Y_Channel);
+  if Comp2_Y
+  then Result := (not Result + 1) and $3FFF
+  else Result := result and $3FFF
+end;
+
+function Read_Encoder_Z : cardinal;
+begin
+  Result := Read_Encoder(ABSOLUTE_32, Z_Channel);
+  if Comp2_Z
+    then Result := (not Result + 1) and $3FFF
+    else Result := result and $3FFF;
+end;
+
+function Read_Encoder_Int_X : integer;
+begin
+  Result := Read_Encoder_X;
+  if Result >= AntennaZeroValue
+    then dec(Result, AntennaMaxValue);
+end;
+
+function Read_Encoder_Int_Y : integer;
+begin
+  Result := Read_Encoder_Y;
+  if Result >= AntennaZeroValue
+    then dec(Result, AntennaMaxValue);
+end;
+
+function Read_Encoder_Int_Z : integer;
+begin
+  Result := Read_Encoder_Y;
+  if Result >= AntennaZeroValue
+    then dec(Result, AntennaMaxValue);
+end;
+
+function Read_OutputCount : integer;
+begin
+  Result := Read_Encoder( NUM_IOS, 0 );
+end;
+
+procedure Write_Output( Output : byte; Value : boolean );
+begin
+  write_encoder( IO, Output, Ord( Value ) );
+end;
+
+procedure Write_Outputs( Channel : byte; Value : cardinal );
+begin
+  write_encoder( IO_32, Channel, Value );
+end;
+
+procedure Write_IndividualOutputs( Channel : byte; Value : cardinal );
+begin
+  write_encoder( IO, Channel*16,    Ord( (Value and $00000001) <> 0 ) );
+  write_encoder( IO, Channel*16+1,  Ord( (Value and $00000002) <> 0 ) );
+  write_encoder( IO, Channel*16+2,  Ord( (Value and $00000004) <> 0 ) );
+  write_encoder( IO, Channel*16+3,  Ord( (Value and $00000008) <> 0 ) );
+  write_encoder( IO, Channel*16+4,  Ord( (Value and $00000010) <> 0 ) );
+  write_encoder( IO, Channel*16+5,  Ord( (Value and $00000020) <> 0 ) );
+  write_encoder( IO, Channel*16+6,  Ord( (Value and $00000040) <> 0 ) );
+  write_encoder( IO, Channel*16+7,  Ord( (Value and $00000080) <> 0 ) );
+  write_encoder( IO, Channel*16+8,  Ord( (Value and $00000100) <> 0 ) );
+  write_encoder( IO, Channel*16+9,  Ord( (Value and $00000200) <> 0 ) );
+  write_encoder( IO, Channel*16+10, Ord( (Value and $00000400) <> 0 ) );
+  write_encoder( IO, Channel*16+11, Ord( (Value and $00000800) <> 0 ) );
+  write_encoder( IO, Channel*16+12, Ord( (Value and $00001000) <> 0 ) );
+  write_encoder( IO, Channel*16+13, Ord( (Value and $00002000) <> 0 ) );
+  write_encoder( IO, Channel*16+14, Ord( (Value and $00004000) <> 0 ) );
+  write_encoder( IO, Channel*16+15, Ord( (Value and $00008000) <> 0 ) );
+end;
+
+// Initialization & finalization
+
+procedure Update_Encoder;
+begin
+  Comp2_X := not LoadAngleClockwiseRotationX;
+  Comp2_Y := not LoadAngleClockwiseRotationY;
+  Comp2_Z := not LoadAngleClockwiseRotationZ;
+end;
+
+procedure Init_Encoder;
+const
+//DevaCode = $0C024000;
+  DevaCode = $0E025000;
+  RateMask = $0000000F;
+var
+  Code : longint;
+begin
+  X_Channel := theConfiguration.X_Channel;
+  Y_Channel := theConfiguration.Y_Channel;
+  Z_Channel := theConfiguration.Z_Channel;
+
+  Open_Encoder;
+  // Angle read rate
+  Code := DevaCode or (LoadAngleCodeRate and RateMask);
+  // Clockwise or counter-clockwise rotation
+  Update_Encoder;
+  // Program channels
+  Write_Encoder(MODE, 0, Code);
+  Write_Encoder(MODE, 1, Code);
+  Write_Encoder(MODE, 2, Code);
+  Write_Encoder( IO_32_DIR, 1, 0 );
+  Write_Encoder( IO_32_DIR, 2, 0 );
+end;
+
+procedure Done_Encoder;
+begin
+  Write_IndividualOutputs( 1, 0 );
+  Write_IndividualOutputs( 2, 0 );
+  Close_Encoder;
+end;
+
+procedure Write_Az( Value : longword );
+begin
+  Write_Outputs( 0, Value shl 16 );
+end;
+
+procedure Write_El( Value : longword );
+begin
+  Write_Outputs( 1, Value );
+end;
+
+end.
+

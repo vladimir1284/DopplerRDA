@@ -1,0 +1,81 @@
+// ************************************************************************ //
+// The types declared in this file were generated from data read from the
+// WSDL File described below:
+// WSDL     : http://localhost:9999/wsdl/IVideoWS
+// Encoding : utf-8
+// Version  : 1.0
+// (4/19/2011 10:56:49 PM - 1.33.2.5)
+// ************************************************************************ //
+
+unit VideoWS;
+
+interface
+
+uses InvokeRegistry, SOAPHTTPClient, Types, XSBuiltIns, CommonObjs;
+
+type
+  // ************************************************************************ //
+  // Namespace : urn:VideoWSIntf-IVideoWS
+  // soapAction: urn:VideoWSIntf-IVideoWS#%operationName%
+  // transport : http://schemas.xmlsoap.org/soap/http
+  // style     : rpc
+  // binding   : IVideoWSbinding
+  // service   : IVideoWSservice
+  // port      : IVideoWSPort
+  // URL       : http://localhost:9999/soap/IVideoWS
+  // ************************************************************************ //
+  IVideoWS = interface(IInvokable)
+  ['{3405E054-C57D-8741-D676-83ECB6098A46}']
+    function  Get_Frecuencia_AD: Integer; stdcall;
+    function  Adquirir_Cuadros(const Frames: Integer; const Shots: Integer; const Cells: Integer; const Source: Boolean): TChannelsData; stdcall;
+    procedure Set_Frecuencia_AD(const Value: Integer); stdcall;
+
+    property Frecuencia_AD: Integer read Get_Frecuencia_AD write Set_Frecuencia_AD;
+  end;
+
+function GetIVideoWS(UseWSDL: Boolean=System.False; Addr: string=''; HTTPRIO: THTTPRIO = nil): IVideoWS;
+
+
+implementation
+
+function GetIVideoWS(UseWSDL: Boolean; Addr: string; HTTPRIO: THTTPRIO): IVideoWS;
+const
+  defWSDL = 'http://localhost:9999/wsdl/IVideoWS';
+  defURL  = 'http://localhost:9999/soap/IVideoWS';
+  defSvc  = 'IVideoWSservice';
+  defPrt  = 'IVideoWSPort';
+var
+  RIO: THTTPRIO;
+begin
+  Result := nil;
+  if (Addr = '') then
+  begin
+    if UseWSDL then
+      Addr := defWSDL
+    else
+      Addr := defURL;
+  end;
+  if HTTPRIO = nil then
+    RIO := THTTPRIO.Create(nil)
+  else
+    RIO := HTTPRIO;
+  try
+    Result := (RIO as IVideoWS);
+    if UseWSDL then
+    begin
+      RIO.WSDLLocation := Addr;
+      RIO.Service := defSvc;
+      RIO.Port := defPrt;
+    end else
+      RIO.URL := Addr;
+  finally
+    if (Result = nil) and (HTTPRIO = nil) then
+      RIO.Free;
+  end;
+end;
+
+
+initialization
+  InvRegistry.RegisterInterface(TypeInfo(IVideoWS), 'urn:VideoWSIntf-IVideoWS', 'utf-8');
+  InvRegistry.RegisterDefaultSOAPAction(TypeInfo(IVideoWS), 'urn:VideoWSIntf-IVideoWS#%operationName%');
+end.

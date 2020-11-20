@@ -1,0 +1,2 @@
+bitgen -ise "" -intstyle ise -f TOP.ut 
+bitgen -ise "D:/Programacion FPGA/Proyecto Radar CSB/NO Doppler/V2.2 No doppler/IO4_Tx/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut D:/Programacion FPGA/Proyecto Radar CSB/NO Doppler/V2.2 No doppler/IO4_Tx/ADC+/ISE/TOP.ncd

@@ -1,0 +1,193 @@
+object LogScreen: TLogScreen
+  Left = 362
+  Top = 383
+  Width = 468
+  Height = 299
+  Caption = 'Detalles del Evento'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  Icon.Data = {
+    0000010001002020100000000000E80200001600000028000000200000004000
+    0000010004000000000000020000000000000000000000000000000000000000
+    000000008000008000000080800080000000800080008080000080808000C0C0
+    C0000000FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF000000
+    0000000000000000000000000000000000000000000000000000000000000000
+    0000000000000000000000000000000000000000000000000000000000000000
+    0777777777777777777770000000000000000000000000000000700000000000
+    0FFFFFFFFFFFFFFFFFF07000000000000FFFFFFFFFFFFFFFFFF0700000000000
+    0FFFFFFFFFFFFFFFFFF07000000000000FFFF000F0F00F0F00F0700000000000
+    0FFF0F0FFFFFFFFFFFF07000000000000FFFFFFFFFFFFFFFFFF0700000000000
+    0FFFFFFFFFFFFFFFFFF07000000000000FFFF00000F0FF0F00F0700000000000
+    0FF0000FF0000F0FFFF07000000000000FFFFFFFFFFFFFFFFFF0700000000000
+    0FFFFFFFFFFFFFFFFFF07000000000000FFFF0F000000000FFF0700000000000
+    0FFFF0FF0F0F0FFFFFF07000000000000FFFFFFFFFFFFFFFFFF0700000000000
+    0FFFFF000FFFFF8888807000000000000FFFF00F00FFF0000000700000000000
+    0FFFFFFFFFFFF0FFFF000000000000000FFFFFFFFFFFF0FFF000000000000000
+    0F000000F0FFF0FF00000000000000000FFFFFFFFFFFF0F00000000000000000
+    0FFFFFFFFFFFF000000000000000000000000000000000000000000000000000
+    0000000000000000000000000000000000000000000000000000000000000000
+    000000000000000000000000000000000000000000000000000000000000FFFF
+    FFFFFFFFFFFFFFFFFFFFFFFFFFFFF800007FF000007FF000007FF000007FF000
+    007FF000007FF000007FF000007FF000007FF000007FF000007FF000007FF000
+    007FF000007FF000007FF000007FF000007FF000007FF00000FFF00001FFF000
+    03FFF00007FFF0000FFFF0001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  DesignSize = (
+    460
+    272)
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 8
+    Top = 79
+    Width = 84
+    Height = 16
+    Caption = 'Descripci'#243'n'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 8
+    Top = 8
+    Width = 48
+    Height = 16
+    Caption = 'Fecha:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object DateTimeLabel: TLabel
+    Left = 78
+    Top = 8
+    Width = 108
+    Height = 16
+    Caption = 'DateTimeLabel'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object UserLabel: TLabel
+    Left = 78
+    Top = 32
+    Width = 108
+    Height = 16
+    Caption = 'DateTimeLabel'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label4: TLabel
+    Left = 8
+    Top = 32
+    Width = 59
+    Height = 16
+    Caption = 'Usuario:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label3: TLabel
+    Left = 264
+    Top = 28
+    Width = 44
+    Height = 20
+    Caption = 'Area:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object ZoneLabel: TLabel
+    Left = 312
+    Top = 31
+    Width = 108
+    Height = 16
+    Caption = 'DateTimeLabel'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Mensage: TLabel
+    Left = 8
+    Top = 56
+    Width = 69
+    Height = 16
+    Caption = 'Mensage:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object TitleLabel: TLabel
+    Left = 78
+    Top = 56
+    Width = 108
+    Height = 16
+    Caption = 'DateTimeLabel'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Board: TMemo
+    Left = 0
+    Top = 111
+    Width = 460
+    Height = 161
+    Align = alBottom
+    Anchors = [akLeft, akTop, akRight, akBottom]
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentFont = False
+    ScrollBars = ssVertical
+    TabOrder = 0
+  end
+  object Button1: TButton
+    Left = 376
+    Top = 76
+    Width = 81
+    Height = 25
+    Anchors = [akTop, akRight]
+    Caption = 'Salvar Reporte'
+    TabOrder = 1
+    OnClick = Button1Click
+  end
+  object SaveDialog1: TSaveDialog
+    DefaultExt = '.txt'
+    Filter = 'Reporte|*.txt'
+    Left = 352
+  end
+end

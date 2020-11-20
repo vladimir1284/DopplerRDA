@@ -1,0 +1,4 @@
+vhdl work "../Src/conn_f_OUT.vhd"
+vhdl work "../Src/conn_e_OUT.vhd"
+vhdl work "outputfifo.vhd"
+vhdl work "../Src/User_Ap1.vhd"

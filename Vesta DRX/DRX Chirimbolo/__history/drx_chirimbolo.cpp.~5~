@@ -1,0 +1,61 @@
+//---------------------------------------------------------------------------
+#define Hunt
+
+#include <vcl.h>
+
+#include <hesl.h>
+#include "Site.h"
+#include "AFCprocessor.h"
+#include "ProcessingThread.h"
+
+#pragma hdrstop
+
+//---------------------------------------------------------------------------
+
+USEFORM("ShellChirimbolo.cpp", Form1);
+//---------------------------------------------------------------------------
+#pragma link "WebReq.obj"
+#pragma link "SockAppHlpr.obj"
+#pragma link "IndySystem.lib"
+#pragma link "IndyCore.lib"
+
+//---------------------------------------------------------------------------
+
+Site 				*ThisSite;
+ProcessingThread    *TheProcessingThread;
+AFCProcessingThread *TheACFProcessingThread;
+
+WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
+{
+	try
+	{
+		SetPriorityClass(GetCurrentProcess(), REALTIME_PRIORITY_CLASS);
+		Application->Initialize();
+
+#ifdef Hunt
+		hesl sl;
+		String heartFileName = ExtractFileDir(ParamStr(0)) + "\\Config\\Heart.net";
+
+		sl.serverloader("-rla", "G:\\Work\\Doppler RDA\\Deploy\\Config\\Heart.net");
+#endif
+
+		ThisSite = new Site();
+
+		Application->Title = "Cyclops-Chirimbolo";
+		SetApplicationMainFormOnTaskBar(Application, true);
+		Application->CreateForm(__classid(TForm1), &Form1);
+		TheACFProcessingThread = new AFCProcessingThread(true);
+		TheProcessingThread    = new ProcessingThread(true);
+
+		TheACFProcessingThread->Resume();
+		TheProcessingThread->Resume();
+		ThisSite->TheRadar->Resume();
+
+		Application->Run();
+	}
+	catch (Exception &exception){
+		Application->ShowException(&exception);
+	}
+	return 0;
+}
+//---------------------------------------------------------------------------

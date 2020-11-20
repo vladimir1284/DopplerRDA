@@ -1,0 +1,95 @@
+#ifndef AFCprocessorH
+#define AFCprocessorH
+//---------------------------------------------------------------------------
+#include <Classes.hpp>
+#include <complex>
+
+#include "AFCRead.h"
+#include "FFTReal.h"
+//---------------------------------------------------------------------------
+
+#define NUM_ESTIMATES 200
+
+//---------------------------------------------------------------------------
+
+class AFCProcessingThread : public TThread
+{
+public:
+		__fastcall AFCProcessingThread(bool CreateSuspended);
+
+        double  GetIFFrequencyEstimate();
+        double  GetTxPulsePowerEstimate();
+        double  GetTxFrequencyEstimate();
+
+private:
+		AFCRead *fReadThread;
+
+        FFTReal *TheFFT;
+		int FFTSize;
+		double *FFTIn;
+		double *FFTOut;
+		double *FFTAbs;
+
+		bool Reset;
+		double *input;
+		int CurrentBuffer;
+		int * MaxBin;
+
+        double *outputbuffer;
+        double *LPIFEstimates;
+		double *SPIFEstimates;
+		double *LPTxEstimates;
+		double *SPTxEstimates;
+
+		bool   StaloSettling;
+		double StaloFrequency;
+		double FreqEst;
+		double HqFreqEst;
+		double IFEstimate;
+		double IFEstimateOut;
+		double TxEstimateOut;
+
+        double CurrentIFEstimate;
+        double CurrentTxEstimate;
+		double CurrentStaloFrequency;
+
+		unsigned int *ModeData[2];
+
+		//Saving data
+		double fFreqCrossingZero;
+		double fFreqFFT;
+		double fTxPowerEstimate;
+		int StartCell, StopCell;
+
+		double DoSimpFit(HE_PINT32BUFFER DataIn, int Nsamples, double FreqEst);
+		double TxPowerEstimate;
+		double  __fastcall UpdateFreqEst(double IFFrequency, double * TXEstimates, double * IFEstimates, int *Nsamples);
+		double  __fastcall GetFreqEst(double * TXEstimates, double * IFEstimates);
+
+
+		double __fastcall fit_func(double params[], int Nsamples, HE_PINT32BUFFER Data );
+		void __fastcall OutputValues(double);
+		bool amoeba(double **p, double y[], int ndim, double ftol, int *nfunk, HE_PINT32BUFFER myData,int NumData);
+
+		double amotry(double **p, double y[], double psum[], int ndim, int ihi, double fac, HE_PINT32BUFFER myData, int NumData);
+		void ResetFreqEstimate();
+
+		float DoZeroCrossing(HE_PINT32BUFFER DataIn, int StartSample, int StopSample);
+		float DoPowerEstimation( HE_PINT32BUFFER DataIn,int StartSample, int StopSample);
+		float GetMode(double * FreqEstimateArray);
+		float DoFFT(HE_PINT32BUFFER DataIn);
+		double InterpolateFFT();
+
+		void ScaleData(HE_PINT32BUFFER DataIn,int NBuffers,int DataSize);
+protected:
+		void __fastcall Execute();
+private:
+		float FreqZeroCrossing(HE_PINT32BUFFER DataIn, int StartSample, int StopSample);
+		float FreqPowerEstimation( HE_PINT32BUFFER DataIn,int StartSample, int StopSample);
+		float FreqFFT(HE_PINT32BUFFER DataIn, int Shot);
+};
+
+extern    AFCProcessingThread *   TheACFProcessingThread;
+
+//---------------------------------------------------------------------------
+#endif

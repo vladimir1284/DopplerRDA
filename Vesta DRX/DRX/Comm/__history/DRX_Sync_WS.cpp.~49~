@@ -1,0 +1,126 @@
+#include <stdio.h>
+#include <vcl.h>
+#pragma hdrstop
+
+#if !defined(__DRX_Sync_WS_h__)
+#include "DRX_Sync_WS.h"
+#include "Site.h"
+#include "DataParameters.h"
+#endif
+
+// ************************************************************************ //
+//  TDRX_Sync_WSImpl implements interface IDRX_Sync_WS
+// ************************************************************************ //
+class TDRX_Sync_WSImpl : public TInvokableClass, public IDRX_Sync_WS
+{
+public:
+	bool Get_Pulse_Mode();
+	bool Get_Output_Mode();
+	int  Get_Sector_Mode();
+	bool Get_PRF_Mode();
+	int  Get_PRF_Rate();
+
+	void Set_Pulso(bool Success);
+	void Set_Pulso_Largo();
+	void Set_Pulso_Corto(int rate);
+	void Set_Sector_Mode(bool direction, int count);
+	bool Get_SectorDirection();
+
+	bool Get_Synch_Settling();
+	bool Get_Synch_Changing();
+public:
+  HRESULT STDMETHODCALLTYPE QueryInterface(const GUID& IID, void **Obj)
+                        { return GetInterface(IID, Obj) ? S_OK : E_NOINTERFACE; }
+  ULONG STDMETHODCALLTYPE AddRef() { return TInvokableClass::_AddRef();  }
+  ULONG STDMETHODCALLTYPE Release() { return TInvokableClass::_Release();  }
+};
+
+bool TDRX_Sync_WSImpl::Get_Synch_Settling(){
+	return ThisSite->TheRadar->SyncChanged();
+}
+
+bool TDRX_Sync_WSImpl::Get_Synch_Changing(){
+	return ThisSite->TheRadar->SyncChanging();
+}
+
+bool TDRX_Sync_WSImpl::Get_Pulse_Mode(){
+	int pulse = ThisSite->TheRadar->getPulseMode();
+	return pulse != LongPulse;
+}
+
+bool TDRX_Sync_WSImpl::Get_Output_Mode(){
+	return ThisSite->TheRadar->getOutputMode();
+}
+
+int  TDRX_Sync_WSImpl::Get_Sector_Mode(){
+	return ThisSite->TheRadar->getSectorMode();
+}
+
+bool TDRX_Sync_WSImpl::Get_PRF_Mode(){
+	return (ThisSite->TheRadar->getPRF_Mode() == DualPRF);
+}
+
+int  TDRX_Sync_WSImpl::Get_PRF_Rate(){
+	return ThisSite->TheRadar->getPRF_Rate();
+}
+
+void TDRX_Sync_WSImpl::Set_Sector_Mode(bool direction, int count){
+	if(!ThisSite->TheRadar->SyncChanging()){
+		ThisSite->TheRadar->setRequestedSectorMarkDirection(direction);
+		ThisSite->TheRadar->setRequestedSectorMode(count);
+
+		ThisSite->TheRadar->UpdateSynch();
+	}
+}
+
+bool TDRX_Sync_WSImpl::Get_SectorDirection(){
+	return ThisSite->TheRadar->getSectorDirection();
+}
+
+void TDRX_Sync_WSImpl::Set_Pulso(bool Success){
+	if(Success)
+		ThisSite->TheRadar->EnableSynch();
+	else
+		ThisSite->TheRadar->DisableSynch();
+}
+
+void TDRX_Sync_WSImpl::Set_Pulso_Largo(){
+	if(!ThisSite->TheRadar->SyncChanging() && !ThisSite->TheRadar->getOutputMode()){
+		ThisSite->TheRadar->setRequestedPulseMode(LongPulse);
+		ThisSite->TheRadar->UpdateSynch();
+	}
+}
+
+void TDRX_Sync_WSImpl::Set_Pulso_Corto(int rate){
+	if(!ThisSite->TheRadar->SyncChanging() && !ThisSite->TheRadar->getOutputMode()){
+		ThisSite->TheRadar->setRequestedPulseMode(ShortPulse);
+		if(rate == 3)
+			ThisSite->TheRadar->setRequestedPRF_Mode(SinglePRF);
+		else{
+			ThisSite->TheRadar->setRequestedPRF_Mode(DualPRF);
+			ThisSite->TheRadar->setRequestedPRF_Rate(rate);
+		}
+
+		ThisSite->TheRadar->UpdateSynch();
+	}
+}
+
+static void __fastcall DRX_Sync_WSFactory(System::TObject* &obj)
+{
+  static _di_IDRX_Sync_WS iInstance;
+  static TDRX_Sync_WSImpl *instance = 0;
+  if (!instance)
+  {
+    instance = new TDRX_Sync_WSImpl();
+    instance->GetInterface(iInstance);
+  }
+  obj = instance;
+}
+
+static void RegTypes()
+{
+  InvRegistry()->RegisterInterface(__delphirtti(IDRX_Sync_WS));
+  InvRegistry()->RegisterInvokableClass(__classid(TDRX_Sync_WSImpl), DRX_Sync_WSFactory);
+}
+#pragma startup RegTypes 32
+

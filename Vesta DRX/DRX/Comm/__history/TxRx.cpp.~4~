@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <vcl.h>
+#pragma hdrstop
+
+#if !defined(__TxRxWS_h__)
+#include "TxRx.h"
+#endif
+
+// ************************************************************************ //
+//  TTxRxWSImpl implements interface ITxRxWS
+// ************************************************************************ //
+class TTxRxWSImpl : public TInvokableClass, public ITxRxWS
+{
+public:
+	void Set_Pulso_Largo();
+	void Set_Pulso_Corto();
+public:
+	HRESULT STDMETHODCALLTYPE QueryInterface(const GUID& IID, void **Obj){return GetInterface(IID, Obj) ? S_OK : E_NOINTERFACE;}
+	ULONG STDMETHODCALLTYPE AddRef(){return TInvokableClass::_AddRef();}
+	ULONG STDMETHODCALLTYPE Release(){return TInvokableClass::_Release();}
+};
+
+void TTxRxWSImpl::Set_Pulso_Largo(){
+}
+
+void TTxRxWSImpl::Set_Pulso_Corto(){
+}
+
+
+static void __fastcall TxRxWSFactory(System::TObject* &obj)
+{
+  static _di_ITxRxWS iInstance;
+  static TTxRxWSImpl *instance = 0;
+  if (!instance)
+  {
+    instance = new TTxRxWSImpl();
+    instance->GetInterface(iInstance);
+  }
+  obj = instance;
+}
+
+static void RegTypes()
+{
+  InvRegistry()->RegisterInterface(__delphirtti(ITxRxWS));
+  InvRegistry()->RegisterInvokableClass(__classid(TTxRxWSImpl), TxRxWSFactory);
+}
+#pragma startup RegTypes 32
+

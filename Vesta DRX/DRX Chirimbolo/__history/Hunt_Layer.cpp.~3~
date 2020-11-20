@@ -1,0 +1,19 @@
+//---------------------------------------------------------------------------
+
+
+#pragma hdrstop
+
+#include "Hunt_Layer.h"
+#include "FIFOinterface.h"
+
+//---------------------------------------------------------------------------
+
+#pragma package(smart_init)
+
+void THuntLayer::HuntError(HE_DWORD ErrorCode)
+{
+	char text[120];
+	HeErr2Text(ErrorCode, text);
+	throw new Exception( text );
+}
+

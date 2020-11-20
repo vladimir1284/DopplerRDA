@@ -1,0 +1,17 @@
+//---------------------------------------------------------------------------
+
+#ifndef DataSenderH
+#define DataSenderH
+//---------------------------------------------------------------------------
+#include <Classes.hpp>
+//---------------------------------------------------------------------------
+class TDataSender : public TThread
+{
+private:
+protected:
+	void __fastcall Execute();
+public:
+	__fastcall TDataSender(bool CreateSuspended);
+};
+//---------------------------------------------------------------------------
+#endif

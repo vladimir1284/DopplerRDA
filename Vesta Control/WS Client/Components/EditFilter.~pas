@@ -1,0 +1,51 @@
+unit EditFilter;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, ComCtrls, Rda_TLB;
+
+type
+  TEdit_Filter = class(TForm)
+    HeaderControl1: THeaderControl;
+    txName: TEdit;
+    txB0: TEdit;
+    txB1: TEdit;
+    txB2: TEdit;
+    txC4: TEdit;
+    txC3: TEdit;
+    txC2: TEdit;
+    txC1: TEdit;
+    txB4: TEdit;
+    txB3: TEdit;
+    Button4: TButton;
+    Button3: TButton;
+  private
+    fData : FilterData;
+    function  GetData : FilterData;
+    procedure SetData( Value : FilterData );
+  public
+    property Filter : FilterData read GetData write SetData;
+  end;
+
+var
+  Edit_Filter: TEdit_Filter;
+
+implementation
+
+{$R *.dfm}
+
+{ TEdit_Filter }
+
+function TEdit_Filter.GetData: FilterData;
+begin
+
+end;
+
+procedure TEdit_Filter.SetData(Value: FilterData);
+begin
+
+end;
+
+end.

@@ -1,0 +1,9 @@
+SETPROJECT "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/"
+SET BusFormat = BusFormatAngleBracketNotRipped
+SET devicefamily = virtex2
+SET device = xc2v1000
+SET package = fg456
+SET speedgrade = -4
+SET FlowVendor = Foundation_iSE
+SET VerilogSim = True
+SET VHDLSim = True

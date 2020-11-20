@@ -1,0 +1,365 @@
+object Frame_Antenna: TFrame_Antenna
+  Left = 0
+  Top = 0
+  Width = 222
+  Height = 252
+  AutoScroll = False
+  Constraints.MinHeight = 240
+  Constraints.MinWidth = 173
+  TabOrder = 0
+  object pnlRays: TPanel
+    Left = 0
+    Top = 224
+    Width = 222
+    Height = 27
+    Align = alTop
+    TabOrder = 0
+    object ComboBox1: TComboBox
+      Left = 7
+      Top = 2
+      Width = 115
+      Height = 21
+      Style = csDropDownList
+      ItemHeight = 13
+      ItemIndex = 2
+      TabOrder = 0
+      Text = 'Marca por rayos'
+      OnSelect = ComboBox1Change
+      Items.Strings = (
+        'Marca por Az'
+        'Marca por El'
+        'Marca por rayos')
+    end
+    object Edit1: TEdit
+      Left = 125
+      Top = 2
+      Width = 29
+      Height = 21
+      TabOrder = 1
+      Text = '255'
+    end
+    object UpDown1: TUpDown
+      Left = 154
+      Top = 2
+      Width = 16
+      Height = 21
+      Associate = Edit1
+      Min = 10
+      Max = 255
+      Position = 255
+      TabOrder = 2
+      OnClick = UpDown1Click
+    end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 101
+    Width = 222
+    Height = 123
+    Align = alTop
+    BorderWidth = 1
+    TabOrder = 1
+    DesignSize = (
+      222
+      123)
+    object Label10: TLabel
+      Left = 6
+      Top = 1
+      Width = 117
+      Height = 13
+      Caption = 'Fuente Excitacion (Volts)'
+    end
+    object TuneGauge1: TTuneGauge
+      Left = 8
+      Top = 14
+      Width = 173
+      Height = 16
+      Hint = 'Potencia del disparo'
+      Position = 0
+      Min = 0
+      Max = 255
+      GoodMin = 0
+      GoodMax = 255
+      Bevel = bvLowered
+      ColorBad = clGray
+      ColorGood = clMaroon
+      ColorCursor = clYellow
+      ColorSide = clBlack
+      Anchors = [akLeft, akTop, akRight]
+    end
+    object Label13: TLabel
+      Left = 6
+      Top = 30
+      Width = 87
+      Height = 13
+      Caption = 'Fuente +5V (Volts)'
+    end
+    object TuneGauge2: TTuneGauge
+      Left = 8
+      Top = 43
+      Width = 173
+      Height = 16
+      Hint = 'Potencia del disparo'
+      Position = 0
+      Min = 0
+      Max = 255
+      GoodMin = 0
+      GoodMax = 255
+      Bevel = bvLowered
+      ColorBad = clGray
+      ColorGood = clMaroon
+      ColorCursor = clYellow
+      ColorSide = clBlack
+      Anchors = [akLeft, akTop, akRight]
+    end
+    object Label6: TLabel
+      Left = 6
+      Top = 61
+      Width = 93
+      Height = 13
+      Caption = 'Fuente +12V (Volts)'
+    end
+    object TuneGauge3: TTuneGauge
+      Left = 8
+      Top = 103
+      Width = 173
+      Height = 16
+      Hint = 'Potencia del disparo'
+      Position = 0
+      Min = 0
+      Max = 255
+      GoodMin = 0
+      GoodMax = 255
+      Bevel = bvLowered
+      ColorBad = clGray
+      ColorGood = clMaroon
+      ColorCursor = clYellow
+      ColorSide = clBlack
+      Anchors = [akLeft, akTop, akRight]
+    end
+    object Label7: TLabel
+      Left = 6
+      Top = 90
+      Width = 93
+      Height = 13
+      Caption = 'Fuente +24V (Volts)'
+    end
+    object TuneGauge4: TTuneGauge
+      Left = 8
+      Top = 73
+      Width = 173
+      Height = 16
+      Hint = 'Potencia del disparo'
+      Position = 0
+      Min = 0
+      Max = 255
+      GoodMin = 0
+      GoodMax = 255
+      Bevel = bvLowered
+      ColorBad = clGray
+      ColorGood = clMaroon
+      ColorCursor = clYellow
+      ColorSide = clBlack
+      Anchors = [akLeft, akTop, akRight]
+    end
+    object StaticText1: TStaticText
+      Left = 181
+      Top = 43
+      Width = 39
+      Height = 15
+      Alignment = taCenter
+      Anchors = [akTop, akRight]
+      AutoSize = False
+      BorderStyle = sbsSingle
+      TabOrder = 0
+    end
+    object StaticText13: TStaticText
+      Left = 181
+      Top = 14
+      Width = 39
+      Height = 15
+      Alignment = taCenter
+      Anchors = [akTop, akRight]
+      AutoSize = False
+      BorderStyle = sbsSingle
+      TabOrder = 1
+    end
+    object StaticText2: TStaticText
+      Left = 181
+      Top = 103
+      Width = 39
+      Height = 15
+      Alignment = taCenter
+      Anchors = [akTop, akRight]
+      AutoSize = False
+      BorderStyle = sbsSingle
+      TabOrder = 2
+    end
+    object StaticText3: TStaticText
+      Left = 181
+      Top = 73
+      Width = 39
+      Height = 15
+      Alignment = taCenter
+      Anchors = [akTop, akRight]
+      AutoSize = False
+      BorderStyle = sbsSingle
+      TabOrder = 3
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 222
+    Height = 32
+    Align = alTop
+    TabOrder = 2
+    DesignSize = (
+      222
+      32)
+    object ledStatus: TLed
+      Left = 201
+      Top = 8
+      Width = 16
+      Height = 16
+      Hint = 'Antena encendida'
+      Anchors = [akTop, akRight]
+      ShowHint = True
+      Color = ldGreen
+    end
+    object Label15: TLabel
+      Left = 5
+      Top = 5
+      Width = 54
+      Height = 19
+      Caption = 'Antena'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clNavy
+      Font.Height = -16
+      Font.Name = 'Arial'
+      Font.Style = [fsBold, fsUnderline]
+      ParentFont = False
+    end
+    object btnAcc: TButton
+      Left = 97
+      Top = 4
+      Width = 101
+      Height = 25
+      Hint = 'Encender/Apagar accionamiento'
+      Anchors = [akTop, akRight]
+      Caption = '&Accionamiento'
+      TabOrder = 0
+      OnClick = btnAccClick
+    end
+  end
+  object Panel3: TPanel
+    Left = 0
+    Top = 32
+    Width = 222
+    Height = 69
+    Align = alTop
+    TabOrder = 3
+    object ledVentilacion: TLed
+      Left = 8
+      Top = 46
+      Width = 16
+      Height = 16
+      Hint = 'Ventilacion de la antena'
+      ShowHint = True
+      Color = ldGreen
+    end
+    object ledCupula: TLed
+      Left = 8
+      Top = 6
+      Width = 16
+      Height = 16
+      Hint = 'Cupula cerrada'
+      ShowHint = True
+      Color = ldGreen
+    end
+    object ledLocal: TLed
+      Left = 8
+      Top = 26
+      Width = 16
+      Height = 16
+      Hint = 'Modo local'
+      ShowHint = True
+      Color = ldGreen
+    end
+    object Label1: TLabel
+      Left = 26
+      Top = 9
+      Width = 33
+      Height = 13
+      Hint = 'Cupula abierta'
+      Caption = 'Cupula'
+    end
+    object Label8: TLabel
+      Left = 26
+      Top = 29
+      Width = 37
+      Height = 13
+      Hint = 'Aver'#237'a de excitaci'#243'n'
+      Caption = 'Remoto'
+    end
+    object Label9: TLabel
+      Left = 26
+      Top = 49
+      Width = 52
+      Height = 13
+      Hint = 'Antena en limite inferior'
+      Caption = 'Ventilacion'
+    end
+    object ledLimiteP: TLed
+      Left = 82
+      Top = 6
+      Width = 16
+      Height = 16
+      Hint = 'Antena en limite superior'
+      ShowHint = True
+      Color = ldRed
+    end
+    object ledLimiteN: TLed
+      Left = 82
+      Top = 26
+      Width = 16
+      Height = 16
+      Hint = 'Antena en limite inferior'
+      ShowHint = True
+      Color = ldRed
+    end
+    object ledExitacion: TLed
+      Left = 82
+      Top = 46
+      Width = 16
+      Height = 16
+      Hint = 'Estado de excitaci'#243'n'
+      ShowHint = True
+      Color = ldGreen
+    end
+    object Label4: TLabel
+      Left = 101
+      Top = 9
+      Width = 67
+      Height = 13
+      Hint = 'Antena en limite superior'
+      Caption = 'Limite superior'
+    end
+    object Label5: TLabel
+      Left = 101
+      Top = 29
+      Width = 61
+      Height = 13
+      Hint = 'Antena en limite inferior'
+      Caption = 'Limite inferior'
+    end
+    object Label2: TLabel
+      Left = 101
+      Top = 49
+      Width = 49
+      Height = 13
+      Hint = 'Aver'#237'a de excitaci'#243'n'
+      Caption = 'Excitaci'#243'n'
+    end
+  end
+end

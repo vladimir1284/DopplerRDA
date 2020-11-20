@@ -1,0 +1,71 @@
+program RTClient;
+
+uses
+  Forms,
+  Windows,
+  Shell_RTClient in 'Shell_RTClient.pas' {ShellRTClient},
+  FrameRTMotor in 'Components\FrameRTMotor.pas' {Frame_RTMotor: TFrame},
+  FrameRTConfiguration in 'Components\FrameRTConfiguration.pas' {Frame_RTConfiguration: TFrame},
+  RTPaintBeams in 'RTPaintBeams.pas',
+  FormConfiguration in 'Components\FormConfiguration.pas' {Configuration},
+  RdaMessages in '..\General\RdaMessages.pas',
+  FormMotor in 'Components\FormMotor.pas' {Motors},
+  Constants in '..\General\Constants.pas',
+  AboutDialog in '..\General\AboutDialog.pas' {FAboutDialog},
+  TxRxForm in 'Components\TxRxForm.pas' {TxRxs_Form},
+  EditUser in '..\RDA\Components\EditUser.pas' {Edit_User},
+  FrameAdmin in '..\RDA\Components\FrameAdmin.pas' {Frame_Admin: TFrame},
+  DirList in '..\General\DirList.pas' {DirectoryList},
+  WaitDialog in '..\RDA\Modules\WaitDialog.pas' {FWait},
+  FrameControl in '..\RDA\Components\FrameControl.pas' {Frame_Control: TFrame},
+  FrameCalibration in '..\RDA\Components\FrameCalibration.pas' {Frame_Calibration: TFrame},
+  RTConfiguration in '..\RDA\Client\RTConfiguration.pas',
+  LoginRTDialog in 'LoginRTDialog.pas' {FLogin},
+  PlotForm in '..\RDA\Components\PlotForm.pas' {RxPlotForm},
+  RTForm in 'Components\RTForm.pas' {RealTimeForm},
+  GPSLocation in 'Components\GPSLocation.pas' {GPS_Form},
+  GPS_Parser in 'GPS_Parser.pas',
+  Rda_TLB in 'C:\Archivos de programa\Borland\Delphi7\Imports\Rda_TLB.pas';
+
+{$R *.res}
+
+var
+  OnlyOneClient : THandle;
+
+begin
+  Application.Initialize;
+  Application.CreateForm(TShellRTClient, ShellRTClient);
+  Application.CreateForm(TFLogin, FLogin);
+  Application.CreateForm(TRxPlotForm, RxPlotForm);
+  OnlyOneClient := CreateMutex( nil, true, OnlyOneRTClientName );
+  if GetLastError = ERROR_ALREADY_EXISTS
+    then
+      begin
+        Application.MessageBox('Ya se esta ejecutando un cliente.'#13#10#13#10 +
+                               'Por favor, utilice el que esta en uso o cierre'#13#10 +
+                               'el mismo antes de intentar utilizar otro.',
+                               'Fallo de ejecucion', MB_ICONSTOP);
+        Application.Terminate;
+      end
+    else
+      try
+        Application.ShowMainForm := false;
+        with Application.MainForm as TShellRTClient do
+          if Initialize
+            then
+              begin
+                Timer1.Enabled := true;
+                RT_Timer.Enabled := true;
+                InitRT;
+                Application.CreateForm(TGPS_Form, GPS_Form);
+                if Assigned( RT_Ch1 )
+                  then RT_Ch1.Show;
+                if Assigned( RT_Ch2 )
+                  then RT_Ch2.Show;
+              end
+            else Close;
+        Application.Run;
+      finally
+        ReleaseMutex( OnlyOneClient );
+      end;
+end.

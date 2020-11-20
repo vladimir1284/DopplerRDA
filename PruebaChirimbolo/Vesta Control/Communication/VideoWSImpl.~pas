@@ -1,0 +1,98 @@
+{ Invokable implementation File for TVideoWS which implements IVideoWS }
+
+unit VideoWSImpl;
+
+interface
+
+uses InvokeRegistry, Types, XSBuiltIns, VideoWSIntf, CommunicationObj, Constants;
+
+type
+  { TVideoWS }
+  TVideoWS = class(TCommObj, IVideoWS)
+  public
+  // IVideo
+    function Get_Frecuencia_AD: Integer; safecall;
+    procedure StartAcquiring(ch1: WordBool; ch2: WordBool); safecall;
+  // IVideoControl
+    procedure StartRT; safecall;
+
+    function CheckCredentials : boolean; override;
+  end;
+
+implementation
+
+uses
+  Users, Elbrus, ElbrusTypes, SysUtils, Windows, Advantech, Config,
+  ManagerDRX, DataSenderThread;
+
+{ TVideoWS }
+
+function TVideoWS.CheckCredentials: boolean;
+begin
+  result := CheckAuthHeader >= ul_Operator;
+end;
+
+function TVideoWS.Get_Frecuencia_AD: Integer;
+begin
+  Result := Snapshot.Sample_Rate;
+end;
+
+procedure TVideoWS.StartAcquiring(ch1, ch2: WordBool);
+begin
+  try
+    if ch1 and DRX1.Ready
+      then
+        begin
+          WantedPackages(0);
+          DRX1.DataReceiver.WantAllPackages;
+          DRX1.DRX_WS.StartDataFlow(false);
+        end;
+  except
+    DRX1.Validate;
+  end;
+
+  try
+    if ch2 and DRX2.Ready
+      then
+        begin
+          WantedPackages(1);
+          DRX2.DataReceiver.WantAllPackages;
+          DRX2.DRX_WS.StartDataFlow(false);
+        end;
+  except
+    DRX2.Validate;
+  end;
+end;
+
+procedure TVideoWS.StartRT;
+begin
+  try
+    if DRX1.Ready
+      then
+        begin
+          WantedPackages(0);
+          DRX1.DataReceiver.WantAllPackages;
+          DRX1.DRX_WS.StartDataFlow(true);
+        end;
+  except
+    DRX1.Validate;
+  end;
+
+  try
+    if DRX2.Ready
+      then
+        begin
+          WantedPackages(1);
+          DRX2.DataReceiver.WantAllPackages;
+          DRX2.DRX_WS.StartDataFlow(true);
+        end;
+  except
+    DRX2.Validate;
+  end;
+end;
+
+initialization
+  { Invokable classes must be registered }
+  InvRegistry.RegisterInvokableClass(TVideoWS);
+
+end.

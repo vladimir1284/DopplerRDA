@@ -1,0 +1,490 @@
+//---------------------------------------------------------------------------
+
+
+#pragma hdrstop
+
+#include "CommunicationManager.h"
+#include "DataParameters.h"
+#include "Site.h"
+#include "AFCprocessor.h"
+#include "PackageManager.h"
+
+//---------------------------------------------------------------------------
+
+#pragma package(smart_init)
+
+const CommandTimeOut = 30000;
+
+CommunicationManager::CommunicationManager(){
+}
+
+CommunicationManager::~CommunicationManager(void){
+}
+
+String CommunicationManager::ReadString(TIdContext *AContext){
+  String result = AContext->Connection->IOHandler->ReadLn("", CommandTimeOut);
+
+  if(AContext->Connection->IOHandler->ReadLnTimedout)
+    throw new Exception("");
+
+  return result;
+}
+
+void CommunicationManager::ProcessGetCommand(TIdContext *AContext, String command){
+	if(command == DRX_Snapshot_Cmd){
+		SendSnapshot(AContext);
+		return;
+	}
+	if(command == DRX_Configuration_Cmd){
+		SendConfig(AContext);
+		return;
+	}
+	if(command == DRX_Parameters_Cmd){
+		SendParameters(AContext);
+		return;
+	}
+	if(command == DRX_Gathering_Cmd){
+		SmallInt value = ThisSite->TheRadar->Gathering ? 1 : 0;
+		AContext->Connection->IOHandler->Write(value);
+		return;
+	}
+	if(command == Stalo_Output_Cmd){
+		SmallInt value = ThisSite->TheRadar->GetSTALOOutput() ? 1 : 0;
+		AContext->Connection->IOHandler->Write(value);
+		return;
+	}
+	if(command == Stalo_Ready_Cmd){
+		SmallInt value = ThisSite->TheRadar->Stalo->Ready ? 1 : 0;
+		AContext->Connection->IOHandler->Write(value);
+		return;
+	}
+	if(command == Stalo_Frequency_Cmd){
+		INT64 int64_value = ThisSite->TheRadar->GetSTALOFrequency();
+		AContext->Connection->IOHandler->Write(int64_value, false);
+		return;
+	}
+	if(command == AFC_NCO_Cmd){
+		INT64 int64_value = ThisSite->TheRadar->GetNCOFrequency();
+		AContext->Connection->IOHandler->Write(int64_value, false);
+		return;
+	}
+	if(command == RealStalo_Frequency_Cmd){
+		INT64 int64_value = ThisSite->TheRadar->Stalo->Frequency;
+		AContext->Connection->IOHandler->Write(int64_value, false);
+		return;
+	}
+	if(command == Stalo_Power_Cmd){
+		AContext->Connection->IOHandler->WriteLn(FormatFloat("0.00", ThisSite->TheRadar->Stalo->Power));
+		return;
+	}
+	if(command == Stalo_Temperature_Cmd){
+		AContext->Connection->IOHandler->WriteLn(FormatFloat("0.00", ThisSite->TheRadar->Stalo->Temperature));
+		return;
+	}
+	if(command == Stalo_RF_Output_Cmd){
+		SmallInt value = ThisSite->TheRadar->GetSTALOOutput() ? 1 : 0;
+		AContext->Connection->IOHandler->Write(value);
+		return;
+	}
+	if(command == AFC_Tx_Frequency_Cmd){
+		INT64 int64_value = TheACFProcessingThread->GetTxFrequencyEstimate();
+		AContext->Connection->IOHandler->Write(int64_value, false);
+		return;
+	}
+	if(command == AFC_IF_Frequency_Cmd){
+		INT64 int64_value = TheACFProcessingThread->GetIFFrequencyEstimate();
+		AContext->Connection->IOHandler->Write(int64_value, false);
+		return;
+	}
+	if(command == AFC_Tx_Power_Cmd){
+		AContext->Connection->IOHandler->WriteLn(FormatFloat("0.00", TheACFProcessingThread->GetTxPulsePowerEstimate()));
+		return;
+	}
+	if(command == AFC_Settling_Cmd){
+		SmallInt value = ThisSite->TheRadar->StaloChanged() ? 1 : 0;
+		AContext->Connection->IOHandler->Write(value);
+		return;
+	}
+	if(command == AFC_ChangesInhibited_Cmd){
+		SmallInt value = ThisSite->TheRadar->AFCChangesInhibited ? 1 : 0;
+		AContext->Connection->IOHandler->Write(value);
+		return;
+	}
+	if(command == AFC_Tuned_Cmd){
+		SmallInt value = TheACFProcessingThread->GetDataReady() ? 1 : 0;
+		AContext->Connection->IOHandler->Write(value);
+		return;
+	}
+	if(command == Sync_Settling_Cmd){
+		SmallInt value = ThisSite->TheRadar->SyncChanged() ? 1 : 0;
+		AContext->Connection->IOHandler->Write(value);
+		return;
+	}
+	if(command == Sync_Changing_Cmd){
+		SmallInt value = ThisSite->TheRadar->SyncChanging() ? 1 : 0;
+		AContext->Connection->IOHandler->Write(value);
+		return;
+	}
+}
+
+void CommunicationManager::ProcessPutCommand(TIdContext *AContext, String command){
+	if(command == Stalo_Output_Cmd){
+		ThisSite->TheRadar->SetStaloOutput(AContext->Connection->IOHandler->ReadSmallInt() == 1);
+		return;
+	}
+	if(command == Stalo_Frequency_Cmd){
+		INT64 value = AContext->Connection->IOHandler->ReadInt64(false);
+		if(ThisSite->TheRadar->AFCChangesInhibited){
+			ThisSite->TheRadar->SetStaloFrequency(value);
+		}
+		return;
+	}
+	if(command == Stalo_Power_Cmd){
+		String value = ReadString(AContext);
+		ThisSite->TheRadar->SetStaloPower(value.ToDouble());
+		return;
+	}
+	if(command == AFC_ChangesInhibited_Cmd){
+		short value = AContext->Connection->IOHandler->ReadSmallInt();
+		ThisSite->TheRadar->AFCChangesInhibited = (value == 1);
+		return;
+	}
+	if(command == AFC_ResetScan_Cmd){
+		TheACFProcessingThread->ResetScan();
+		return;
+	}
+	if(command == Sync_Sector_Mode_Cmd){
+		short mode = AContext->Connection->IOHandler->ReadSmallInt();
+		if(!ThisSite->TheRadar->SyncChanging()){
+			ThisSite->TheRadar->setRequestedSectorMode(mode);
+			ThisSite->TheRadar->UpdateSynch();
+		}
+		return;
+	}
+	if(command == Sync_Long_Pulse_Cmd){
+		if(!ThisSite->TheRadar->SyncChanging() && !ThisSite->TheRadar->getOutputMode()){
+			ThisSite->TheRadar->setRequestedPulseMode(LongPulse);
+			ThisSite->TheRadar->UpdateSynch();
+		}
+		return;
+	}
+	if(command == Sync_Short_Pulse_Cmd){
+		short rate = AContext->Connection->IOHandler->ReadSmallInt();
+		if(!ThisSite->TheRadar->SyncChanging() && !ThisSite->TheRadar->getOutputMode()){
+			ThisSite->TheRadar->setRequestedPulseMode(ShortPulse);
+			ThisSite->TheRadar->setRequestedPRF_Rate(rate);
+
+			ThisSite->TheRadar->UpdateSynch();
+		}
+		return;
+	}
+	if(command == Sync_Output_Pulse_Cmd){
+		short value = AContext->Connection->IOHandler->ReadSmallInt();
+		if(value == 1)
+			ThisSite->TheRadar->EnableSynch();
+		else
+			ThisSite->TheRadar->DisableSynch();
+		return;
+	}
+	if(command == DRX_StartDataFlow_Cmd){
+		thePackageManager->StartDataFlow();
+		return;
+	}
+	if(command == DRX_PPI_Cmd){
+		int Speed     = AContext->Connection->IOHandler->ReadLongInt();
+		int Elevation = AContext->Connection->IOHandler->ReadLongInt();
+
+		theObservationManager->AcquirePPI(Speed, Elevation);
+		return;
+	}
+	if(command == DRX_RHI_Cmd){
+		int Speed   = AContext->Connection->IOHandler->ReadLongInt();
+		int Azimuth = AContext->Connection->IOHandler->ReadLongInt();
+		int Start   = AContext->Connection->IOHandler->ReadLongInt();
+		int Final   = AContext->Connection->IOHandler->ReadLongInt();
+
+		theObservationManager->AcquireRHI(Speed, Azimuth, Start, Final);
+		return;
+	}
+	if(command == AFC_NCO_Cmd){
+		INT64 value = AContext->Connection->IOHandler->ReadInt64(false);
+		ThisSite->TheRadar->SetNCOFrequency(value);
+		return;
+	}
+	if(command == Stalo_Init_Cmd){
+		ThisSite->TheRadar->NeedInitSTALO();
+		return;
+	}
+	if(command == DRX_Filter_Cmd){
+		ReceiveFilter(AContext);
+		return;
+	}
+	if(command == DRX_Configuration_Cmd){
+		ReceiveConfig(AContext);
+		return;
+	}
+}
+
+void CommunicationManager::SendConfig(TIdContext *AContext){
+	TSettings* settings = ThisSite->ExportData();
+
+	AContext->Connection->IOHandler->Write(settings->Scan_step );
+	AContext->Connection->IOHandler->Write(settings->Scan_delay);
+	AContext->Connection->IOHandler->Write(settings->Scan_width);
+	AContext->Connection->IOHandler->WriteLn(FormatFloat("0.00", settings->Valid_power_tx ));
+	AContext->Connection->IOHandler->WriteLn(FormatFloat("0.00", settings->Power_factor_tx));
+	AContext->Connection->IOHandler->Write(settings->Start_sample_lp);
+	AContext->Connection->IOHandler->Write(settings->Stop_sample_lp );
+	AContext->Connection->IOHandler->Write(settings->Start_sample_sp);
+	AContext->Connection->IOHandler->Write(settings->Stop_sample_sp );
+	AContext->Connection->IOHandler->WriteLn(FormatFloat("0.00", settings->LoopGain));
+
+	INT64 int64_value;
+
+	int64_value = settings->Stalo_StartFrequencyLP;
+	AContext->Connection->IOHandler->Write(int64_value, false);
+	int64_value = settings->Stalo_StartFrequencySP;
+	AContext->Connection->IOHandler->Write(int64_value, false);
+
+	AContext->Connection->IOHandler->Write(settings->SP_TX_PulsePosition);
+	AContext->Connection->IOHandler->Write(settings->LP_TX_PulsePosition);
+	AContext->Connection->IOHandler->Write(settings->SP_RX_PulsePosition);
+	AContext->Connection->IOHandler->Write(settings->LP_RX_PulsePosition);
+	AContext->Connection->IOHandler->Write(settings->Stream_Port  );
+	AContext->Connection->IOHandler->Write(settings->Doppler_Port );
+	AContext->Connection->IOHandler->Write(settings->Communication_Port);
+	AContext->Connection->IOHandler->Write(settings->Sectors      );
+
+
+	int64_value = settings->Band_Frequency;
+	AContext->Connection->IOHandler->Write(int64_value, false);
+	int64_value = settings->Stalo_Frequency;
+	AContext->Connection->IOHandler->Write(int64_value, false);
+
+	AContext->Connection->IOHandler->WriteLn(FormatFloat("0.0000", settings->Band_Length));
+	AContext->Connection->IOHandler->WriteLn(FormatFloat("0.0000", settings->_LP_MaxSpeed));
+	AContext->Connection->IOHandler->WriteLn(FormatFloat("0.0000", settings->_SP_Single_MaxSpeed));
+	AContext->Connection->IOHandler->WriteLn(FormatFloat("0.0000", settings->_SP_Dual_54_MaxSpeed));
+	AContext->Connection->IOHandler->WriteLn(FormatFloat("0.0000", settings->_SP_Dual_43_MaxSpeed));
+	AContext->Connection->IOHandler->WriteLn(FormatFloat("0.0000", settings->_SP_Dual_32_MaxSpeed));
+	AContext->Connection->IOHandler->Write(settings->Sensibility_LP  );
+	AContext->Connection->IOHandler->Write(settings->Sensibility_SP  );
+	AContext->Connection->IOHandler->Write(settings->Dinamic_range_LP);
+	AContext->Connection->IOHandler->Write(settings->Dinamic_range_SP);
+	AContext->Connection->IOHandler->WriteLn(settings->Conv_table_lp_text);
+	AContext->Connection->IOHandler->WriteLn(settings->Conv_table_sp_text);
+}
+
+void CommunicationManager::ReceiveConfig(TIdContext *AContext){
+	TSettings* settings = new TSettings();
+	String value;
+
+	settings->Scan_step  = AContext->Connection->IOHandler->ReadLongInt();
+	settings->Scan_delay = AContext->Connection->IOHandler->ReadLongInt();
+	settings->Scan_width = AContext->Connection->IOHandler->ReadLongInt();
+
+	value = ReadString(AContext);
+	settings->Valid_power_tx = value.ToDouble();
+	value = ReadString(AContext);
+	settings->Power_factor_tx = value.ToDouble();
+
+	settings->Start_sample_lp = AContext->Connection->IOHandler->ReadLongInt();
+	settings->Stop_sample_lp  = AContext->Connection->IOHandler->ReadLongInt();
+	settings->Start_sample_sp = AContext->Connection->IOHandler->ReadLongInt();
+	settings->Stop_sample_sp  = AContext->Connection->IOHandler->ReadLongInt();
+
+	value = ReadString(AContext);
+	settings->LoopGain = value.ToDouble();
+
+	settings->Stalo_StartFrequencyLP = AContext->Connection->IOHandler->ReadInt64(false);
+	settings->Stalo_StartFrequencySP = AContext->Connection->IOHandler->ReadInt64(false);
+
+	settings->SP_TX_PulsePosition = AContext->Connection->IOHandler->ReadLongInt();
+	settings->LP_TX_PulsePosition = AContext->Connection->IOHandler->ReadLongInt();
+	settings->SP_RX_PulsePosition = AContext->Connection->IOHandler->ReadLongInt();
+	settings->LP_RX_PulsePosition = AContext->Connection->IOHandler->ReadLongInt();
+	settings->Stream_Port         = AContext->Connection->IOHandler->ReadLongInt();
+	settings->Doppler_Port        = AContext->Connection->IOHandler->ReadLongInt();
+	settings->Communication_Port  = AContext->Connection->IOHandler->ReadLongInt();
+	settings->Sectors             = AContext->Connection->IOHandler->ReadLongInt();
+	settings->Band_Frequency      = AContext->Connection->IOHandler->ReadInt64(false);
+	settings->Stalo_Frequency     = AContext->Connection->IOHandler->ReadInt64(false);
+
+	value = ReadString(AContext);
+	settings->Band_Length = value.ToDouble();
+	value = ReadString(AContext);
+	settings->_LP_MaxSpeed = value.ToDouble();
+	value = ReadString(AContext);
+	settings->_SP_Single_MaxSpeed = value.ToDouble();
+	value = ReadString(AContext);
+	settings->_SP_Dual_54_MaxSpeed = value.ToDouble();
+	value = ReadString(AContext);
+	settings->_SP_Dual_43_MaxSpeed = value.ToDouble();
+	value = ReadString(AContext);
+	settings->_SP_Dual_32_MaxSpeed = value.ToDouble();
+
+	settings->Sensibility_LP     = AContext->Connection->IOHandler->ReadLongInt();
+	settings->Sensibility_SP     = AContext->Connection->IOHandler->ReadLongInt();
+	settings->Dinamic_range_LP   = AContext->Connection->IOHandler->ReadLongInt();
+	settings->Dinamic_range_SP   = AContext->Connection->IOHandler->ReadLongInt();
+	settings->Conv_table_lp_text = ReadString(AContext);
+	settings->Conv_table_sp_text = ReadString(AContext);
+
+	ThisSite->ImportData(settings);
+}
+
+void CommunicationManager::ReceiveFilter(TIdContext *AContext){
+	short filter_value = AContext->Connection->IOHandler->ReadSmallInt();
+	bool Filter = (filter_value == 1);
+	TDataFilter* FilterInfo = NULL;
+
+	if(Filter){
+		FilterInfo = new TDataFilter();
+		__try{
+			String value = ReadString(AContext);
+			FilterInfo->B0 = value.ToDouble();
+			value = ReadString(AContext);
+			FilterInfo->B1 = value.ToDouble();
+			value = ReadString(AContext);
+			FilterInfo->B2 = value.ToDouble();
+			value = ReadString(AContext);
+			FilterInfo->B3 = value.ToDouble();
+			value = ReadString(AContext);
+			FilterInfo->B4 = value.ToDouble();
+			value = ReadString(AContext);
+			FilterInfo->C1 = value.ToDouble();
+			value = ReadString(AContext);
+			FilterInfo->C2 = value.ToDouble();
+			value = ReadString(AContext);
+			FilterInfo->C3 = value.ToDouble();
+			value = ReadString(AContext);
+			FilterInfo->C4 = value.ToDouble();
+			value = ReadString(AContext);
+			FilterInfo->MaxAngle = value.ToDouble();
+
+			FilterInfo->MaxHeigh  = AContext->Connection->IOHandler->ReadLongInt();
+			FilterInfo->MaxDistance  = AContext->Connection->IOHandler->ReadLongInt();
+
+			short bool_value;
+			bool_value = AContext->Connection->IOHandler->ReadSmallInt();
+			FilterInfo->SQI = (bool_value == 1);
+			bool_value = AContext->Connection->IOHandler->ReadSmallInt();
+			FilterInfo->CI = (bool_value == 1);
+			bool_value = AContext->Connection->IOHandler->ReadSmallInt();
+			FilterInfo->SIG = (bool_value == 1);
+			bool_value = AContext->Connection->IOHandler->ReadSmallInt();
+			FilterInfo->LOG = (bool_value == 1);
+			bool_value = AContext->Connection->IOHandler->ReadSmallInt();
+			FilterInfo->CCOR = (bool_value == 1);
+			bool_value = AContext->Connection->IOHandler->ReadSmallInt();
+			FilterInfo->Speckle = (bool_value == 1);
+
+			FilterInfo->SpeckleSize  = AContext->Connection->IOHandler->ReadLongInt();
+
+			TheProcessingThread->SetFilter(FilterInfo, FilterInfo);
+		}
+		__finally{
+			delete FilterInfo;
+		}
+	}
+	else TheProcessingThread->SetFilter(FilterInfo, NULL);
+}
+
+void CommunicationManager::SendParameters(TIdContext *AContext){
+	TDRX_Parameters* parameters = ThisSite->GetParameters();
+
+	AContext->Connection->IOHandler->Write(parameters->ShortPulse_NData);
+	AContext->Connection->IOHandler->Write(parameters->LongPulse_NData);
+	AContext->Connection->IOHandler->Write(parameters->DualPulse_NData);
+	AContext->Connection->IOHandler->Write(parameters->ShortPulse_Trigger);
+	AContext->Connection->IOHandler->Write(parameters->LongPulse_Trigger);
+	AContext->Connection->IOHandler->Write(parameters->ShortPulse_CellSize);
+	AContext->Connection->IOHandler->Write(parameters->LongPulse_CellSize);
+	AContext->Connection->IOHandler->Write(parameters->ShortPulse_Clock);
+	AContext->Connection->IOHandler->Write(parameters->LongPulse_Clock);
+	AContext->Connection->IOHandler->Write(parameters->Sectors);
+
+	INT64 int64_value;
+
+	int64_value = parameters->IF;
+	AContext->Connection->IOHandler->Write(int64_value, false);
+	int64_value = parameters->Band_Frequency;
+	AContext->Connection->IOHandler->Write(int64_value, false);
+
+	AContext->Connection->IOHandler->WriteLn(FormatFloat("0.0000", parameters->Band_Length));
+	AContext->Connection->IOHandler->Write(parameters->DualPulse_54Low_Trigger);
+	AContext->Connection->IOHandler->Write(parameters->DualPulse_54High_Trigger);
+	AContext->Connection->IOHandler->Write(parameters->DualPulse_43Low_Trigger);
+	AContext->Connection->IOHandler->Write(parameters->DualPulse_43High_Trigger);
+	AContext->Connection->IOHandler->Write(parameters->DualPulse_32Low_Trigger);
+	AContext->Connection->IOHandler->Write(parameters->DualPulse_32High_Trigger);
+}
+
+void CommunicationManager::SendSnapshot(TIdContext *AContext){
+	AContext->Connection->IOHandler->WriteLn(FormatFloat("0.00", ThisSite->TheRadar->Stalo->Temperature));
+	AContext->Connection->IOHandler->WriteLn(FormatFloat("0.00", ThisSite->TheRadar->Stalo->Power));
+
+	INT64 int64_value;
+	int64_value = ThisSite->TheRadar->GetSTALOFrequency();
+	AContext->Connection->IOHandler->Write(int64_value, false);
+	int64_value = ThisSite->TheRadar->Stalo->Frequency;
+	AContext->Connection->IOHandler->Write(int64_value, false);
+
+	SmallInt value;
+	value = ThisSite->TheRadar->GetSTALOOutput() ? 1 : 0;
+	AContext->Connection->IOHandler->Write(value);
+	value = ThisSite->TheRadar->AFCChangesInhibited ? 1 : 0;
+	AContext->Connection->IOHandler->Write(value);
+
+	int64_value = TheACFProcessingThread->GetTxFrequencyEstimate();
+	AContext->Connection->IOHandler->Write(int64_value, false);
+	int64_value = TheACFProcessingThread->GetIFFrequencyEstimate();
+	AContext->Connection->IOHandler->Write(int64_value, false);
+	int64_value = ThisSite->TheRadar->GetNCOFrequency();
+	AContext->Connection->IOHandler->Write(int64_value, false);
+
+	AContext->Connection->IOHandler->WriteLn(FormatFloat("0.00", TheACFProcessingThread->GetTxPulsePowerEstimate()));
+
+	value = ThisSite->TheRadar->GetSTALOOutput() ? 1 : 0;
+	AContext->Connection->IOHandler->Write(value);
+	value = TheACFProcessingThread->GetDataReady() ? 1 : 0;
+	AContext->Connection->IOHandler->Write(value);
+	value = ThisSite->TheRadar->Gathering ? 1 : 0;
+	AContext->Connection->IOHandler->Write(value);
+	value = ThisSite->TheRadar->getOutputMode() ? 1 : 0;
+	AContext->Connection->IOHandler->Write(value);
+}
+
+void __fastcall CommunicationManager::CommunicationClientConnect(TIdContext *AContext){
+}
+
+void __fastcall CommunicationManager::CommunicationClientExecute(TIdContext *AContext){
+	String cmdType = AContext->Connection->IOHandler->ReadLn("", CommandTimeOut);
+
+	if(AContext->Connection->IOHandler->ReadLnTimedout){
+		AContext->Connection->CheckForGracefulDisconnect();
+		AContext->Connection->IOHandler->CheckForDisconnect();
+	}
+	else
+		try {
+			if((cmdType == DRX_Get_Cmd) || (cmdType == DRX_Put_Cmd)){
+				AContext->Connection->IOHandler->WriteLn(Success_Response);
+
+				String cmd = ReadString(AContext);
+				AContext->Connection->IOHandler->WriteLn(Success_Response);
+				if(cmdType == DRX_Get_Cmd)
+					ProcessGetCommand(AContext, cmd);
+				else
+					ProcessPutCommand(AContext, cmd);
+
+				AContext->Connection->IOHandler->WriteLn(DRX_End_Cmd);
+			}
+			else AContext->Connection->IOHandler->WriteLn(Fail_Response);
+
+			Sleep(50);
+		} catch (...) {
+			AContext->Connection->Disconnect();
+		}
+}
+
+

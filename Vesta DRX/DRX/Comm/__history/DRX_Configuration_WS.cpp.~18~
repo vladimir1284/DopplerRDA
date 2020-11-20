@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <vcl.h>
+#pragma hdrstop
+
+#if !defined(__DRX_Configuration_WS_h__)
+#include "DRX_Configuration_WS.h"
+#include "CommonObjs.h"
+#include "config.h"
+#include "Site.h"
+#endif
+
+// ************************************************************************ //
+//  TDRX_Configuration_WSImpl implements interface IDRX_Configuration_WS
+// ************************************************************************ //
+class TDRX_Configuration_WSImpl : public TInvokableClass, public IDRX_Configuration_WS
+{
+public:
+	TSettings* Get_Configuration();
+public:
+  HRESULT STDMETHODCALLTYPE QueryInterface(const GUID& IID, void **Obj)
+						{ return GetInterface(IID, Obj) ? S_OK : E_NOINTERFACE; }
+  ULONG STDMETHODCALLTYPE AddRef() { return TInvokableClass::_AddRef();  }
+  ULONG STDMETHODCALLTYPE Release() { return TInvokableClass::_Release();  }
+};
+
+TSettings* TDRX_Configuration_WSImpl::Get_Configuration(){
+	TSettings* result = ThisSite->LoadData();
+	return result;
+}
+
+static void __fastcall DRX_Configuration_WSFactory(System::TObject* &obj)
+{
+  static _di_IDRX_Configuration_WS iInstance;
+  static TDRX_Configuration_WSImpl *instance = 0;
+  if (!instance)
+  {
+    instance = new TDRX_Configuration_WSImpl();
+    instance->GetInterface(iInstance);
+  }
+  obj = instance;
+}
+
+static void RegTypes()
+{
+  InvRegistry()->RegisterInterface(__delphirtti(IDRX_Configuration_WS));
+  InvRegistry()->RegisterInvokableClass(__classid(TDRX_Configuration_WSImpl), DRX_Configuration_WSFactory);
+}
+#pragma startup RegTypes 32
+

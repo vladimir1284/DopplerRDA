@@ -1,0 +1,215 @@
+unit OsciloscopeServer;
+
+interface
+
+uses
+  IdTCPClient, IdTCPServer, Windows, Classes;
+
+const
+  ThreadTimeOut = 10000;
+  DisconnectCheckFrequency = 10000; //ms
+
+type
+  TOsciloscopeServerThread =
+    class( TIdPeerThread )
+      private
+        fDataType : integer;
+        fRays  : integer;
+        fCells : integer;
+        fCodes : boolean;
+        fChannel : integer;
+
+        procedure setCells;
+        procedure setChannel;
+        procedure setCodes;
+        procedure setDataType;
+        procedure setRays;
+        procedure getData(Command : string);
+      public
+        constructor Create(ACreateSuspended: Boolean = True); override;
+      protected
+        procedure Run; override;
+    end;
+
+
+implementation
+
+uses
+  Constants, ElbrusTypes, IdTCPConnection, Elbrus, SysUtils;
+
+
+{ TOsciloscopeServerThread }
+
+constructor TOsciloscopeServerThread.Create(ACreateSuspended: Boolean);
+begin
+  inherited Create( true );
+  Priority := tpHigher;
+
+  Randomize;
+
+  fDataType := 0;
+  fRays     := 1;
+  fCells    := 1000;
+  fCodes    := true;
+  fChannel  := 0;
+
+  if not ACreateSuspended
+    then Resume;
+end;
+
+procedure TOsciloscopeServerThread.getData(Command: string);
+var
+  I : integer;
+  B1, B2 : PDWords;
+  Ch1, Ch2 : PWords;
+  chs : string;
+  b_size : integer;
+  ch_size : integer;
+  value : word;
+begin
+  chs := copy(Command, 3, 1);
+
+  B1 := nil;
+  B2 := nil;
+  Ch1 := nil;
+  Ch2 := nil;
+  b_size := fRays * fCells * sizeof(dword);
+  ch_size := fRays * fCells * sizeof(word);
+  if (chs = '0') or (chs = '2')
+    then
+      begin
+        B1 := AllocMem(b_size);
+        Ch1 := AllocMem(ch_size);
+      end;
+  if (chs = '1') or (chs = '2')
+    then
+      begin
+        B2 := AllocMem(b_size);
+        Ch2 := AllocMem(ch_size);
+      end;
+
+  try
+    Connection.WriteCardinal( fCells );
+    for i := 0 to fCells-1 do
+    begin
+      if (i > 100) and (i < 300)
+        then value := Trunc(Random * 1000)
+        else value := 0;
+      if Assigned(Ch1)
+        then Ch1^[i] := value;
+      if Assigned(Ch2)
+        then Ch2^[i] := value;
+    end;
+
+    if Assigned(Ch1)
+      then Connection.WriteBuffer(Ch1^, ch_size);
+    if Assigned(Ch2)
+      then Connection.WriteBuffer(Ch2^, ch_size);
+
+
+{
+    if Acquire_Frames(1, fRays, fCells, B1, B2, not fCodes)
+      then
+        begin
+          Connection.WriteCardinal( fCells );
+          for i := 0 to fCells-1 do
+          begin
+            if Assigned(Ch1)
+              then Ch1^[i] := B1^[i] and $ffff;
+            if Assigned(Ch2)
+              then Ch2^[i] := B2^[i] and $ffff;
+          end;
+
+          if Assigned(Ch1)
+            then Connection.WriteBuffer(Ch1, ch_size);
+          if Assigned(Ch2)
+            then Connection.WriteBuffer(Ch2, ch_size);
+        end
+      else
+        begin
+          B1  := nil;
+          B2  := nil;
+          Ch1 := nil;
+          Ch2 := nil;
+          Connection.WriteCardinal( 0 );
+        end;
+}
+  finally
+    if B1 <> nil
+      then
+        begin
+          ReallocMem(B1, 0);
+          ReallocMem(Ch1, 0);
+        end;
+    if B2 <> nil
+      then
+        begin
+          ReallocMem(B2, 0);
+          ReallocMem(Ch2, 0);
+        end;
+  end;
+end;
+
+procedure TOsciloscopeServerThread.Run;
+var
+  Command : string;
+begin
+  while (not Terminated) do
+  begin
+    Command := Connection.ReadLn( '', oscClientCommandTimeOut);
+    if Command = oscSetCellsCommand
+      then setCells;
+    if Command = oscSetChannelsCommand
+      then setChannel;
+    if Command = oscSetCodesCommand
+      then setCodes;
+    if Command = oscSetDataTypeCommand
+      then setDataType;
+    if Command = oscSetRaysCommand
+      then setRays;
+
+    if Pos('ch', Command) = 1
+      then getData(Command);
+
+    if Command = ''
+      then
+        try
+          Connection.CheckForDisconnect;
+          Sleep(1000);
+        except
+          Terminate;
+        end;
+  end;
+end;
+
+procedure TOsciloscopeServerThread.setCells;
+begin
+  fCells := Connection.ReadInteger;
+  Connection.WriteLn(oscSuccess);
+end;
+
+procedure TOsciloscopeServerThread.setChannel;
+begin
+  fChannel := Connection.ReadInteger;
+  Connection.WriteLn(oscSuccess);
+end;
+
+procedure TOsciloscopeServerThread.setCodes;
+begin
+  fCodes := Boolean(Connection.ReadInteger);
+  Connection.WriteLn(oscSuccess);
+end;
+
+procedure TOsciloscopeServerThread.setDataType;
+begin
+  fDataType := Connection.ReadInteger;
+  Connection.WriteLn(oscSuccess);
+end;
+
+procedure TOsciloscopeServerThread.setRays;
+begin
+  fRays := Connection.ReadInteger;
+  Connection.WriteLn(oscSuccess);
+end;
+
+end.

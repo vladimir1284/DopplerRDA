@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RootFolder label="COREGEN" treetype="folder" language="COREGEN">
+	<Folder label="VERILOG Component Instantiation" treetype="folder">
+		<Template label="rawfifo255x14" treetype="template">
+ 
+ 
+// The following must be inserted into your Verilog file for this
+// core to be instantiated. Change the instance name and port connections
+// (in parentheses) to your own signal names.
+ 
+rawfifo255x14 YourInstanceName (
+    .din(din), // Bus [13 : 0] 
+    .wr_en(wr_en),
+    .wr_clk(wr_clk),
+    .rd_en(rd_en),
+    .rd_clk(rd_clk),
+    .ainit(ainit),
+    .dout(dout), // Bus [13 : 0] 
+    .full(full),
+    .empty(empty));
+
+ 
+		</Template>
+		<Template label="myddc" treetype="template">
+ 
+ 
+// The following must be inserted into your Verilog file for this
+// core to be instantiated. Change the instance name and port connections
+// (in parentheses) to your own signal names.
+ 
+myddc YourInstanceName (
+    .DIN(DIN), // Bus [13 : 0] 
+    .ND(ND),
+    .RDY(RDY),
+    .RFD(RFD),
+    .CLK(CLK),
+    .ADDR(ADDR), // Bus [4 : 0] 
+    .LD_DIN(LD_DIN), // Bus [31 : 0] 
+    .WE(WE),
+    .SEL(SEL),
+    .DOUT_I(DOUT_I), // Bus [29 : 0] 
+    .DOUT_Q(DOUT_Q)); // Bus [29 : 0] 
+
+ 
+		</Template>
+		<Template label="iq_out_fifo" treetype="template">
+ 
+ 
+// The following must be inserted into your Verilog file for this
+// core to be instantiated. Change the instance name and port connections
+// (in parentheses) to your own signal names.
+ 
+iq_out_fifo YourInstanceName (
+    .din(din),
+    .wr_en(wr_en),
+    .wr_clk(wr_clk),
+    .rd_en(rd_en),
+    .rd_clk(rd_clk),
+    .ainit(ainit),
+    .dout(dout),
+    .full(full),
+    .empty(empty));
+
+ 
+		</Template>
+		<Template label="rawFIFO512x14" treetype="template">
+ 
+ 
+// The following must be inserted into your Verilog file for this
+// core to be instantiated. Change the instance name and port connections
+// (in parentheses) to your own signal names.
+ 
+rawFIFO512x14 YourInstanceName (
+    .clk(clk),
+    .din(din), // Bus [14 : 0] 
+    .rd_en(rd_en),
+    .wr_en(wr_en),
+    .dout(dout), // Bus [14 : 0] 
+    .empty(empty),
+    .full(full));
+
+ 
+		</Template>
+		<Template label="rawFIFO256x14" treetype="template">
+		</Template>
+		<Template label="rawFIFO511x14" treetype="template">
+ 
+ 
+// The following must be inserted into your Verilog file for this
+// core to be instantiated. Change the instance name and port connections
+// (in parentheses) to your own signal names.
+ 
+rawFIFO511x14 YourInstanceName (
+    .din(din), // Bus [13 : 0] 
+    .wr_en(wr_en),
+    .wr_clk(wr_clk),
+    .rd_en(rd_en),
+    .rd_clk(rd_clk),
+    .ainit(ainit),
+    .dout(dout), // Bus [13 : 0] 
+    .full(full),
+    .empty(empty));
+
+ 
+		</Template>
+		<Template label="m" treetype="template">
+		</Template>
+		<Template label="lpfilter" treetype="template">
+		</Template>
+		<Template label="outputfifo" treetype="template">
+		</Template>
+		<Template label="times360" treetype="template">
+ 
+ 
+// The following must be inserted into your Verilog file for this
+// core to be instantiated. Change the instance name and port connections
+// (in parentheses) to your own signal names.
+ 
+times360 YourInstanceName (
+    .clk(clk),
+    .a(a), // Bus [13 : 0] 
+    .q(q)); // Bus [22 : 0] 
+
+ 
+		</Template>
+	</Folder>
+	<Folder label="VHDL Component Instantiation" treetype="folder">
+		<Template label="rawfifo255x14" treetype="template">
+ 
+ 
+-- The following code must appear in the VHDL architecture header:
+ 
+component rawfifo255x14
+    port (
+    din: IN std_logic_VECTOR(13 downto 0);
+    wr_en: IN std_logic;
+    wr_clk: IN std_logic;
+    rd_en: IN std_logic;
+    rd_clk: IN std_logic;
+    ainit: IN std_logic;
+    dout: OUT std_logic_VECTOR(13 downto 0);
+    full: OUT std_logic;
+    empty: OUT std_logic);
+end component;
+
+
+ 
+-------------------------------------------------------------
+ 
+-- The following code must appear in the VHDL architecture body.
+-- Substitute your own instance name and net names.
+ 
+your_instance_name : rawfifo255x14
+        port map (
+            din =&gt; din,
+            wr_en =&gt; wr_en,
+            wr_clk =&gt; wr_clk,
+            rd_en =&gt; rd_en,
+            rd_clk =&gt; rd_clk,
+            ainit =&gt; ainit,
+            dout =&gt; dout,
+            full =&gt; full,
+            empty =&gt; empty);
+ 
+		</Template>
+		<Template label="myddc" treetype="template">
+ 
+ 
+-- The following code must appear in the VHDL architecture header:
+ 
+component myddc
+    port (
+    DIN: IN std_logic_VECTOR(13 downto 0);
+    ND: IN std_logic;
+    RDY: OUT std_logic;
+    RFD: OUT std_logic;
+    CLK: IN std_logic;
+    ADDR: IN std_logic_VECTOR(4 downto 0);
+    LD_DIN: IN std_logic_VECTOR(31 downto 0);
+    WE: IN std_logic;
+    SEL: IN std_logic;
+    DOUT_I: OUT std_logic_VECTOR(29 downto 0);
+    DOUT_Q: OUT std_logic_VECTOR(29 downto 0));
+end component;
+
+
+ 
+-------------------------------------------------------------
+ 
+-- The following code must appear in the VHDL architecture body.
+-- Substitute your own instance name and net names.
+ 
+your_instance_name : myddc
+        port map (
+            DIN =&gt; DIN,
+            ND =&gt; ND,
+            RDY =&gt; RDY,
+            RFD =&gt; RFD,
+            CLK =&gt; CLK,
+            ADDR =&gt; ADDR,
+            LD_DIN =&gt; LD_DIN,
+            WE =&gt; WE,
+            SEL =&gt; SEL,
+            DOUT_I =&gt; DOUT_I,
+            DOUT_Q =&gt; DOUT_Q);
+ 
+		</Template>
+		<Template label="iq_out_fifo" treetype="template">
+ 
+ 
+-- The following code must appear in the VHDL architecture header:
+ 
+component iq_out_fifo
+    port (
+    din: IN std_logic_VECTOR(31 downto 0);
+    wr_en: IN std_logic;
+    wr_clk: IN std_logic;
+    rd_en: IN std_logic;
+    rd_clk: IN std_logic;
+    ainit: IN std_logic;
+    dout: OUT std_logic_VECTOR(31 downto 0);
+    full: OUT std_logic;
+    empty: OUT std_logic);
+end component;
+
+
+
+ 
+-------------------------------------------------------------
+ 
+-- The following code must appear in the VHDL architecture body.
+-- Substitute your own instance name and net names.
+ 
+your_instance_name : iq_out_fifo
+        port map (
+            din =&gt; din,
+            wr_en =&gt; wr_en,
+            wr_clk =&gt; wr_clk,
+            rd_en =&gt; rd_en,
+            rd_clk =&gt; rd_clk,
+            ainit =&gt; ainit,
+            dout =&gt; dout,
+            full =&gt; full,
+            empty =&gt; empty);
+ 
+		</Template>
+		<Template label="rawFIFO512x14" treetype="template">
+ 
+ 
+-- The following code must appear in the VHDL architecture header:
+ 
+component rawFIFO512x14
+    port (
+    clk: IN std_logic;
+    din: IN std_logic_VECTOR(14 downto 0);
+    rd_en: IN std_logic;
+    wr_en: IN std_logic;
+    dout: OUT std_logic_VECTOR(14 downto 0);
+    empty: OUT std_logic;
+    full: OUT std_logic);
+end component;
+
+
+ 
+-------------------------------------------------------------
+ 
+-- The following code must appear in the VHDL architecture body.
+-- Substitute your own instance name and net names.
+ 
+your_instance_name : rawFIFO512x14
+        port map (
+            clk =&gt; clk,
+            din =&gt; din,
+            rd_en =&gt; rd_en,
+            wr_en =&gt; wr_en,
+            dout =&gt; dout,
+            empty =&gt; empty,
+            full =&gt; full);
+ 
+		</Template>
+		<Template label="rawFIFO256x14" treetype="template">
+		</Template>
+		<Template label="rawFIFO511x14" treetype="template">
+ 
+ 
+-- The following code must appear in the VHDL architecture header:
+ 
+component rawFIFO511x14
+    port (
+    din: IN std_logic_VECTOR(13 downto 0);
+    wr_en: IN std_logic;
+    wr_clk: IN std_logic;
+    rd_en: IN std_logic;
+    rd_clk: IN std_logic;
+    ainit: IN std_logic;
+    dout: OUT std_logic_VECTOR(13 downto 0);
+    full: OUT std_logic;
+    empty: OUT std_logic);
+end component;
+
+
+ 
+-------------------------------------------------------------
+ 
+-- The following code must appear in the VHDL architecture body.
+-- Substitute your own instance name and net names.
+ 
+your_instance_name : rawFIFO511x14
+        port map (
+            din =&gt; din,
+            wr_en =&gt; wr_en,
+            wr_clk =&gt; wr_clk,
+            rd_en =&gt; rd_en,
+            rd_clk =&gt; rd_clk,
+            ainit =&gt; ainit,
+            dout =&gt; dout,
+            full =&gt; full,
+            empty =&gt; empty);
+ 
+		</Template>
+		<Template label="m" treetype="template">
+		</Template>
+		<Template label="lpfilter" treetype="template">
+ 
+ 
+-- The following code must appear in the VHDL architecture header:
+ 
+component lpfilter
+    port (
+    ND: IN std_logic;
+    RDY: OUT std_logic;
+    CLK: IN std_logic;
+    RST: IN std_logic;
+    RFD: OUT std_logic;
+    DIN: IN std_logic_VECTOR(15 downto 0);
+    DOUT: OUT std_logic_VECTOR(32 downto 0));
+end component;
+
+
+ 
+-------------------------------------------------------------
+ 
+-- The following code must appear in the VHDL architecture body.
+-- Substitute your own instance name and net names.
+ 
+your_instance_name : lpfilter
+        port map (
+            ND =&gt; ND,
+            RDY =&gt; RDY,
+            CLK =&gt; CLK,
+            RST =&gt; RST,
+            RFD =&gt; RFD,
+            DIN =&gt; DIN,
+            DOUT =&gt; DOUT);
+ 
+		</Template>
+		<Template label="outputfifo" treetype="template">
+ 
+ 
+-- The following code must appear in the VHDL architecture header:
+ 
+component outputfifo
+    port (
+    din: IN std_logic_VECTOR(31 downto 0);
+    wr_en: IN std_logic;
+    wr_clk: IN std_logic;
+    rd_en: IN std_logic;
+    rd_clk: IN std_logic;
+    ainit: IN std_logic;
+    dout: OUT std_logic_VECTOR(31 downto 0);
+    full: OUT std_logic;
+    empty: OUT std_logic);
+end component;
+
+
+ 
+-------------------------------------------------------------
+ 
+-- The following code must appear in the VHDL architecture body.
+-- Substitute your own instance name and net names.
+ 
+your_instance_name : outputfifo
+        port map (
+            din =&gt; din,
+            wr_en =&gt; wr_en,
+            wr_clk =&gt; wr_clk,
+            rd_en =&gt; rd_en,
+            rd_clk =&gt; rd_clk,
+            ainit =&gt; ainit,
+            dout =&gt; dout,
+            full =&gt; full,
+            empty =&gt; empty);
+ 
+		</Template>
+		<Template label="times360" treetype="template">
+ 
+ 
+-- The following code must appear in the VHDL architecture header:
+ 
+component times360
+    port (
+    clk: IN std_logic;
+    a: IN std_logic_VECTOR(13 downto 0);
+    q: OUT std_logic_VECTOR(22 downto 0));
+end component;
+
+
+ 
+-------------------------------------------------------------
+ 
+-- The following code must appear in the VHDL architecture body.
+-- Substitute your own instance name and net names.
+ 
+your_instance_name : times360
+        port map (
+            clk =&gt; clk,
+            a =&gt; a,
+            q =&gt; q);
+ 
+		</Template>
+	</Folder>
+</RootFolder>

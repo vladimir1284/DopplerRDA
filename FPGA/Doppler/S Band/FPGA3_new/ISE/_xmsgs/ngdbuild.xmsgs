@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IMPORTANT: This is an internal file that has been generated
+     by the Xilinx ISE software.  Any direct editing or
+     changes made to this file may result in unpredictable
+     behavior or data corruption.  It is strongly advised that
+     users do not edit the contents of this file. -->
+<messages>
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iRD/iSEL5</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iRD/iSEL4</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iRD/iSEL3</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iRD/iSEL0</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iWR/iAF5</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iWR/iAF4</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iWR/iAF3</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iWR/iAF2</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iWR/iAF1</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iWR/iFF5</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iWR/iFF4</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iWR/iFF3</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iWR/iFF2</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iWR/iFF1</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iWR/iFF0</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iUSER_AP/AngPosBy360/BU419</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iUSER_AP/AngPosBy360/BU421</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iUSER_AP/myOUTFIFO/BU1327</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iUSER_AP/myOUTFIFO/BU1614</arg>&apos; has unconnected output pin
+</msg>
+
+</messages>
+

@@ -1,0 +1,76 @@
+//---------------------------------------------------------------------------
+
+#ifndef PaintThreadH
+#define PaintThreadH
+//---------------------------------------------------------------------------
+#include <Classes.hpp>
+
+#include "FFTReal.h"
+#include "IntegratedData.h"
+#include "DRX_Data_Package.h"
+
+//---------------------------------------------------------------------------
+class TPaintThread : public TThread
+{
+private:
+		TCriticalSection* lock;
+		TQueue* packages;
+
+		DRX_Data_Package* GetPackage();
+		void ClearPackages();
+		bool AllowPackage(DRX_Data_Package* package);
+		void ReleasePackage(DRX_Data_Package* package);
+
+		DRX_Data_Package* package;
+
+		bool allow_tx_rx_power();
+		bool allow_tx_burst();
+		bool allow_tx_spectrum();
+		bool allow_rx_dbz();
+		bool allow_rx_dbt();
+		bool allow_rx_w();
+		bool allow_rx_v();
+		bool allow_rx_sqi();
+		bool allow_rx_ci();
+		bool allow_rx_log();
+		bool allow_rx_sig();
+		bool allow_rx_ccor();
+
+		void __fastcall paint_tx_rx_power();
+		void __fastcall paint_tx_burst();
+		void __fastcall paint_tx_spectrum();
+		void __fastcall paint_rx_dbz();
+		void __fastcall paint_rx_dbt();
+		void __fastcall paint_rx_w();
+		void __fastcall paint_rx_v();
+		void __fastcall paint_rx_sqi();
+		void __fastcall paint_rx_ci();
+		void __fastcall paint_rx_log();
+		void __fastcall paint_rx_sig();
+		void __fastcall paint_rx_ccor();
+
+protected:
+		void __fastcall Execute();
+public:
+		__fastcall TPaintThread();
+
+		void AddPackage(DRX_Data_Package* package);
+
+		__property bool TX_RX_Power = { read= allow_tx_rx_power};
+		__property bool TX_Burst    = { read= allow_tx_burst};
+		__property bool TX_Spectrum = { read= allow_tx_spectrum};
+		__property bool RX_dBZ      = { read= allow_rx_dbz};
+		__property bool RX_dBT      = { read= allow_rx_dbt};
+		__property bool RX_W        = { read= allow_rx_w};
+		__property bool RX_V        = { read= allow_rx_v};
+		__property bool RX_SQI      = { read= allow_rx_sqi};
+		__property bool RX_CI       = { read= allow_rx_ci};
+		__property bool RX_LOG      = { read= allow_rx_log};
+		__property bool RX_SIG      = { read= allow_rx_sig};
+		__property bool RX_CCOR     = { read= allow_rx_ccor};
+};
+//---------------------------------------------------------------------------
+
+extern TPaintThread* thePaintThread;
+
+#endif

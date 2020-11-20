@@ -1,0 +1,95 @@
+// ************************************************************************ //
+// The types declared in this file were generated from data read from the
+// WSDL File described below:
+// WSDL     : http://localhost:49000/wsdl/ILoginWS
+// Version  : 1.0
+// (4/28/2011 11:42:30 PM - 1.33.2.5)
+// ************************************************************************ //
+
+unit LoginWS;
+
+interface
+
+uses InvokeRegistry, SOAPHTTPClient, Types, XSBuiltIns;
+
+type
+
+  // ************************************************************************ //
+  // The following types, referred to in the WSDL document are not being represented
+  // in this file. They are either aliases[@] of other types represented or were referred
+  // to but never[!] declared in the document. The types from the latter category
+  // typically map to predefined/known XML or Borland types; however, they could also 
+  // indicate incorrect WSDL documents that failed to declare or import a schema type.
+  // ************************************************************************ //
+  // !:string          - "http://www.w3.org/2001/XMLSchema"
+  // !:boolean         - "http://www.w3.org/2001/XMLSchema"
+
+
+  // ************************************************************************ //
+  // Namespace : urn:LoginWS-ILoginWS
+  // soapAction: |urn:LoginWS-ILoginWS#Login|urn:LoginWS-ILoginWS#Logout
+  // transport : http://schemas.xmlsoap.org/soap/http
+  // style     : rpc
+  // binding   : ILoginWSbinding
+  // service   : ILoginWSservice
+  // port      : ILoginWSPort
+  // URL       : http://localhost:49000/soap/ILoginWS
+  // ************************************************************************ //
+  ILoginWS = interface(IInvokable)
+  ['{C0A84F6E-0F00-7E2F-073F-5071C9041728}']
+    function  Login(const UserName: WideString; const Password: WideString): Boolean; stdcall;
+    function  Logout: Boolean; stdcall;
+  end;
+
+function GetILoginWS(UseWSDL: Boolean=System.False; Addr: string=''; HTTPRIO: THTTPRIO = nil): ILoginWS;
+
+
+implementation
+
+uses CommunicationObj;
+
+function GetILoginWS(UseWSDL: Boolean; Addr: string; HTTPRIO: THTTPRIO): ILoginWS;
+const
+  defWSDL = 'http://localhost:49000/wsdl/ILoginWS';
+  defURL  = 'http://localhost:49000/soap/ILoginWS';
+  defSvc  = 'ILoginWSservice';
+  defPrt  = 'ILoginWSPort';
+var
+  RIO: THTTPRIO;
+begin
+  Result := nil;
+  if (Addr = '') then
+  begin
+    if UseWSDL then
+      Addr := defWSDL
+    else
+      Addr := defURL;
+  end;
+  if HTTPRIO = nil then
+    RIO := THTTPRIO.Create(nil)
+  else
+    RIO := HTTPRIO;
+  try
+    Result := (RIO as ILoginWS);
+    if UseWSDL then
+    begin
+      RIO.WSDLLocation := Addr;
+      RIO.Service := defSvc;
+      RIO.Port := defPrt;
+    end else
+      RIO.URL := Addr;
+  finally
+    if (Result = nil) and (HTTPRIO = nil) then
+      RIO.Free;
+  end;
+end;
+
+
+initialization
+  InvRegistry.RegisterHeaderClass(TypeInfo(ILoginWS), TCyclopAuthHeader, 'TCyclopAuthHeader', 'urn:CommConfiguration');
+
+  InvRegistry.RegisterInterface(TypeInfo(ILoginWS), 'urn:LoginWS-ILoginWS', '');
+  InvRegistry.RegisterAllSOAPActions(TypeInfo(ILoginWS), '|urn:LoginWS-ILoginWS#Login|urn:LoginWS-ILoginWS#Logout');
+
+  RemClassRegistry.RegisterXSClass(TCyclopAuthHeader, 'urn:CommConfiguration', 'TCyclopAuthHeader');
+end.

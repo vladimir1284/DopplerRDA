@@ -1,0 +1,56 @@
+unit DataExchange;
+
+interface
+
+uses
+  IdTCPClient, IdTCPServer, Windows, Classes;
+
+type
+  TDataExcanhe =
+    class(TIdPeerThread)
+      private
+    procedure Execute;
+        { Private declarations }
+      protected
+        procedure Run; override;
+      public
+        constructor Create(ACreateSuspended: Boolean = True); override;
+    end;
+
+implementation
+
+{ Important: Methods and properties of objects in visual components can only be
+  used in a method called using Synchronize, for example,
+
+      Synchronize(UpdateCaption);
+
+  and UpdateCaption could look like,
+
+    procedure TDataExcanhe.UpdateCaption;
+    begin
+      Form1.Caption := 'Updated in a thread';
+    end; }
+
+{ TDataExcanhe }
+
+constructor TDataExcanhe.Create(ACreateSuspended: Boolean);
+begin
+  inherited Create( true );
+  Priority := tpHigher;
+
+  if not ACreateSuspended
+    then Resume;
+end;
+
+procedure TDataExcanhe.Execute;
+begin
+  { Place thread code here }
+end;
+
+procedure TDataExcanhe.Run;
+begin
+  inherited;
+
+end;
+
+end.

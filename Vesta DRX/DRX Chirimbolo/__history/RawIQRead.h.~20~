@@ -1,0 +1,48 @@
+#ifndef RawIQReadH
+#define RawIQReadH
+
+//---------------------------------------------------------------------------
+#include <Classes.hpp>
+#include <syncobjs.hpp>
+#include <string.h>
+//---------------------------------------------------------------------------
+
+#include "FIFOInterface.h"
+#include "DataParameters.h"
+
+//---------------------------------------------------------------------------
+class RawIQRead : public TThread
+{
+
+static const unsigned int BIGBUFFERSIZE = SPSize * NREAD * NUMBEROFBUFFERS;
+
+private:
+  FIFOInterface *IQReadInterface;
+
+  int CurrentOutBuffer;
+  short *InputBuffer[NUMBEROFBUFFERS];
+  short *FlatArray;
+  short *myDump;
+
+  int BadPulses;
+  int CurrentProcBuffer;
+  int Counter;
+  unsigned int SequenceNumber;
+
+  RawPulseData *TheRawIQData;
+
+  bool InputBufferFull[NUMBEROFBUFFERS];
+  bool OutputBufferFull[NRAWPULSESOUT];
+
+  bool __fastcall PartitionData();
+
+protected:
+      void __fastcall Execute();
+public:
+      __fastcall RawIQRead(bool CreateSuspended);
+	  bool __fastcall GetPulseData(RawPulseData*);
+	  int RawIQRead::GetBadPulses();
+};
+
+//---------------------------------------------------------------------------
+#endif

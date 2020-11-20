@@ -1,0 +1,121 @@
+//---------------------------------------------------------------------------
+#ifndef RadarH
+#define RadarH
+
+#include <syncobjs.hpp>
+//---------------------------------------------------------------------------
+#include <Classes.hpp>
+//---------------------------------------------------------------------------
+#include <vcl.h>
+
+#include "QuickSyn.h"
+#include "FIFOinterface.h"
+
+//---------------------------------------------------------------------------
+class Radar : public TThread
+{
+	public:
+		QuickSyn* Stalo;
+
+		void SetSyncWord();
+
+		//Antenna
+		void SetCurrentIntAzim(int Value);
+		void SetCurrentIntElev(int Value);
+
+		int  GetCurrentIntAzimut();
+		int  GetCurrentIntElev();
+
+		//DIO
+		void ClearDigitalOutputs();
+
+		//Synchro
+		void   setPulseMode(int value);
+		void   setPRF_Mode(int value);
+		void   setPRF_Rate(int value);
+		void   setSectorMode(int value);
+		void   setOutputMode(bool value);
+
+		int    getPulseMode();
+		int    getPRF_Mode();
+		int    getPRF_Rate();
+		int    getSectorMode();
+		bool   getOutputMode();
+	public:
+		__fastcall Radar(bool CreateSuspended, int StaloPort);
+
+		bool GetAFCChangesInhibited();
+		int  GetCurrentPulseMode();
+		int  GetCurrentPRF_Rate();
+
+		void SetStaloFrequency(UINT64 freq);
+		void SetNCOFrequency(UINT64 freq);
+
+		UINT64 GetSTALOFrequency();
+		UINT64 GetNCOFrequency();
+
+		void SetAFCChangesInhibited(bool);
+		void SetGathering(bool);
+		bool GetGathering();
+		bool StaloChanged();
+		bool SyncChanged();
+		void SetGatheringCount(int count);
+		int  GetGatheringCount();
+		void DecreaseGatheringCount();
+
+		bool GetSaving();
+		void SetSaving(bool val);
+		void SetSavingCount(int count);
+		int  GetSavingCount();
+
+		String GetLastError();
+		void SetLastError(String error);
+
+	protected:
+		void __fastcall Execute();
+
+	private:
+		FIFOInterface *NCOInterface;
+		FIFOInterface *DIOInterface;
+
+		int    RequestedPulseMode;
+		int    RequestedPRF_Mode;
+		int    RequestedPRF_Rate;
+		int    RequestedSectorMode;
+		bool   RequestedOutputMode;
+
+		int    CurrentPulseMode;
+		int    CurrentPRF_Mode;
+		int    CurrentPRF_Rate;
+		int    CurrentSectorMode;
+		bool   CurrentOutputMode;
+
+		int    CurrentIntAzim;
+		int    CurrentIntElev;
+		UINT64 TxFrequency;
+		bool   saving;
+		int    savingCount;
+		bool   gathering;
+		int    gatheringCount;
+		bool   AFCChangesInhibited;
+		UINT64 RequestedNCOFrequency;
+		UINT64 RequestedSTALOFrequency;
+		UINT64 CurrentSTALOFrequency;
+		bool   FreqUpdateNeeded;
+		bool   UpdatePulseModeNeeded;
+		bool   DelayPulse;
+		int    UpdatePulseMode;
+		bool   ModeUpdateNeeded;
+		bool   Settling;
+
+		String LastError;
+
+private:
+		void OutputStaloFrequencyDemand();
+		bool OutputNCOFrequencyDemand(UINT64 MeasuredIF);
+
+		__fastcall SetupInterface();
+
+};
+//---------------------------------------------------------------------------
+#endif

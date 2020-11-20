@@ -1,0 +1,35 @@
+Release 10.1 - xst K.31 (nt)
+Copyright (c) 1995-2008 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to ./xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.30 secs
+ 
+--> 
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+WARNING:HDLParsers:3498 - No primary, secondary unit in the file "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/iq_out_fifo.vhd. Ignore this file from project file "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/USER_AP_vhdl.prj".
+WARNING:HDLParsers:3498 - No primary, secondary unit in the file "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/myddc.vhd. Ignore this file from project file "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/USER_AP_vhdl.prj".
+Compiling vhdl file "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/rawfifo255x14.vhd" in Library work.
+Architecture rawfifo255x14_a of Entity rawfifo255x14 is up to date.
+Compiling vhdl file "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/Src/led.vhd" in Library work.
+Architecture rtl of Entity led_cntr is up to date.
+Compiling vhdl file "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/Src/USER_AP_ADC.vhd" in Library work.
+Package <config> compiled.
+Entity <user_ap> compiled.
+Entity <user_ap> (Architecture <adc>) compiled.
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.52 secs
+ 
+--> 
+
+Total memory usage is 120984 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :    2 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
+

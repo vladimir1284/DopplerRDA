@@ -1,0 +1,168 @@
+//---------------------------------------------------------------------------
+#include <vcl.h>
+#pragma hdrstop
+
+#include "Site.h"
+#include "ShellChirimbolo.h"
+#include "DataParameters.h"
+#include "IntegratedData.h"
+#include "ProcessingThread.h"
+#include "FFTReal.h"
+#include "CommModule.h"
+#include "PackageManager.h"
+#include "ObsManager.h"
+
+//---------------------------------------------------------------------------
+
+#pragma package(smart_init)
+#pragma link "perfgrap"
+#pragma link "Chart"
+#pragma link "TeEngine"
+#pragma link "TeeProcs"
+#pragma link "Series"
+#pragma resource "*.dfm"
+TForm1 *Form1;
+
+//---------------------------------------------------------------------------
+__fastcall TForm1::TForm1(TComponent* Owner): TForm(Owner)
+{
+	Randomize();
+}
+
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::FormCreate(TObject *Sender)
+{
+	// Create the WebBrokerBridge
+	FWebBrokerBridge = new TIdHTTPWebBrokerBridge(this);
+
+	FWebBrokerBridge->RegisterWebModuleClass(__classid(TCommunicationModule));
+	FWebBrokerBridge->DefaultPort = ThisSite->settings->WS_Port;
+
+	// In order to prevent the opening and closing
+	// of a socket for each command set the following options:
+	// - KeepAlive: Leave connection open for next command.
+	// - AutoStartSession: In case no connection is open start a new session
+	// with a new connection.
+	FWebBrokerBridge->KeepAlive = true;
+	FWebBrokerBridge->AutoStartSession = true;
+
+	// Register a handler to the OnConnect event
+	FWebBrokerBridge->OnConnect = ConnectionEvent;
+	FWebBrokerBridge->Active = true;
+}
+
+void __fastcall TForm1::ConnectionEvent(TIdContext *AThread ){
+  AThread->Connection->Socket->UseNagle = false;
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TForm1::FormDestroy(TObject *Sender)
+{
+  ThisSite->TheRadar->ClearDigitalOutputs();
+  ThisSite->TheRadar->Stalo->Disconnect();
+}
+
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Timer1Timer(TObject *Sender)
+{
+	if(thePackageManager->TX_Burst){
+		short * data = new short[SAMPLES_PER_IP_CHAN];
+		for(int i=0; i<SAMPLES_PER_IP_CHAN; i++){
+			if(i<150)
+				data[i] = Random(8000);
+			else
+				data[i] = 0;
+		}
+
+		thePackageManager->AddPackage(MSG_TX_Burst, 0, SAMPLES_PER_IP_CHAN, data);
+		delete data;
+	}
+
+	if(thePackageManager->RX_Power){
+		float* data = (float*)AllocMem(1000 * sizeof(float));
+		for(int i=0; i<1000; i++){
+			if(i<500)
+				data[i] = Random(40);
+			else
+				data[i] = 0;
+		}
+		int az = Random(360);
+
+		thePackageManager->AddPackage(MSG_RX_Power, BIN_LENGTH_LP, az, 0, dtFloat, 1000, data);
+		FreeMemory(data);
+	}
+
+	if(thePackageManager->TX_RX_Power){
+		float* data = (float*)AllocMem(1000 * sizeof(float));
+		for(int i=0; i<1000; i++){
+			if(i<500)
+				data[i] = Random(100);
+			else
+				data[i] = 0;
+		}
+
+		thePackageManager->AddPackage(MSG_TX_RX_Power, BIN_LENGTH_LP, 0, 0, dtFloat, 1000, data);
+		FreeMemory(data);
+	}
+
+	if(thePackageManager->RX_Spectrum){
+		float* data = (float*)AllocMem(1000 * sizeof(float));
+		for(int i=0; i<1000; i++){
+			if(i<500)
+				data[i] = Random(5000);
+			else
+				data[i] = 0;
+		}
+
+		thePackageManager->AddPackage(MSG_RX_Spectrum, 0, 0, 0, dtFloat, 1000, data);
+		FreeMemory(data);
+	}
+
+	if(thePackageManager->RX_Speed){
+		float* data = (float*)AllocMem(1000 * sizeof(float));
+		for(int i=0; i<1000; i++){
+			if(i<500)
+				data[i] = Random(100);
+			else
+				data[i] = 0;
+		}
+
+		int az = Random(360);
+
+		thePackageManager->AddPackage(MSG_RX_Speed, BIN_LENGTH_LP, az, 0, dtFloat, 1000, data);
+		FreeMemory(data);
+	}
+
+	if(thePackageManager->RX_Sqi){
+		float* data = (float*)AllocMem(1000 * sizeof(float));
+		for(int i=0; i<1000; i++){
+			if(i<500)
+				data[i] = Random(5000);
+			else
+				data[i] = 0;
+		}
+
+		thePackageManager->AddPackage(MSG_RX_SQI, 0, 0, 0, dtFloat, 1000, data);
+		FreeMemory(data);
+	}
+
+	if(thePackageManager->RX_Ci){
+		float* data = (float*)AllocMem(1000 * sizeof(float));
+		for(int i=0; i<1000; i++){
+			if(i<500)
+				data[i] = Random(5000);
+			else
+				data[i] = 0;
+		}
+
+		thePackageManager->AddPackage(MSG_RX_CI, 0, 0, 0, dtFloat, 1000, data);
+		FreeMemory(data);
+	}
+}
+//---------------------------------------------------------------------------
+
+
+
+

@@ -1,0 +1,146 @@
+//---------------------------------------------------------------------------
+#define Hunt
+
+#include <vcl.h>
+#include <math.h>
+#include <hesl.h>
+#include <IniFiles.hpp>
+
+#include "Site.h"
+#include "AFCprocessor.h"
+#include "ProcessingThread.h"
+
+#pragma hdrstop
+
+//---------------------------------------------------------------------------
+
+USEFORM("DRX Chirimbolo\ShellChirimbolo.cpp", Form1);
+//---------------------------------------------------------------------------
+#pragma link "WebReq.obj"
+#pragma link "SockAppHlpr.obj"
+#pragma link "IndySystem.lib"
+#pragma link "IndyCore.lib"
+
+//---------------------------------------------------------------------------
+
+const SIZE_T MinWorkingSetSizeDefault = 500;
+const SIZE_T MaxWorkingSetSizeDefault = 1000;
+
+Site 				*ThisSite;
+ProcessingThread    *TheProcessingThread;
+AFCProcessingThread *TheACFProcessingThread;
+
+/*
+
+type        The type of mathematical error that occurred; an enum type defined in the typedef _mexcep (see definition after this list).
+name        A pointer to a null-terminated string holding the name of the math library function that resulted in an error.
+arg1, arg2  The arguments (passed to the function that name points to) caused the error; if only one argument was passed to the function, it is stored in arg1.
+retval      The default return value for _matherr (or _matherrl); you can modify this value.
+
+DOMAIN    Argument was not in domain of function, such as log(-1).
+SING      Argument would result in a singularity, such as pow(0, -2).
+OVERFLOW  Argument would produce a function result greater than DBL_MAX (or LDBL_MAX), such as exp(1000).
+UNDERFLOW Argument would produce a function result less than DBL_MIN (or LDBL_MIN), such as exp(-1000).
+TLOSS     Argument would produce function result with total loss of significant digits, such as sin(10e70).
+
+*/
+
+int _matherr(struct _exception* error)
+{
+	error->retval = 0;
+	return 1;
+
+/*
+	if(strcmp(error->name, "log10") == 0) {
+		error->retval = 0;
+		return 1;
+	}
+
+	return 0;
+*/
+}
+
+void InitSystem(){
+#ifdef Hunt
+	String heartConfig = ExtractFileDir(ParamStr(0)) + "\\Config";
+	String heartFileName = heartConfig + "\\Heart.net ";
+	char* heartPath = heartFileName.c_str();
+
+	hesl sl;
+	ChDir(heartConfig);
+	int hr;
+	hr = sl.serverloader("-rla", heartPath);
+	//hr = sl.serverloader("-rl", heartPath);
+
+	if(hr != 0)
+		throw new Exception("Targeta Hunt no responde");
+#endif
+
+	ThisSite = new Site();
+    ThisSite->TheRadar->NeedInitSTALO();
+
+	TheACFProcessingThread = new AFCProcessingThread(true);
+	TheProcessingThread    = new ProcessingThread(true);
+}
+
+void StartSystem(){
+	TheACFProcessingThread->Resume();
+	TheProcessingThread->Resume();
+	ThisSite->TheRadar->Resume();
+}
+
+void FinalizeSystem(){
+	TheProcessingThread->Terminate();
+	TheACFProcessingThread->Terminate();
+	ThisSite->TheRadar->Terminate();
+}
+
+
+WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int){
+	try{
+		HANDLE OnlyOneServer = CreateMutex(NULL, true, "rda_drx");
+		if((OnlyOneServer == 0) || (GetLastError() == ERROR_ALREADY_EXISTS))
+			throw new Exception("Ya esta ejecutandose un servidor");
+
+		HANDLE CurrentProcess = GetCurrentProcess();
+		SetPriorityClass(CurrentProcess, REALTIME_PRIORITY_CLASS);
+
+		__try{
+			String configFileName = ExtractFileDir(ParamStr(0)) + "\\Config.ini";
+			TIniFile* config = new TIniFile(configFileName);
+			__try{
+				SIZE_T MinWorkingSetSize = (config != NULL) ? config->ReadInteger("Memory", "MinimumWorkingSetSize", MinWorkingSetSizeDefault) : MinWorkingSetSizeDefault;
+				SIZE_T MaxWorkingSetSize = (config != NULL) ? config->ReadInteger("Memory", "MaximumWorkingSetSize", MaxWorkingSetSizeDefault) : MaxWorkingSetSizeDefault;
+
+				MinWorkingSetSize *= 0x100000;
+				MaxWorkingSetSize *= 0x100000;
+
+				SetProcessWorkingSetSize(CurrentProcess, MinWorkingSetSize, MaxWorkingSetSize );
+			}
+			__finally{
+				config->Free();
+			}
+
+			Application->Initialize();
+			InitSystem();
+			Application->Title = "Cyclops-Chirimbolo";
+			SetApplicationMainFormOnTaskBar(Application, true);
+			Application->CreateForm(__classid(TForm1), &Form1);
+			StartSystem();
+			__try{
+				Application->Run();
+			}
+			__finally{
+				FinalizeSystem();
+			}
+		}
+		__finally{
+			SetPriorityClass(CurrentProcess, NORMAL_PRIORITY_CLASS);
+		}
+	}
+	catch (Exception &exception){
+		Application->ShowException(&exception);
+	}
+	return 0;
+}
+//---------------------------------------------------------------------------

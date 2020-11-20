@@ -1,0 +1,12 @@
+//---------------------------------------------------------------------------
+
+#ifndef StaloControlH
+#define StaloControlH
+
+#define ZylSerialPort
+#ifdef ZylSerialPort
+#include "ZylSerialPort.hpp"
+#endif
+
+//---------------------------------------------------------------------------
+#endif

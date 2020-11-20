@@ -1,0 +1,189 @@
+unit MotorAz;
+
+{$WARN SYMBOL_PLATFORM OFF}
+
+interface
+
+uses
+  Windows, ActiveX, Classes, ComObj, RDAObj, Rda_TLB;
+
+type
+  TMotor_Az =
+    class( TRDAObject, IMotorStatus, IMotorControl )
+      protected  //IMotorStatus
+        function  Get_Posicion: Integer; safecall;
+        function  Get_Velocidad: Integer; safecall;
+        function  Get_SP_Posicion: Integer; safecall;
+        function  Get_SP_Velocidad: Integer; safecall;
+        function  Get_Lazo_Posicion: WordBool; safecall;
+        function  Get_Acc_Listo: WordBool; safecall;
+        function  Get_Marca_Posicion: Integer; safecall;
+        function  Get_Lazo_Sector: WordBool; safecall;
+
+        function Get_Taco_Code: Integer; safecall;
+        function Get_Taco_Unit: Double; safecall;
+        function Get_Range_Taco: Integer; safecall;
+        function Get_Sector_Taco: Integer; safecall;
+
+        function Get_Status: RadarStatus; safecall;
+      protected  //IMotorControl
+        procedure Set_SP_Posicion(Value: Integer); safecall;
+        procedure Set_SP_Velocidad(Value: Integer); safecall;
+        procedure Set_Lazo_Posicion(Value: WordBool); safecall;
+        function  Get_Lazo_Posicion_K: Single; safecall;
+        procedure Set_Lazo_Posicion_K(Value: Single); safecall;
+        function  Get_Lazo_Velocidad_K: Single; safecall;
+        procedure Set_Lazo_Velocidad_K(Value: Single); safecall;
+        procedure Set_Marca_Posicion(Value: Integer); safecall;
+        procedure Set_Lazo_Sector(Value: WordBool); safecall;
+
+        procedure Set_Range_Taco(Value: Integer); safecall;
+        procedure Set_Sector_Taco(Value: Integer); safecall;
+    end;
+
+const
+  Class_Motor_Az: TGUID = '{FC95A152-24B2-4753-B3CE-5A01037508C7}';
+
+implementation
+
+uses
+  ComServ,
+  ElbrusTypes, Elbrus;
+
+function TMotor_Az.Get_Posicion: Integer;
+begin
+  Result := Snapshot.Position_Az;
+end;
+
+function TMotor_Az.Get_Velocidad: Integer;
+begin
+  Result := Snapshot.Velocity_Az;
+end;
+
+function TMotor_Az.Get_Lazo_Posicion: WordBool;
+begin
+  Result := Snapshot.Position_Loop_Az;
+end;
+
+function TMotor_Az.Get_SP_Posicion: Integer;
+begin
+  Result := Snapshot.SP_Position_Az;
+end;
+
+function TMotor_Az.Get_SP_Velocidad: Integer;
+begin
+  Result := Snapshot.SP_Velocity_Az;
+end;
+
+procedure TMotor_Az.Set_Lazo_Posicion(Value: WordBool);
+begin
+  if InControl
+    then Elbrus.Set_Lazo_Posicion_Az(Value);
+end;
+
+procedure TMotor_Az.Set_SP_Posicion(Value: Integer);
+begin
+  if InControl
+    then Elbrus.Set_SP_Posicion_Az(Value);
+end;
+
+procedure TMotor_Az.Set_SP_Velocidad(Value: Integer);
+begin
+  if InControl
+    then Elbrus.Set_SP_Velocidad_Az(Value);
+end;
+
+function TMotor_Az.Get_Lazo_Posicion_K: Single;
+begin
+  Result := Snapshot.Position_Loop_Az_K;
+end;
+
+procedure TMotor_Az.Set_Lazo_Posicion_K(Value: Single);
+begin
+  if InControl
+    then Elbrus.Set_Lazo_K_Pos_Az(Value);
+end;
+
+function TMotor_Az.Get_Acc_Listo: WordBool;
+begin
+  Result := (SnapShot.Digital_Input and di_Acc_Listo_Az) <> 0;
+end;
+
+function TMotor_Az.Get_Lazo_Velocidad_K: Single;
+begin
+  Result := Snapshot.Velocity_Loop_Az_K;
+end;
+
+procedure TMotor_Az.Set_Lazo_Velocidad_K(Value: Single);
+begin
+  if InControl
+    then Elbrus.Set_Lazo_K_Vel_Az(Value);
+end;
+
+procedure TMotor_Az.Set_Lazo_Sector(Value: WordBool);
+begin
+  if InControl
+    then Elbrus.Set_Lazo_Sector_Az(Value);
+end;
+
+procedure TMotor_Az.Set_Marca_Posicion(Value: Integer);
+begin
+  if InControl
+    then Elbrus.Set_Mark_Posicion_Az(Value);
+end;
+
+function TMotor_Az.Get_Marca_Posicion: Integer;
+begin
+  Result := Snapshot.Mark_Position_Az;
+end;
+
+function TMotor_Az.Get_Lazo_Sector: WordBool;
+begin
+  Result := Snapshot.Sector_Loop_Az;
+end;
+
+function TMotor_Az.Get_Status: RadarStatus;
+begin
+  if Snapshot.MotorAz_ON
+    then if Snapshot.MotorAz_Ok
+           then result := rsOk
+           else result := rsFailure
+    else result := rsOff;
+end;
+
+function TMotor_Az.Get_Range_Taco: Integer;
+begin
+  Result := integer(Snapshot.AI_Range[ai_Taco_Az]);
+end;
+
+function TMotor_Az.Get_Sector_Taco: Integer;
+begin
+  Result := integer(Snapshot.AI_Sector[ai_Taco_Az]);
+end;
+
+function TMotor_Az.Get_Taco_Code: Integer;
+begin
+  Result := Snapshot.Analog_Input[ai_Taco_Az];
+end;
+
+function TMotor_Az.Get_Taco_Unit: Double;
+begin
+  Result := Snapshot.Analog_Input_Voltage[ai_Taco_Az];
+end;
+
+procedure TMotor_Az.Set_Range_Taco(Value: Integer);
+begin
+  if InControl
+    then Elbrus.Set_AI_Range(ai_Taco_Az, TAIRange(Value));
+end;
+
+procedure TMotor_Az.Set_Sector_Taco(Value: Integer);
+begin
+  if InControl
+    then Elbrus.Set_AI_Sector(ai_Taco_Az, TAIRange(Value));
+end;
+
+initialization
+  TComObjectFactory.Create(ComServer, TMotor_Az, Class_Motor_Az,
+    'Motor_Az', '', ciMultiInstance, tmApartment);
+end.

@@ -1,0 +1,259 @@
+unit Encoder;
+
+interface
+
+const  // Commands
+  VECTOR           =  0;
+  NUM_AXES         =  1;
+  NUM_TIMERS       =  2;
+  NUM_INPUTS       =  3;
+  NUM_OUTPUTS      =  5;
+  NUM_BOARDS       =  7;
+  CARD_TYPE        =  8;
+  VERSION_NUM      =  9;
+  CNT_16           = 10;
+  MODE             = 11;
+  AXIS_SIZE        = 12;
+  ENCODER_TYPE     = 13;
+  MARK_16          = 20;
+  MARK_INPUT       = 21;
+  MARK_INT         = 22;
+  MARK_FUNC        = 23;
+  MARK_INT_VECT    = 24;
+  MARK_INT_OCCUR   = 25;
+  ZERO_INPUT       = 30;
+  ZERO_INT         = 31;
+  ZERO_FUNC        = 32;
+  ZERO_INT_VECT    = 33;
+  ZERO_INT_OCCUR   = 34;
+  AXIS_32          = 40;
+  MARK_32          = 41;
+  VEL_INST         = 42;
+  VEL_FILT         = 43;
+  ACCEL_INST       = 44;
+  ACCEL_FILT       = 45;
+  PROBE_32         = 46;
+  ABSOLUTE_32      = 47;
+  INPUT            = 50;
+  TIMER            = 60;
+  TIMER_INT        = 61;
+  TIMER_INT_VECT   = 62;
+  TIMER_INT_OCCUR  = 63;
+  OUTPUT           = 80;
+  PROBE_16         = 90;
+  PROBE_INPUT      = 91;
+  PROBE_INT        = 92;
+  PROBE_FUNC       = 93;
+  PROBE_VECT       = 94;
+  PROBE_INT_OCCUR  = 95;
+  PROBE_SENSE      = 96;
+  PROBE_LED        = 97;
+  PROBE_SOUND      = 98;
+  PROBE_FOOTSWITCH = 99;
+  IO               = 160;
+  IO_DIR           = 161;
+  IO_32            = 165;
+  IO_32_DIR        = 166;
+  NUM_IOS          = 169;
+
+const  // Modes
+  UPDWN    = 0;
+  QUADx1A  = 1;
+  QUADx1B  = 2;
+  QUADx2A  = 3;
+  QUADx2B  = 4;
+  QUADx4AB = 5;
+  PULSE    = 6;
+  FREQ     = 7;
+
+const  // Defints
+  SPARE_INT   = 0;
+  COUNTER_INT = 1;
+  ZERO_Z_INT  = 2;
+  MARK_Z_INT  = 3;
+  ZERO_Y_INT  = 4;
+  MARK_Y_INT  = 5;
+  ZERO_X_INT  = 6;
+  MARK_X_INT  = 7;
+
+const  // Leds
+  PROBE_LED_OFF  = 0;
+  PROBE_LED_ON   = 1;
+  PROBE_LED_AUTO = 2;
+
+const  // Sound
+  PROBE_SOUND_OFF = 0;
+  PROBE_SOUND_ON  = 1;
+
+const  // FootSwitch
+  FOOTSWITCH_OFF  = 0;
+  FOOTSWITCH_AUTO = 1;
+
+const FILTER_SAMPLES = 10;
+
+// for SSi Encoder type for MODE command
+const LENGTH_ADJUST    = $01000000;
+const OFFSET_ADJUST    = $00000100;
+const CHECK_ADJUST     = $00001000;
+const CODE_ADJUST      = $00004000;
+const OPER_ADJUST      = $00010000;
+const OUT_ADJUST       = $00008000;
+
+const MODE_LENGTH_MASK = $3f000000;
+const MODE_OFFSET_MASK = $00000f00;
+const MODE_FREQ_MASK   = $00000007;
+const MODE_CODE_MASK   = $00004000;
+const MODE_CHK_MASK    = $00003000;
+const MODE_OPER_MASK   = $00030000;
+const MODE_OUT_MASK    = $00008000;
+
+const MODE_ONE_SHOT    = $00000000;
+const MODE_TIMED       = $00010000;
+const MODE_CONTINUE    = $00020000;
+
+const MODE_GRAY        = $00004000;
+const MODE_BINARY      = $00000000;
+
+const MODE_PARITY_ODD  = $00003000;
+const MODE_PARITY_EVEN = $00002000;
+const MODE_POWER_FAIL  = $00001000;
+const MODE_FREQ_2M5Hz  = $00000000;
+const MODE_FREQ_1M25Hz = $00000001;
+const MODE_FREQ_625kHz = $00000002;
+const MODE_FREQ_312kHz = $00000003;
+const MODE_FREQ_156kHz = $00000004;
+const MODE_FREQ_78kHz  = $00000005;
+
+
+function enclib_version : pchar;
+
+function read_encoder( Command : smallint;
+                       Channel : smallint ) : longint;
+function read_encoder_ext : longint;
+
+procedure write_encoder( Command : smallint;
+                         Channel : smallint;
+                         Value   : longint );
+procedure write_encoder_ext( Value : longint );
+
+function  open_encoder : smallint;
+procedure close_encoder;            
+
+
+implementation
+
+uses
+  Windows;
+
+const
+  EncLinDLL = 'enclib32.dll';
+
+type
+  P_enclib_version = function : pchar;  stdcall;
+  P_read_encoder = function ( Command : smallint; Channel : smallint ) : longint;  stdcall;
+  P_read_encoder_ext = function : longint;  stdcall;
+  P_write_encoder = procedure ( Command : smallint; Channel : smallint; Value   : longint );  stdcall;
+  P_write_encoder_ext = procedure ( Value : longint );  stdcall;
+  P_open_encoder = function : smallint;  stdcall;
+  P_close_encoder = procedure  stdcall;
+
+var
+  F_enclib_version    : P_enclib_version    = nil;
+  F_read_encoder      : P_read_encoder      = nil;
+  F_read_encoder_ext  : P_read_encoder_ext  = nil;
+  F_write_encoder     : P_write_encoder     = nil;
+  F_write_encoder_ext : P_write_encoder_ext = nil;
+  F_open_encoder      : P_open_encoder      = nil;
+  F_close_encoder     : P_close_encoder     = nil;
+
+const
+  N_enclib_version    = 'enclib_version';
+  N_read_encoder      = 'read_encoder';
+  N_read_encoder_ext  = 'read_encoder_ext';
+  N_write_encoder     = 'write_encoder';
+  N_write_encoder_ext = 'write_encoder_ext';
+  N_open_encoder      = 'open_encoder';
+  N_close_encoder     = 'close_encoder';
+
+var
+  EncLin_Inst : HInst = 0;
+
+
+function enclib_version : pchar;
+begin
+  if assigned(F_enclib_version)
+    then Result := F_enclib_version
+    else Result := nil;
+end;
+
+function read_encoder( Command : smallint; Channel : smallint ) : longint;
+begin
+  if assigned(F_read_encoder)
+    then Result := F_read_encoder(Command, Channel)
+    else Result := 0;
+end;
+
+function read_encoder_ext : longint;
+begin
+  if assigned(F_read_encoder_ext)
+    then Result := F_read_encoder_ext
+    else Result := 0;
+end;
+
+procedure write_encoder( Command : smallint; Channel : smallint; Value : longint );
+begin
+  if assigned(F_write_encoder)
+    then F_write_encoder(Command, Channel, Value);
+end;
+
+procedure write_encoder_ext( Value : longint );
+begin
+  if assigned(F_write_encoder_ext)
+    then F_write_encoder_ext(Value);
+end;
+
+function open_encoder : smallint;
+begin
+  if assigned(F_open_encoder)
+    then Result := F_open_encoder
+    else Result := 0;
+end;
+
+procedure close_encoder;
+begin
+  if assigned(F_close_encoder)
+    then F_close_encoder;
+end;
+
+initialization
+  try
+    EncLin_Inst := LoadLibrary(EncLinDLL);
+  except
+    Halt;
+  end;
+  if EncLin_Inst <> 0
+    then
+      begin
+        F_enclib_version    := GetProcAddress(EncLin_Inst, N_enclib_version);
+        F_read_encoder      := GetProcAddress(EncLin_Inst, N_read_encoder);
+        F_read_encoder_ext  := GetProcAddress(EncLin_Inst, N_read_encoder_ext);
+        F_write_encoder     := GetProcAddress(EncLin_Inst, N_write_encoder);
+        F_write_encoder_ext := GetProcAddress(EncLin_Inst, N_write_encoder_ext);
+        F_open_encoder      := GetProcAddress(EncLin_Inst, N_open_encoder);
+        F_close_encoder     := GetProcAddress(EncLin_Inst, N_close_encoder);
+      end;
+finalization
+  if EncLin_Inst <> 0
+    then
+      begin
+        F_enclib_version    := nil;
+        F_read_encoder      := nil;
+        F_read_encoder_ext  := nil;
+        F_write_encoder     := nil;
+        F_write_encoder_ext := nil;
+        F_open_encoder      := nil;
+        F_close_encoder     := nil;
+        FreeLibrary(EncLin_Inst);
+      end;
+end.
+

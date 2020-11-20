@@ -1,0 +1,23 @@
+unit WaitDialog;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  StdCtrls, ExtCtrls;
+
+type
+  TFWait = class(TForm)
+    Label1: TLabel;
+    Label2: TLabel;
+  end;
+
+var
+  FWait: TFWait;
+
+implementation
+
+{$R *.DFM}
+
+end.
+

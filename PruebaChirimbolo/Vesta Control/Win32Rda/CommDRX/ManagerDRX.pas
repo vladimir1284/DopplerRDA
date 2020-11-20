@@ -1,0 +1,385 @@
+unit ManagerDRX;
+
+interface
+
+uses
+  DRX_WS, DRX_AFC_WS, DRX_Configuration_WS, DRX_Sync_WS, SysUtils, DRX_DataReceiver, SyncObjs;
+
+type
+  TDRX_Exception = class(Exception)
+  end;
+
+  TDRX_Manager = class
+  private
+    fDRX_WS : IDRX_WS;
+    fAFC_WS : IDRX_AFC_WS;
+    fConfig_WS : IDRX_Configuration_WS;
+    fSync_WS : IDRX_Sync_WS;
+
+    fDataReceiver : TDRX_DataReceiver;
+
+    fSettings : TSettings;
+    fParameters : TDRX_Parameters;
+
+    fConnected,
+    fLogued : boolean;
+    fHost : string;
+    fId : integer;
+    fWS_Port : integer;
+    fEnabled : boolean;
+    fLock : TCriticalSection;
+    function getAFC_WS: IDRX_AFC_WS;
+    function getConfig_WS: IDRX_Configuration_WS;
+    function getDRX_WS: IDRX_WS;
+    function getSync_WS: IDRX_Sync_WS;
+    function getStream_Port: integer;
+    function getDoppler_Port: integer;
+  private
+    function  getReady: boolean;
+    procedure ConnectWS;
+    procedure ConnectStream;
+    procedure Login;
+    procedure LogOut;
+    procedure Init;
+  public
+    constructor Create(drx_id : integer; host : string; ws_port : integer; enabled : boolean);
+    destructor  Destroy; override;
+
+    procedure Connect;
+    procedure Validate;
+    procedure SetDefaultFilter;
+
+    function getCellSize(mode : integer) : integer;
+    function getTrigger(mode : integer) : integer;
+    function getNData(mode : integer) : integer;
+    function getClock(mode : integer) : integer;
+  public
+    property Parameters  : TDRX_Parameters read fParameters;
+    property Settings    : TSettings read fSettings;
+    property Connected   : boolean read fConnected write fConnected;
+    property Logued      : boolean read fLogued    write fLogued;
+    property Host        : string  read fHost;
+    property WS_Port     : integer read fWS_Port;
+    property Stream_Port : integer read getStream_Port;
+    property Doppler_Port: integer read getDoppler_Port;
+    property Id          : integer read fId;
+    property Ready       : boolean read getReady;
+    property Enabled     : boolean read fEnabled;
+    //WS
+    property DRX_WS    : IDRX_WS               read getDRX_WS;
+    property AFC_WS    : IDRX_AFC_WS           read getAFC_WS;
+    property Config_WS : IDRX_Configuration_WS read getConfig_WS;
+    property Sync_WS   : IDRX_Sync_WS          read getSync_WS;
+
+    property DataReceiver : TDRX_DataReceiver  read fDataReceiver;
+  end;
+
+var
+  DRX1,
+  DRX2 : TDRX_Manager;
+
+procedure InitDRX;
+procedure DoneDRX;
+procedure ConnectDRX;
+
+implementation
+
+uses
+  Constants, Math, Config, Elbrus, Rda_TLB, Windows, Calib;
+
+//General
+
+procedure InitDRX;
+begin
+  DRX1 := TDRX_Manager.Create(0, theConfiguration.DRX1_Host, theConfiguration.DRX1_WS_Port, theConfiguration.DRX1_Enabled);
+  DRX2 := TDRX_Manager.Create(1, theConfiguration.DRX2_Host, theConfiguration.DRX2_WS_Port, theConfiguration.DRX2_Enabled);
+end;
+
+procedure ConnectDRX;
+begin
+  if DRX1.Enabled
+    then DRX1.Connect;
+  if DRX2.Enabled
+    then DRX2.Connect;
+end;
+
+procedure DoneDRX;
+begin
+  if DRX1.Enabled
+    then DRX1.LogOut;
+  if DRX2.Enabled
+    then DRX2.LogOut;
+end;
+
+{ TDRX_Manager }
+
+procedure TDRX_Manager.Connect;
+var
+  fURL : string;
+  code : integer;
+begin
+  if fEnabled and not fConnected
+    then
+      try
+        fURL := 'http://' + fhost + ':' + IntToStr(fWS_Port) + '/soap/IDRX_WS';
+        fDRX_WS := GetIDRX_WS(false, fURL, nil);
+        code := Random(10000);
+        if fDRX_WS.Ping(code) = (code + 2011)
+          then
+            begin
+              fConnected := true;
+              Login;
+              if fLogued
+                then
+                  begin
+                    ConnectWS;
+                    fParameters := fDRX_WS.GetParameters;
+                    fSettings := fConfig_WS.Get_Configuration;
+                    ConnectStream;
+                    Init;
+                  end;
+            end;
+      except
+        fConnected := false;
+      end;
+end;
+
+constructor TDRX_Manager.Create(drx_id : integer; host : string; ws_port : integer; enabled : boolean);
+begin
+  Randomize;
+  fLock := TCriticalSection.Create;
+  fId := drx_id;
+  fHost := host;
+  fWS_Port := ws_port;
+  fConnected := false;
+  fLogued := false;
+  fEnabled := enabled;
+  fSettings := nil;
+
+  fDataReceiver := nil;
+end;
+
+destructor TDRX_Manager.Destroy;
+begin
+  fDataReceiver.Terminate;
+  fDRX_WS := nil;
+  fLock.Free;
+  inherited;
+end;
+
+procedure TDRX_Manager.LogOut;
+begin
+  if fLogued
+    then
+      begin
+        fDRX_WS.Logout;
+        fLogued := false;
+        case fId of
+          0: Tx1_ClearSynch;
+          1: Tx2_ClearSynch;
+        end;
+      end;
+end;
+
+procedure TDRX_Manager.Login;
+begin
+  try
+    if fEnabled and fConnected and (not fLogued)
+      then if fDRX_WS.Login('control', 'txrx')
+             then
+               begin
+                 fLogued := true;
+               end;
+  except
+    fLogued := false;
+  end;
+end;
+
+function TDRX_Manager.getReady: boolean;
+begin
+  result := fEnabled and fConnected and fLogued;
+end;
+
+procedure TDRX_Manager.ConnectWS;
+var
+  Config_URL,
+  Sync_URL,
+  AFC_URL : string;
+begin
+  Config_URL := 'http://' + fhost + ':' + IntToStr(fWS_Port) + '/soap/IDRX_Configuration_WS';
+  Sync_URL   := 'http://' + fhost + ':' + IntToStr(fWS_Port) + '/soap/Sync_WS';
+  AFC_URL    := 'http://' + fhost + ':' + IntToStr(fWS_Port) + '/soap/IDRX_AFC_WS';
+
+  fConfig_WS := GetIDRX_Configuration_WS(false, Config_URL, nil);
+  fSync_WS   := GetIDRX_Sync_WS(false, Sync_URL, nil);
+  fAFC_WS    := GetIDRX_AFC_WS(false, AFC_URL, nil);
+end;
+
+function TDRX_Manager.getAFC_WS: IDRX_AFC_WS;
+begin
+  result := fAFC_WS;
+end;
+
+function TDRX_Manager.getConfig_WS: IDRX_Configuration_WS;
+begin
+  result := fConfig_WS;
+end;
+
+function TDRX_Manager.getDRX_WS: IDRX_WS;
+begin
+  result := fDRX_WS;
+end;
+
+function TDRX_Manager.getSync_WS: IDRX_Sync_WS;
+begin
+  result := fSync_WS;
+end;
+
+procedure TDRX_Manager.Validate;
+var
+  valid : boolean;
+  code : integer;
+begin
+  fLock.Enter;
+  try
+    valid := Ready and (fDRX_WS <> nil) and (fSync_WS <> nil) and (fConfig_WS <> nil) and (fAFC_WS <> nil);
+    try
+      if valid
+        then
+          begin
+            code := Random(10000);
+            valid := fDRX_WS.Ping(code) = code + 2011;
+          end;
+    except
+      valid := false;
+    end;
+
+    if not valid
+      then
+        begin
+          fConnected := false;
+          fLogued    := false;
+
+          fDRX_WS    := nil;
+          fAFC_WS    := nil;
+          fConfig_WS := nil;
+          fSync_WS   := nil;
+
+          case fId of
+            0: Tx1_ClearSynch;
+            1: Tx2_ClearSynch;
+          end;
+        end;
+  finally
+    fLock.Leave;
+  end;
+end;
+
+procedure TDRX_Manager.ConnectStream;
+begin
+  fDataReceiver := TDRX_DataReceiver.Create(fId, fHost, Stream_Port);
+end;
+
+function TDRX_Manager.getCellSize(mode: integer): integer;
+begin
+  case mode of
+    0 : result := fParameters.LongPulse_CellSize;
+    1 : result := fParameters.ShortPulse_CellSize;
+    2 : result := fParameters.ShortPulse_CellSize;
+    else result := 0;
+  end;
+end;
+
+function TDRX_Manager.getNData(mode: integer): integer;
+begin
+  case mode of
+    0 : result := fParameters.LongPulse_NData;
+    1 : result := fParameters.ShortPulse_NData;
+    2 : result := fParameters.DualPulse_NData;
+    else result := 2000;
+  end;
+end;
+
+function TDRX_Manager.getTrigger(mode: integer): integer;
+begin
+  case mode of
+    0 : result := fParameters.LongPulse_Trigger;
+    1 : result := fParameters.ShortPulse_Trigger;
+    2 : result := fParameters.DualPulse_High_Trigger;
+    else result := 0;
+  end;
+end;
+
+function TDRX_Manager.getStream_Port: integer;
+begin
+  result := fSettings.Stream_Port;
+end;
+
+function TDRX_Manager.getDoppler_Port: integer;
+begin
+  result := fSettings.Doppler_Port;
+end;
+
+function TDRX_Manager.getClock(mode: integer): integer;
+begin
+  case mode of
+    0 : result := fParameters.LongPulse_Clock;
+    1 : result := fParameters.ShortPulse_Clock;
+    2 : result := fParameters.ShortPulse_Clock;
+    else result := 0;
+  end;
+end;
+
+procedure TDRX_Manager.Init;
+begin
+  theCalibration.Update;
+  SetDefaultFilter;
+
+  case fId of
+    0: begin
+        Tx1_ClearSynch;
+        Tx1_Long_Pulse;
+       end;
+    1: begin
+        Tx2_ClearSynch;
+        Tx2_Long_Pulse;
+       end;
+  end;
+end;
+
+procedure TDRX_Manager.SetDefaultFilter;
+var
+  drxFilterData : TDataFilter;
+  rdaFilterData : FilterInfo;
+begin
+  drxFilterData := TDataFilter.Create;
+
+  drxFilterData.SQI  := theConfiguration.FilterSQI;
+  drxFilterData.CI   := theConfiguration.FilterCI;
+  drxFilterData.SIG  := theConfiguration.FilterSIG;
+  drxFilterData.LOG  := theConfiguration.FilterLOG;
+  drxFilterData.CCOR := theConfiguration.FilterCCOR;
+
+  if theConfiguration.DefaultFilter > 0
+    then
+      begin
+        rdaFilterData := theConfiguration.GetFilter(theConfiguration.DefaultFilter-1);
+        drxFilterData.B0 := rdaFilterData.B0;
+        drxFilterData.B1 := rdaFilterData.B1;
+        drxFilterData.B2 := rdaFilterData.B2;
+        drxFilterData.B3 := rdaFilterData.B3;
+        drxFilterData.B4 := rdaFilterData.B4;
+        drxFilterData.C1 := rdaFilterData.C1;
+        drxFilterData.C2 := rdaFilterData.C2;
+        drxFilterData.C3 := rdaFilterData.C3;
+        drxFilterData.C4 := rdaFilterData.C4;
+
+        drxFilterData.MaxAngle    := theConfiguration.FilterMaxAngle;
+        drxFilterData.MaxHeigh    := theConfiguration.FilterMaxHeigh;
+        drxFilterData.MaxDistance := theConfiguration.FilterMaxDistance;
+      end;
+
+  DRX_WS.Set_Filter(theConfiguration.DefaultFilter > 0, drxFilterData);
+end;
+
+end.

@@ -1,0 +1,262 @@
+Release 10.1 par K.31 (nt)
+Copyright (c) 1995-2008 Xilinx, Inc.  All rights reserved.
+
+ROBERT::  Sat Mar 07 14:48:42 2020
+
+par -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf 
+
+
+Constraints file: TOP.pcf.
+Loading device for application Rf_Device from file '2v1000.nph' in environment C:\Xilinx\10.1\ISE.
+   "TOP" is an NCD, version 3.2, device xc2v1000, package fg456, speed -4
+This design is using the default stepping level (major silicon revision) for this device (0). Unless your design is
+targeted at devices of this stepping level, it is recommended that you explicitly specify the stepping level of the
+parts you will be using. This will allow the tools to take advantage of any available performance and functional
+enhancements for this device. The latest stepping level for this device is '1'. Additional information on "stepping
+level" is available at support.xilinx.com.
+
+Initializing temperature to 85.000 Celsius. (default - Range: 0.000 to 85.000 Celsius)
+Initializing voltage to 1.500 Volts. (derated - Range: 1.425 to 1.575 Volts)
+
+
+Device speed data version:  "PRODUCTION 1.121 2008-01-09".
+
+
+Device Utilization Summary:
+
+   Number of BUFGMUXs                        4 out of 16     25%
+   Number of DCMs                            1 out of 8      12%
+   Number of External DIFFMs                 1 out of 162     1%
+      Number of LOCed DIFFMs                 1 out of 1     100%
+
+   Number of External DIFFSs                 1 out of 162     1%
+      Number of LOCed DIFFSs                 1 out of 1     100%
+
+   Number of External IOBs                 177 out of 324    54%
+      Number of LOCed IOBs                 177 out of 177   100%
+
+   Number of RAMB16s                         2 out of 40      5%
+   Number of SLICEs                        563 out of 5120   10%
+
+
+Overall effort level (-ol):   Standard 
+Placer effort level (-pl):    High 
+Placer cost table entry (-t): 1
+Router effort level (-rl):    Standard 
+
+Starting initial Timing Analysis.  REAL time: 1 secs 
+Finished initial Timing Analysis.  REAL time: 1 secs 
+
+
+Starting Placer
+
+Phase 1.1
+Phase 1.1 (Checksum:98bec9) REAL time: 1 secs 
+
+Phase 2.7
+Phase 2.7 (Checksum:1312cfe) REAL time: 1 secs 
+
+Phase 3.31
+Phase 3.31 (Checksum:1c9c37d) REAL time: 1 secs 
+
+Phase 4.2
+
+......
+......................
+Phase 4.2 (Checksum:98e63f) REAL time: 5 secs 
+
+Phase 5.30
+Phase 5.30 (Checksum:2faf07b) REAL time: 5 secs 
+
+Phase 6.3
+Phase 6.3 (Checksum:39386fa) REAL time: 5 secs 
+
+Phase 7.5
+Phase 7.5 (Checksum:42c1d79) REAL time: 5 secs 
+
+Phase 8.8
+.......................
+...
+.
+...
+.
+.
+.
+Phase 8.8 (Checksum:add43f) REAL time: 10 secs 
+
+Phase 9.5
+Phase 9.5 (Checksum:55d4a77) REAL time: 10 secs 
+
+Phase 10.18
+Phase 10.18 (Checksum:5f5e0f6) REAL time: 11 secs 
+
+Phase 11.5
+Phase 11.5 (Checksum:68e7775) REAL time: 11 secs 
+
+Phase 12.27
+Phase 12.27 (Checksum:7270df4) REAL time: 11 secs 
+
+Phase 13.24
+Phase 13.24 (Checksum:7bfa473) REAL time: 11 secs 
+
+REAL time consumed by placer: 11 secs 
+CPU  time consumed by placer: 11 secs 
+Writing design to file TOP.ncd
+
+
+Total REAL time to Placer completion: 11 secs 
+Total CPU time to Placer completion: 11 secs 
+
+Starting Router
+
+Phase 1: 3343 unrouted;       REAL time: 14 secs 
+
+Phase 2: 2630 unrouted;       REAL time: 14 secs 
+
+Phase 3: 430 unrouted;       REAL time: 15 secs 
+
+Phase 4: 430 unrouted; (13888)      REAL time: 15 secs 
+
+Phase 5: 435 unrouted; (4814)      REAL time: 15 secs 
+
+Phase 6: 435 unrouted; (4814)      REAL time: 15 secs 
+
+Phase 7: 0 unrouted; (4827)      REAL time: 15 secs 
+
+Phase 8: 0 unrouted; (4827)      REAL time: 16 secs 
+
+Updating file: TOP.ncd with current fully routed design.
+
+Phase 9: 0 unrouted; (4827)      REAL time: 18 secs 
+
+Phase 10: 0 unrouted; (4827)      REAL time: 19 secs 
+
+Phase 11: 0 unrouted; (4472)      REAL time: 19 secs 
+
+WARNING:Route:455 - CLK Net:SCLK may have excessive skew because 
+      0 CLK pins and 2 NON_CLK pins failed to route using a CLK template.
+
+Total REAL time to Router completion: 19 secs 
+Total CPU time to Router completion: 19 secs 
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+Generating "PAR" statistics.
+
+**************************
+Generating Clock Report
+**************************
+
++---------------------+--------------+------+------+------------+-------------+
+|        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
++---------------------+--------------+------+------+------------+-------------+
+|             xFCLK_G |     BUFGMUX0P| No   |  217 |  0.255     |  1.186      |
++---------------------+--------------+------+------+------------+-------------+
+|                SCLK |     BUFGMUX7P| No   |  275 |  0.271     |  1.188      |
++---------------------+--------------+------+------+------------+-------------+
+|                OSC3 |     BUFGMUX6S| No   |   31 |  0.191     |  1.178      |
++---------------------+--------------+------+------+------------+-------------+
+|iUSER_AP/DDC_SAMPLE_ |              |      |      |            |             |
+|    LIMIT_mux0001<3> |     BUFGMUX5S| No   |   16 |  0.070     |  1.154      |
++---------------------+--------------+------+------+------------+-------------+
+
+* Net Skew is the difference between the minimum and maximum routing
+only delays for the net. Note this is different from Clock Skew which
+is reported in TRCE timing report. Clock Skew is the difference between
+the minimum and maximum path delays which includes logic delays.
+
+Timing Score: 4472
+
+WARNING:Par:62 - Your design did not meet timing.  The following are some suggestions to assist you to meet timing in
+   your design.
+
+      Review the timing report using Timing Analyzer (In ISE select "Post-Place &
+      Route Static Timing Report").  Go to the failing constraint(s) and select
+      the "Timing Improvement Wizard" link for suggestions to correct each problem.
+
+   Increase the PAR Effort Level setting to "high"
+
+   Rerun Map with "-timing" (ISE process "Perform Timing -Driven
+   Packing and Placement"
+
+   Run Multi-Pass Place and Route in PAR using at least 5 "PAR Iterations"
+   (ISE process "Multi Pass Place & Route").
+
+   Use the Xilinx "SmartXplorer" script to try special combinations of
+   options known to produce very good results.
+
+   Visit the Xilinx technical support web at http://support.xilinx.com and go to
+   either "Troubleshoot->Tech Tips->Timing & Constraints" or "
+   TechXclusives->Timing Closure" for tips and suggestions for meeting timing
+   in your design.
+
+INFO:Timing:2761 - N/A entries in the Constraints list may indicate that the constraint does not cover any paths or that it has no
+   requested value.
+Number of Timing Constraints that were not applied: 1
+
+Asterisk (*) preceding a constraint indicates it was not met.
+   This may be due to a setup or hold violation.
+
+------------------------------------------------------------------------------------------------------
+  Constraint                                |  Check  | Worst Case |  Best Case | Timing |   Timing   
+                                            |         |    Slack   | Achievable | Errors |    Score   
+------------------------------------------------------------------------------------------------------
+* TS_drdy = PERIOD TIMEGRP "drdy" 100 MHz H | SETUP   |    -1.150ns|    12.300ns|      10|        4472
+  IGH 50%                                   | HOLD    |     1.232ns|            |       0|           0
+------------------------------------------------------------------------------------------------------
+  TS_gNV2ES_FIFO_gFCKG_iGCLK_CLK0 = PERIOD  | SETUP   |     2.013ns|     7.987ns|       0|           0
+  TIMEGRP         "gNV2ES_FIFO_gFCKG_iGCLK_ | HOLD    |     1.295ns|            |       0|           0
+  CLK0" TS_diclk HIGH 50%                   |         |            |            |        |            
+------------------------------------------------------------------------------------------------------
+  TS_osc3_pin = PERIOD TIMEGRP "osc3_pin" 1 | SETUP   |     5.010ns|     4.990ns|       0|           0
+  00 MHz HIGH 50%                           | HOLD    |     1.416ns|            |       0|           0
+------------------------------------------------------------------------------------------------------
+  TS_diclk = PERIOD TIMEGRP "diclk" 100 MHz | N/A     |         N/A|         N/A|     N/A|         N/A
+   HIGH 50%                                 |         |            |            |        |            
+------------------------------------------------------------------------------------------------------
+
+
+Derived Constraint Report
+Derived Constraints for TS_diclk
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+|                               |   Period    |       Actual Period       |      Timing Errors        |      Paths Analyzed       |
+|           Constraint          | Requirement |-------------+-------------|-------------+-------------|-------------+-------------|
+|                               |             |   Direct    | Derivative  |   Direct    | Derivative  |   Direct    | Derivative  |
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+|TS_diclk                       |     10.000ns|          N/A|      7.987ns|            0|            0|            0|         1683|
+| TS_gNV2ES_FIFO_gFCKG_iGCLK_CLK|     10.000ns|      7.987ns|          N/A|            0|            0|         1683|            0|
+| 0                             |             |             |             |             |             |             |             |
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+
+1 constraint not met.
+INFO:Timing:2761 - N/A entries in the Constraints list may indicate that the 
+   constraint does not cover any paths or that it has no requested value.
+
+
+Generating Pad Report.
+
+All signals are completely routed.
+
+Total REAL time to PAR completion: 20 secs 
+Total CPU time to PAR completion: 20 secs 
+
+Peak Memory Usage:  172 MB
+
+Placement: Completed - No errors found.
+Routing: Completed - No errors found.
+Timing: Completed - 10 errors found.
+
+Number of error messages: 0
+Number of warning messages: 2
+Number of info messages: 1
+
+Writing design to file TOP.ncd
+
+
+
+PAR done!

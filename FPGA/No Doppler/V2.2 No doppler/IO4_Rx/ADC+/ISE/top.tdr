@@ -1,0 +1,24 @@
+Running DRC.
+WARNING:DesignRules:332 - Blockcheck: Dangling RAMB16B output. Pin DOB5 of comp
+   iUSER_AP_myDDCi/B757 is not connected.
+WARNING:DesignRules:332 - Blockcheck: Dangling RAMB16B output. Pin DOB6 of comp
+   iUSER_AP_myDDCi/B757 is not connected.
+WARNING:DesignRules:332 - Blockcheck: Dangling RAMB16B output. Pin DOB7 of comp
+   iUSER_AP_myDDCi/B757 is not connected.
+WARNING:DesignRules:332 - Blockcheck: Dangling RAMB16A output. Pin DOPA0 of comp
+   iUSER_AP_iRawFifo255x14/B10 is not connected.
+WARNING:DesignRules:332 - Blockcheck: Dangling RAMB16A output. Pin DOPA0 of comp
+   iUSER_AP_iRawFifo255x14/B13 is not connected.
+WARNING:DesignRules:332 - Blockcheck: Dangling RAMB16A output. Pin DOPA0 of comp
+   iUSER_AP_iRawFifo255x14/B22 is not connected.
+WARNING:DesignRules:332 - Blockcheck: Dangling RAMB16A output. Pin DOPA0 of comp
+   iUSER_AP_iRawFifo255x14/B16 is not connected.
+WARNING:DesignRules:332 - Blockcheck: Dangling RAMB16A output. Pin DOPA0 of comp
+   iUSER_AP_iRawFifo255x14/B25 is not connected.
+WARNING:DesignRules:332 - Blockcheck: Dangling RAMB16A output. Pin DOPA0 of comp
+   iUSER_AP_iRawFifo255x14/B19 is not connected.
+WARNING:DesignRules:332 - Blockcheck: Dangling RAMB16A output. Pin DOPA0 of comp
+   iUSER_AP_iRawFifo255x14/B28 is not connected.
+WARNING:DesignRules:332 - Blockcheck: Dangling RAMB16A output. Pin DOPA0 of comp
+   iUSER_AP_iRawFifo255x14/B7 is not connected.
+DRC detected 0 errors and 11 warnings.

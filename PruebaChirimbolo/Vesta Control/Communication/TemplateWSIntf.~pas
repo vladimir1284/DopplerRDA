@@ -1,0 +1,54 @@
+unit TemplateWSIntf;
+
+interface
+
+uses InvokeRegistry, Types, XSBuiltIns, CommunicationObj;
+
+type
+  ITemplateWS = interface(IInvokable)
+  ['{3465DAA4-51B0-4AD2-A8A8-8D6ED8FBF436}']
+    function  LoadTemplate( TemplateName : string ) : TTemplateInfo; safecall;
+    function  GetTemplateList : TStringDynArray; safecall;
+    function  TemplateExists( TemplateName : string ) : boolean; safecall;
+    //Control
+    procedure ModifyTemplate( Template : TTemplateInfo ); safecall;
+    procedure Eliminar( TemplateName : string ); safecall;
+    procedure Automatica(TemplateName : string; Value: boolean); safecall;
+  end;
+
+implementation
+
+uses TemplateWSImpl, SysUtils;
+
+{ TTemplateInfo }
+
+procedure TTemplateInfo.SetAngles(const Value: integer);
+begin
+  fAngles := Value;
+  SetLength(fAngleList, Value);
+end;
+
+procedure TTemplateInfo.SetAutomatic(const Value: boolean);
+begin
+  fAutomatic := Value;
+  if fAutomatic
+    then fNextTime := fPeriod * (trunc(Now/fPeriod) + 1) + fDelay
+    else fNextTime := 0;
+end;
+
+procedure TTemplateInfo.SetFormats(const Value: integer);
+begin
+  fFormats := Value;
+  SetLength(fFormatList, Value);
+end;
+
+procedure TTemplateInfo.SetLastTime(const Value: TDateTime);
+begin
+  fLastTime := Value;
+  fNextTime := fPeriod * (trunc(fLastTime/fPeriod) + 1) + fDelay;
+end;
+
+initialization
+  InvRegistry.RegisterInterface(TypeInfo(ITemplateWS));
+
+end.

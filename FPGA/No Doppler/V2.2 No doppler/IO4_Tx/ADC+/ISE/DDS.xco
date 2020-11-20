@@ -1,0 +1,64 @@
+##############################################################
+#
+# Xilinx Core Generator version K.31
+# Date: Thu Feb 08 20:00:27 2018
+#
+##############################################################
+#
+#  This file contains the customisation parameters for a
+#  Xilinx CORE Generator IP GUI. It is strongly recommended
+#  that you do not manually alter this file as it may cause
+#  unexpected and unsupported behavior.
+#
+##############################################################
+#
+# BEGIN Project Options
+SET addpads = False
+SET asysymbol = True
+SET busformat = BusFormatAngleBracketNotRipped
+SET createndf = False
+SET designentry = VHDL
+SET device = xc2v1000
+SET devicefamily = virtex2
+SET flowvendor = Foundation_iSE
+SET formalverification = False
+SET foundationsym = False
+SET implementationfiletype = Ngc
+SET package = fg456
+SET removerpms = False
+SET simulationfiles = Behavioral
+SET speedgrade = -4
+SET verilogsim = True
+SET vhdlsim = True
+# END Project Options
+# BEGIN Select
+SELECT Direct_Digital_Synthesizer family Xilinx,_Inc. 5.0
+# END Select
+# BEGIN Parameters
+CSET accumulator_latency=One_Cycle
+CSET aclr_pin=false
+CSET channel_pin=false
+CSET channels=1
+CSET clock_enable=false
+CSET component_name=DDS
+CSET create_rpm=false
+CSET dds_clock_rate=100.0
+CSET frequency_resolution=0.03
+CSET memory_type=Auto
+CSET negative_cosine=false
+CSET negative_sine=false
+CSET noise_shaping=Auto
+CSET output_frequencies=0.0
+CSET outputs_required=Sine
+CSET phase_increment=Programmable
+CSET phase_offset=Fixed
+CSET phase_offset_angles=0.0
+CSET pipelined=true
+CSET rdy_pin=false
+CSET rfd_pin=false
+CSET sclr_pin=true
+CSET spurious_free_dynamic_range=90
+# END Parameters
+GENERATE
+# CRC: 9bb21c4f
+

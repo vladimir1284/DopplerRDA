@@ -1,0 +1,386 @@
+//---------------------------------------------------------------------------
+#include "AFCprocessor.h"
+#include "DataParameters.h"
+
+#include "ShellChirimbolo.h"
+#include "Site.h"
+
+#pragma package(smart_init)
+
+__fastcall AFCProcessingThread::AFCProcessingThread(bool CreateSuspended) : TThread(CreateSuspended)
+{
+  fDataReady = false;
+  fReadThread = new AFCRead(true);
+
+  TheFFT = new FFTReal(4096);
+  CurrentBuffer = 0;
+  HqFreqEst = 0;
+  FreqEst = 0;
+  this->FreeOnTerminate = true;
+
+  LPIFEstimates = new INT64[NUM_ESTIMATES];
+  SPIFEstimates = new INT64[NUM_ESTIMATES];
+  LPTxEstimates = new INT64[NUM_ESTIMATES];
+  SPTxEstimates = new INT64[NUM_ESTIMATES];
+
+  for(int i = 0; i < NUM_ESTIMATES; i++){
+	  LPIFEstimates[i] = -99;
+	  SPIFEstimates[i] = -99;
+	  LPTxEstimates[i] = -99;
+	  SPTxEstimates[i] = -99;
+  }
+
+  IFEstimate = -99;
+  this->Priority = tpLower;
+}
+
+bool AFCProcessingThread::GetDataReady(){
+	return fDataReady;
+}
+
+void __fastcall AFCProcessingThread::Execute()
+{
+  fReadThread->Resume();
+
+  int TransitionCount = 0;
+  int NCounts = 0;
+  float Power = 0.0;
+  long HqCount = 0;
+  int EstimateNumber = 0;
+  int StartSample;
+  int StopSample;
+  int Nsamples;
+  int CurrentMode;
+  int NEstimates = 0;
+  INT64* IFEstimates;
+  INT64* TxEstimates;
+  INT64 InterFFTEst;
+
+  INT64 staloStep      = ThisSite->settings->Scan_step;  //Hz
+  INT64 staloDelay     = ThisSite->settings->Scan_delay; //ms
+  INT64 staloScanWidth = ThisSite->settings->Scan_width; //Hz
+  INT64 staloScanBase  = Stalo_Frequency - staloScanWidth; //Hz
+  INT64 staloScanFreq  = 0;
+  int   staloStart     = GetTickCount();
+
+  while(!Terminated){
+	try{
+	  if(fReadThread->BufferFull[CurrentBuffer]){
+		  if(ThisSite->TheRadar->StaloChanged() || ThisSite->TheRadar->SyncChanged()){
+			  while(!fReadThread->BufferFull[CurrentBuffer]){
+				  Sleep(100);        //Wait for full buffer to flush
+			  }
+			  fReadThread->BufferFull[CurrentBuffer] = false;
+			  CurrentBuffer = !CurrentBuffer;
+
+			  while(!fReadThread->BufferFull[CurrentBuffer]){
+				  Sleep(100);        //Wait for full buffer to flush
+			  }
+			  fReadThread->BufferFull[CurrentBuffer] = false;
+			  CurrentBuffer = !CurrentBuffer;
+		  }
+		  else{
+			  CurrentMode = ThisSite->TheRadar->GetCurrentPulseMode();
+			  if(CurrentMode == LP_MODE){
+				  StartSample = ThisSite->settings->Start_sample_lp;
+				  StopSample = ThisSite->settings->Stop_sample_lp;
+				  IFEstimates = LPIFEstimates; /*Set Pointers to Correct array*/
+				  TxEstimates = LPTxEstimates;
+			  }
+			  else{
+				  StartSample = ThisSite->settings->Start_sample_sp;
+				  StopSample = ThisSite->settings->Stop_sample_sp;
+				  IFEstimates = SPIFEstimates; /*Set Pointers to Correct array*/
+				  TxEstimates = SPTxEstimates;
+			  }
+			  Nsamples = StopSample - StartSample;
+
+			  ScaleData(fReadThread->DataIn[CurrentBuffer], NUMBUFFERS, SAMPLES_PER_IP_CHAN);
+
+			  TxPowerEstimate = DoPowerEstimation(fReadThread->DataIn[CurrentBuffer], StartSample, StopSample);
+			  FreqEst = DoZeroCrossing(fReadThread->DataIn[CurrentBuffer], StartSample, StopSample);
+
+			  DoFFT(fReadThread->DataIn[CurrentBuffer]);
+			  InterFFTEst = InterpolateFFT();
+
+			  IFEstimate = InterFFTEst;
+			  TxEstimateOut = IFEstimate + ThisSite->TheRadar->GetSTALOFrequency();
+
+			  if((TxPowerEstimate >= ThisSite->settings->Valid_power_tx) && (abs((int)(FreqEst - InterFFTEst)) < 500e3)){
+				 staloStart = GetTickCount();
+				 staloScanFreq = 0;
+
+				 fDataReady = true;
+				 IFEstimate = FreqEst;
+				 TxEstimateOut = UpdateFreqEst(IFEstimate, TxEstimates, IFEstimates, NEstimates);
+				 OutputValues(TxEstimateOut);   //Output values to display and STALO
+			   }
+			  else{
+				if(!ThisSite->TheRadar->GetAFCChangesInhibited()){
+					if((GetTickCount() - staloStart > 5000)){
+						fDataReady = false;
+					}
+
+					if((GetTickCount() - staloStart > 30000) && !ThisSite->TheRadar->StaloChanged()){
+						//scan mode
+						staloScanFreq += staloStep;
+						staloScanFreq %= staloScanWidth * 2;
+						ThisSite->TheRadar->SetStaloFrequency(staloScanBase + staloScanFreq);
+						Sleep(staloDelay);
+					}
+				}
+			  }
+
+			  if(FOnNewData != NULL){
+				short SP = CurrentMode == LP_MODE;
+				FOnNewData(this, SP, IFEstimate, TxEstimateOut, TxPowerEstimate, fReadThread->DataIn[CurrentBuffer], TheFFT);
+			  }
+
+			  // Tell AFCThread that this buffer now
+			  // Can be over written
+			  fReadThread->BufferFull[CurrentBuffer] = false;
+			  CurrentBuffer = !CurrentBuffer;
+		  }
+	  }
+	  Sleep(50);
+	} catch (...) {
+	}
+  }
+  fReadThread->Terminate();
+}
+//------------------------------------------------------------------------------
+
+void __fastcall AFCProcessingThread::OutputValues(INT64 TxFreq)
+{
+  if(!ThisSite->TheRadar->GetAFCChangesInhibited()){
+	  INT64 STALOTargetFreq;
+	  INT64 currentStaloFreq = ThisSite->TheRadar->GetSTALOFrequency();
+
+	  STALOTargetFreq = TxFreq - IF;
+	  if(abs(currentStaloFreq - STALOTargetFreq) > 1000){
+		  ThisSite->TheRadar->SetStaloFrequency(STALOTargetFreq);
+		  ResetFreqEstimate();
+	  }
+
+	  INT64 _IF = TxFreq - currentStaloFreq;
+	  ThisSite->TheRadar->SetNCOFrequency(_IF);
+  }
+}
+//------------------------------------------------------------------------------
+
+INT64 __fastcall AFCProcessingThread::UpdateFreqEst(INT64 IFEstimate, INT64 *TxEstimateArray, INT64 *IFEstimateArray, int NEstimates)
+{
+  INT64 IFTotal = 0;
+  INT64 TxTotal = 0;
+  INT64 StaloFreq = ThisSite->TheRadar->GetSTALOFrequency();
+  int n = 0;
+
+  //Add all values in to Estimate Arrays
+  //if incorrect will be filtered by mode value
+  IFEstimateArray[NEstimates] = IFEstimate;
+  TxEstimateArray[NEstimates] = IFEstimate + StaloFreq;
+  NEstimates++;
+  NEstimates %= NUM_ESTIMATES;
+  return GetFreqEst(TxEstimateArray, IFEstimateArray);
+}
+
+INT64 __fastcall AFCProcessingThread::GetFreqEst(INT64 *TxEstimateArray, INT64 *IFEstimateArray)
+{
+  INT64 IFTotal = 0;
+  INT64 TxTotal = 0;
+  int n = 0;
+  INT64 ModeFreq;
+
+  ModeFreq = GetMode(IFEstimateArray);
+
+  for( int i = 0; i < NUM_ESTIMATES; i++){
+	  // Only use values near modal value in IF and Tx estimate
+	  // IFEstimate array contains all values so changes in mode value
+	  // can be monitored
+	  if(IFEstimateArray[i] >= 0 && abs((int)(IFEstimateArray[i] - ModeFreq)) < 120e3){
+		  IFTotal += IFEstimateArray[i];
+		  TxTotal += TxEstimateArray[i];
+		  n++;
+	  }
+  }
+
+  if(n > 0){
+	  CurrentIFEstimate = IFTotal / n;
+	  CurrentTxEstimate = TxTotal / n;
+  }
+
+  return CurrentTxEstimate;
+}
+
+INT64 AFCProcessingThread::GetMode(INT64* FreqEstimateArray)
+{
+   int ModeVals[100][2];
+   int Count = 0;
+   bool ValExists;
+   for(int i = 0; i < 100; i++){
+	  ModeVals[i][0] = -999;   //Freq
+	  ModeVals[i][1] = 0;   //Count
+   }
+
+	for(int i = 0; i < NUM_ESTIMATES; i++){
+		//Loop over all current frequencies estimates
+		if(FreqEstimateArray[i] > 0){
+			//If valid FreqEstimate
+			ValExists = false;            //Assume new value
+			for(int j = 0; j < 100; j++){
+				//for all possible frequency bins
+				//if current estimate is found in vals already
+				//add one to that bin
+				//Frequency bins 10 kHz wide (IF in MHz *100)
+				 if(abs((int)(FreqEstimateArray[i] - ModeVals[j][0])) <= 10e3) {
+					 ModeVals[j][1]++;
+					 ValExists = true;
+				 }
+			}
+			//Value not found in current list of frequency bins
+			if(!ValExists){
+				int k = 0;             //Add value to vals list
+				while(ModeVals[k][0] != -999 && k < 100){
+					k++;
+				}
+				if(k < 100){
+					ModeVals[k][0] = (INT64)(FreqEstimateArray[i] / 10e3) * 10e3;
+					ModeVals[k][1] = 1;
+				}
+			}
+		}
+	}
+
+   int Max = 0;
+   int MaxPos = -99;      //Find modal frequency
+   for(int i = 0; i < 100; i++){
+	  if( ModeVals[i][1] > Max){
+		 Max = ModeVals[i][1];
+		 MaxPos = i;
+	  }
+   }
+   if(MaxPos >= 0){
+	 return ModeVals[MaxPos][0];
+   }
+   else{
+	 return -999;
+   };
+}
+
+void AFCProcessingThread::ResetFreqEstimate()
+{
+  for(int i = 0; i < NUM_ESTIMATES; i++)
+    {
+	  LPIFEstimates[i] = -99;
+	  SPIFEstimates[i] = -99;
+    }
+}
+
+double AFCProcessingThread::InterpolateFFT()
+{
+ double y1 = TheFFT->AbsOut[ TheFFT->FFTPeakBin-1];
+ double y2 = TheFFT->AbsOut[ TheFFT->FFTPeakBin];
+ double y3 = TheFFT->AbsOut[ TheFFT->FFTPeakBin+1];
+ double d, kq, kb;
+  //Quadratic interpolation of fft peak
+ if(2 * (2 * y2 - y1 - y3) != 0)
+	d = (y3 - y1) / (2 * (2 * y2 - y1 - y3));
+ else
+    d = 0;
+ kq = TheFFT->FFTPeakBin + d;
+ kq /= TheFFT->get_length();
+ kq *= 100e6;  //Return MHz
+
+ return kq;
+}
+
+INT64  AFCProcessingThread::GetIFFrequencyEstimate()
+{
+  return CurrentIFEstimate;
+}
+
+INT64  AFCProcessingThread::GetTxFrequencyEstimate()
+{
+  return CurrentTxEstimate;
+}
+
+INT64  AFCProcessingThread::GetTxPulsePowerEstimate()
+{
+  return  TxPowerEstimate;
+}
+
+INT64 AFCProcessingThread::DoZeroCrossing(HE_PINT32BUFFER Data, int StartSample, int StopSample)
+{
+  int TransitionCount = 0;
+  float Freq;
+  for(int i = 0; i < NUMBUFFERS; i++){
+	  for(int j = StartSample; j < StopSample; j++){
+		  /* Select data area where pulse lives */
+		  if( ((Data[j + i * SAMPLES_PER_IP_CHAN] >= 0) && (Data[j + 1 + i * SAMPLES_PER_IP_CHAN] < 0)) ||
+			  ((Data[j + i * SAMPLES_PER_IP_CHAN] <= 0) && (Data[j + 1 + i * SAMPLES_PER_IP_CHAN] > 0)) ){
+			  TransitionCount++;
+		  }
+	  }
+  }
+  Freq = 100e6 * ((double)TransitionCount/2.0)/((double) NUMBUFFERS * (double)(StopSample-StartSample));
+
+  return Freq;
+}
+
+float AFCProcessingThread::DoPowerEstimation(HE_PINT32BUFFER Data, int StartSample, int StopSample)
+{
+  int Errors = 0;
+  float Power;
+  float AveragePower = 0;
+  float AveragePowerOut = 0;
+  int NSamples = 0;
+  NSamples = StopSample - StartSample;
+  for(int i = 0; i < NUMBUFFERS; i++){
+	  for(int j = StartSample; j < StopSample; j++){       /* Select data area where pulse lives */
+		  Power += (float)(Data[j + i * SAMPLES_PER_IP_CHAN]) * (float)(Data[j + i * SAMPLES_PER_IP_CHAN]);
+	  }
+
+	  if(Power > 0)
+		Power = 10.0 * log10(Power/NSamples) + ThisSite->settings->Power_factor_tx;
+	  else{
+	    Power = 0;
+		Errors++;
+	  }
+
+	  AveragePower += Power;
+  }
+  AveragePowerOut = AveragePower / (NUMBUFFERS - Errors);
+  return AveragePowerOut;
+}
+
+void AFCProcessingThread::ScaleData(HE_PINT32BUFFER DataIn,int NBuffers,int DataSize)
+{
+  for(int i = 0; i < NBuffers; i++)    //Scale data to correct bit size
+	for(int j = 0; j < DataSize; j++)  // Select data area where pulse lives
+		  DataIn[j + i * DataSize] = (int)(DataIn[j + i * DataSize] / (4 * 65536));
+}
+
+void AFCProcessingThread::DoFFT(HE_PINT32BUFFER DataIn)
+{
+	  for(int i = 0; i < SAMPLES_PER_IP_CHAN; i++){
+		  TheFFT->DataIn[i] = DataIn[i];
+	  }
+
+	  unsigned int fftSize = TheFFT->get_length();
+
+	  for( int i = SAMPLES_PER_IP_CHAN; i < fftSize; i++){
+		  TheFFT->DataIn[i] = 0;
+	  }
+
+  TheFFT->FFTLock->Acquire();
+  __try{
+	  TheFFT->do_fft();
+	  TheFFT->rescale();
+	  TheFFT->CalcAbs();
+  }
+  __finally{
+	 TheFFT->FFTLock->Release();
+  }
+
+  TheFFT->Done = true;
+}

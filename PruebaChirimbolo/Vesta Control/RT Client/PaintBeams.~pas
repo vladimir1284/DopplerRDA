@@ -1,0 +1,228 @@
+unit PaintBeams;
+
+interface
+
+uses
+  Classes, RTDisplay, IdBaseComponent,
+  IdComponent, IdTCPConnection, IdTCPClient, Graphics, Types;
+
+const
+  ClientRefreshFrequency = 50;
+
+type
+  TPaintBeams = class(TThread)
+  private
+    RTClient : TIdTCPClient;
+    BeamData : PBytes;
+    RawCellSize,
+    RawCellCount : cardinal;
+    Az, El       : single;
+  protected
+    procedure ReceiveCh1BeamData;
+    procedure ReceiveCh2BeamData;
+    procedure ProcessAllAppMessages;
+    procedure AddCh1Beam;
+    procedure AddCh2Beam;
+    procedure ClearBeam;
+
+    procedure Execute; override;
+  public
+    constructor Create(CreateSuspended : Boolean);
+    destructor  Destroy; override;
+  end;
+
+implementation
+
+uses Windows, SysUtils, Registry, ZLibEx,
+     Constants, Forms, Math, Shell_RTClient;
+
+{ TPaintBeams }
+
+procedure TPaintBeams.AddCh1Beam;
+begin
+{
+  if ShellClient.RT_Ch1.RTDisplay.PPI_RHI
+    then ShellClient.RT_Ch1.RTDisplay.AddBeamWithoutPaint( Az, RawCellSize, RawCellCount, BeamData )
+    else ShellClient.RT_Ch1.RTDisplay.AddBeamWithoutPaint( El, RawCellSize, RawCellCount, BeamData );
+  ShellClient.RT_Ch1.RTCh2.Checked := true;
+  ShellClient.RT_Ch1.StatusBar1.Panels[5].Text := 'Az: ' + FormatFloat( '0.0', Az );
+  ShellClient.RT_Ch1.StatusBar1.Panels[6].Text := 'El: ' + FormatFloat( '0.0', El );
+}
+end;
+
+procedure TPaintBeams.AddCh2Beam;
+begin
+{
+  if ShellClient.RT_Ch2.RTDisplay.PPI_RHI
+    then ShellClient.RT_Ch2.RTDisplay.AddBeamWithoutPaint( Az, RawCellSize, RawCellCount, BeamData )
+    else ShellClient.RT_Ch2.RTDisplay.AddBeamWithoutPaint( El, RawCellSize, RawCellCount, BeamData );
+  ShellClient.RT_Ch2.RTCh2.Checked := true;
+  ShellClient.RT_Ch2.StatusBar1.Panels[5].Text := 'Az: ' + FormatFloat( '0.0', Az );
+  ShellClient.RT_Ch2.StatusBar1.Panels[6].Text := 'El: ' + FormatFloat( '0.0', El );
+}
+end;
+
+procedure TPaintBeams.ClearBeam;
+begin
+{
+  ShellClient.RT_Ch1.RTDisplay.ClearBeams;
+  ShellClient.RT_Ch2.RTDisplay.ClearBeams;
+}
+end;
+
+constructor TPaintBeams.Create(CreateSuspended : Boolean );
+begin
+  inherited Create( True );
+  FreeOnTerminate := true;
+  Priority := tpTimeCritical;
+  RTClient := TIdTCPClient.Create( nil );
+//  RTClient.Port := ShellClient.Configuration.Configuration.RTPort;
+  with TRegistry.Create do
+    try
+      if OpenKey(LoginKey, false) and ValueExists(HostNameValue)
+        then RTClient.Host := ReadString(HostNameValue)
+        else RTClient.Host := '127.0.0.1';
+    finally
+      Free;
+    end;
+
+  if not CreateSuspended
+    then Resume;
+end;
+
+destructor TPaintBeams.Destroy;
+begin
+  RTClient.Free;
+  inherited;
+end;
+
+procedure TPaintBeams.Execute;
+var
+  Command    : string;
+  Starting,
+  Finishing,
+  Freq       : int64;
+begin
+{
+  ShellClient.FastTime := RTFastTime;
+  ShellClient.MedTime  := RTMedTime;
+  ShellClient.SlowTime := RTSlowTime;
+}
+  try
+    QueryPerformanceFrequency(Freq);
+    Synchronize( ClearBeam );
+    try
+      RTClient.Connect( MaxTimeServerConnect );
+      try
+//        ShellClient.Acquiring := true;
+        QueryPerformanceCounter( Starting );
+        while not Terminated do
+        begin
+          Command := RTClient.ReadLn( '', ClientCommandTimeOut );
+          if Command = Ch1BeamCommand
+            then ReceiveCh1BeamData;
+          if Command = Ch2BeamCommand
+            then ReceiveCh2BeamData;
+          if Command = ''
+            then
+              try
+                RTClient.CheckForGracefulDisconnect;
+                RTClient.CheckForDisconnect;
+              except
+                Terminate;
+              end;
+          QueryPerformanceCounter(Finishing);
+          if (Finishing-Starting)*1000/Freq >= ClientRefreshFrequency
+            then
+              begin
+                Synchronize( ProcessAllAppMessages );
+                QueryPerformanceCounter(Starting);
+              end;
+        end;
+      finally
+        RTClient.Disconnect;
+      end;
+    except
+    end;
+  finally
+{
+    ShellClient.Acquiring := false;
+    ShellClient.FastTime := DefaultFastTime;
+    ShellClient.MedTime  := DefaultMedTime;
+    ShellClient.SlowTime := DefaultSlowTime;
+}
+  end;
+end;
+
+procedure TPaintBeams.ProcessAllAppMessages;
+begin
+//  ShellClient.ProcessAllMessages;
+end;
+
+procedure TPaintBeams.ReceiveCh1BeamData;
+var
+  PackSize,
+  UnPackSize : word;
+  OutSize : integer;
+  Buffer : PBytes;
+  BeamBuffer : pointer;
+begin
+  //Receive data
+  RTClient.WriteLn( Ch1BeamCommandResponse );
+//  ShellClient.ViewCh1 := true;
+  try
+    Az := RTClient.ReadInteger / 100;
+    El := RTClient.ReadInteger / 100;
+    RawCellSize   := RTClient.ReadCardinal;
+    PackSize   := RTClient.ReadInteger;
+    UnPackSize := RTClient.ReadInteger;
+    RawCellCount := UnPackSize;
+    GetMem( Buffer, PackSize );
+    RTClient.ReadBuffer( Buffer^, PackSize );
+
+    ZDecompress( Buffer, PackSize, BeamBuffer, OutSize );
+
+    BeamData := BeamBuffer;
+    if UnPackSize = OutSize
+      then Synchronize( AddCh1Beam );
+  finally
+    FreeMem( Buffer );
+    if Assigned( BeamData )
+      then FreeMem( BeamData );
+  end;
+end;
+
+procedure TPaintBeams.ReceiveCh2BeamData;
+var
+  PackSize,
+  UnPackSize : word;
+  OutSize : integer;
+  Buffer : PBytes;
+  BeamBuffer : pointer;
+begin
+  //Receive data
+  RTClient.WriteLn( Ch2BeamCommandResponse );
+//  ShellClient.ViewCh2 := true;
+  try
+    Az := RTClient.ReadInteger / 100;
+    El := RTClient.ReadInteger / 100;
+    RawCellSize   := RTClient.ReadCardinal;
+    PackSize   := RTClient.ReadInteger;
+    UnPackSize := RTClient.ReadInteger;
+    RawCellCount := UnPackSize;
+    GetMem( Buffer, PackSize );
+    RTClient.ReadBuffer( Buffer^, PackSize );
+
+    ZDecompress( Buffer, PackSize, BeamBuffer, OutSize );
+
+    BeamData := BeamBuffer;
+    if UnPackSize = OutSize
+      then Synchronize( AddCh2Beam );
+  finally
+    FreeMem( Buffer );
+    if Assigned( BeamData )
+      then FreeMem( BeamData );
+  end;
+end;
+
+end.

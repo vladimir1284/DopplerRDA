@@ -1,0 +1,13 @@
+# Output products list for <times360>
+memlp.mif
+mempp.mif
+times360.asy
+times360.edn
+times360.sym
+times360.v
+times360.veo
+times360.vhd
+times360.vho
+times360.xco
+times360_flist.txt
+times360_xmdf.tcl

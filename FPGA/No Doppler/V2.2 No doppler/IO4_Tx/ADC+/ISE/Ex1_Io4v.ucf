@@ -1,0 +1,502 @@
+# =======================================
+# ===          FLOW XST VHDL          ===
+# =======================================
+#
+# =======================================
+#  User Constraints File for Example 1,
+#  for HERON-IO4V
+# =======================================
+# Created     : 8 Feb 2002
+# Author      : ALSE - http://www.alse-fr.com
+# Modified    : R.Williams 04-03-02
+# Current Ver : 1.1
+# =======================================
+# Global constraints
+# =======================================
+VOLTAGE = 1.5 v ;
+# Implement Properties > Translate Properties > Ignore LOC constraints on ivalid object names > ON
+# =======================================
+#  OSC / CLOCKS
+# =======================================
+#NET "osc0_pin" LOC = "C5"
+#NET "osc1_pin" LOC = "B6"
+#NET "osc2_pin" LOC = "E9"
+#NET "osc3_pin" LOC = "E10"
+#NET "clkin0" LOC = "F4"
+#NET "clkin1" LOC = "F3"
+#NET "clki2"   LOC = "B4"
+#NET "clki3"   LOC = "A4"
+#NET "clkout" LOC = "E3"
+# =======================================
+# GENERAL PURPOSE GCLKS
+# =======================================
+#NET "gck2" LOC = "A11"
+#NET "f2" LOC = "V20"
+#NET "gck3" LOC = "C11"
+#NET "f3" LOC = "T19"
+# =======================================
+#  LEDs
+# =======================================
+#NET "led<0>" LOC = "H3"
+#NET "led<1>" LOC = "J1"
+#NET "led<2>" LOC = "L5"
+#NET "led<3>" LOC = "J5"
+#NET "led<4>" LOC = "J2"
+# =======================================
+#  CONTROL
+# =======================================
+#NET "udpres" LOC = "H4"
+#NET "reset_pin" LOC = "E15"
+# =======================================
+#  GENERAL CARRIER IO
+# =======================================
+#NET "config"       LOC = "E16"
+#NET "addr_flagsel" LOC = "F12"
+#NET "booten" LOC = "G1"
+# =======================================
+#  CARRIER AND MODULE ID
+# =======================================
+#NET "cid<0>" LOC = "K5"
+#NET "cid<1>" LOC = "K1"
+#NET "cid<2>" LOC = "K3"
+#NET "cid<3>" LOC = "K4"
+#NET "mid<0>" LOC = "K2"
+#NET "mid<1>" LOC = "L6"
+#NET "mid<2>" LOC = "L4"
+#NET "mid<3>" LOC = "L3"
+# =======================================
+#  DIGITAL I/O
+# =======================================
+#NET "digital_io<0>" LOC = "A14"
+#NET "digital_io<1>" LOC = "B14"
+#NET "digital_io<2>" LOC = "A17"
+#NET "digital_io<3>" LOC = "B17"
+#NET "digital_io<4>" LOC = "A13"
+#NET "digital_io<5>" LOC = "B13"
+#NET "digital_io<6>" LOC = "C16"
+#NET "digital_io<7>" LOC = "D16"
+# =======================================
+#  UNCOMMITTED MODULE INTERCONNECTS
+# =======================================
+#NET "umi<0>" LOC = "E2"
+#NET "umi<1>" LOC = "H5"
+#NET "umi<2>" LOC = "F2"
+#NET "umi<3>" LOC = "F1"
+# =======================================
+#  SERIAL
+# =======================================
+#NET "t1in" LOC = "E20"
+#NET "t2in" LOC = "C22"
+#NET "r1out"     LOC = "A19"
+#NET "r2out"     LOC = "C18"
+#NET "rs485_232" LOC = "E21"
+#NET "hdplx" LOC = "F18"
+#NET "fast" LOC = "F20"
+#NET "dttl" LOC = "E22"
+#NET "qttl"      LOC = "F19"
+# =======================================
+#  OUT FIFO
+# =======================================
+#NET "do<0>" LOC = "U19"
+#NET "do<1>" LOC = "T18"
+#NET "do<2>" LOC = "W22"
+#NET "do<3>" LOC = "U21"
+#NET "do<4>" LOC = "T20"
+#NET "do<5>" LOC = "T21"
+#NET "do<6>" LOC = "R18"
+#NET "do<7>" LOC = "U22"
+#NET "do<8>" LOC = "R19"
+#NET "do<9>" LOC = "P18"
+#NET "do<10>" LOC = "R22"
+#NET "do<11>" LOC = "P21"
+#NET "do<12>" LOC = "P22"
+#NET "do<13>" LOC = "N18"
+#NET "do<14>" LOC = "N21"
+#NET "do<15>" LOC = "M17"
+#NET "do<16>" LOC = "M19"
+#NET "do<17>" LOC = "M18"
+#NET "do<18>" LOC = "L20"
+#NET "do<19>" LOC = "L17"
+#NET "do<20>" LOC = "L21"
+#NET "do<21>" LOC = "L22"
+#NET "do<22>" LOC = "K21"
+#NET "do<23>" LOC = "K22"
+#NET "do<24>" LOC = "J21"
+#NET "do<25>" LOC = "J18"
+#NET "do<26>" LOC = "J22"
+#NET "do<27>" LOC = "H19"
+#NET "do<28>" LOC = "H18"
+#NET "do<29>" LOC = "G21"
+#NET "do<30>" LOC = "G18"
+#NET "do<31>" LOC = "G20"
+#NET "f0" LOC = "D2"
+#NET "doclk" LOC = "W12"
+#NET "dof_wen<0>" LOC = "Y14"
+#NET "dof_wen<1>" LOC = "W15"
+#NET "dof_wen<2>" LOC = "AB15"
+#NET "dof_wen<3>" LOC = "W17"
+#NET "dof_wen<4>" LOC = "AA15"
+#NET "dof_wen<5>" LOC = "Y15"
+#NET "dof_ff<0>" LOC = "AB17"
+#NET "dof_ff<1>" LOC = "V15"
+#NET "dof_ff<2>" LOC = "AA13"
+#NET "dof_ff<3>" LOC = "Y16"
+#NET "dof_ff<4>" LOC = "AA17"
+#NET "dof_ff<5>" LOC = "W16"
+#NET "dof_af<0>" LOC = "AB16"
+#NET "dof_af<1>" LOC = "AB18"
+#NET "dof_af<2>" LOC = "Y17"
+#NET "dof_af<3>" LOC = "V16"
+#NET "dof_af<4>" LOC = "W21"
+#NET "dof_af<5>" LOC = "U20"
+# =======================================
+#  IN FIFO
+# =======================================
+#NET "di<0>" LOC = "V8"
+#NET "di<1>" LOC = "AA5"
+#NET "di<2>" LOC = "AB5"
+#NET "di<3>" LOC = "Y7"
+#NET "di<4>" LOC = "W6"
+#NET "di<5>" LOC = "Y6"
+#NET "di<6>" LOC = "V7"
+#NET "di<7>" LOC = "Y2"
+#NET "di<8>" LOC = "W2"
+#NET "di<9>" LOC = "U4"
+#NET "di<10>" LOC = "Y1"
+#NET "di<11>" LOC = "V2"
+#NET "di<12>" LOC = "W1"
+#NET "di<13>" LOC = "T4"
+#NET "di<14>" LOC = "T3"
+#NET "di<15>" LOC = "U2"
+#NET "di<16>" LOC = "V1"
+#NET "di<17>" LOC = "U1"
+#NET "di<18>" LOC = "T2"
+#NET "di<19>" LOC = "R4"
+#NET "di<20>" LOC = "T1"
+#NET "di<21>" LOC = "P3"
+#NET "di<22>" LOC = "P5"
+#NET "di<23>" LOC = "P4"
+#NET "di<24>" LOC = "N5"
+#NET "di<25>" LOC = "N4"
+#NET "di<26>" LOC = "N3"
+#NET "di<27>" LOC = "N2"
+#NET "di<28>" LOC = "M5"
+#NET "di<29>" LOC = "N1"
+#NET "di<30>" LOC = "M6"
+#NET "di<31>" LOC = "M1"
+#NET "f1" LOC = "E1"
+#NET "diclk" LOC = "Y11"
+#NET "dif_ren<0>" LOC = "AB6"
+#NET "dif_ren<1>" LOC = "AA7"
+#NET "dif_ren<2>" LOC = "W7"
+#NET "dif_ren<3>" LOC = "W8"
+#NET "dif_ren<4>" LOC = "Y8"
+#NET "dif_ren<5>" LOC = "AA8"
+#NET "dif_oen<0>" LOC = "AB13"
+#NET "dif_oen<1>" LOC = "AA18"
+#NET "dif_oen<2>" LOC = "Y13"
+#NET "dif_oen<3>" LOC = "V13"
+#NET "dif_oen<4>" LOC = "W14"
+#NET "dif_oen<5>" LOC = "V14"
+#NET "dif_ef<0>" LOC = "V9"
+#NET "dif_ef<1>" LOC = "AB9"
+#NET "dif_ef<2>" LOC = "V10"
+#NET "dif_ef<3>" LOC = "AA9"
+#NET "dif_ef<4>" LOC = "W10"
+#NET "dif_ef<5>" LOC = "Y10"
+#NET "dif_ae<0>" LOC = "V11"
+#NET "dif_ae<1>" LOC = "W11"
+#NET "dif_ae<2>" LOC = "U11"
+#NET "dif_ae<3>" LOC = "Y12"
+#NET "dif_ae<4>" LOC = "AA12"
+#NET "dif_ae<5>" LOC = "W13"
+# =======================================
+#  HSB --- Virtex ---
+# =======================================
+#NET "vpd<0>" LOC = "V18"
+#NET "vpd<1>" LOC = "V17"
+#NET "vpd<2>" LOC = "W18"
+#NET "vpd<3>" LOC = "Y18"
+#NET "vpd<4>" LOC = "Y5"
+#NET "vpd<5>" LOC = "W5"
+#NET "vpd<6>" LOC = "AB4"
+#NET "vpd<7>" LOC = "AA4"
+#NET "vinit" LOC = "AA19"
+#NET "vcs" LOC = "AA3"
+#NET "vwrite" LOC = "Y4"
+#NET "vbusy" LOC = "AB19"
+# =======================================
+#  ADC
+# =======================================
+#NET "drdy"	   LOC = "J3"
+#NET "enc_p"        LOC = "D17"
+#NET "enc_n"        LOC = "C17"
+#NET "adc_data<0>"  LOC = "D7"
+#NET "adc_data<1>"  LOC = "C7"
+#NET "adc_data<2>"  LOC = "D8"
+#NET "adc_data<3>"  LOC = "C8"
+#NET "adc_data<4>"  LOC = "B7"
+#NET "adc_data<5>"  LOC = "A7"
+#NET "adc_data<6>"  LOC = "D9"
+#NET "adc_data<7>"  LOC = "C9"
+#NET "adc_data<8>"  LOC = "B8"
+#NET "adc_data<9>"  LOC = "A8"
+#NET "adc_data<10>" LOC = "B9"
+#NET "adc_data<11>" LOC = "A9"
+#NET "adc_data<12>" LOC = "B10"
+#NET "adc_data<13>" LOC = "A10"
+#NET "adc_ovr"      LOC = "B19"
+# =======================================
+#  DAC_A
+# =======================================
+#NET "trig0" LOC = "E4"
+#NET "wrt0" LOC = "C6"
+#NET "daa<0>" LOC = "M3"
+#NET "daa<1>" LOC = "M4"
+#NET "daa<2>" LOC = "P1"
+#NET "daa<3>" LOC = "P2"
+#NET "daa<4>" LOC = "R1"
+#NET "daa<5>" LOC = "R2"
+#NET "daa<6>" LOC = "R5"
+#NET "daa<7>" LOC = "T5"
+#NET "daa<8>" LOC = "V3"
+#NET "daa<9>" LOC = "V4"
+#NET "daa<10>" LOC = "Y9"
+#NET "daa<11>" LOC = "W9"
+#NET "daa<12>" LOC = "AB10"
+#NET "daa<13>" LOC = "AA10"
+# =======================================
+#  DAC_B
+# =======================================
+#NET "trig1" LOC = "C1"
+#NET "wrt1" LOC = "E8"
+#NET "dab<0>" LOC = "B5"
+#NET "dab<1>" LOC = "A5"
+#NET "dab<2>" LOC = "D10"
+#NET "dab<3>" LOC = "C10"
+#NET "dab<4>" LOC = "E11"
+#NET "dab<5>" LOC = "F11"
+#NET "dab<6>" LOC = "E7"
+#NET "dab<7>" LOC = "F5"
+#NET "dab<8>" LOC = "G5"
+#NET "dab<9>" LOC = "G4"
+#NET "dab<10>" LOC = "G3"
+#NET "dab<11>" LOC = "H2"
+#NET "dab<12>" LOC = "H1"
+#NET "dab<13>" LOC = "J4"
+# =======================================
+# Start of global timing constraints
+# =======================================
+# =======================================
+# This constraint must match the freq
+# of the oscillator fitted to OSC3
+# =======================================
+NET "osc3_pin" TNM_NET = "osc3_pin";
+TIMESPEC "TS_osc3_pin" = PERIOD "osc3_pin" 100 MHz HIGH 50 %;
+# =======================================
+# If a common FIFO clock is being used,
+# this constraint must match the freq that
+# both FIFOs will run at.
+# If two different FIFO clocks are being
+# used, this constraint must match the
+# freq of the FIFO read clock.
+# =======================================
+NET "diclk" TNM_NET = "diclk";
+TIMESPEC "TS_diclk" = PERIOD "diclk" 100 MHz HIGH 50 %;
+# =======================================
+# If a common FIFO clock is being used,
+# this constraint must be commented.
+# If two different FIFO clocks are being
+# used, this constraint must match the
+# freq of the FIFO write clock.
+# =======================================
+#NET "doclk" TNM_NET = "doclk"
+#TIMESPEC "TS_doclk" = PERIOD "doclk" 100 MHz HIGH 50 %
+#NET "SCLK" TNM_NET = "SCLK"
+#TIMESPEC "TS_SCLK" = PERIOD "diclk" 100 MHz HIGH 50 %
+# =======================================
+# End of global timing constraints
+# =======================================
+#PINLOCK_BEGIN
+#Thu Mar 04 16:21:44 2004
+NET "di<7>" LOC = "Y2";
+NET "di<10>" LOC = "Y1";
+NET "daa<9>" LOC = "V4";
+NET "daa<8>" LOC = "V3";
+NET "di<8>" LOC = "W2";
+NET "di<12>" LOC = "W1";
+NET "di<9>" LOC = "U4";
+NET "di<11>" LOC = "V2";
+NET "di<16>" LOC = "V1";
+NET "di<15>" LOC = "U2";
+NET "di<17>" LOC = "U1";
+NET "daa<7>" LOC = "T5";
+NET "daa<6>" LOC = "R5";
+NET "di<13>" LOC = "T4";
+NET "di<14>" LOC = "T3";
+NET "di<18>" LOC = "T2";
+NET "di<20>" LOC = "T1";
+NET "di<19>" LOC = "R4";
+NET "daa<5>" LOC = "R2";
+NET "daa<4>" LOC = "R1";
+NET "di<22>" LOC = "P5";
+NET "di<23>" LOC = "P4";
+NET "di<21>" LOC = "P3";
+NET "daa<3>" LOC = "P2";
+NET "daa<2>" LOC = "P1";
+NET "di<24>" LOC = "N5";
+NET "di<25>" LOC = "N4";
+NET "di<26>" LOC = "N3";
+NET "di<27>" LOC = "N2";
+NET "di<29>" LOC = "N1";
+NET "di<30>" LOC = "M6";
+NET "di<28>" LOC = "M5";
+NET "daa<1>" LOC = "M4";
+NET "daa<0>" LOC = "M3";
+NET "di<31>" LOC = "M1";
+NET "led<2>" LOC = "L5";
+NET "led<3>" LOC = "J5";
+NET "led<1>" LOC = "J1";
+NET "led<4>" LOC = "J2";
+NET "drdy" LOC = "J3";
+NET "dab<13>" LOC = "J4";
+NET "dab<12>" LOC = "H1";
+NET "dab<11>" LOC = "H2";
+NET "led<0>" LOC = "H3";
+NET "udpres" LOC = "H4";
+NET "umi<1>" LOC = "H5";
+NET "booten" LOC = "G1";
+NET "dab<10>" LOC = "G3";
+NET "dab<9>" LOC = "G4";
+NET "umi<2>" LOC = "F2";
+NET "dab<8>" LOC = "G5";
+NET "dab<7>" LOC = "F5";
+NET "f1" LOC = "E1";
+NET "umi<0>" LOC = "E2";
+NET "clkout" LOC = "E3";
+NET "trig0" LOC = "E4";
+NET "f0" LOC = "D2";
+NET "trig1" LOC = "C1";
+NET "vcs" LOC = "AA3";
+NET "vwrite" LOC = "Y4";
+NET "vpd<7>" LOC = "AA4";
+NET "vpd<6>" LOC = "AB4";
+NET "vpd<5>" LOC = "W5";
+NET "vpd<4>" LOC = "Y5";
+NET "dab<1>" LOC = "A5";
+NET "dab<0>" LOC = "B5";
+NET "di<1>" LOC = "AA5";
+NET "di<2>" LOC = "AB5";
+NET "di<6>" LOC = "V7";
+NET "wrt0" LOC = "C6";
+NET "di<4>" LOC = "W6";
+NET "di<5>" LOC = "Y6";
+NET "wrt1" LOC = "E8";
+NET "dab<6>" LOC = "E7";
+NET "dif_ren<0>" LOC = "AB6";
+NET "dif_ren<2>" LOC = "W7";
+NET "di<3>" LOC = "Y7";
+NET "adc_data<1>" LOC = "C7";
+NET "adc_data<0>" LOC = "D7";
+NET "dif_ren<1>" LOC = "AA7";
+NET "adc_data<5>" LOC = "A7";
+NET "adc_data<4>" LOC = "B7";
+NET "di<0>" LOC = "V8";
+NET "adc_data<3>" LOC = "C8";
+NET "adc_data<2>" LOC = "D8";
+NET "dif_ren<3>" LOC = "W8";
+NET "dif_ren<4>" LOC = "Y8";
+NET "adc_data<9>" LOC = "A8";
+NET "adc_data<8>" LOC = "B8";
+NET "dif_ren<5>" LOC = "AA8";
+NET "daa<11>" LOC = "W9";
+NET "daa<10>" LOC = "Y9";
+NET "adc_data<7>" LOC = "C9";
+NET "adc_data<6>" LOC = "D9";
+NET "adc_data<11>" LOC = "A9";
+NET "adc_data<10>" LOC = "B9";
+NET "dif_ef<0>" LOC = "V9";
+NET "dab<3>" LOC = "C10";
+NET "dab<2>" LOC = "D10";
+NET "osc3_pin" LOC = "E10";
+NET "daa<13>" LOC = "AA10";
+NET "daa<12>" LOC = "AB10";
+NET "adc_data<13>" LOC = "A10";
+NET "adc_data<12>" LOC = "B10";
+NET "dab<5>" LOC = "F11";
+NET "dab<4>" LOC = "E11";
+NET "dif_ae<0>" LOC = "V11";
+NET "diclk" LOC = "Y11";
+NET "dif_oen<0>" LOC = "AB13";
+NET "dif_oen<2>" LOC = "Y13";
+NET "dif_oen<3>" LOC = "V13";
+NET "digital_io<0>" LOC = "A14";
+NET "digital_io<1>" LOC = "B14";
+NET "digital_io<2>" LOC = "A17";
+NET "digital_io<3>" LOC = "B17";
+NET "digital_io<4>" LOC = "A13";
+NET "digital_io<5>" LOC = "B13";
+NET "digital_io<6>" LOC = "C16";
+NET "digital_io<7>" LOC = "D16";
+NET "dof_wen<0>" LOC = "Y14";
+NET "dif_oen<4>" LOC = "W14";
+NET "dif_oen<5>" LOC = "V14";
+NET "dof_wen<2>" LOC = "AB15";
+NET "dof_wen<4>" LOC = "AA15";
+NET "dof_wen<5>" LOC = "Y15";
+NET "dof_wen<1>" LOC = "W15";
+NET "reset_pin" LOC = "E15";
+NET "dof_af<2>" LOC = "Y17";
+NET "dof_wen<3>" LOC = "W17";
+NET "dof_af<1>" LOC = "AB18";
+NET "dif_oen<1>" LOC = "AA18";
+NET "enc_p" LOC = "D17";
+NET "enc_n" LOC = "C17";
+NET "vpd<3>" LOC = "Y18";
+NET "vpd<2>" LOC = "W18";
+NET "vpd<1>" LOC = "V17";
+NET "vpd<0>" LOC = "V18";
+NET "vbusy" LOC = "AB19";
+NET "do<2>" LOC = "W22";
+NET "f2" LOC = "V20";
+NET "do<1>" LOC = "T18";
+NET "do<0>" LOC = "U19";
+NET "do<3>" LOC = "U21";
+NET "do<7>" LOC = "U22";
+NET "f3" LOC = "T19";
+NET "do<4>" LOC = "T20";
+NET "do<5>" LOC = "T21";
+NET "do<6>" LOC = "R18";
+NET "do<8>" LOC = "R19";
+NET "do<10>" LOC = "R22";
+NET "do<11>" LOC = "P21";
+NET "do<12>" LOC = "P22";
+NET "do<9>" LOC = "P18";
+NET "do<13>" LOC = "N18";
+NET "do<14>" LOC = "N21";
+NET "do<15>" LOC = "M17";
+NET "do<17>" LOC = "M18";
+NET "do<16>" LOC = "M19";
+NET "do<21>" LOC = "L22";
+NET "do<20>" LOC = "L21";
+NET "do<18>" LOC = "L20";
+NET "do<19>" LOC = "L17";
+NET "do<23>" LOC = "K22";
+NET "do<22>" LOC = "K21";
+NET "do<26>" LOC = "J22";
+NET "do<24>" LOC = "J21";
+NET "do<25>" LOC = "J18";
+NET "do<27>" LOC = "H19";
+NET "do<29>" LOC = "G21";
+NET "do<31>" LOC = "G20";
+NET "do<28>" LOC = "H18";
+NET "do<30>" LOC = "G18";
+NET "fast" LOC = "F20";
+NET "dttl" LOC = "E22";
+NET "rs485_232" LOC = "E21";
+NET "t1in" LOC = "E20";
+NET "hdplx" LOC = "F18";
+NET "t2in" LOC = "C22";
+#PINLOCK_END
+NET "drdy" TNM_NET = "drdy";
+TIMESPEC "TS_drdy" = PERIOD "drdy" 100 MHz HIGH 50 %;

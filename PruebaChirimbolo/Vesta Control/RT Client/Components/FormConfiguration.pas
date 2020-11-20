@@ -1,0 +1,59 @@
+unit FormConfiguration;
+
+interface
+
+uses
+  Forms, FrameRTConfiguration, Classes, Controls;
+
+type
+  TConfiguration = class(TForm)
+    FConfiguration: TFrame_RTConfiguration;
+    procedure FormCreate(Sender: TObject);
+    procedure FConfigurationButton2Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormActivate(Sender: TObject);
+    procedure FConfigurationButton1Click(Sender: TObject);
+  public
+    { Public declarations }
+  end;
+
+var
+  Configuration : TConfiguration;
+
+implementation
+
+uses
+  TxRxForm, Shell_RTClient;
+
+{$R *.dfm}
+
+procedure TConfiguration.FormCreate(Sender: TObject);
+begin
+  Width := 500;
+  Height := 330;
+  FConfiguration.UpdateView;
+end;
+
+procedure TConfiguration.FConfigurationButton2Click(Sender: TObject);
+begin
+  FConfiguration.Button2Click(Sender);
+end;
+
+procedure TConfiguration.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Action := caFree;
+  ShellRTClient.MostrarConfig.Checked := false;
+  Configuration := nil;
+end;
+
+procedure TConfiguration.FormActivate(Sender: TObject);
+begin
+  FConfiguration.Button2Click( nil );
+end;
+
+procedure TConfiguration.FConfigurationButton1Click(Sender: TObject);
+begin
+  FConfiguration.Button1Click(Sender);
+end;
+
+end.

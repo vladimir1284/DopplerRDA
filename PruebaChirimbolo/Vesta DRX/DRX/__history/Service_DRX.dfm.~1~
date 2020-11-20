@@ -1,0 +1,6 @@
+object DRX_Service: TDRX_Service
+  OldCreateOrder = False
+  DisplayName = 'DRX'
+  Height = 234
+  Width = 370
+end

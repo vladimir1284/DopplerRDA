@@ -1,0 +1,416 @@
+//---------------------------------------------------------------------------
+#pragma hdrstop
+
+#include "QuickSyn.h"
+#include "Site.h"
+
+//---------------------------------------------------------------------------
+
+#pragma package(smart_init)
+
+static String SetOutputFrequency_Header = "0C";
+static String SetOutputPower_Header     = "03";
+static String Reset_Header              = "0E";
+static String GetId_Header              = "01";
+static String GetStatus_Header          = "02";
+static String GetFreq_Header            = "04";
+static String GetPower_Header           = "0D";
+static String GetTemperature_Header     = "10";
+static String RFOutput_Header           = "0F";
+
+static String HexDigits[] = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"};
+
+QuickSyn::QuickSyn(){
+	lock          = new TCriticalSection();
+	fReady        = false;
+	fFrequency    = 0;
+	fPower        = 0;
+	fTemperature  = 0;
+	fExtRef       = false;
+	fRF_Unlocked  = false;
+	fRef_Unlocked = false;
+	fRF_Output    = false;
+	fVoltageErr   = false;
+	fRefOutput    = false;
+	fBlanking     = false;
+	fLockRecovery = false;
+	fBadTries     = 0;
+
+#ifdef ZylSerialPort
+	ComPort = new TZylSerialPort(NULL);
+	staloPort = spNone;
+#endif
+}
+
+QuickSyn::~QuickSyn(){
+	Disconnect();
+#ifdef ZylSerialPort
+	ComPort->Free();
+#endif
+	lock->Free();
+}
+
+bool QuickSyn::TestPort(int Port){
+	bool result = false;
+	try {
+		ComPort->Port = (TCommPort)Port;
+		ComPort->Open();
+
+		if(ComPort->IsConnected()){
+		   if(Ping())
+			 result = true;
+		   else
+			 ComPort->Close();
+		}
+	} catch (...) {}
+
+	return result;
+}
+
+void QuickSyn::Connect(){
+#ifdef ZylSerialPort
+	Disconnect();
+	if(ComPort->IsConnected())
+		Disconnect();
+	staloPort = spNone;
+	ComPort->BaudRate      = Zylserialport::br115200;
+	ComPort->DataWidth     = Zylserialport::dw8Bits;
+	ComPort->Parity        = Zylserialport::pbNone;
+	ComPort->StopBits      = Zylserialport::sb1Bit;
+	ComPort->SwFlowControl = Zylserialport::sfNONE;
+	ComPort->OnReceive     = OnReceive;
+
+	if(ThisSite->Stalo_Port != 0){
+		if(TestPort(ThisSite->Stalo_Port)){
+			staloPort = (TCommPort)ThisSite->Stalo_Port;
+			fReady = true;
+		}
+	}
+
+	for(int i=1; (i < 10) && !fReady; i++){
+		if(i != ThisSite->Stalo_Port){
+			if(TestPort(i)){
+				staloPort = (TCommPort)i;
+				ThisSite->Stalo_Port = i;
+				ThisSite->SaveData();
+				fReady = true;
+			}
+		}
+	}
+
+	fBadTries = 0;
+#endif
+}
+
+void QuickSyn::Disconnect(){
+#ifdef ZylSerialPort
+	fReady    = false;
+	staloPort = spNone;
+	ComPort->Close();
+#endif
+}
+
+bool QuickSyn::SendCommand(String header, String parameter){
+	bool result = false;
+
+#ifdef ZylSerialPort
+	lock->Acquire();
+	__try {
+		try {
+			if (ComPort->IsConnected()) {
+				while(ComPort->IsSending || ComPort->IsReceiving) Sleep(10);
+				//ComPort->ClearOutputBuffer();
+				//ComPort->ClearInputBuffer();
+				ComPort->SendString(header + parameter);
+                Sleep(50);
+				while(ComPort->IsSending) Sleep(10);
+				result = true;
+			}
+		} catch (...) {}
+	} __finally{
+		lock->Release();
+	}
+#endif
+
+	return result;
+}
+
+String QuickSyn::QueryCommand(String header, String parameter){
+	String result = "";
+
+#ifdef ZylSerialPort
+	lock->Acquire();
+	__try {
+		try {
+			if (ComPort->IsConnected()) {
+				fWaitingData = false;
+				while(ComPort->IsSending || ComPort->IsReceiving) Sleep(10);
+				cmdResult = "";
+				fWaitingData = true;
+				//ComPort->ClearOutputBuffer();
+				//ComPort->ClearInputBuffer();
+				ComPort->SendString(header + parameter);
+				while(ComPort->IsSending) Sleep(10);
+				DWORD start = GetTickCount();
+				while((ComPort->IsReceiving || cmdResult.IsEmpty()) && (GetTickCount() - start < 2000)) Sleep(10);
+
+				fWaitingData = false;
+				cmdResult = StringReplace(cmdResult, "\n", "", TReplaceFlags() << rfReplaceAll << rfIgnoreCase);
+				result = cmdResult;
+			}
+		} catch (...) {}
+	} __finally{
+		lock->Release();
+	}
+#endif
+
+	return result;
+}
+
+String QuickSyn::DecToHexString(INT64 value, short length){
+	String result = "";
+	int remainder;
+
+	while (value != 0){
+		remainder = value % 16;
+		value = floor(value / 16);
+		result = HexDigits[remainder] + result;
+	}
+
+	for(int i=result.Length(); i < length; i++)
+    	result = "0" + result;
+
+	return result;
+}
+
+INT64 QuickSyn::PowerXY(int base, int exp){
+	INT64 result = 1;
+	for(int i=0; i<exp; i++){
+    	result *= base;
+	}
+	return result;
+}
+
+int QuickSyn::HexDigit(char hexValue){
+	switch (UpCase(hexValue)) {
+		case '0': return 0;
+		case '1': return 1;
+		case '2': return 2;
+		case '3': return 3;
+		case '4': return 4;
+		case '5': return 5;
+		case '6': return 6;
+		case '7': return 7;
+		case '8': return 8;
+		case '9': return 9;
+		case 'A': return 10;
+		case 'B': return 11;
+		case 'C': return 12;
+		case 'D': return 13;
+		case 'E': return 14;
+		case 'F': return 15;
+		default: return 0;
+	}
+}
+
+INT64 QuickSyn::HexStringToDec(String value, short length){
+	char hexDigit;
+	INT64 result = 0;
+	if(value.Length() >= length){
+		for(int i=0; i < length; i++){
+			hexDigit = value[length - i];
+			result += HexDigit(hexDigit) * PowerXY(16, i);
+		}
+	}
+
+	return result;
+}
+
+void QuickSyn::Reset(){
+	if(SendCommand(Reset_Header, ""))
+		Sleep(15000);
+}
+
+void QuickSyn::SetFrequency(INT64 freq){
+	if((freq >= 0) && (freq <= 1e10)){
+		INT64 desiredFreq = freq * 1000;
+		parameter = DecToHexString(desiredFreq, 12);
+
+		SendCommand(SetOutputFrequency_Header, parameter);
+	}
+}
+
+void QuickSyn::SetPower(double power){
+	if((power <= 20) && (power >= -25)){
+		INT64 desiredPower = abs(power * 10);
+		if(power < 0)
+			desiredPower |= 0x8000;
+		parameter = DecToHexString(desiredPower, 4);
+
+		SendCommand(SetOutputPower_Header, parameter);
+	}
+}
+
+void QuickSyn::SetOutputON(){
+	parameter = "01";
+	SendCommand(RFOutput_Header, parameter);
+}
+
+void QuickSyn::SetOutputOff(){
+	parameter = "00";
+	SendCommand(RFOutput_Header, parameter);
+}
+
+INT64 QuickSyn::GetFrequency(){
+	String data = QueryCommand(GetFreq_Header, "00000000000000");
+	if(data.IsEmpty())
+		return -99;
+	else{
+		INT64 freq = HexStringToDec(data, 12);
+		return freq / 1000;
+	}
+}
+
+double QuickSyn::GetPower(){
+	String data = QueryCommand(GetPower_Header, "000000");
+	if(data.IsEmpty())
+		return -99;
+	else{
+		INT64 power = HexStringToDec(data, 4);
+		return (double)power / (double)10;
+	}
+}
+
+double QuickSyn::GetTemperature(){
+	String data = QueryCommand(GetTemperature_Header, "000000");
+	if(data.IsEmpty())
+		return -99;
+	else{
+		INT64 temp = HexStringToDec(data, 4);
+		return (double)temp / (double)10;
+	}
+}
+
+bool QuickSyn::Ping(){
+	try {
+		String data = QueryCommand(GetStatus_Header, "00");
+		return !data.IsEmpty();
+	} catch (...) {
+    	return false;
+	}
+}
+
+void QuickSyn::GetStatus(){
+	String data = QueryCommand(GetStatus_Header, "00");
+	if(!data.IsEmpty()){
+		int status = HexStringToDec(data, 2);
+		fExtRef       = (status & 1)   != 0;
+		fRF_Unlocked  = (status & 2)   != 0;
+		fRef_Unlocked = (status & 4)   != 0;
+		fRF_Output    = (status & 8)   != 0;
+		fVoltageErr   = (status & 16)  != 0;
+		fRefOutput    = (status & 32)  != 0;
+		fBlanking     = (status & 64)  != 0;
+		fLockRecovery = (status & 128) != 0;
+	}
+}
+
+void QuickSyn::Update(){
+	if(Ready){
+		if (fBadTries >= 5) {
+			Disconnect();
+			fBadTries    = 0;
+			fPower       = 0;
+			fFrequency   = 0;
+			fTemperature = 0;
+
+			return;
+		}
+
+		//GetStatus();
+
+		double power = GetPower();
+		if((power <= 20) && (power >= -25)){
+			fPower = power;
+		}
+		else{
+			fBadTries++;
+			return;
+		}
+
+		INT64 freq = GetFrequency();
+		if((freq >= 0) && (freq <= 1e10)){
+		  fFrequency = freq;
+			fBadTries = 0;
+		}
+		else{
+			fBadTries++;
+			return;
+		}
+
+		double temperature = GetTemperature();
+		if(temperature > 0){
+			fTemperature = temperature;
+			fBadTries = 0;
+		}
+		else{
+			fBadTries++;
+			return;
+		}
+	}
+	else{
+		fBadTries    = 0;
+		fPower       = 0;
+		fFrequency   = 0;
+		fTemperature = 0;
+	}
+}
+
+void __fastcall QuickSyn::OnReceive(TObject *Sender, AnsiString Buffer)
+{
+	if(fWaitingData)
+		cmdResult = cmdResult + Buffer;
+}
+
+bool QuickSyn::GetExtRef(){
+	return fExtRef;
+}
+
+bool QuickSyn::GetRF_Unlocked(){
+	return fRF_Unlocked;
+}
+
+bool QuickSyn::GetRef_Unlocked(){
+	return fRef_Unlocked;
+}
+
+bool QuickSyn::GetRF_Output(){
+	return fRF_Output;
+}
+
+bool QuickSyn::GetVoltageErr(){
+	return fVoltageErr;
+}
+
+bool QuickSyn::GetRefOutput(){
+	return fRefOutput;
+}
+
+bool QuickSyn::GetBlanking(){
+	return fBlanking;
+}
+
+bool QuickSyn::GetLockRecovery(){
+	return fLockRecovery;
+}
+
+bool QuickSyn::GetConnected(){
+#ifdef ZylSerialPort
+	bool result = ComPort->IsConnected() && (staloPort != spNone);
+	if(result)
+	  result = result && Ping();
+	return result;
+#else
+	return false;
+#endif
+}

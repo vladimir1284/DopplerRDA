@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <vcl.h>
+#pragma hdrstop
+
+#if !defined(__CyclopWS_h__)
+#include "CyclopWS.h"
+#include "CommonObjs.h"
+
+#endif
+
+// ************************************************************************ //
+//  TCyclopWSImpl implements interface ICyclopWS
+// ************************************************************************ //
+class TCyclopWSImpl : public TInvokableClass, public ICyclopWS
+{
+public:
+	bool Login(String UserName, String Password);
+	bool Logout();
+public:
+  HRESULT STDMETHODCALLTYPE QueryInterface(const GUID& IID, void **Obj)
+                        { return GetInterface(IID, Obj) ? S_OK : E_NOINTERFACE; }
+  ULONG STDMETHODCALLTYPE AddRef() { return TInvokableClass::_AddRef();  }
+  ULONG STDMETHODCALLTYPE Release() { return TInvokableClass::_Release();  }
+};
+
+bool TCyclopWSImpl::Login(String UserName, String Password){
+	bool result = false;
+	if((UserName == "control") && (Password == "txrx")){
+		result = true;
+		TCyclopAuthHeader* AuthHeader = new TCyclopAuthHeader();
+		AuthHeader->UserName = UserName;
+        AuthHeader->Token = "token";
+
+		this->FSOAPHeaders->Send(AuthHeader);
+	}
+
+	return result;
+}
+
+bool TCyclopWSImpl::Logout(){
+	return true;
+}
+
+
+
+static void __fastcall CyclopWSFactory(System::TObject* &obj)
+{
+  static _di_ICyclopWS iInstance;
+  static TCyclopWSImpl *instance = 0;
+  if (!instance)
+  {
+    instance = new TCyclopWSImpl();
+    instance->GetInterface(iInstance);
+  }
+  obj = instance;
+}
+
+static void RegTypes()
+{
+  InvRegistry()->RegisterInterface(__delphirtti(ICyclopWS));
+  InvRegistry()->RegisterInvokableClass(__classid(TCyclopWSImpl), CyclopWSFactory);
+
+  InvRegistry()->RegisterHeaderClass(__delphirtti(ICyclopWS), __classid(TCyclopAuthHeader));
+  RemClassRegistry()->RegisterXSClass(__classid(TCyclopAuthHeader));
+
+}
+#pragma startup RegTypes 32
+

@@ -1,0 +1,26 @@
+unit VestaWSIntf;
+
+interface
+
+uses InvokeRegistry, Types, XSBuiltIns;
+
+type
+  IVestaWS = interface(IInvokable)
+  ['{511CF5FF-C254-40B8-98FA-D788BA208998}']
+    function Get_Version: WideString; safecall;
+    function Get_SystemDateTime: TDateTime; safecall;
+    function Get_SystemTimeZone: Double; safecall;
+
+    property Version: WideString read Get_Version;
+    property SystemDateTime: TDateTime read Get_SystemDateTime;
+    property SystemTimeZone: Double read Get_SystemTimeZone;
+  end;
+
+implementation
+
+initialization
+  { Invokable interfaces must be registered }
+  InvRegistry.RegisterInterface(TypeInfo(IVestaWS));
+
+end.
+ 

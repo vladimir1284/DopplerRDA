@@ -1,0 +1,122 @@
+#include <stdio.h>
+#include <vcl.h>
+#pragma hdrstop
+
+#if !defined(__DRX_Configuration_WS_h__)
+#include "DRX_Configuration_WS.h"
+#include "CommonObjs.h"
+#include "config.h"
+#include "Site.h"
+#endif
+
+// ************************************************************************ //
+//  TDRX_Configuration_WSImpl implements interface IDRX_Configuration_WS
+// ************************************************************************ //
+class TDRX_Configuration_WSImpl : public TInvokableClass, public IDRX_Configuration_WS
+{
+public:
+	TSettings* Get_Configuration();
+	void Set_Configuration(TSettings* data);
+
+	int Get_DRX_Dinamic_Range_LP();
+	int Get_DRX_Dinamic_Range_SP();
+	int Get_DRX_Sensibility_LP();
+	int Get_DRX_Sensibility_SP();
+	String Get_DRX_Table_LP();
+	String Get_DRX_Table_SP();
+
+	void Set_DRX_Sensibility_LP(int value);
+	void Set_DRX_Sensibility_SP(int value);
+	void Set_DRX_Dinamic_Range_LP(int value);
+	void Set_DRX_Dinamic_Range_SP(int value);
+	void Set_DRX_Table_LP(String value);
+	void Set_DRX_Table_SP(String value);
+
+public:
+  HRESULT STDMETHODCALLTYPE QueryInterface(const GUID& IID, void **Obj)
+						{ return GetInterface(IID, Obj) ? S_OK : E_NOINTERFACE; }
+  ULONG STDMETHODCALLTYPE AddRef() { return TInvokableClass::_AddRef();  }
+  ULONG STDMETHODCALLTYPE Release() { return TInvokableClass::_Release();  }
+};
+
+void TDRX_Configuration_WSImpl::Set_Configuration(TSettings* data){
+	ThisSite->ImportData(data);
+}
+
+TSettings* TDRX_Configuration_WSImpl::Get_Configuration(){
+	return ThisSite->ExportData();
+}
+
+int TDRX_Configuration_WSImpl::Get_DRX_Dinamic_Range_LP(){
+	return ThisSite->Dinamic_range_LP;
+}
+
+int TDRX_Configuration_WSImpl::Get_DRX_Dinamic_Range_SP(){
+	return ThisSite->Dinamic_range_SP;
+}
+
+int TDRX_Configuration_WSImpl::Get_DRX_Sensibility_LP(){
+	return ThisSite->Sensibility_LP;
+}
+
+int TDRX_Configuration_WSImpl::Get_DRX_Sensibility_SP(){
+	return ThisSite->Sensibility_SP;
+}
+
+String TDRX_Configuration_WSImpl::Get_DRX_Table_LP(){
+  return ThisSite->Conv_table_lp_text;
+}
+
+String TDRX_Configuration_WSImpl::Get_DRX_Table_SP(){
+  return ThisSite->Conv_table_sp_text;
+}
+
+void TDRX_Configuration_WSImpl::Set_DRX_Dinamic_Range_LP(int value){
+	ThisSite->Dinamic_range_LP = value;
+	ThisSite->SaveData();
+}
+
+void TDRX_Configuration_WSImpl::Set_DRX_Dinamic_Range_SP(int value){
+	ThisSite->Dinamic_range_SP = value;
+	ThisSite->SaveData();
+}
+
+void TDRX_Configuration_WSImpl::Set_DRX_Sensibility_LP(int value){
+	ThisSite->Sensibility_LP = value;
+	ThisSite->SaveData();
+}
+
+void TDRX_Configuration_WSImpl::Set_DRX_Sensibility_SP(int value){
+	ThisSite->Sensibility_SP = value;
+	ThisSite->SaveData();
+}
+
+void TDRX_Configuration_WSImpl::Set_DRX_Table_LP(String value){
+	ThisSite->Conv_table_lp_text = value;
+	ThisSite->SaveData();
+}
+
+void TDRX_Configuration_WSImpl::Set_DRX_Table_SP(String value){
+	ThisSite->Conv_table_sp_text = value;
+	ThisSite->SaveData();
+}
+
+static void __fastcall DRX_Configuration_WSFactory(System::TObject* &obj)
+{
+  static _di_IDRX_Configuration_WS iInstance;
+  static TDRX_Configuration_WSImpl *instance = 0;
+  if (!instance)
+  {
+    instance = new TDRX_Configuration_WSImpl();
+    instance->GetInterface(iInstance);
+  }
+  obj = instance;
+}
+
+static void RegTypes()
+{
+  InvRegistry()->RegisterInterface(__delphirtti(IDRX_Configuration_WS));
+  InvRegistry()->RegisterInvokableClass(__classid(TDRX_Configuration_WSImpl), DRX_Configuration_WSFactory);
+}
+#pragma startup RegTypes 32
+

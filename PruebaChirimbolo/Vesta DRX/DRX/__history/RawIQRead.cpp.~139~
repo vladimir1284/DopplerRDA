@@ -1,0 +1,178 @@
+#include <vcl.h>
+#include <string.h>
+#pragma hdrstop
+
+#include "RawIQRead.h"
+#include "Site.h"
+#pragma package(smart_init)
+
+__fastcall RawIQRead::RawIQRead(bool CreateSuspended): TThread(CreateSuspended)
+{
+  this->Priority  = tpTimeCritical;
+
+  IQReadInterface = new FIFOInterface(FifoD);
+  TheRawIQData = new RawPulseData[NRAWPULSESOUT];  //Place to store float converted values
+  FlatArray = new short[SPSize * NREAD * NUMBEROFBUFFERS]; //Alloc linear memory chunk
+
+  CurrentOutBuffer   = 0;
+  CurrentProcBuffer  = 0;
+  BadPulses          = 0;
+  Counter            = 0;
+  SequenceNumber     = 0;
+  CurrentOutputCount = 0;
+
+  for(int i = 0; i < NUMBEROFBUFFERS; i++){
+	InputBuffer[i] = &FlatArray[SPSize * NREAD * i];  //Partition memory to 2d array
+  }
+
+  for(int i = 0; i < NRAWPULSESOUT; i++){
+   OutputBufferFull[i] = false;
+  }
+
+  for(int i = 0; i < NUMBEROFBUFFERS; i++){
+	   InputBufferFull[i] = false;
+  }
+
+  Set8087CW(0x133f);
+}
+
+//---------------------------------------------------------------------------
+void __fastcall RawIQRead::Execute()
+{
+  unsigned int CurrentBuffer = 0;
+
+  //flush Fifos
+  IQReadInterface->ReadVector(FlatArray, NDUMPS * sizeof(myDump[0]) * SPSize);
+
+  while(!Terminated){
+	 // Fill NREAD buffers at once.
+	 IQReadInterface->StartReadVector(InputBuffer[CurrentBuffer], SPSize * sizeof(InputBuffer[0][0]) * NREAD);
+
+	 while(!IQReadInterface->IsReadComplete()){
+	   if(!PartitionData()){
+		 IQReadInterface->WaitForReadComplete();
+	   }
+	 }
+	 
+	 InputBufferFull[CurrentBuffer] = true;
+	 CurrentBuffer++;
+	 CurrentBuffer %= NUMBEROFBUFFERS;
+   }
+}
+//---------------------------------------------------------------------------
+
+bool __fastcall RawIQRead::PartitionData()
+{
+  //first find data then process then mark.
+  int Ndata;
+
+  //Counter marks location along the big buffer
+  //But there are sub buffers within the big one
+  CurrentProcBuffer = Counter / (SPSize * NREAD);
+
+  /* Need 2 sub-buffers full to account for overlap at ends of one buffer. */
+  if( !(InputBufferFull[CurrentProcBuffer] && InputBufferFull[(CurrentProcBuffer + 1) % NUMBEROFBUFFERS]) ){
+	 return false;
+  }
+
+  while((Counter+1 < BIGBUFFERSIZE) && !(FlatArray[Counter] == -1  &&  FlatArray[Counter + 1] == 0x7FFF)){
+	//Skip along big buffer till we find start of data
+	Counter++;
+	Counter %= BIGBUFFERSIZE;
+  }
+
+  if((Counter+1+SPSize < BIGBUFFERSIZE) && (FlatArray[Counter + SPSize] == -1) && (FlatArray[Counter + 1] == 0x7FFF) ){
+	 Ndata = SPSize;
+  }
+  else if((Counter+1+LPSize < BIGBUFFERSIZE) && (FlatArray[Counter + LPSize] == -1) && (FlatArray[Counter + 1 + LPSize] == 0x7FFF) ){
+			Ndata = LPSize;
+	   }
+	   else if((Counter+1+SPSizeDual < BIGBUFFERSIZE) && (FlatArray[Counter + SPSizeDual] == -1) && (FlatArray[Counter + 1 + SPSizeDual] == 0x7FFF) ){
+				Ndata = SPSizeDual;
+			}
+			else{
+				//If not, fifo has overflowed or something else bad
+				//Move along and restart read
+				Counter++;
+				Counter %= BIGBUFFERSIZE;
+				BadPulses++;
+				return true;
+			}
+
+  //Process data
+  TheRawIQData[CurrentOutputCount].NData = (Ndata - 4) / 2;     //NSamples minus headers
+  TheRawIQData[CurrentOutputCount].SequenceNumber = SequenceNumber;
+
+  short LowHeader = FlatArray[Counter + 2];
+  short HighHeader = FlatArray[Counter + 3];
+
+  TheRawIQData[CurrentOutputCount].SPMode 		  = (HighHeader >> 15) & 1;
+  TheRawIQData[CurrentOutputCount].PRFChange      = (HighHeader >> 14) & 1;
+  TheRawIQData[CurrentOutputCount].ShortAzimuth   = HighHeader & 0x3FFF;
+
+  TheRawIQData[CurrentOutputCount].PRFRate        = LowHeader >> 14 & 3;
+  TheRawIQData[CurrentOutputCount].ShortElevation = LowHeader & 0x3FFF;
+
+  TheRawIQData[CurrentOutputCount].FloatAzimuth   = TheRawIQData[CurrentOutputCount].ShortAzimuth * CONV_FACTOR;
+  TheRawIQData[CurrentOutputCount].FloatElevation = TheRawIQData[CurrentOutputCount].ShortElevation * CONV_FACTOR;
+
+  if(!TheRawIQData[CurrentOutputCount].SPMode){
+	TheRawIQData[CurrentOutputCount].PulseMode = LP_MODE;
+  }
+  else if (TheRawIQData[CurrentOutputCount].PRFRate == PRF_Rate_None){
+		 TheRawIQData[CurrentOutputCount].PulseMode = SP_MODE;
+	   }
+	   else{
+		 TheRawIQData[CurrentOutputCount].PulseMode = TheRawIQData[CurrentOutputCount].PRFRate * 5 + TheRawIQData[CurrentOutputCount].PRFChange;
+	   }
+
+  ThisSite->TheRadar->SetCurrentPulseMode(TheRawIQData[CurrentOutputCount].PulseMode);
+  ThisSite->TheRadar->SetCurrentIntAzim(TheRawIQData[CurrentOutputCount].ShortAzimuth);
+  ThisSite->TheRadar->SetCurrentIntElev(TheRawIQData[CurrentOutputCount].ShortElevation);
+
+  for (int i = 0; i < TheRawIQData[CurrentOutputCount].NData; i++){
+	TheRawIQData[CurrentOutputCount].I[i] = FlatArray[Counter + 5 + 2 * i];    // 4 and 5 to skip headers
+	TheRawIQData[CurrentOutputCount].Q[i] = FlatArray[Counter + 4 + 2 * i];
+  }
+
+  OutputBufferFull[CurrentOutputCount] = true;
+  CurrentOutputCount++;
+  CurrentOutputCount %= NRAWPULSESOUT;
+
+  //mark last read buffer as empty
+
+  // int d=FlatArray[Counter%BIGBUFFERSIZE];
+  Counter += Ndata;
+  Counter %= BIGBUFFERSIZE;
+  SequenceNumber++;
+
+  //Move counter back 1 read block to find block to mark as clean
+  int LastBuffer = (Counter + BIGBUFFERSIZE - SPSize * NREAD) % BIGBUFFERSIZE;
+  LastBuffer /= (SPSize * NREAD);   //Divide by size of reads to get buffer number
+  InputBufferFull[LastBuffer] = false;
+
+  return true;
+}
+
+bool __fastcall RawIQRead::GetPulseData(RawPulseData * ThisPulse)
+{
+  static unsigned int LastPulse = 0;
+  while( OutputBufferFull[LastPulse] == false){
+	Sleep(2);      //Wait for data
+  }
+  memcpy(ThisPulse, &TheRawIQData[LastPulse], sizeof(RawPulseData));
+  OutputBufferFull[LastPulse] = false;
+  LastPulse++;
+  LastPulse %= NRAWPULSESOUT;
+  return true;
+}
+
+int RawIQRead::GetBadPulses(){
+	return BadPulses;
+}
+
+
+
+
+
+

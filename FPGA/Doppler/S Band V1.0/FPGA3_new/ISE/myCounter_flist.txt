@@ -1,0 +1,10 @@
+# Output products list for <myCounter>
+myCounter.ngc
+myCounter.v
+myCounter.veo
+myCounter.vhd
+myCounter.vho
+myCounter.xco
+myCounter_c_counter_binary_v8_0_xst_1.ngc_xst.xrpt
+myCounter_flist.txt
+myCounter_xmdf.tcl

@@ -1,0 +1,76 @@
+// ************************************************************************ //
+// The types declared in this file were generated from data read from the
+// WSDL File described below:
+// WSDL     : http://localhost:9999/wsdl/ITxRxCh2WS
+// Encoding : utf-8
+// Version  : 1.0
+// (4/19/2011 12:07:27 AM - 1.33.2.5)
+// ************************************************************************ //
+
+unit TxRxCh2WS;
+
+interface
+
+uses InvokeRegistry, SOAPHTTPClient, Types, XSBuiltIns, TxRxChWS;
+
+type
+  // ************************************************************************ //
+  // Namespace : urn:TxRxCh2WSIntf-ITxRxCh2WS
+  // soapAction: urn:TxRxCh2WSIntf-ITxRxCh2WS#%operationName%
+  // transport : http://schemas.xmlsoap.org/soap/http
+  // style     : rpc
+  // binding   : ITxRxCh2WSbinding
+  // service   : ITxRxCh2WSservice
+  // port      : ITxRxCh2WSPort
+  // URL       : http://localhost:9999/soap/ITxRxCh2WS
+  // ************************************************************************ //
+  ITxRxCh2WS = interface(ITxRxChWS)
+  ['{8A701126-2C73-520D-CDAE-0CD6720E9934}']
+  end;
+
+function GetITxRxCh2WS(UseWSDL: Boolean=System.False; Addr: string=''; HTTPRIO: THTTPRIO = nil): ITxRxCh2WS;
+
+
+implementation
+
+function GetITxRxCh2WS(UseWSDL: Boolean; Addr: string; HTTPRIO: THTTPRIO): ITxRxCh2WS;
+const
+  defWSDL = 'http://localhost:9999/wsdl/ITxRxCh2WS';
+  defURL  = 'http://localhost:9999/soap/ITxRxCh2WS';
+  defSvc  = 'ITxRxCh2WSservice';
+  defPrt  = 'ITxRxCh2WSPort';
+var
+  RIO: THTTPRIO;
+begin
+  Result := nil;
+  if (Addr = '') then
+  begin
+    if UseWSDL then
+      Addr := defWSDL
+    else
+      Addr := defURL;
+  end;
+  if HTTPRIO = nil then
+    RIO := THTTPRIO.Create(nil)
+  else
+    RIO := HTTPRIO;
+  try
+    Result := (RIO as ITxRxCh2WS);
+    if UseWSDL then
+    begin
+      RIO.WSDLLocation := Addr;
+      RIO.Service := defSvc;
+      RIO.Port := defPrt;
+    end else
+      RIO.URL := Addr;
+  finally
+    if (Result = nil) and (HTTPRIO = nil) then
+      RIO.Free;
+  end;
+end;
+
+
+initialization
+  InvRegistry.RegisterInterface(TypeInfo(ITxRxCh2WS), 'urn:TxRxCh2WSIntf-ITxRxCh2WS', 'utf-8');
+  InvRegistry.RegisterDefaultSOAPAction(TypeInfo(ITxRxCh2WS), 'urn:TxRxCh2WSIntf-ITxRxCh2WS#%operationName%');
+end.

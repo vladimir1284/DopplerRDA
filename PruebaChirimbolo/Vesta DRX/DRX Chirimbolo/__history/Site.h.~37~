@@ -1,0 +1,35 @@
+//---------------------------------------------------------------------------
+#ifndef SiteH
+#define SiteH
+#include <vcl/classes.hpp>
+#include "Radar.h"
+#include "config.h"
+
+//---------------------------------------------------------------------------
+
+class Site
+{
+	public:
+		Settings* settings;
+
+	public:
+		Site();
+		Settings* __fastcall LoadData();
+		void __fastcall SaveData(Settings* data);
+		void __fastcall StoreData();
+		void __fastcall AssignData(Settings* data);
+		bool HasNoiseSource();
+
+		void ScanStaloPort();
+		void setPowerFactorTX(double factor);
+	public:
+		Radar * TheRadar;
+};
+
+//---------------------------------------------------------------------------
+
+extern Site* ThisSite;
+
+//---------------------------------------------------------------------------
+
+#endif

@@ -1,0 +1,41 @@
+//---------------------------------------------------------------------------
+
+#ifndef DRX_Data_PackageH
+#define DRX_Data_PackageH
+
+#include <vcl.h>
+#include <heapi.h>
+//---------------------------------------------------------------------------
+
+class DRX_Data_Package{
+private:
+	short _Az;
+	short _El;
+	short _BufferDataType;
+	short _NData;
+	short _Mode;
+	String _DataType;
+	void*  _data;
+
+	short getBufferDataSize();
+	short getBufferSize();
+public:
+	__property short Mode           = { read= _Mode};
+	__property short Az             = { read= _Az};
+	__property short El             = { read= _El};
+	__property String DataType      = { read= _DataType};
+	__property short NData          = { read= _NData};
+	__property short BufferDataType = { read= _BufferDataType};
+	__property void* Data           = { read= _data};
+	__property short BufferDataSize = { read= getBufferDataSize};
+	__property short BufferSize     = { read= getBufferSize};
+
+	DRX_Data_Package();
+	~DRX_Data_Package();
+
+	void InitMsg(String msg, short Azimuth, short Elevation, short BufferType, short NData, void* Data);
+};
+
+//---------------------------------------------------------------------------
+
+#endif

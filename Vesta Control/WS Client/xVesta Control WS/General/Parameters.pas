@@ -1,0 +1,646 @@
+unit Parameters;
+
+interface
+
+uses
+  ElbrusTypes;
+
+// Synchro
+
+function  LoadN1Source : integer;
+function  LoadSampleRate : cardinal;
+function  LoadPLRate : cardinal;
+function  LoadPCRate : cardinal;
+function  LoadPLTimes : CounterTimes;
+function  LoadPCTimes : CounterTimes;
+function  LoadCh1Port : integer;
+function  LoadCh2Port : integer;
+
+procedure SaveN1Source( Source : integer );
+procedure SaveSampleRate( SampleRate : cardinal );
+procedure SavePLRate( Rate : cardinal );
+procedure SavePCRate( Rate : cardinal );
+procedure SavePLTimes( var Counter_Times : CounterTimes );
+procedure SavePCTimes( var Counter_Times : CounterTimes );
+procedure SaveCh1Port( Ch1Port : integer );
+procedure SaveCh2Port( Ch2Port : integer );
+
+// Analog input
+
+function  LoadAIGains : AnalogGains;
+procedure SaveAIGains( var Gains : AnalogGains );
+
+function  LoadAIRange( AI : AIRange ) : TAIRange;
+function  LoadAISector( AI : AIRange ) : TAIRange;
+procedure SaveAIRange( AI : AIRange; const Range : TAIRange );
+procedure SaveAISector( AI : AIRange; const Range : TAIRange );
+
+// Antenna
+
+function  LoadKPosAz : single;
+function  LoadKVelAz : single;
+procedure SaveKPosAz( Value : single );
+procedure SaveKVelAz( Value : single );
+
+function  LoadKPosEl : single;
+function  LoadKVelEl : single;
+procedure SaveKPosEl( Value : single );
+procedure SaveKVelEl( Value : single );
+
+// Angle input
+
+function  LoadAngleCodeRate : integer;
+function  LoadAngleClockwiseRotationX : boolean;
+function  LoadAngleClockwiseRotationY : boolean;
+function  LoadAngleClockwiseRotationZ : boolean;
+
+procedure SaveAngleCodeRate( Code : integer );
+procedure SaveAngleClockwiseRotationX( Value : boolean );
+procedure SaveAngleClockwiseRotationY( Value : boolean );
+procedure SaveAngleClockwiseRotationZ( Value : boolean );
+
+//Video
+
+function  LoadVideoGains : VideoGains;
+procedure SaveVideoGains( var Gains : VideoGains );
+
+implementation
+
+uses
+  Registry, RDAReg;
+
+const
+  AntennaKey = RDARootKey + '\Antenna';
+  AzVKValue  = 'Az_Spd_K';
+  ElVKValue  = 'El_Spd_K';
+  AzPKValue  = 'Az_Pos_K';
+  ElPKValue  = 'El_Pos_K';
+
+const
+  AIGainsKey   = RDARootKey + '\AI_Gains';
+  AIGainsValue = 'Gains';
+
+const
+  AIKey     = RDARootKey + '\AI\';
+  RangeKey  = 'Range\';
+  SectorKey = 'Sector\';
+  MinValue  = 'Min';
+  MaxValue  = 'Max';
+
+const
+  DevaKey         = RDARootKey + '\Deva';
+  RateCodeValue   = 'Rate_Code';
+  ClockwiseXValue = 'Clockwise_X';
+  ClockwiseYValue = 'Clockwise_Y';
+  ClockwiseZValue = 'Clockwise_Z';
+
+const
+  VideoKey        = RDARootKey + '\Video';
+  SampleRateValue = 'Sample_Rate';
+  Ch1PortValue    = 'Ch1Port';
+  Ch2PortValue    = 'Ch2Port';
+  GainsValue      = 'VideoGains';
+
+const
+  SynchroKey   = RDARootKey + '\Synchro';
+  SourceValue  = 'Source';
+  SynchroKeyPL = SynchroKey + '\Pulse_Long';
+  SynchroKeyPC = SynchroKey + '\Pulse_Short';
+  RateValue    = 'Rate';
+  TimesValue   = 'Times';
+
+// Synchro
+
+function LoadN1Source : integer;
+const
+  DefaultSource = 1; 
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(SynchroKey, false) and ValueExists(SourceValue)
+        then Result := ReadInteger(SourceValue)
+        else Result := DefaultSource;
+    finally
+      Free;
+    end;
+end;
+
+function LoadSampleRate : cardinal;
+const
+  DefaultSampleRate = 1000000;  //um KHz ... 1 MHz :- 150 meter cells
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(VideoKey, false) and ValueExists(SampleRateValue)
+        then Result := ReadInteger(SampleRateValue)
+        else Result := DefaultSampleRate;
+    finally
+      Free;
+    end;
+end;
+
+function LoadCh1Port : integer;
+const
+  DefaultCh1Port = 1;
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(VideoKey, false) and ValueExists(Ch1PortValue)
+        then Result := ReadInteger(Ch1PortValue)
+        else Result := DefaultCh1Port;
+    finally
+      Free;
+    end;
+end;
+
+function LoadCh2Port : integer;
+const
+  DefaultCh2Port = 0;
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(VideoKey, false) and ValueExists(Ch2PortValue)
+        then Result := ReadInteger(Ch2PortValue)
+        else Result := DefaultCh2Port;
+    finally
+      Free;
+    end;
+end;
+
+function LoadPLRate : cardinal;
+const
+  DefaultPLRate = 250;
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(SynchroKeyPL, false) and ValueExists(RateValue)
+        then Result := ReadInteger(RateValue)
+        else Result := DefaultPLRate;
+    finally
+      Free;
+    end;
+end;
+
+function LoadPCRate : cardinal;
+const
+  DefaultPCRate = 500;
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(SynchroKeyPC, false) and ValueExists(RateValue)
+        then Result := ReadInteger(RateValue)
+        else Result := DefaultPCRate;
+    finally
+      Free;
+    end;
+end;
+
+function LoadPLTimes : CounterTimes;
+const
+  DefaultPLTimes : CounterTimes = (100, 3000, 3090, 3300, 3890, 3950, 3950);
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(SynchroKeyPL, false) and ValueExists(TimesValue)
+        then ReadBinaryData(TimesValue, Result, sizeof(Result))
+        else Result := DefaultPLTimes;
+    finally
+      Free;
+    end;
+end;
+
+function LoadPCTimes : CounterTimes;
+const
+  DefaultPCTimes : CounterTimes = (100, 700, 775, 1050, 1695, 1964, 1964);
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(SynchroKeyPC, false) and ValueExists(TimesValue)
+        then ReadBinaryData(TimesValue, Result, sizeof(Result))
+        else Result := DefaultPCTimes;
+    finally
+      Free;
+    end;
+end;
+
+procedure SaveN1Source( Source : integer );
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(SynchroKey, true)
+        then WriteInteger(SourceValue, Source);
+    finally
+      Free;
+    end;
+end;
+
+procedure SaveSampleRate( SampleRate : cardinal );
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(VideoKey, true)
+        then WriteInteger(SampleRateValue, SampleRate);
+    finally
+      Free;
+    end;
+end;
+
+procedure SavePLRate( Rate : cardinal );
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(SynchroKeyPL, true)
+        then WriteInteger(RateValue, Rate);
+    finally
+      Free;
+    end;
+end;
+
+procedure SavePCRate( Rate : cardinal );
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(SynchroKeyPC, true)
+        then WriteInteger(RateValue, Rate);
+    finally
+      Free;
+    end;
+end;
+
+procedure SavePLTimes( var Counter_Times : CounterTimes );
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(SynchroKeyPL, true)
+        then WriteBinaryData(TimesValue, Counter_Times, sizeof(Counter_Times));
+    finally
+      Free;
+    end;
+end;
+
+procedure SavePCTimes( var Counter_Times : CounterTimes );
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(SynchroKeyPC, true)
+        then WriteBinaryData(TimesValue, Counter_Times, sizeof(Counter_Times));
+    finally
+      Free;
+    end;
+end;
+
+procedure SaveCh1Port( Ch1Port : integer );
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(VideoKey, true)
+        then WriteInteger(Ch1PortValue, Ch1Port);
+    finally
+      Free;
+    end;
+end;
+
+procedure SaveCh2Port( Ch2Port : integer );
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(VideoKey, true)
+        then WriteInteger(Ch2PortValue, Ch2Port);
+    finally
+      Free;
+    end;
+end;
+
+
+function LoadAIGains : AnalogGains;
+const
+  DefaultGains : AnalogGains = (2, 1, 0, 1, 0, 0, 0, 0, 0, 0, 2, 1, 0, 0, 0, 0);
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(AIGainsKey, false) and ValueExists(AIGainsValue)
+        then ReadBinaryData(AIGainsValue, Result, sizeof(Result))
+        else Result := DefaultGains;
+    finally
+      Free;
+    end;
+end;
+
+procedure SaveAIGains( var Gains : AnalogGains );
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(AIGainsKey, true)
+        then WriteBinaryData(AIGainsValue, Gains, sizeof(Gains));
+    finally
+      Free;
+    end;
+end;
+
+// Az
+
+function LoadKPosAz : single;
+const
+  DefaultK = 5.0;
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(AntennaKey, false) and ValueExists(AzPKValue)
+        then Result := ReadFloat(AzPKValue)
+        else Result := DefaultK;
+    finally
+      Free;
+    end;
+end;
+
+function LoadKVelAz : single;
+const
+  DefaultK = 1.0;
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(AntennaKey, false) and ValueExists(AzVKValue)
+        then Result := ReadFloat(AzVKValue)
+        else Result := DefaultK;
+    finally
+      Free;
+    end;
+end;
+
+procedure SaveKPosAz( Value : single );
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(AntennaKey, true)
+        then WriteFloat(AzPKValue, Value);
+    finally
+      Free;
+    end;
+end;
+
+procedure SaveKVelAz( Value : single );
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(AntennaKey, true)
+        then WriteFloat(AzVKValue, Value);
+    finally
+      Free;
+    end;
+end;
+
+// El
+
+function LoadKPosEl : single;
+const
+  DefaultK = 25.0;
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(AntennaKey, false) and ValueExists(ElPKValue)
+        then Result := ReadFloat(ElPKValue)
+        else Result := DefaultK;
+    finally
+      Free;
+    end;
+end;
+
+function LoadKVelEl : single;
+const
+  DefaultK = 1.0;
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(AntennaKey, false) and ValueExists(ElVKValue)
+        then Result := ReadFloat(ElVKValue)
+        else Result := DefaultK;
+    finally
+      Free;
+    end;
+end;
+
+procedure SaveKPosEl( Value : single );
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(AntennaKey, true)
+        then WriteFloat(ElPKValue, Value);
+    finally
+      Free;
+    end;
+end;
+
+procedure SaveKVelEl( Value : single );
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(AntennaKey, true)
+        then WriteFloat(ElVKValue, Value);
+    finally
+      Free;
+    end;
+end;
+
+// Analog Input
+
+function LoadAIRange( AI : AIRange ) : TAIRange;
+begin
+  Result.Min := Low (AnalogSample);
+  Result.Max := High(AnalogSample);
+  with TRDAReg.Create do
+    try
+      if OpenKey(AIKey + RangeKey + AI_Names[AI], false)
+        then
+          with Result do
+            begin
+              Min := ReadInteger(MinValue);
+              Max := ReadInteger(MaxValue);
+            end;
+    finally
+      Free;
+    end
+end;
+
+function LoadAISector( AI : AIRange ) : TAIRange;
+begin
+  Result.Min := Low (AnalogSample);
+  Result.Max := High(AnalogSample);
+  with TRDAReg.Create do
+    try
+      if OpenKey(AIKey + SectorKey + AI_Names[AI], false)
+        then
+          with Result do
+            begin
+              Min := ReadInteger(MinValue);
+              Max := ReadInteger(MaxValue);
+            end;
+    finally
+      Free;
+    end
+end;
+
+procedure SaveAIRange( AI : AIRange; const Range : TAIRange );
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(AIKey + RangeKey + AI_Names[AI], true)
+        then
+          begin
+            WriteInteger(MinValue, Range.Min);
+            WriteInteger(MaxValue, Range.Max);
+          end;
+    finally
+      Free;
+    end
+end;
+
+procedure SaveAISector( AI : AIRange; const Range : TAIRange );
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(AIKey + SectorKey + AI_Names[AI], true)
+        then
+          begin
+            WriteInteger(MinValue, Range.Min);
+            WriteInteger(MaxValue, Range.Max);
+          end;
+    finally
+      Free;
+    end
+end;
+
+// Analog Input
+
+function LoadAngleCodeRate : integer;
+const
+//DefaultCode = 0;  // 2.5  MHz
+//DefaultCode = 1;  // 1.25 MHz
+//DefaultCode = 2;  // 625  KHz
+//DefaultCode = 3;  // 312  KHz
+//DefaultCode = 4;  // 156  KHz
+  DefaultCode = 5;  // 78   KHz
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(DevaKey, false) and ValueExists(RateCodeValue)
+        then Result := ReadInteger(RateCodeValue)
+        else Result := DefaultCode;
+    finally
+      Free;
+    end;
+end;
+
+function LoadAngleClockwiseRotationX : boolean;
+const
+  DefaultClockwise = true;
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(DevaKey, false) and ValueExists(ClockwiseXValue)
+        then Result := ReadBool(ClockwiseXValue)
+        else Result := DefaultClockwise;
+    finally
+      Free;
+    end;
+end;
+
+function LoadAngleClockwiseRotationY : boolean;
+const
+  DefaultClockwise = true;
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(DevaKey, false) and ValueExists(ClockwiseYValue)
+        then Result := ReadBool(ClockwiseYValue)
+        else Result := DefaultClockwise;
+    finally
+      Free;
+    end;
+end;
+
+function LoadAngleClockwiseRotationZ : boolean;
+const
+  DefaultClockwise = true;
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(DevaKey, false) and ValueExists(ClockwiseZValue)
+        then Result := ReadBool(ClockwiseZValue)
+        else Result := DefaultClockwise;
+    finally
+      Free;
+    end;
+end;
+
+procedure SaveAngleCodeRate( Code : integer );
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(DevaKey, true)
+        then WriteInteger(RateCodeValue, Code)
+    finally
+      Free;
+    end;
+end;
+
+procedure SaveAngleClockwiseRotationX( Value : boolean );
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(DevaKey, true)
+        then WriteBool(ClockwiseXValue, Value)
+    finally
+      Free;
+    end;
+end;
+
+procedure SaveAngleClockwiseRotationY( Value : boolean );
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(DevaKey, true)
+        then WriteBool(ClockwiseYValue, Value)
+    finally
+      Free;
+    end;
+end;
+
+procedure SaveAngleClockwiseRotationZ( Value : boolean );
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(DevaKey, true)
+        then WriteBool(ClockwiseZValue, Value)
+    finally
+      Free;
+    end;
+end;
+
+//Video
+
+function LoadVideoGains : VideoGains;
+const
+  DefaultGains : VideoGains = (0, 0, 0, 0 );
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(VideoKey, true)
+        then ReadBinaryData(GainsValue, Result, sizeof(Result))
+        else Result := DefaultGains;
+    finally
+      Free;
+    end;
+end;
+
+procedure SaveVideoGains( var Gains : VideoGains );
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(VideoKey, true)
+        then WriteBinaryData(GainsValue, Gains, sizeof(Gains));
+    finally
+      Free;
+    end;
+end;
+
+end.

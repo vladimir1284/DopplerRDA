@@ -1,0 +1,39 @@
+#ifndef IntegratedDataH
+#define IntegratedDataH
+#include "DataParameters.h"
+#include <math.h>
+#include "time.h"
+class IntegratedData
+{
+
+public:
+
+   typedef struct SectorData{
+		float *Azimuth;
+		float *Elevation;
+		float **dBZData;
+		float **SQIData;
+		float **CIData;
+		float **VData;
+		float **WData;
+   }SectorData;
+
+   SectorData TheRawStuff;
+
+   int  BinLength;
+   int  DataMode;
+   int  NRays;
+   int  NBins;
+   time_t StartDateTime;
+   time_t StopDateTime;
+   int RequestedElev;
+   int RequestedSpeed;
+   int ProcessedCount;
+   bool Error;
+
+   IntegratedData(int Sectors, int Cells, int ReqElev, int ReqSpeed, int Mode);
+   ~IntegratedData();
+   void Clear();
+};
+
+#endif           //RawDataH

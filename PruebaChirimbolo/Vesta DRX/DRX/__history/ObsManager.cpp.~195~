@@ -1,0 +1,222 @@
+//---------------------------------------------------------------------------
+#pragma hdrstop
+#include "ObsManager.h"
+#include "PackageManager.h"
+#include "Site.h"
+#include "ProcessingThread.h"
+//---------------------------------------------------------------------------
+
+void ObservationManager::AddMovement(IntegratedData* movement){
+	lock->Enter();
+	__try{
+		movements->Push(movement);
+	}
+	__finally{
+		lock->Leave();
+	}
+}
+
+void ObservationManager::Error_Msg(){
+	fErrorMsg = true;
+}
+
+ObservationManager::ObservationManager(){
+  lock       = new TCriticalSection();
+  movements  = new TQueue();
+  fErrorMsg  = false;
+  AFC_Status = ThisSite->TheRadar->AFCChangesInhibited;
+
+  ThisSite->TheRadar->OnGatheringError = GatheringError;
+}
+
+ObservationManager::~ObservationManager(void){
+	ClearMovements();
+	lock->Free();
+	movements->Free();
+}
+
+void ObservationManager::ClearMovements(){
+	lock->Enter();
+	__try{
+		while(movements->Count() > 0){
+			IntegratedData* movement = (IntegratedData*)movements->Pop();
+			delete movement;
+		}
+	}
+	__finally{
+		lock->Leave();
+	}
+}
+
+IntegratedData* ObservationManager::GetMovement(){
+	IntegratedData* result = NULL;
+	lock->Enter();
+	__try{
+		if(movements->Count() > 0){
+			result = (IntegratedData*)movements->Pop();
+		}
+	}
+	__finally{
+		lock->Leave();
+	}
+	return result;
+}
+
+void __fastcall ObservationManager::RCP_Connect(TIdContext *AContext){
+	fErrorMsg = false;
+	ClearMovements();
+}
+
+void __fastcall ObservationManager::RCP_Disconnect(TIdContext *AContext){
+	Finish();
+	ClearMovements();
+}
+
+void __fastcall ObservationManager::RCP_Execute(TIdContext *AContext){
+	if(fErrorMsg){
+		  AContext->Connection->IOHandler->WriteLn(MSG_OBS_Error);
+		  AContext->Connection->IOHandler->WriteLn(ThisSite->TheRadar->LastError);
+		  fErrorMsg = false;
+	}
+
+	IntegratedData* movement = GetMovement();
+
+	if(movement != NULL){
+		  AContext->Connection->IOHandler->WriteLn(MSG_OBS_MOVE);
+
+		  AContext->Connection->IOHandler->Write(movement->RequestedElev);
+		  AContext->Connection->IOHandler->Write(movement->RequestedSpeed);
+		  AContext->Connection->IOHandler->Write(movement->NRays);
+		  AContext->Connection->IOHandler->Write(movement->NBins);
+		  AContext->Connection->IOHandler->Write(movement->BinLength);
+
+		  TIdBytes Buffer;
+		  int BufferSize = movement->NRays * movement->NBins * sizeof(float);
+		  Buffer.Length = BufferSize;
+
+		  memcpy(&Buffer[0], movement->TheRawStuff.dBZData, BufferSize);
+		  AContext->Connection->IOHandler->Write(Buffer);
+		  memcpy(&Buffer[0], movement->TheRawStuff.dBTData, BufferSize);
+		  AContext->Connection->IOHandler->Write(Buffer);
+		  memcpy(&Buffer[0], movement->TheRawStuff.VData, BufferSize);
+		  AContext->Connection->IOHandler->Write(Buffer);
+		  memcpy(&Buffer[0], movement->TheRawStuff.WData, BufferSize);
+		  AContext->Connection->IOHandler->Write(Buffer);
+
+		  delete movement;
+	}
+	else{
+		//AContext->Connection->IOHandler->WriteLn(MSG_OBS_PING);
+		Sleep(1000);
+        AContext->Connection->CheckForGracefulDisconnect();
+	}
+}
+
+void ObservationManager::Finish(){
+	ThisSite->TheRadar->Gathering = false;
+	ThisSite->TheRadar->AFCChangesInhibited = AFC_Status;
+}
+
+void ObservationManager::AcquirePPI(int Speed, int Elevation){
+	if(!ThisSite->TheRadar->Gathering){
+		PPI = true;
+		StartSector = 0;
+		FinalSector = ThisSite->Sectors;
+		FirstSector = true;
+		AFC_Status = ThisSite->TheRadar->AFCChangesInhibited;
+		ThisSite->TheRadar->LastError = "";
+
+		int mode = ThisSite->TheRadar->GetCurrentPulseMode();
+		int CellCount = 0;
+		SectorCount = 0;
+		if(mode == LP_MODE)
+			CellCount = RAW_DATA_LENGTH_LP;
+		else
+			CellCount = (mode == SP_MODE) ? RAW_DATA_LENGTH_SP : RAW_DATA_LENGTH_SP_DUAL;
+
+		try {
+			TheIntegratedData  = new IntegratedData(ThisSite->Sectors, CellCount, Elevation, Speed, mode);
+			Sector_Factor      = (double)ThisSite->Sectors / (double)AntennaMaxValue;
+			ThisSite->TheRadar->AFCChangesInhibited = true;
+			Sleep(1000);
+			ThisSite->TheRadar->Gathering = true;
+		} catch (...) {
+			ThisSite->TheRadar->LastError = "Error reservando memoria para el PPI a: " + FloatToStr(Elevation * CONV_FACTOR);
+		}
+	}
+}
+
+void ObservationManager::AcquireRHI(int Speed, int Azimuth, int Start, int Final){
+	if(!ThisSite->TheRadar->Gathering){
+		PPI = false;
+		FirstSector = true;
+		StartSector = Start;
+		FinalSector = Final;
+		AFC_Status  = ThisSite->TheRadar->AFCChangesInhibited;
+		ThisSite->TheRadar->LastError = "";
+		SectorCount = 0;
+
+		int mode = ThisSite->TheRadar->GetCurrentPulseMode();
+		int CellCount = 0;
+		if(mode == LP_MODE)
+			CellCount = RAW_DATA_LENGTH_LP;
+		else
+			CellCount = (mode == SP_MODE) ? RAW_DATA_LENGTH_SP : RAW_DATA_LENGTH_SP_DUAL;
+
+		try {
+			TheIntegratedData  = new IntegratedData(ThisSite->Sectors, CellCount, Azimuth, Speed, mode);
+			Sector_Factor      = (double)ThisSite->Sectors / (double)AntennaMaxValue;
+			ThisSite->TheRadar->AFCChangesInhibited = true;
+			ThisSite->TheRadar->Gathering = true;
+		} catch (...) {
+			ThisSite->TheRadar->LastError = "Error reservando memoria para el RHI a: " + FloatToStr(Azimuth * CONV_FACTOR);
+		}
+	}
+}
+
+void __fastcall ObservationManager::StoreData(short mode, short ndata, short Az, short El, float *Power, float *TPower, float *Doppler, float *Width)
+{
+	TheIntegratedData->TheRawStuff.Azimuth[Index]   = Az;
+	TheIntegratedData->TheRawStuff.Elevation[Index] = El;
+
+	Index *= TheIntegratedData->NBins;
+
+	memcpy(&TheIntegratedData->TheRawStuff.dBZData[Index], Power,   ndata * sizeof(float));
+	memcpy(&TheIntegratedData->TheRawStuff.dBTData[Index], TPower,  ndata * sizeof(float));
+	memcpy(&TheIntegratedData->TheRawStuff.VData[Index],   Doppler, ndata * sizeof(float));
+	memcpy(&TheIntegratedData->TheRawStuff.VData[Index],   Width,   ndata * sizeof(float));
+}
+
+void ObservationManager::ReceiveData(short Az, short El, short mode, short ndata, float *Power, float *TPower, float *Doppler, float *Width){
+	if(PPI){
+		CurrentSector = floor(Az * Sector_Factor);
+		double LowBound = CurrentSector * ThisSite->SectorWidth + ThisSite->QuarterSectorWidth;
+		double HighBound = LowBound + ThisSite->HalfSectorWidth;
+		ValidData = (LowBound < Az) && (HighBound > Az);
+		Index = CurrentSector;
+	}
+	else{
+		CurrentSector = floor(El * Sector_Factor);
+		double LowBound = CurrentSector * ThisSite->SectorWidth + ThisSite->QuarterSectorWidth;
+		double HighBound = LowBound + ThisSite->HalfSectorWidth;
+		ValidData = (LowBound < El) && (HighBound > El);
+		Index = CurrentSector - StartSector;
+	}
+
+	if(ValidData){
+		SectorCount++;
+		StoreData(mode, ndata, Az, El, Power, TPower, Doppler, Width);
+
+		if(SectorCount >= abs(FinalSector - StartSector)){
+			Finish();
+			TheIntegratedData->StopDateTime = time(NULL);
+			AddMovement(TheIntegratedData);
+		}
+	}
+}
+
+void __fastcall ObservationManager::GatheringError(String error){
+	Error_Msg();
+}
+
+#pragma package(smart_init)

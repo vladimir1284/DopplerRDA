@@ -1,0 +1,70 @@
+//---------------------------------------------------------------------------
+#ifndef PackageManagerH
+#define PackageManagerH
+
+#include <Classes.hpp>
+#include <SyncObjs.hpp>
+#include <Contnrs.hpp>
+#include <IdContext.hpp>
+
+#include <heapi.h>
+#include "FFTReal.h"
+#include "IntegratedData.h"
+#include "DRX_Data_Package.h"
+#include "ObsManager.h"
+//---------------------------------------------------------------------------
+
+class PackageManager
+{
+	private:
+		bool tx_rx_power;
+		bool tx_burst;
+		bool tx_spectrum;
+		bool rx_dbz;
+		bool rx_dbt;
+		bool rx_w;
+		bool rx_v;
+		bool realtime;
+
+		DWORD TxPackTime;
+		DWORD RxPackTime;
+
+		TCriticalSection* lock;
+		TQueue* packages;
+
+		void AddPackage(DRX_Data_Package* package);
+		DRX_Data_Package* GetPackage();
+
+		DRX_Data_Package* BuildPackage(String MsgType, short CellSize, short NData, short* Data);
+		DRX_Data_Package* BuildPackage(String MsgType, short CellSize, short NData, HE_PINT32BUFFER Data);
+		DRX_Data_Package* BuildPackage(String MsgType, short CellSize, int Azimuth, int Elevation, short BufferDataType, int NData, void *Data);
+	public:
+		PackageManager();
+		~PackageManager(void);
+
+		void __fastcall AFC_NewData(System::TObject* Sender, short Mode, __int64 IF, __int64 Tx, double power, HE_PINT32BUFFER data, FFTReal* fft);
+		void __fastcall Data_Sector(System::TObject* Sender, short Az, short El, short rays, short mode, short ndata, float *Power, float *dBT, float *dBZ, float *V, float *W, float *SQI, float *CI, float *LOG, float *SIG, float *CCOR);
+
+		void ClearPackages();
+		void StartDataFlow(bool RealTime);
+		void StopDataFlow();
+
+		void __fastcall PackageClientConnect(TIdContext *AContext);
+		void __fastcall PackageClientExecute(TIdContext *AContext);
+
+		__property bool TX_RX_Power = { read= tx_rx_power, write= tx_rx_power};
+		__property bool TX_Burst    = { read= tx_burst,    write= tx_burst};
+		__property bool TX_Spectrum = { read= tx_spectrum, write= tx_spectrum};
+		__property bool RX_dBZ      = { read= rx_dbz,      write= rx_dbz};
+		__property bool RX_dBT      = { read= rx_dbt,      write= rx_dbt};
+		__property bool RX_W        = { read= rx_w,        write= rx_w};
+		__property bool RX_V        = { read= rx_v,        write= rx_v};
+		__property bool RealTime    = { read= realtime,    write= realtime};
+};
+
+//---------------------------------------------------------------------------
+
+extern PackageManager* thePackageManager;
+extern ObservationManager* theObservationManager;
+
+#endif

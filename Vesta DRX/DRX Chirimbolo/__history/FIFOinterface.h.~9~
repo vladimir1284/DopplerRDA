@@ -1,0 +1,38 @@
+#include <heapi.h>
+#include <syncobjs.hpp>
+//----------------------------------------------
+#ifndef __FIFOinterface_H_
+#define __FIFOinterface_H_
+
+class FIFOInterface
+{
+private:
+char * BoardType;
+HE_WORD BoardId;
+HE_WORD DeviceId;
+
+HE_DWORD DSPStatus;
+HE_DWORD DSPSlot;      // Read from in fifo N
+HE_WORD DSPBoard;      // The board number
+
+HE_HANDLE   DSPDevice;
+HE_IOSTATUS DSPReadIoStatus;
+HE_IOSTATUS DSPWriteIoStatus;
+
+TCriticalSection * InterfaceLock;
+
+public:
+FIFOInterface(HE_WORD FIFONumber);
+~FIFOInterface();
+void SetMode(int mode);
+
+void GetAzEl();
+bool WriteWord(int wordout);
+bool ReadVector(void * Data,int size);
+
+bool StartReadVector(void * Data,int size);
+bool IsReadComplete();
+bool WaitForReadComplete();
+};
+
+#endif

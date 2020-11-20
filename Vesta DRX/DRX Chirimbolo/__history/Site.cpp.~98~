@@ -1,0 +1,184 @@
+//---------------------------------------------------------------------------
+#include <vcl/forms.hpp>
+#include "Site.h"
+#include "Radar.h"
+#include <Math.hpp>
+#include <IniFiles.hpp>
+#include <math.h>
+#include <vcl.h>
+#include "config.h"
+
+#pragma hdrstop
+
+extern String   version_number;
+//---------------------------------------------------------------------------
+
+static String ConfigFileName = "Config.ini";
+
+static String site_Section = "drx";
+static String afc_Section  = "afc";
+static String iq_Section   = "iq";
+static String rx_Section   = "rx";
+
+//afc
+static String start_sample_lp_Key = "start_sample_lp";
+static String stop_sample_lp_Key  = "stop_sample_lp";
+static String start_sample_sp_Key = "start_sample_sp";
+static String stop_sample_sp_Key  = "stop_sample_sp";
+static String scan_step_Key       = "scan_step";
+static String scan_delay_Key      = "scan_delay";
+static String scan_width_Key      = "scan_width";
+static String power_factor_tx_Key = "power_factor_tx";
+
+//iq
+static String sqi_threshold_Key        = "sqi_threshold";
+static String c1_Key                   = "c1";
+static String c2_Key                   = "c2";
+static String sp_tx_pulse_position_Key = "sp_tx_pulse_position";
+static String lp_tx_pulse_position_Key = "lp_tx_pulse_position";
+
+//rx
+static String noise_source_Key      = "noise_source";
+static String noise_power_Key       = "noise_power";
+static String power_shot_Key        = "power_shot";
+static String sensibility_Key       = "sensibility";
+static String dinamic_range_Key     = "dinamic_range";
+static String radar_constant_lp_Key = "radar_constant_lp";
+static String radar_constant_sp_Key = "radar_constant_sp";
+static String met_pot_lp_Key        = "met_pot_lp";
+static String met_pot_sp_Key        = "met_pot_sp";
+static String conv_table_Key        = "conv_table";
+
+//general
+static String ws_port_Key        = "ws_port";
+
+
+Site::Site()
+{
+  settings = LoadData();
+  TheRadar = new Radar(true);
+}
+//---------------------------------------------------------------------------
+Settings* Site::LoadData()
+{
+	Settings* result = new Settings();
+
+	String configFileName = ExtractFileDir(ParamStr(0)) + "\\" + ConfigFileName;
+	TIniFile* config = new TIniFile(configFileName);
+	__try{
+		//general
+		result->WS_Port = config->ReadInteger(site_Section, ws_port_Key, 88888);
+
+		//afc
+		result->Start_sample_lp = config->ReadInteger(afc_Section, start_sample_lp_Key, 5);
+		result->Stop_sample_lp  = config->ReadInteger(afc_Section, stop_sample_lp_Key, 165);
+		result->Start_sample_sp = config->ReadInteger(afc_Section, start_sample_sp_Key, 5);
+		result->Stop_sample_sp  = config->ReadInteger(afc_Section, stop_sample_sp_Key, 45);
+		result->Scan_step  = config->ReadInteger(afc_Section, scan_step_Key, 500000);
+		result->Scan_delay = config->ReadInteger(afc_Section, scan_delay_Key, 400);
+		result->Scan_width = config->ReadInteger(afc_Section, scan_width_Key, 30000000);
+		result->Power_factor_tx = config->ReadFloat(afc_Section, power_factor_tx_Key, 0);
+		//iq
+		result->SP_TX_PulsePosition = config->ReadInteger(iq_Section, sp_tx_pulse_position_Key, 14);
+		result->LP_TX_PulsePosition = config->ReadInteger(iq_Section, lp_tx_pulse_position_Key, 7);
+		result->ThresholdSQI = config->ReadFloat(iq_Section, sqi_threshold_Key, 0.4);
+		result->C1 = config->ReadFloat(iq_Section, c1_Key, 0);
+		result->C2 = config->ReadFloat(iq_Section, c2_Key, 0);
+
+		//rx
+		result->Noise_source = config->ReadInteger(rx_Section, noise_source_Key, 0);
+		result->Noise_power = config->ReadFloat(rx_Section, noise_power_Key, 0);
+
+		result->Power_shot    = config->ReadInteger(rx_Section, power_shot_Key, 500);
+		result->Sensibility   = config->ReadInteger(rx_Section, sensibility_Key, -134);
+		result->Dinamic_range = config->ReadInteger(rx_Section, dinamic_range_Key, 70);
+
+		result->Radar_constant_lp = config->ReadFloat(rx_Section, radar_constant_lp_Key, 0);
+		result->Radar_constant_sp = config->ReadFloat(rx_Section, radar_constant_sp_Key, 0);
+		result->Met_pot_lp 		  = config->ReadFloat(rx_Section, met_pot_lp_Key, 0);
+		result->Met_pot_sp 		  = config->ReadFloat(rx_Section, met_pot_sp_Key, 0);
+
+		String Conv_table = config->ReadString(rx_Section, conv_table_Key, "") + ";";
+		TStrings* table = new TStringList();
+		table->Delimiter = ';';
+		table->DelimitedText = Conv_table;
+
+		result->Conv_table.Length = table->Count;
+		for(int i=0; i<table->Count-1; i++){
+			result->Conv_table[i] = StrToFloat(table->Strings[i]);
+		}
+		table->Free();
+	}
+	__finally{
+		config->Free();
+	}
+
+	return result;
+}
+
+void Site::SaveData(Settings* data){
+	String configFileName = ExtractFileDir(ParamStr(0)) + "\\" + ConfigFileName;
+	TIniFile* config = new TIniFile(configFileName);
+	__try{
+		//afc
+		config->WriteInteger(afc_Section, start_sample_lp_Key, data->Start_sample_lp);
+		config->WriteInteger(afc_Section, stop_sample_lp_Key, data->Stop_sample_lp);
+		config->WriteInteger(afc_Section, start_sample_sp_Key, data->Start_sample_sp);
+		config->WriteInteger(afc_Section, stop_sample_sp_Key, data->Stop_sample_sp);
+		config->WriteInteger(afc_Section, scan_step_Key, data->Scan_step);
+		config->WriteInteger(afc_Section, scan_delay_Key, data->Scan_delay);
+		config->WriteInteger(afc_Section, scan_width_Key, data->Scan_width);
+		config->WriteFloat(afc_Section, power_factor_tx_Key, data->Power_factor_tx);
+
+		//iq
+		config->WriteInteger(iq_Section, sp_tx_pulse_position_Key, data->SP_TX_PulsePosition);
+		config->WriteInteger(iq_Section, lp_tx_pulse_position_Key, data->LP_TX_PulsePosition);
+
+		config->WriteFloat(iq_Section, sqi_threshold_Key, data->ThresholdSQI);
+		config->WriteFloat(iq_Section, c1_Key, data->C1);
+		config->WriteFloat(iq_Section, c2_Key, data->C2);
+
+		//rx
+		config->WriteInteger(rx_Section, noise_source_Key, data->Noise_source);
+		config->WriteFloat(rx_Section, noise_power_Key, data->Noise_power);
+
+		config->WriteInteger(rx_Section, power_shot_Key, data->Power_shot);
+		config->WriteInteger(rx_Section, sensibility_Key, data->Sensibility);
+		config->WriteInteger(rx_Section, dinamic_range_Key, data->Dinamic_range);
+
+		config->WriteFloat(rx_Section, radar_constant_lp_Key, data->Radar_constant_lp);
+		config->WriteFloat(rx_Section, radar_constant_sp_Key, data->Radar_constant_sp);
+		config->WriteFloat(rx_Section, met_pot_lp_Key       , data->Met_pot_lp);
+		config->WriteFloat(rx_Section, met_pot_sp_Key       , data->Met_pot_sp);
+
+		String conv_table = "";
+		for(int i=0; i<data->Dinamic_range; i++){
+			conv_table += FormatFloat("0.00", data->Conv_table[i]) + ";";
+		}
+	}
+	__finally{
+		config->Free();
+	}
+
+}
+
+void Site::AssignData(Settings* data)
+{
+	SaveData(data);
+	settings = LoadData();
+}
+
+void Site::StoreData()
+{
+	SaveData(settings);
+}
+
+bool Site::HasNoiseSource(){
+  return settings->Noise_source == 1;
+}
+
+void Site::setPowerFactorTX(double factor){
+	settings->Power_factor_tx                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             = factor;
+}
+
+//---------------------------------------------------------------------------

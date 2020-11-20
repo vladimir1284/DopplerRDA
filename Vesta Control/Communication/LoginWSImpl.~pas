@@ -1,0 +1,233 @@
+{ Invokable implementation File for TLogin which implements ILogin }
+
+unit LoginWSImpl;
+
+interface
+
+uses InvokeRegistry, Types, XSBuiltIns, LoginWSIntf, CommunicationObj, SysUtils, SyncObjs;
+
+type
+
+  { TLogin }
+  TLoginWS = class(TCommObj, ILoginWS)
+  private
+    fReady : TSynchroObject;
+  public
+    function Borrar_Usuario(Name: string): boolean; safecall;
+    function Get_ControllerLevel: Integer; safecall;
+    function Get_ControllerName: String; safecall;
+    function Get_InControl: boolean; safecall;
+    function Get_Usuarios: Integer; safecall;
+    function Login(UserName, Password: String): boolean; safecall;
+    function Logout: boolean; safecall;
+    function Modificar(Name, Password: String; Level: Integer): boolean; safecall;
+    function Nuevo_Usuario(Name, Password: String; Level: Integer): boolean; safecall;
+    function ReleaseControl: boolean; safecall;
+    function TakeControl: boolean; safecall;
+    function Usuario(Index: Integer): TUserInfo; safecall;
+  protected
+    function CheckCredentials : boolean; override;
+  public
+    constructor Create; override;
+    destructor  Destroy; override;
+
+    property ControllerName: string read Get_ControllerName;
+    property Usuarios: Integer read Get_Usuarios;
+    property ControllerLevel: Integer read Get_ControllerLevel;
+  end;
+
+implementation
+
+uses Users, EventLog, LogTools, Constants;
+
+{ TLogin }
+
+function TLoginWS.Borrar_Usuario(Name: string): boolean;
+begin
+  Result := false;
+  if InControl and (UserLevel > Users.UserLevel(Name))
+    then
+      if Users.DeleteUser(Name)
+        then
+          begin
+            Result := true;
+            LogMessages.AddLogMessage( Now, lcInformation, UserName, LoggingZone, 'El usuario ' + UserName + ' borro al usuario ' + Name, 'El usuario ' + UserName + ' borro al usuario ' + Name  );
+          end;
+end;
+
+function TLoginWS.CheckCredentials: boolean;
+begin
+  result := CheckAuthHeader >= ul_Designer;
+end;
+
+constructor TLoginWS.Create;
+begin
+  inherited;
+  fReady := TCriticalSection.Create;
+end;
+
+destructor TLoginWS.Destroy;
+begin
+  fReady.free;
+  inherited;
+end;
+
+function TLoginWS.Get_ControllerLevel: Integer;
+begin
+  fReady.Acquire;
+  try
+    Result := Users.UserLevel( GetController );
+  finally
+    fReady.Release;
+  end;
+end;
+
+function TLoginWS.Get_ControllerName: String;
+begin
+  fReady.Acquire;
+  try
+    Result := Users.GetController;
+  finally
+    fReady.Release;
+  end;
+end;
+
+function TLoginWS.Get_InControl: boolean;
+begin
+  result := InControl;
+end;
+
+function TLoginWS.Get_Usuarios: Integer;
+begin
+  with Users.EnumUsers(UserName, UserPassword) do
+  try
+    Result := Count;
+  finally
+    Free;
+  end;
+end;
+
+function TLoginWS.Login(UserName, Password: String): boolean;
+var
+  Headers : ISOAPHeaders;
+  UserLevel : integer;
+begin
+  fReady.Acquire;
+  result := false;
+  try
+    UserLevel := Users.UserLogin( UserName, Password );
+    if UserLevel > ul_NotLogged
+      then
+        begin
+          result := true;
+          Headers := Self as ISoapHeaders;
+          fAuthHeader := TAuthHeader.Create;
+
+          fAuthHeader.UserName := UserName;
+          fAuthHeader.Token := Users.GenerateSecurityToken( UserName );
+          fAuthHeader.Level := UserLevel;
+          Headers.Send(fAuthHeader);
+
+          LogMessages.AddLogMessage( Now, lcInformation, UserName, LoggingZone, 'Se conecto al sistema el usuario ' + UserName, 'Se conecto al sistema el usuario ' + UserName );
+        end;
+  finally
+    fReady.Release;
+  end;
+end;
+
+function TLoginWS.Logout: boolean;
+begin
+  result := true;
+  fReady.Acquire;
+  try
+    Users.ResetSecurityToken( UserName );
+    LogMessages.AddLogMessage( Now, lcInformation, UserName, LoggingZone, 'Se desconecto del sistema el usuario '+UserName, 'Se desconecto del sistema el usuario '+UserName );
+    ReleaseControl;
+    result := UserLevel >= ul_NotLogged;
+  finally
+    fReady.Release;
+  end;
+end;
+
+function TLoginWS.Modificar(Name, Password: String; Level: Integer): boolean;
+begin
+  if InControl
+    then
+      begin
+        if Level > UserLevel
+          then Level := UserLevel;
+        Result := false;
+        if Users.ModifyUser(Name, Password, Level)
+          then
+            if UpperCase(Name) = UpperCase(UserName)
+              then Result := Login(Name, Password)
+              else Result := true;
+        if Result
+          then LogMessages.AddLogMessage( Now, lcInformation, UserName, LoggingZone, 'El usuario '+UserName+' modifico al usuario ' + Name, 'El usuario '+UserName+' modifico al usuario ' + Name  );
+      end;
+end;
+
+function TLoginWS.Nuevo_Usuario(Name, Password: String; Level: Integer): boolean;
+begin
+  Result := false;
+  if InControl and (Level < UserLevel)
+    then
+      if Users.CreateUser(Name, Password, Level)
+        then
+          begin
+            Result := true;
+            LogMessages.AddLogMessage( Now, lcInformation, UserName, LoggingZone, 'El usuario '+UserName+' creo al usuario '+Name, 'El usuario '+UserName+' creo al usuario '+Name );
+          end;
+end;
+
+function TLoginWS.ReleaseControl: boolean;
+begin
+  fReady.Acquire;
+  try
+    result := false;
+    if CompareText(UserName, Users.GetController) = 0
+      then
+        if Users.ResetController(UserName, UserPassword)
+          then
+            begin
+              Result := true;
+              LogMessages.AddLogMessage( Now, lcInformation, UserName, LoggingZone, 'El usuario '+UserName+' libero el control', 'El usuario '+UserName+' libero el control' );
+            end;
+  finally
+    fReady.Release;
+  end;
+end;
+
+function TLoginWS.TakeControl: boolean;
+begin
+  fReady.Acquire;
+  try
+    if Users.SetController(UserName, UserPassword)
+      then
+        begin
+          Result := true;
+          LogMessages.AddLogMessage( Now, lcInformation, UserName, LoggingZone, 'El usuario '+UserName+' tomo el control', 'El usuario '+UserName+' tomo el control' );
+        end
+      else Result := false;
+  finally
+    fReady.Release;
+  end;
+end;
+
+function TLoginWS.Usuario(Index: Integer): TUserInfo;
+begin
+  result := TUserInfo.Create;
+  with Users.EnumUsers(UserName, UserPassword) do
+  try
+    Result.Name  := Strings[Index];
+    Result.Level := Users.UserLevel(Result.Name);
+  finally
+    Free;
+  end;
+end;
+
+initialization
+  { Invokable classes must be registered }
+  InvRegistry.RegisterInvokableClass(TLoginWS);
+
+end.

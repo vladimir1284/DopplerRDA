@@ -1,0 +1,28 @@
+//---------------------------------------------------------------------------
+
+#ifndef CommonObjsH
+#define CommonObjsH
+
+
+#include <System.hpp>
+#include <InvokeRegistry.hpp>
+#include <XSBuiltIns.hpp>
+#include <Types.hpp>
+
+#pragma option -b.
+
+// ************************************************************************ //
+//  To expose complex types via SOAP, the type must derive from TRemotable
+//  All published members of the type will be exposed.
+// ************************************************************************ //
+class TAuthHeader : public TRemotable {
+private:
+  AnsiString fUserName;
+  AnsiString fToken;
+__published:
+  __property AnsiString UserName = { read=fUserName, write=fUserName };
+  __property AnsiString Token = { read=fToken, write=fToken };
+};
+
+//---------------------------------------------------------------------------
+#endif

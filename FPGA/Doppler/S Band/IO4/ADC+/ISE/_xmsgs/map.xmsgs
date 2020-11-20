@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IMPORTANT: This is an internal file that has been generated
+     by the Xilinx ISE software.  Any direct editing or
+     changes made to this file may result in unpredictable
+     behavior or data corruption.  It is strongly advised that
+     users do not edit the contents of this file. -->
+<messages>
+<msg type="warning" file="LIT" num="243" delta="unknown" >Logical network <arg fmt="%s" index="1">clki2</arg> has no load.
+</msg>
+
+<msg type="warning" file="LIT" num="395" delta="unknown" >The above <arg fmt="%s" index="1">warning</arg> message <arg fmt="%s" index="2">base_net_load_rule</arg> is repeated <arg fmt="%d" index="3">76</arg> more times for the following (max. 5 shown):
+<arg fmt="%s" index="4">clki3,
+r1out,
+clkin0,
+clkin1,
+config</arg>
+To see the details of these <arg fmt="%s" index="5">warning</arg> messages, please use the -detail switch.
+</msg>
+
+<msg type="info" file="MapLib" num="562" delta="unknown" >No environment variables are currently set.
+</msg>
+
+<msg type="warning" file="MapLib" num="793" delta="unknown" >Bi-directional network <arg fmt="%s" index="1">digital_io&lt;7&gt;</arg> is driven by a constant.  This can result in a short.  This can be fixed by removing the constant source or changing the bi-directional network.
+</msg>
+
+<msg type="warning" file="MapLib" num="793" delta="unknown" >Bi-directional network <arg fmt="%s" index="1">digital_io&lt;7&gt;</arg> is driven by a constant.  This can result in a short.  This can be fixed by removing the constant source or changing the bi-directional network.
+</msg>
+
+<msg type="warning" file="MapLib" num="793" delta="unknown" >Bi-directional network <arg fmt="%s" index="1">digital_io&lt;7&gt;</arg> is driven by a constant.  This can result in a short.  This can be fixed by removing the constant source or changing the bi-directional network.
+</msg>
+
+<msg type="warning" file="MapLib" num="793" delta="unknown" >Bi-directional network <arg fmt="%s" index="1">digital_io&lt;7&gt;</arg> is driven by a constant.  This can result in a short.  This can be fixed by removing the constant source or changing the bi-directional network.
+</msg>
+
+<msg type="warning" file="MapLib" num="793" delta="unknown" >Bi-directional network <arg fmt="%s" index="1">digital_io&lt;7&gt;</arg> is driven by a constant.  This can result in a short.  This can be fixed by removing the constant source or changing the bi-directional network.
+</msg>
+
+<msg type="info" file="MapLib" num="534" delta="unknown" >The following XORCY(s) is/are demoted to LUTs because there is no MUXCY associated with them. Therefore, we cannot recognize the standard carry chain structure:
+<arg fmt="%s" index="1">XORCY symbol &quot;iUSER_AP/myDDCi/BU19400&quot; (output signal=iUSER_AP/myDDCi/N148938),
+XORCY symbol &quot;iUSER_AP/myDDCi/BU25390&quot; (output signal=iUSER_AP/myDDCi/N176812)</arg>
+</msg>
+
+<msg type="warning" file="MapLib" num="701" delta="unknown" >Signal <arg fmt="%s" index="1">umi&lt;2&gt;</arg> connected to top level port <arg fmt="%s" index="2">umi&lt;2&gt;</arg> has been removed.
+</msg>
+
+<msg type="warning" file="MapLib" num="701" delta="unknown" >Signal <arg fmt="%s" index="1">umi&lt;3&gt;</arg> connected to top level port <arg fmt="%s" index="2">umi&lt;3&gt;</arg> has been removed.
+</msg>
+
+<msg type="warning" file="MapLib" num="701" delta="unknown" >Signal <arg fmt="%s" index="1">osc0_pin</arg> connected to top level port <arg fmt="%s" index="2">osc0_pin</arg> has been removed.
+</msg>
+
+<msg type="warning" file="MapLib" num="701" delta="unknown" >Signal <arg fmt="%s" index="1">osc1_pin</arg> connected to top level port <arg fmt="%s" index="2">osc1_pin</arg> has been removed.
+</msg>
+
+<msg type="warning" file="MapLib" num="701" delta="unknown" >Signal <arg fmt="%s" index="1">osc2_pin</arg> connected to top level port <arg fmt="%s" index="2">osc2_pin</arg> has been removed.
+</msg>
+
+<msg type="warning" file="MapLib" num="701" delta="unknown" >Signal <arg fmt="%s" index="1">gck2</arg> connected to top level port <arg fmt="%s" index="2">gck2</arg> has been removed.
+</msg>
+
+<msg type="warning" file="MapLib" num="701" delta="unknown" >Signal <arg fmt="%s" index="1">gck3</arg> connected to top level port <arg fmt="%s" index="2">gck3</arg> has been removed.
+</msg>
+
+<msg type="warning" file="MapLib" num="701" delta="unknown" >Signal <arg fmt="%s" index="1">doclk</arg> connected to top level port <arg fmt="%s" index="2">doclk</arg> has been removed.
+</msg>
+
+<msg type="warning" file="MapLib" num="701" delta="unknown" >Signal <arg fmt="%s" index="1">adc_ovr</arg> connected to top level port <arg fmt="%s" index="2">adc_ovr</arg> has been removed.
+</msg>
+
+<msg type="warning" file="MapLib" num="701" delta="unknown" >Signal <arg fmt="%s" index="1">dif_ae&lt;5&gt;</arg> connected to top level port <arg fmt="%s" index="2">dif_ae&lt;5&gt;</arg> has been removed.
+</msg>
+
+<msg type="warning" file="MapLib" num="701" delta="unknown" >Signal <arg fmt="%s" index="1">dif_ae&lt;4&gt;</arg> connected to top level port <arg fmt="%s" index="2">dif_ae&lt;4&gt;</arg> has been removed.
+</msg>
+
+<msg type="warning" file="MapLib" num="701" delta="unknown" >Signal <arg fmt="%s" index="1">dif_ae&lt;2&gt;</arg> connected to top level port <arg fmt="%s" index="2">dif_ae&lt;2&gt;</arg> has been removed.
+</msg>
+
+<msg type="warning" file="MapLib" num="701" delta="unknown" >Signal <arg fmt="%s" index="1">dif_ae&lt;1&gt;</arg> connected to top level port <arg fmt="%s" index="2">dif_ae&lt;1&gt;</arg> has been removed.
+</msg>
+
+<msg type="warning" file="MapLib" num="701" delta="unknown" >Signal <arg fmt="%s" index="1">dif_ef&lt;5&gt;</arg> connected to top level port <arg fmt="%s" index="2">dif_ef&lt;5&gt;</arg> has been removed.
+</msg>
+
+<msg type="warning" file="MapLib" num="701" delta="unknown" >Signal <arg fmt="%s" index="1">dif_ef&lt;4&gt;</arg> connected to top level port <arg fmt="%s" index="2">dif_ef&lt;4&gt;</arg> has been removed.
+</msg>
+
+<msg type="warning" file="MapLib" num="701" delta="unknown" >Signal <arg fmt="%s" index="1">dif_ef&lt;2&gt;</arg> connected to top level port <arg fmt="%s" index="2">dif_ef&lt;2&gt;</arg> has been removed.
+</msg>
+
+<msg type="warning" file="MapLib" num="701" delta="unknown" >Signal <arg fmt="%s" index="1">dif_ef&lt;1&gt;</arg> connected to top level port <arg fmt="%s" index="2">dif_ef&lt;1&gt;</arg> has been removed.
+</msg>
+
+<msg type="warning" file="MapLib" num="701" delta="unknown" >Signal <arg fmt="%s" index="1">dof_af&lt;5&gt;</arg> connected to top level port <arg fmt="%s" index="2">dof_af&lt;5&gt;</arg> has been removed.
+</msg>
+
+<msg type="warning" file="MapLib" num="701" delta="unknown" >Signal <arg fmt="%s" index="1">dof_af&lt;4&gt;</arg> connected to top level port <arg fmt="%s" index="2">dof_af&lt;4&gt;</arg> has been removed.
+</msg>
+
+<msg type="warning" file="MapLib" num="701" delta="unknown" >Signal <arg fmt="%s" index="1">dof_af&lt;3&gt;</arg> connected to top level port <arg fmt="%s" index="2">dof_af&lt;3&gt;</arg> has been removed.
+</msg>
+
+<msg type="warning" file="MapLib" num="701" delta="unknown" >Signal <arg fmt="%s" index="1">dof_af&lt;0&gt;</arg> connected to top level port <arg fmt="%s" index="2">dof_af&lt;0&gt;</arg> has been removed.
+</msg>
+
+<msg type="warning" file="MapLib" num="701" delta="unknown" >Signal <arg fmt="%s" index="1">dof_ff&lt;5&gt;</arg> connected to top level port <arg fmt="%s" index="2">dof_ff&lt;5&gt;</arg> has been removed.
+</msg>
+
+<msg type="warning" file="MapLib" num="701" delta="unknown" >Signal <arg fmt="%s" index="1">dof_ff&lt;4&gt;</arg> connected to top level port <arg fmt="%s" index="2">dof_ff&lt;4&gt;</arg> has been removed.
+</msg>
+
+<msg type="warning" file="MapLib" num="701" delta="unknown" >Signal <arg fmt="%s" index="1">dof_ff&lt;3&gt;</arg> connected to top level port <arg fmt="%s" index="2">dof_ff&lt;3&gt;</arg> has been removed.
+</msg>
+
+<msg type="warning" file="MapLib" num="701" delta="unknown" >Signal <arg fmt="%s" index="1">dof_ff&lt;2&gt;</arg> connected to top level port <arg fmt="%s" index="2">dof_ff&lt;2&gt;</arg> has been removed.
+</msg>
+
+<msg type="warning" file="MapLib" num="701" delta="unknown" >Signal <arg fmt="%s" index="1">dof_ff&lt;1&gt;</arg> connected to top level port <arg fmt="%s" index="2">dof_ff&lt;1&gt;</arg> has been removed.
+</msg>
+
+<msg type="warning" file="MapLib" num="701" delta="unknown" >Signal <arg fmt="%s" index="1">dof_ff&lt;0&gt;</arg> connected to top level port <arg fmt="%s" index="2">dof_ff&lt;0&gt;</arg> has been removed.
+</msg>
+
+<msg type="warning" file="MapLib" num="701" delta="unknown" >Signal <arg fmt="%s" index="1">vinit</arg> connected to top level port <arg fmt="%s" index="2">vinit</arg> has been removed.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="812" delta="unknown" >Dangling pin &lt;<arg fmt="%s" index="1">DOB5</arg>&gt; on block:&lt;<arg fmt="%s" index="2">iUSER_AP/myDDCi/B757.B</arg>&gt;:&lt;<arg fmt="%s" index="3">RAMB16_RAMB16B</arg>&gt;.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="812" delta="unknown" >Dangling pin &lt;<arg fmt="%s" index="1">DOB6</arg>&gt; on block:&lt;<arg fmt="%s" index="2">iUSER_AP/myDDCi/B757.B</arg>&gt;:&lt;<arg fmt="%s" index="3">RAMB16_RAMB16B</arg>&gt;.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="812" delta="unknown" >Dangling pin &lt;<arg fmt="%s" index="1">DOB7</arg>&gt; on block:&lt;<arg fmt="%s" index="2">iUSER_AP/myDDCi/B757.B</arg>&gt;:&lt;<arg fmt="%s" index="3">RAMB16_RAMB16B</arg>&gt;.
+</msg>
+
+</messages>
+

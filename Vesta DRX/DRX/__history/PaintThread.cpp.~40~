@@ -1,0 +1,250 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "PaintThread.h"
+#include "ShellDRX.h"
+#pragma package(smart_init)
+//---------------------------------------------------------------------------
+
+__fastcall TPaintThread::TPaintThread(): TThread(true){
+  lock     = new TCriticalSection();
+  packages = new TQueue();
+
+  Priority = tpNormal;
+
+  Resume();
+}
+//---------------------------------------------------------------------------
+void __fastcall TPaintThread::Execute()
+{
+	while(!Terminated){
+		try {
+			package = GetPackage();
+
+			if(package != NULL){
+				__try{
+				  if((package->DataType == MSG_TX_RX_Power) && allow_tx_rx_power())
+					Synchronize(paint_tx_rx_power);
+				  else  if((package->DataType == MSG_TX_Burst) && allow_tx_burst())
+					Synchronize(paint_tx_burst);
+				  else  if((package->DataType == MSG_RX_dBZ) && allow_rx_dbz())
+					Synchronize(paint_rx_dbz);
+				  else  if((package->DataType == MSG_RX_dBT) && allow_rx_dbt())
+					Synchronize(paint_rx_dbt);
+				  else  if((package->DataType == MSG_RX_V) && allow_rx_v())
+					Synchronize(paint_rx_v);
+				  else  if((package->DataType == MSG_RX_W) && allow_rx_w())
+					Synchronize(paint_rx_w);
+				  else  if((package->DataType == MSG_RX_SQI) && allow_rx_sqi())
+					Synchronize(paint_rx_sqi);
+				  else  if((package->DataType == MSG_RX_CI) && allow_rx_ci())
+					Synchronize(paint_rx_ci);
+				  else  if((package->DataType == MSG_RX_LOG) && allow_rx_log())
+					Synchronize(paint_rx_log);
+				  else  if((package->DataType == MSG_RX_SIG) && allow_rx_sig())
+					Synchronize(paint_rx_sig);
+				  else  if((package->DataType == MSG_RX_CCOR) && allow_rx_ccor())
+					Synchronize(paint_rx_ccor);
+				  else  if((package->DataType == MSG_TX_Spectrum) && allow_tx_spectrum())
+					Synchronize(paint_tx_spectrum);
+				}
+				__finally{
+					delete package;
+				}
+			}
+			else
+				Sleep(1000);
+
+		} catch (...) {
+			Sleep(1000);
+		}
+	}
+
+    ClearPackages();
+	packages->Free();
+	lock->Free();
+}
+
+bool TPaintThread::allow_tx_rx_power(){
+	return (Shell_DRX->InfoContainer->ActivePageIndex == 1) && (Shell_DRX->IQ_Charts->ActivePageIndex == 0);
+}
+
+bool TPaintThread::allow_tx_burst(){
+	return (Shell_DRX->InfoContainer->ActivePageIndex == 0) && (Shell_DRX->afcCharts->ActivePageIndex == 0);
+}
+
+bool TPaintThread::allow_tx_spectrum(){
+	return (Shell_DRX->InfoContainer->ActivePageIndex == 0) && (Shell_DRX->afcCharts->ActivePageIndex == 1);
+}
+
+bool TPaintThread::allow_rx_dbz(){
+	return (Shell_DRX->InfoContainer->ActivePageIndex == 1) && (Shell_DRX->IQ_Charts->ActivePageIndex == 2);
+}
+
+bool TPaintThread::allow_rx_dbt(){
+	return (Shell_DRX->InfoContainer->ActivePageIndex == 1) && (Shell_DRX->IQ_Charts->ActivePageIndex == 1);
+}
+
+bool TPaintThread::allow_rx_w(){
+	return (Shell_DRX->InfoContainer->ActivePageIndex == 1) && (Shell_DRX->IQ_Charts->ActivePageIndex == 4);
+}
+
+bool TPaintThread::allow_rx_v(){
+	return (Shell_DRX->InfoContainer->ActivePageIndex == 1) && (Shell_DRX->IQ_Charts->ActivePageIndex == 3);
+}
+
+bool TPaintThread::allow_rx_sqi(){
+	return (Shell_DRX->InfoContainer->ActivePageIndex == 1) && (Shell_DRX->IQ_Charts->ActivePageIndex == 5);
+}
+
+bool TPaintThread::allow_rx_ci(){
+	return (Shell_DRX->InfoContainer->ActivePageIndex == 1) && (Shell_DRX->IQ_Charts->ActivePageIndex == 6);
+}
+
+bool TPaintThread::allow_rx_log(){
+	return (Shell_DRX->InfoContainer->ActivePageIndex == 1) && (Shell_DRX->IQ_Charts->ActivePageIndex == 7);
+}
+
+bool TPaintThread::allow_rx_sig(){
+	return (Shell_DRX->InfoContainer->ActivePageIndex == 1) && (Shell_DRX->IQ_Charts->ActivePageIndex == 8);
+}
+
+bool TPaintThread::allow_rx_ccor(){
+	return (Shell_DRX->InfoContainer->ActivePageIndex == 1) && (Shell_DRX->IQ_Charts->ActivePageIndex == 9);
+}
+
+void __fastcall TPaintThread::paint_tx_rx_power(){
+	Shell_DRX->chartPower->Series[0]->Clear();
+	for(int i=0; i<package->NData; i++){
+		Shell_DRX->chartPower->Series[0]->AddY(((float*)package->Data)[i], "", clRed);
+	}
+}
+
+void __fastcall TPaintThread::paint_tx_burst(){
+	Shell_DRX->txChart->Series[0]->Clear();
+	for(int i=0; i<SAMPLES_PER_IP_CHAN; i++){
+		Shell_DRX->txChart->Series[0]->AddY(((short*)package->Data)[i], "", clRed);
+	}
+}
+
+void __fastcall TPaintThread::paint_tx_spectrum(){
+	Shell_DRX->fftChart->Series[0]->Clear();
+
+	short minIndex = package->Az;
+	short maxIndex = minIndex + package->NData;
+
+	for(int i=minIndex; i<=maxIndex; i++){
+	  double x = i * 100e3 / package->El;
+	  double y = ((float*)package->Data)[i-minIndex] / 1000;
+
+	  Shell_DRX->fftChart->Series[0]->AddXY(x, y, "", clRed);
+	}
+
+}
+
+void __fastcall TPaintThread::paint_rx_dbz(){
+	Shell_DRX->chartZ->Series[0]->Clear();
+	for(int i=0; i<package->NData; i++){
+		Shell_DRX->chartZ->Series[0]->AddY(((float*)package->Data)[i], "", clRed);
+	}
+}
+
+void __fastcall TPaintThread::paint_rx_dbt(){
+	Shell_DRX->chartT->Series[0]->Clear();
+	for(int i=0; i<package->NData; i++){
+		Shell_DRX->chartT->Series[0]->AddY(((float*)package->Data)[i], "", clRed);
+	}
+}
+
+void __fastcall TPaintThread::paint_rx_w(){
+	Shell_DRX->chartW->Series[0]->Clear();
+	for(int i=0; i<package->NData; i++){
+		Shell_DRX->chartW->Series[0]->AddY(((float*)package->Data)[i], "", clRed);
+	}
+}
+
+void __fastcall TPaintThread::paint_rx_v(){
+	Shell_DRX->chartSpeed->Series[0]->Clear();
+	for(int i=0; i<package->NData; i++){
+		Shell_DRX->chartSpeed->Series[0]->AddY(((float*)package->Data)[i], "", clRed);
+	}
+}
+
+void __fastcall TPaintThread::paint_rx_sqi(){
+	Shell_DRX->chartSQI->Series[0]->Clear();
+	for(int i=0; i<package->NData; i++){
+		Shell_DRX->chartSQI->Series[0]->AddY(((float*)package->Data)[i], "", clRed);
+	}
+}
+
+void __fastcall TPaintThread::paint_rx_ci(){
+	Shell_DRX->chartCI->Series[0]->Clear();
+	for(int i=0; i<package->NData; i++){
+		Shell_DRX->chartCI->Series[0]->AddY(((float*)package->Data)[i], "", clRed);
+	}
+}
+
+void __fastcall TPaintThread::paint_rx_log(){
+	Shell_DRX->chartLOG->Series[0]->Clear();
+	for(int i=0; i<package->NData; i++){
+		Shell_DRX->chartLOG->Series[0]->AddY(((float*)package->Data)[i], "", clRed);
+	}
+}
+
+void __fastcall TPaintThread::paint_rx_sig(){
+	Shell_DRX->chartSIG->Series[0]->Clear();
+	for(int i=0; i<package->NData; i++){
+		Shell_DRX->chartSIG->Series[0]->AddY(((float*)package->Data)[i], "", clRed);
+	}
+}
+
+void __fastcall TPaintThread::paint_rx_ccor(){
+	Shell_DRX->chartCCOR->Series[0]->Clear();
+	for(int i=0; i<package->NData; i++){
+		Shell_DRX->chartCCOR->Series[0]->AddY(((float*)package->Data)[i], "", clRed);
+	}
+}
+
+DRX_Data_Package* TPaintThread::GetPackage(){
+	DRX_Data_Package* result = NULL;
+	lock->Acquire();
+	__try{
+		if(packages->Count() > 0){
+			result = (DRX_Data_Package*)packages->Pop();
+		}
+	}
+	__finally{
+		lock->Release();
+	}
+	return result;
+}
+
+void TPaintThread::AddPackage(DRX_Data_Package* package){
+	lock->Acquire();
+	__try{
+		if(packages->Count() < MaxPackageCount)
+			packages->Push(package);
+		else
+            delete package;
+	}
+	__finally{
+		lock->Release();
+	}
+}
+
+void TPaintThread::ClearPackages(){
+	lock->Enter();
+	__try{
+		while(packages->Count() > 0){
+			DRX_Data_Package* package = (DRX_Data_Package*)packages->Pop();
+			delete package;
+		}
+	}
+	__finally{
+		lock->Leave();
+	}
+}
+
+//---------------------------------------------------------------------------

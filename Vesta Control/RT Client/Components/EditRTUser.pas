@@ -1,0 +1,52 @@
+unit EditRTUser;
+
+interface
+
+uses
+  Windows, SysUtils, 
+  Forms, StdCtrls, ComCtrls, ExtCtrls, Controls, Classes;
+
+type
+  TEdit_User = class(TForm)
+    Panel1: TPanel;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Edit1: TEdit;
+    Edit3: TEdit;
+    Button1: TButton;
+    Button2: TButton;
+    Label4: TLabel;
+    Edit4: TEdit;
+    Edit2: TEdit;
+    UpDown1: TUpDown;
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+  end;
+
+var
+  Edit_User: TEdit_User;
+
+implementation
+
+{$R *.DFM}
+    
+{ Edit_User }
+
+procedure TEdit_User.FormCloseQuery(Sender: TObject;
+  var CanClose: Boolean);
+begin
+  if ModalResult = mrOk
+    then
+      if CompareText(Edit3.Text, Edit4.Text) <> 0
+        then
+          begin
+            Application.MessageBox( 'La confirmación de la contraseña no es correcta.',
+                                    'Error',
+                                    MB_APPLMODAL or MB_ICONSTOP or MB_OK );
+            CanClose := false;
+          end
+        else CanClose := true;
+end;
+
+end.
+

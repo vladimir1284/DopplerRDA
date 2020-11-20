@@ -1,0 +1,10 @@
+# Output products list for <DDS_10_VII>
+DDS_10_VII.ngc
+DDS_10_VII.v
+DDS_10_VII.veo
+DDS_10_VII.vhd
+DDS_10_VII.vho
+DDS_10_VII.xco
+DDS_10_VII_SINCOS_TABLE_TRIG_ROM.mif
+DDS_10_VII_flist.txt
+DDS_10_VII_xmdf.tcl

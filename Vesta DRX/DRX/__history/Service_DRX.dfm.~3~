@@ -1,0 +1,8 @@
+object DRX_srv: TDRX_srv
+  OldCreateOrder = False
+  AllowPause = False
+  DisplayName = 'DRX'
+  OnStart = ServiceStart
+  Height = 234
+  Width = 370
+end

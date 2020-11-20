@@ -1,0 +1,10 @@
+# Output products list for <iq_out_fifo>
+iq_out_fifo.asy
+iq_out_fifo.edn
+iq_out_fifo.v
+iq_out_fifo.veo
+iq_out_fifo.vhd
+iq_out_fifo.vho
+iq_out_fifo.xco
+iq_out_fifo.xcp
+iq_out_fifo.sym

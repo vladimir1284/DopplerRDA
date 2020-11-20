@@ -1,0 +1,871 @@
+//! **************************************************************************
+// Written by: Map K.31 on Sat Mar 07 14:48:35 2020
+//! **************************************************************************
+
+SCHEMATIC START;
+VOLTAGE = 1.5 V;
+COMP "di<31>" LOCATE = SITE "M1" LEVEL 1;
+COMP "di<29>" LOCATE = SITE "N1" LEVEL 1;
+COMP "di<27>" LOCATE = SITE "N2" LEVEL 1;
+COMP "di<28>" LOCATE = SITE "M5" LEVEL 1;
+COMP "di<26>" LOCATE = SITE "N3" LEVEL 1;
+COMP "di<25>" LOCATE = SITE "N4" LEVEL 1;
+COMP "di<30>" LOCATE = SITE "M6" LEVEL 1;
+COMP "di<24>" LOCATE = SITE "N5" LEVEL 1;
+COMP "di<21>" LOCATE = SITE "P3" LEVEL 1;
+COMP "di<23>" LOCATE = SITE "P4" LEVEL 1;
+COMP "di<22>" LOCATE = SITE "P5" LEVEL 1;
+COMP "di<19>" LOCATE = SITE "R4" LEVEL 1;
+COMP "di<20>" LOCATE = SITE "T1" LEVEL 1;
+COMP "di<18>" LOCATE = SITE "T2" LEVEL 1;
+COMP "di<17>" LOCATE = SITE "U1" LEVEL 1;
+COMP "di<14>" LOCATE = SITE "T3" LEVEL 1;
+COMP "di<15>" LOCATE = SITE "U2" LEVEL 1;
+COMP "di<13>" LOCATE = SITE "T4" LEVEL 1;
+COMP "di<16>" LOCATE = SITE "V1" LEVEL 1;
+COMP "di<9>" LOCATE = SITE "U4" LEVEL 1;
+COMP "di<11>" LOCATE = SITE "V2" LEVEL 1;
+COMP "di<12>" LOCATE = SITE "W1" LEVEL 1;
+COMP "di<8>" LOCATE = SITE "W2" LEVEL 1;
+COMP "di<6>" LOCATE = SITE "V7" LEVEL 1;
+COMP "di<10>" LOCATE = SITE "Y1" LEVEL 1;
+COMP "di<7>" LOCATE = SITE "Y2" LEVEL 1;
+COMP "di<4>" LOCATE = SITE "W6" LEVEL 1;
+COMP "di<0>" LOCATE = SITE "V8" LEVEL 1;
+COMP "dif_ef<0>" LOCATE = SITE "V9" LEVEL 1;
+COMP "di<5>" LOCATE = SITE "Y6" LEVEL 1;
+COMP "di<3>" LOCATE = SITE "Y7" LEVEL 1;
+COMP "do<31>" LOCATE = SITE "G20" LEVEL 1;
+COMP "do<29>" LOCATE = SITE "G21" LEVEL 1;
+COMP "do<30>" LOCATE = SITE "G18" LEVEL 1;
+COMP "do<28>" LOCATE = SITE "H18" LEVEL 1;
+COMP "di<1>" LOCATE = SITE "AA5" LEVEL 1;
+COMP "do<27>" LOCATE = SITE "H19" LEVEL 1;
+COMP "di<2>" LOCATE = SITE "AB5" LEVEL 1;
+COMP "do<24>" LOCATE = SITE "J21" LEVEL 1;
+COMP "do<26>" LOCATE = SITE "J22" LEVEL 1;
+COMP "do<22>" LOCATE = SITE "K21" LEVEL 1;
+COMP "do<25>" LOCATE = SITE "J18" LEVEL 1;
+COMP "do<23>" LOCATE = SITE "K22" LEVEL 1;
+COMP "do<18>" LOCATE = SITE "L20" LEVEL 1;
+COMP "do<20>" LOCATE = SITE "L21" LEVEL 1;
+COMP "do<21>" LOCATE = SITE "L22" LEVEL 1;
+COMP "do<19>" LOCATE = SITE "L17" LEVEL 1;
+COMP "do<17>" LOCATE = SITE "M18" LEVEL 1;
+COMP "do<16>" LOCATE = SITE "M19" LEVEL 1;
+COMP "do<1>" LOCATE = SITE "T18" LEVEL 1;
+COMP "dif_ae<0>" LOCATE = SITE "V11" LEVEL 1;
+COMP "do<0>" LOCATE = SITE "U19" LEVEL 1;
+COMP "do<2>" LOCATE = SITE "W22" LEVEL 1;
+COMP "dof_af<2>" LOCATE = SITE "Y17" LEVEL 1;
+COMP "dof_af<1>" LOCATE = SITE "AB18" LEVEL 1;
+COMP "diclk" LOCATE = SITE "Y11" LEVEL 1;
+COMP "enc_n" LOCATE = SITE "C17" LEVEL 1;
+COMP "enc_p" LOCATE = SITE "D17" LEVEL 1;
+COMP "led<0>" LOCATE = SITE "H3" LEVEL 1;
+COMP "led<1>" LOCATE = SITE "J1" LEVEL 1;
+COMP "led<2>" LOCATE = SITE "L5" LEVEL 1;
+COMP "hdplx" LOCATE = SITE "F18" LEVEL 1;
+COMP "led<3>" LOCATE = SITE "J5" LEVEL 1;
+COMP "led<4>" LOCATE = SITE "J2" LEVEL 1;
+COMP "f0" LOCATE = SITE "D2" LEVEL 1;
+COMP "f1" LOCATE = SITE "E1" LEVEL 1;
+COMP "f2" LOCATE = SITE "V20" LEVEL 1;
+COMP "f3" LOCATE = SITE "T19" LEVEL 1;
+COMP "vwrite" LOCATE = SITE "Y4" LEVEL 1;
+COMP "trig0" LOCATE = SITE "E4" LEVEL 1;
+COMP "trig1" LOCATE = SITE "C1" LEVEL 1;
+COMP "digital_io<0>" LOCATE = SITE "A14" LEVEL 1;
+COMP "digital_io<1>" LOCATE = SITE "B14" LEVEL 1;
+COMP "digital_io<2>" LOCATE = SITE "A17" LEVEL 1;
+COMP "digital_io<3>" LOCATE = SITE "B17" LEVEL 1;
+COMP "digital_io<4>" LOCATE = SITE "A13" LEVEL 1;
+COMP "digital_io<5>" LOCATE = SITE "B13" LEVEL 1;
+COMP "t1in" LOCATE = SITE "E20" LEVEL 1;
+COMP "digital_io<6>" LOCATE = SITE "C16" LEVEL 1;
+COMP "digital_io<7>" LOCATE = SITE "D16" LEVEL 1;
+COMP "t2in" LOCATE = SITE "C22" LEVEL 1;
+COMP "vbusy" LOCATE = SITE "AB19" LEVEL 1;
+COMP "clkout" LOCATE = SITE "E3" LEVEL 1;
+COMP "dof_wen<0>" LOCATE = SITE "Y14" LEVEL 1;
+COMP "dof_wen<1>" LOCATE = SITE "W15" LEVEL 1;
+COMP "dof_wen<2>" LOCATE = SITE "AB15" LEVEL 1;
+COMP "booten" LOCATE = SITE "G1" LEVEL 1;
+COMP "dof_wen<3>" LOCATE = SITE "W17" LEVEL 1;
+COMP "dof_wen<4>" LOCATE = SITE "AA15" LEVEL 1;
+COMP "dof_wen<5>" LOCATE = SITE "Y15" LEVEL 1;
+COMP "rs485_232" LOCATE = SITE "E21" LEVEL 1;
+COMP "fast" LOCATE = SITE "F20" LEVEL 1;
+COMP "drdy" LOCATE = SITE "J3" LEVEL 1;
+COMP "reset_pin" LOCATE = SITE "E15" LEVEL 1;
+COMP "dttl" LOCATE = SITE "E22" LEVEL 1;
+COMP "adc_data<10>" LOCATE = SITE "B9" LEVEL 1;
+COMP "adc_data<11>" LOCATE = SITE "A9" LEVEL 1;
+COMP "adc_data<12>" LOCATE = SITE "B10" LEVEL 1;
+COMP "adc_data<13>" LOCATE = SITE "A10" LEVEL 1;
+COMP "umi<0>" LOCATE = SITE "E2" LEVEL 1;
+COMP "umi<1>" LOCATE = SITE "H5" LEVEL 1;
+COMP "wrt0" LOCATE = SITE "C6" LEVEL 1;
+COMP "wrt1" LOCATE = SITE "E8" LEVEL 1;
+COMP "vpd<0>" LOCATE = SITE "V18" LEVEL 1;
+COMP "vpd<1>" LOCATE = SITE "V17" LEVEL 1;
+COMP "vpd<2>" LOCATE = SITE "W18" LEVEL 1;
+COMP "vpd<3>" LOCATE = SITE "Y18" LEVEL 1;
+COMP "vpd<4>" LOCATE = SITE "Y5" LEVEL 1;
+COMP "vpd<5>" LOCATE = SITE "W5" LEVEL 1;
+COMP "vpd<6>" LOCATE = SITE "AB4" LEVEL 1;
+COMP "vpd<7>" LOCATE = SITE "AA4" LEVEL 1;
+COMP "dif_oen<0>" LOCATE = SITE "AB13" LEVEL 1;
+COMP "dif_oen<1>" LOCATE = SITE "AA18" LEVEL 1;
+COMP "dif_oen<2>" LOCATE = SITE "Y13" LEVEL 1;
+COMP "dif_oen<3>" LOCATE = SITE "V13" LEVEL 1;
+COMP "dif_oen<4>" LOCATE = SITE "W14" LEVEL 1;
+COMP "dif_oen<5>" LOCATE = SITE "V14" LEVEL 1;
+COMP "do<10>" LOCATE = SITE "R22" LEVEL 1;
+COMP "do<11>" LOCATE = SITE "P21" LEVEL 1;
+COMP "do<12>" LOCATE = SITE "P22" LEVEL 1;
+COMP "do<13>" LOCATE = SITE "N18" LEVEL 1;
+COMP "do<14>" LOCATE = SITE "N21" LEVEL 1;
+COMP "do<15>" LOCATE = SITE "M17" LEVEL 1;
+COMP "adc_data<0>" LOCATE = SITE "D7" LEVEL 1;
+COMP "vcs" LOCATE = SITE "AA3" LEVEL 1;
+COMP "adc_data<1>" LOCATE = SITE "C7" LEVEL 1;
+COMP "adc_data<2>" LOCATE = SITE "D8" LEVEL 1;
+COMP "adc_data<3>" LOCATE = SITE "C8" LEVEL 1;
+COMP "daa<10>" LOCATE = SITE "Y9" LEVEL 1;
+COMP "adc_data<4>" LOCATE = SITE "B7" LEVEL 1;
+COMP "daa<11>" LOCATE = SITE "W9" LEVEL 1;
+COMP "adc_data<5>" LOCATE = SITE "A7" LEVEL 1;
+COMP "daa<12>" LOCATE = SITE "AB10" LEVEL 1;
+COMP "adc_data<6>" LOCATE = SITE "D9" LEVEL 1;
+COMP "daa<13>" LOCATE = SITE "AA10" LEVEL 1;
+COMP "adc_data<7>" LOCATE = SITE "C9" LEVEL 1;
+COMP "adc_data<8>" LOCATE = SITE "B8" LEVEL 1;
+COMP "adc_data<9>" LOCATE = SITE "A8" LEVEL 1;
+COMP "dab<10>" LOCATE = SITE "G3" LEVEL 1;
+COMP "dab<11>" LOCATE = SITE "H2" LEVEL 1;
+COMP "dab<12>" LOCATE = SITE "H1" LEVEL 1;
+COMP "dab<13>" LOCATE = SITE "J4" LEVEL 1;
+COMP "dif_ren<0>" LOCATE = SITE "AB6" LEVEL 1;
+COMP "dif_ren<1>" LOCATE = SITE "AA7" LEVEL 1;
+COMP "dif_ren<2>" LOCATE = SITE "W7" LEVEL 1;
+COMP "osc3_pin" LOCATE = SITE "E10" LEVEL 1;
+COMP "dif_ren<3>" LOCATE = SITE "W8" LEVEL 1;
+COMP "dif_ren<4>" LOCATE = SITE "Y8" LEVEL 1;
+COMP "dif_ren<5>" LOCATE = SITE "AA8" LEVEL 1;
+COMP "do<3>" LOCATE = SITE "U21" LEVEL 1;
+COMP "do<4>" LOCATE = SITE "T20" LEVEL 1;
+COMP "do<5>" LOCATE = SITE "T21" LEVEL 1;
+COMP "do<6>" LOCATE = SITE "R18" LEVEL 1;
+COMP "daa<0>" LOCATE = SITE "M3" LEVEL 1;
+COMP "do<7>" LOCATE = SITE "U22" LEVEL 1;
+COMP "daa<1>" LOCATE = SITE "M4" LEVEL 1;
+COMP "do<8>" LOCATE = SITE "R19" LEVEL 1;
+COMP "daa<2>" LOCATE = SITE "P1" LEVEL 1;
+COMP "do<9>" LOCATE = SITE "P18" LEVEL 1;
+COMP "daa<3>" LOCATE = SITE "P2" LEVEL 1;
+COMP "dab<0>" LOCATE = SITE "B5" LEVEL 1;
+COMP "daa<4>" LOCATE = SITE "R1" LEVEL 1;
+COMP "dab<1>" LOCATE = SITE "A5" LEVEL 1;
+COMP "daa<5>" LOCATE = SITE "R2" LEVEL 1;
+COMP "dab<2>" LOCATE = SITE "D10" LEVEL 1;
+COMP "daa<6>" LOCATE = SITE "R5" LEVEL 1;
+COMP "dab<3>" LOCATE = SITE "C10" LEVEL 1;
+COMP "daa<7>" LOCATE = SITE "T5" LEVEL 1;
+COMP "dab<4>" LOCATE = SITE "E11" LEVEL 1;
+COMP "daa<8>" LOCATE = SITE "V3" LEVEL 1;
+COMP "dab<5>" LOCATE = SITE "F11" LEVEL 1;
+COMP "daa<9>" LOCATE = SITE "V4" LEVEL 1;
+COMP "dab<6>" LOCATE = SITE "E7" LEVEL 1;
+COMP "dab<7>" LOCATE = SITE "F5" LEVEL 1;
+COMP "dab<8>" LOCATE = SITE "G5" LEVEL 1;
+COMP "dab<9>" LOCATE = SITE "G4" LEVEL 1;
+COMP "dif_ae<3>" LOCATE = SITE "Y12" LEVEL 1;
+COMP "udpres" LOCATE = SITE "H4" LEVEL 1;
+COMP "dif_ef<3>" LOCATE = SITE "AA9" LEVEL 1;
+NET "drdy_IBUFG" BEL "iSCLK/iSCLK.GCLKMUX" USELOCALCONNECT;
+PIN iUSER_AP/iRawFifo511x14/B8.A_pins<15> = BEL "iUSER_AP/iRawFifo511x14/B8.A"
+        PINNAME CLKA;
+TIMEGRP osc3_pin = BEL "gNV2ES_FIFO.gFCKG.iGCLK/gHFclk.iFDP1" BEL
+        "gNV2ES_FIFO.gFCKG.iGCLK/gHFclk.iFDP0" BEL
+        "gNV2ES_FIFO.gFCKG.iGCLK/RST_DLL" BEL "iUSR/iCONF" BEL "iUSR/BY_RG"
+        PIN "iUSER_AP/iRawFifo511x14/B8.A_pins<15>" BEL
+        "iUSER_AP/iRawFifo511x14/BU152" BEL "iUSER_AP/iRawFifo511x14/BU157"
+        BEL "iUSER_AP/iRawFifo511x14/BU167" BEL
+        "iUSER_AP/iRawFifo511x14/BU172" BEL "iUSER_AP/iRawFifo511x14/BU177"
+        BEL "iUSER_AP/iRawFifo511x14/BU182" BEL
+        "iUSER_AP/iRawFifo511x14/BU187" BEL "iUSER_AP/iRawFifo511x14/BU192"
+        BEL "iUSER_AP/iRawFifo511x14/BU196" BEL
+        "iUSER_AP/iRawFifo511x14/BU229" BEL "iUSER_AP/iRawFifo511x14/BU235"
+        BEL "iUSER_AP/iRawFifo511x14/BU241" BEL
+        "iUSER_AP/iRawFifo511x14/BU247" BEL "iUSER_AP/iRawFifo511x14/BU253"
+        BEL "iUSER_AP/iRawFifo511x14/BU259" BEL
+        "iUSER_AP/iRawFifo511x14/BU265" BEL "iUSER_AP/iRawFifo511x14/BU271"
+        BEL "iUSER_AP/iRawFifo511x14/BU276" BEL
+        "iUSER_AP/iRawFifo511x14/BU285" BEL "iUSER_AP/iRawFifo511x14/BU292"
+        BEL "iUSER_AP/iRawFifo511x14/BU299" BEL
+        "iUSER_AP/iRawFifo511x14/BU306" BEL "iUSER_AP/iRawFifo511x14/BU313"
+        BEL "iUSER_AP/iRawFifo511x14/BU320" BEL
+        "iUSER_AP/iRawFifo511x14/BU327" BEL "iUSER_AP/iRawFifo511x14/BU334"
+        BEL "iUSER_AP/iRawFifo511x14/BU341" BEL
+        "iUSER_AP/iRawFifo511x14/BU368" BEL "iUSER_AP/iRawFifo511x14/BU369"
+        BEL "iUSER_AP/iRawFifo511x14/BU373" BEL
+        "iUSER_AP/iRawFifo511x14/BU374" BEL "iUSER_AP/iRawFifo511x14/BU375"
+        BEL "iUSER_AP/iRawFifo511x14/BU379" BEL
+        "iUSER_AP/iRawFifo511x14/BU383" BEL "iUSER_AP/iRawFifo511x14/BU384"
+        BEL "iUSER_AP/iRawFifo511x14/BU388" BEL
+        "iUSER_AP/iRawFifo511x14/BU389" BEL "iUSER_AP/iRawFifo511x14/BU393"
+        BEL "iUSER_AP/iRawFifo511x14/BU394" BEL
+        "iUSER_AP/iRawFifo511x14/BU398" BEL "iUSER_AP/iRawFifo511x14/BU399"
+        BEL "iUSER_AP/iRawFifo511x14/BU403" BEL
+        "iUSER_AP/iRawFifo511x14/BU404" BEL "iUSER_AP/iRawFifo511x14/BU408"
+        BEL "iUSER_AP/iRawFifo511x14/BU412" BEL
+        "iUSER_AP/iRawFifo511x14/BU418" BEL "enc_n" BEL "enc_p" BEL "f0" BEL
+        "f1";
+PIN iUSER_AP/iDDS_10/BU2/U0/i_rom/Mram_sin_cos_lut.A_pins<15> = BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/Mram_sin_cos_lut.A" PINNAME CLKA;
+PIN iUSER_AP/iDDS_10/BU2/U0/i_rom/Mram_sin_cos_lut.B_pins<15> = BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/Mram_sin_cos_lut.B" PINNAME CLKB;
+TIMEGRP drdy = BEL "iADC/i13" BEL "iADC/i12" BEL "iADC/i11" BEL "iADC/i10" BEL
+        "iADC/i9" BEL "iADC/i8" BEL "iADC/i7" BEL "iADC/i6" BEL "iADC/i5" BEL
+        "iADC/i4" BEL "iADC/i3" BEL "iADC/i2" BEL "iADC/i1" BEL "iADC/i0" BEL
+        "iDACA/iDA13" BEL "iDACA/iDA12" BEL "iDACA/iDA11" BEL "iDACA/iDA10"
+        BEL "iDACA/iDA9" BEL "iDACA/iDA8" BEL "iDACA/iDA7" BEL "iDACA/iDA6"
+        BEL "iDACA/iDA5" BEL "iDACA/iDA4" BEL "iDACA/iDA3" BEL "iDACA/iDA2"
+        BEL "iDACA/iDA1" BEL "iDACA/iDA0" BEL "iUSER_AP/PRFcount_19" BEL
+        "iUSER_AP/PRFcount_18" BEL "iUSER_AP/PRFcount_17" BEL
+        "iUSER_AP/PRFcount_16" BEL "iUSER_AP/PRFcount_15" BEL
+        "iUSER_AP/PRFcount_14" BEL "iUSER_AP/PRFcount_13" BEL
+        "iUSER_AP/PRFcount_12" BEL "iUSER_AP/PRFcount_11" BEL
+        "iUSER_AP/PRFcount_10" BEL "iUSER_AP/PRFcount_9" BEL
+        "iUSER_AP/PRFcount_8" BEL "iUSER_AP/PRFcount_7" BEL
+        "iUSER_AP/PRFcount_6" BEL "iUSER_AP/PRFcount_5" BEL
+        "iUSER_AP/PRFcount_4" BEL "iUSER_AP/PRFcount_3" BEL
+        "iUSER_AP/PRFcount_2" BEL "iUSER_AP/PRFcount_1" BEL
+        "iUSER_AP/PRFcount_0" BEL "iUSER_AP/SAMPLEcount_9" BEL
+        "iUSER_AP/SAMPLEcount_8" BEL "iUSER_AP/SAMPLEcount_7" BEL
+        "iUSER_AP/SAMPLEcount_6" BEL "iUSER_AP/SAMPLEcount_5" BEL
+        "iUSER_AP/SAMPLEcount_4" BEL "iUSER_AP/SAMPLEcount_3" BEL
+        "iUSER_AP/SAMPLEcount_2" BEL "iUSER_AP/SAMPLEcount_1" BEL
+        "iUSER_AP/SAMPLEcount_0" BEL "iUSER_AP/LED2/LEDcount_23" BEL
+        "iUSER_AP/LED2/LEDcount_22" BEL "iUSER_AP/LED2/LEDcount_21" BEL
+        "iUSER_AP/LED2/LEDcount_20" BEL "iUSER_AP/LED2/LEDcount_19" BEL
+        "iUSER_AP/LED2/LEDcount_18" BEL "iUSER_AP/LED2/LEDcount_17" BEL
+        "iUSER_AP/LED2/LEDcount_16" BEL "iUSER_AP/LED2/LEDcount_15" BEL
+        "iUSER_AP/LED2/LEDcount_14" BEL "iUSER_AP/LED2/LEDcount_13" BEL
+        "iUSER_AP/LED2/LEDcount_12" BEL "iUSER_AP/LED2/LEDcount_11" BEL
+        "iUSER_AP/LED2/LEDcount_10" BEL "iUSER_AP/LED2/LEDcount_9" BEL
+        "iUSER_AP/LED2/LEDcount_8" BEL "iUSER_AP/LED2/LEDcount_7" BEL
+        "iUSER_AP/LED2/LEDcount_6" BEL "iUSER_AP/LED2/LEDcount_5" BEL
+        "iUSER_AP/LED2/LEDcount_4" BEL "iUSER_AP/LED2/LEDcount_3" BEL
+        "iUSER_AP/LED2/LEDcount_2" BEL "iUSER_AP/LED2/LEDcount_1" BEL
+        "iUSER_AP/LED2/LEDcount_0" BEL "iUSER_AP/LEDcount_24" BEL
+        "iUSER_AP/LEDcount_23" BEL "iUSER_AP/LEDcount_22" BEL
+        "iUSER_AP/LEDcount_21" BEL "iUSER_AP/LEDcount_20" BEL
+        "iUSER_AP/LEDcount_19" BEL "iUSER_AP/LEDcount_18" BEL
+        "iUSER_AP/LEDcount_17" BEL "iUSER_AP/LEDcount_16" BEL
+        "iUSER_AP/LEDcount_15" BEL "iUSER_AP/LEDcount_14" BEL
+        "iUSER_AP/LEDcount_13" BEL "iUSER_AP/LEDcount_12" BEL
+        "iUSER_AP/LEDcount_11" BEL "iUSER_AP/LEDcount_10" BEL
+        "iUSER_AP/LEDcount_9" BEL "iUSER_AP/LEDcount_8" BEL
+        "iUSER_AP/LEDcount_7" BEL "iUSER_AP/LEDcount_6" BEL
+        "iUSER_AP/LEDcount_5" BEL "iUSER_AP/LEDcount_4" BEL
+        "iUSER_AP/LEDcount_3" BEL "iUSER_AP/LEDcount_2" BEL
+        "iUSER_AP/LEDcount_1" BEL "iUSER_AP/LEDcount_0" BEL
+        "iUSER_AP/LED2/FF_REG" BEL "iUSER_AP/LED2/COUNT" BEL
+        "iUSER_AP/LED2/CLEAR" BEL "iUSER_AP/SAMPLINGsequence_FSM_FFd2" BEL
+        "iUSER_AP/RawDataToFIFO_13" BEL "iUSER_AP/RawDataToFIFO_12" BEL
+        "iUSER_AP/RawDataToFIFO_11" BEL "iUSER_AP/RawDataToFIFO_10" BEL
+        "iUSER_AP/RawDataToFIFO_9" BEL "iUSER_AP/RawDataToFIFO_8" BEL
+        "iUSER_AP/RawDataToFIFO_7" BEL "iUSER_AP/RawDataToFIFO_6" BEL
+        "iUSER_AP/RawDataToFIFO_5" BEL "iUSER_AP/RawDataToFIFO_4" BEL
+        "iUSER_AP/RawDataToFIFO_3" BEL "iUSER_AP/RawDataToFIFO_2" BEL
+        "iUSER_AP/RawDataToFIFO_1" BEL "iUSER_AP/RawDataToFIFO_0" BEL
+        "iUSER_AP/PRFlimit_19" BEL "iUSER_AP/PRFlimit_18" BEL
+        "iUSER_AP/PRFlimit_17" BEL "iUSER_AP/PRFlimit_16" BEL
+        "iUSER_AP/PRFlimit_15" BEL "iUSER_AP/PRFlimit_14" BEL
+        "iUSER_AP/PRFlimit_13" BEL "iUSER_AP/PRFlimit_12" BEL
+        "iUSER_AP/PRFlimit_11" BEL "iUSER_AP/PRFlimit_10" BEL
+        "iUSER_AP/PRFlimit_9" BEL "iUSER_AP/PRFlimit_8" BEL
+        "iUSER_AP/PRFlimit_7" BEL "iUSER_AP/PRFlimit_6" BEL
+        "iUSER_AP/PRFlimit_5" BEL "iUSER_AP/PRFlimit_4" BEL
+        "iUSER_AP/PRFlimit_3" BEL "iUSER_AP/PRFlimit_2" BEL
+        "iUSER_AP/PRFlimit_1" BEL "iUSER_AP/PRFlimit_0" BEL
+        "iUSER_AP/EN_RAWsamples" BEL "iUSER_AP/DDC_ND" BEL
+        "iUSER_AP/DDCcount_12" BEL "iUSER_AP/DDCcount_11" BEL
+        "iUSER_AP/DDCcount_10" BEL "iUSER_AP/DDCcount_9" BEL
+        "iUSER_AP/DDCcount_8" BEL "iUSER_AP/DDCcount_7" BEL
+        "iUSER_AP/DDCcount_6" BEL "iUSER_AP/DDCcount_5" BEL
+        "iUSER_AP/DDCcount_4" BEL "iUSER_AP/DDCcount_3" BEL
+        "iUSER_AP/DDCcount_2" BEL "iUSER_AP/DDCcount_1" BEL
+        "iUSER_AP/DDCcount_0" BEL "iUSER_AP/DATA_IN_31" BEL
+        "iUSER_AP/DATA_IN_30" BEL "iUSER_AP/DATA_IN_29" BEL
+        "iUSER_AP/DATA_IN_28" BEL "iUSER_AP/DATA_IN_27" BEL
+        "iUSER_AP/DATA_IN_26" BEL "iUSER_AP/DATA_IN_25" BEL
+        "iUSER_AP/DATA_IN_24" BEL "iUSER_AP/DATA_IN_23" BEL
+        "iUSER_AP/DATA_IN_22" BEL "iUSER_AP/DATA_IN_21" BEL
+        "iUSER_AP/DATA_IN_20" BEL "iUSER_AP/DATA_IN_19" BEL
+        "iUSER_AP/DATA_IN_18" BEL "iUSER_AP/DATA_IN_17" BEL
+        "iUSER_AP/DATA_IN_16" BEL "iUSER_AP/DATA_IN_15" BEL
+        "iUSER_AP/DATA_IN_14" BEL "iUSER_AP/DATA_IN_13" BEL
+        "iUSER_AP/DATA_IN_12" BEL "iUSER_AP/DATA_IN_11" BEL
+        "iUSER_AP/DATA_IN_10" BEL "iUSER_AP/DATA_IN_9" BEL
+        "iUSER_AP/DATA_IN_8" BEL "iUSER_AP/DATA_IN_7" BEL "iUSER_AP/DATA_IN_6"
+        BEL "iUSER_AP/DATA_IN_5" BEL "iUSER_AP/DATA_IN_4" BEL
+        "iUSER_AP/DATA_IN_3" BEL "iUSER_AP/DATA_IN_2" BEL "iUSER_AP/DATA_IN_1"
+        BEL "iUSER_AP/DATA_IN_0" BEL "iUSER_AP/PRFreset" BEL
+        "iUSER_AP/SAMPLINGsequence_FSM_FFd1" BEL "iUSER_AP/control_1" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_addr_reg_c/first_q_1"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_addr_reg_c/pipe_2_1"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_rom_reg_a/opt_has_reg.i_reg/fd/output_1"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_rom_reg_a/opt_has_reg.i_reg/fd/output_2"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_rom_reg_a/opt_has_reg.i_reg/fd/output_3"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_rom_reg_a/opt_has_reg.i_reg/fd/output_4"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_rom_reg_a/opt_has_reg.i_reg/fd/output_5"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_rom_reg_a/opt_has_reg.i_reg/fd/output_6"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_rom_reg_a/opt_has_reg.i_reg/fd/output_7"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_rom_reg_a/opt_has_reg.i_reg/fd/output_8"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_rom_reg_a/opt_has_reg.i_reg/fd/output_9"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_rom_reg_a/opt_has_reg.i_reg/fd/output_10"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_rom_reg_a/opt_has_reg.i_reg/fd/output_11"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_rom_reg_a/opt_has_reg.i_reg/fd/output_12"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_rom_reg_a/opt_has_reg.i_reg/fd/output_13"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_piped_map.i_cardinal_sin_ls/opt_has_reg.i_reg/fd/output_1"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_piped_map.i_cardinal_sin_ls/opt_has_reg.i_reg/fd/output_2"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_piped_map.i_cardinal_sin_ls/opt_has_reg.i_reg/fd/output_3"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_piped_map.i_cardinal_sin_ls/opt_has_reg.i_reg/fd/output_4"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_piped_map.i_cardinal_sin_ls/opt_has_reg.i_reg/fd/output_5"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_piped_map.i_cardinal_sin_ls/opt_has_reg.i_reg/fd/output_6"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_piped_map.i_cardinal_sin_ls/opt_has_reg.i_reg/fd/output_7"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_piped_map.i_cardinal_sin_ms/opt_has_reg.i_reg/fd/output_1"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_piped_map.i_cardinal_sin_ms/opt_has_reg.i_reg/fd/output_2"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_piped_map.i_cardinal_sin_ms/opt_has_reg.i_reg/fd/output_3"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_piped_map.i_cardinal_sin_ms/opt_has_reg.i_reg/fd/output_4"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_piped_map.i_cardinal_sin_ms/opt_has_reg.i_reg/fd/output_5"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_piped_map.i_cardinal_sin_ms/opt_has_reg.i_reg/fd/output_6"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_piped_map.i_cardinal_sin_ms/opt_has_reg.i_reg/fd/output_7"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_piped_map.i_original_sin_ms/opt_has_reg.i_reg/fd/output_1"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_piped_map.i_original_sin_ms/opt_has_reg.i_reg/fd/output_2"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_piped_map.i_original_sin_ms/opt_has_reg.i_reg/fd/output_3"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_piped_map.i_original_sin_ms/opt_has_reg.i_reg/fd/output_4"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_piped_map.i_original_sin_ms/opt_has_reg.i_reg/fd/output_5"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_piped_map.i_original_sin_ms/opt_has_reg.i_reg/fd/output_6"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_piped_map.i_original_sin_ms/opt_has_reg.i_reg/fd/output_7"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_piped_map.i_original_sin_ls/opt_has_reg.i_reg/fd/output_1"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_piped_map.i_original_sin_ls/opt_has_reg.i_reg/fd/output_2"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_piped_map.i_original_sin_ls/opt_has_reg.i_reg/fd/output_3"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_piped_map.i_original_sin_ls/opt_has_reg.i_reg/fd/output_4"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_piped_map.i_original_sin_ls/opt_has_reg.i_reg/fd/output_5"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_piped_map.i_original_sin_ls/opt_has_reg.i_reg/fd/output_6"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_piped_map.i_original_sin_ls/opt_has_reg.i_reg/fd/output_7"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/i_rtl.i_quarter_table.i_piped_map.i_original_sin_ls/opt_has_reg.i_reg/fd/output_8"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_accum/i_fabric.i_common.i_phase_acc/opt_has_reg.i_reg/fd/output_1"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_accum/i_fabric.i_common.i_phase_acc/opt_has_reg.i_reg/fd/output_2"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_accum/i_fabric.i_common.i_phase_acc/opt_has_reg.i_reg/fd/output_3"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_accum/i_fabric.i_common.i_phase_acc/opt_has_reg.i_reg/fd/output_4"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_accum/i_fabric.i_common.i_phase_acc/opt_has_reg.i_reg/fd/output_5"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_accum/i_fabric.i_common.i_phase_acc/opt_has_reg.i_reg/fd/output_6"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_accum/i_fabric.i_common.i_phase_acc/opt_has_reg.i_reg/fd/output_7"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_accum/i_fabric.i_common.i_phase_acc/opt_has_reg.i_reg/fd/output_8"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_accum/i_fabric.i_common.i_phase_acc/opt_has_reg.i_reg/fd/output_9"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_accum/i_fabric.i_common.i_phase_acc/opt_has_reg.i_reg/fd/output_10"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_accum/i_fabric.i_common.i_phase_acc/opt_has_reg.i_reg/fd/output_11"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_accum/i_fabric.i_common.i_phase_acc/opt_has_reg.i_reg/fd/output_12"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_accum/i_fabric.i_common.i_phase_acc/opt_has_reg.i_reg/fd/output_13"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_accum/i_fabric.i_common.i_phase_acc/opt_has_reg.i_reg/fd/output_14"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_accum/i_fabric.i_common.i_phase_acc/opt_has_reg.i_reg/fd/output_15"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_accum/i_fabric.i_common.i_phase_acc/opt_has_reg.i_reg/fd/output_16"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_accum/i_fabric.i_common.i_phase_acc/opt_has_reg.i_reg/fd/output_17"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_accum/i_fabric.i_common.i_phase_acc/opt_has_reg.i_reg/fd/output_18"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_accum/i_fabric.i_common.i_phase_acc/opt_has_reg.i_reg/fd/output_19"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_accum/i_fabric.i_common.i_phase_acc/opt_has_reg.i_reg/fd/output_20"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_accum/i_fabric.i_common.i_phase_acc/opt_has_reg.i_reg/fd/output_21"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_accum/i_fabric.i_common.i_phase_acc/opt_has_reg.i_reg/fd/output_22"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_accum/i_fabric.i_common.i_phase_acc/opt_has_reg.i_reg/fd/output_23"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_accum/i_fabric.i_common.i_phase_acc/opt_has_reg.i_reg/fd/output_24"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_accum/i_fabric.i_common.i_phase_acc/opt_has_reg.i_reg/fd/output_25"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_accum/i_fabric.i_common.i_phase_acc/opt_has_reg.i_reg/fd/output_26"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_accum/i_fabric.i_common.i_phase_acc/opt_has_reg.i_reg/fd/output_27"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_accum/i_fabric.i_common.i_phase_acc/opt_has_reg.i_reg/fd/output_28"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_accum/i_fabric.i_common.i_phase_acc/opt_has_reg.i_reg/fd/output_29"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_accum/i_fabric.i_common.i_phase_acc/opt_has_reg.i_reg/fd/output_30"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_accum/i_fabric.i_common.i_phase_acc/opt_has_reg.i_reg/fd/output_31"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_accum/i_fabric.i_common.i_phase_acc/opt_has_reg.i_reg/fd/output_32"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_has_sine.i_sin_op/opt_has_reg.i_reg/fd/output_1"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_has_sine.i_sin_op/opt_has_reg.i_reg/fd/output_2"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_has_sine.i_sin_op/opt_has_reg.i_reg/fd/output_3"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_has_sine.i_sin_op/opt_has_reg.i_reg/fd/output_4"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_has_sine.i_sin_op/opt_has_reg.i_reg/fd/output_5"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_has_sine.i_sin_op/opt_has_reg.i_reg/fd/output_6"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_has_sine.i_sin_op/opt_has_reg.i_reg/fd/output_7"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_has_sine.i_sin_op/opt_has_reg.i_reg/fd/output_8"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_has_sine.i_sin_op/opt_has_reg.i_reg/fd/output_9"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_has_sine.i_sin_op/opt_has_reg.i_reg/fd/output_10"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_has_sine.i_sin_op/opt_has_reg.i_reg/fd/output_11"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_has_sine.i_sin_op/opt_has_reg.i_reg/fd/output_12"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_has_sine.i_sin_op/opt_has_reg.i_reg/fd/output_13"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_has_sine.i_sin_op/opt_has_reg.i_reg/fd/output_14"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_fabric.i_ph_adj_pipe/opt_has_reg.i_reg/fd/output_13"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_fabric.i_ph_adj_pipe/opt_has_reg.i_reg/fd/output_14"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_fabric.i_ph_adj_pipe/opt_has_reg.i_reg/fd/output_15"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_fabric.i_ph_adj_pipe/opt_has_reg.i_reg/fd/output_16"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_fabric.i_ph_adj_pipe/opt_has_reg.i_reg/fd/output_17"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_fabric.i_ph_adj_pipe/opt_has_reg.i_reg/fd/output_18"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_fabric.i_ph_adj_pipe/opt_has_reg.i_reg/fd/output_19"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_fabric.i_ph_adj_pipe/opt_has_reg.i_reg/fd/output_20"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_fabric.i_ph_adj_pipe/opt_has_reg.i_reg/fd/output_21"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_fabric.i_ph_adj_pipe/opt_has_reg.i_reg/fd/output_22"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_fabric.i_ph_adj_pipe/opt_has_reg.i_reg/fd/output_23"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_fabric.i_ph_adj_pipe/opt_has_reg.i_reg/fd/output_24"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_fabric.i_ph_adj_pipe/opt_has_reg.i_reg/fd/output_25"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_fabric.i_ph_adj_pipe/opt_has_reg.i_reg/fd/output_26"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_fabric.i_ph_adj_pipe/opt_has_reg.i_reg/fd/output_27"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_fabric.i_ph_adj_pipe/opt_has_reg.i_reg/fd/output_28"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_fabric.i_ph_adj_pipe/opt_has_reg.i_reg/fd/output_29"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_fabric.i_ph_adj_pipe/opt_has_reg.i_reg/fd/output_30"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_fabric.i_ph_adj_pipe/opt_has_reg.i_reg/fd/output_31"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_fabric.i_ph_adj_pipe/opt_has_reg.i_reg/fd/output_32"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_fabric.i_dither_pipe/opt_has_reg.i_reg/fd/output_22"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_fabric.i_dither_pipe/opt_has_reg.i_reg/fd/output_23"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_fabric.i_dither_pipe/opt_has_reg.i_reg/fd/output_24"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_fabric.i_dither_pipe/opt_has_reg.i_reg/fd/output_25"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_fabric.i_dither_pipe/opt_has_reg.i_reg/fd/output_26"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_fabric.i_dither_pipe/opt_has_reg.i_reg/fd/output_27"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_fabric.i_dither_pipe/opt_has_reg.i_reg/fd/output_28"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_fabric.i_dither_pipe/opt_has_reg.i_reg/fd/output_29"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_fabric.i_dither_pipe/opt_has_reg.i_reg/fd/output_30"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_fabric.i_dither_pipe/opt_has_reg.i_reg/fd/output_31"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_fabric.i_dither_pipe/opt_has_reg.i_reg/fd/output_32"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_dither.i_comb3_del/opt_has_reg.i_reg/fd/output_3"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_dither.i_comb3_del/opt_has_reg.i_reg/fd/output_4"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_dither.i_comb3_del/opt_has_reg.i_reg/fd/output_5"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_dither.i_comb3_del/opt_has_reg.i_reg/fd/output_6"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_dither.i_comb3_del/opt_has_reg.i_reg/fd/output_7"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_dither.i_comb3_del/opt_has_reg.i_reg/fd/output_8"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_dither.i_comb3_del/opt_has_reg.i_reg/fd/output_9"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_dither.i_comb3_del/opt_has_reg.i_reg/fd/output_10"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_dither.i_comb3_del/opt_has_reg.i_reg/fd/output_11"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_dither.i_comb3_del/opt_has_reg.i_reg/fd/output_12"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_dither.i_comb1_del/opt_has_reg.i_reg/fd/output_1"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_dither.i_comb1_del/opt_has_reg.i_reg/fd/output_2"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_dither.i_comb1_del/opt_has_reg.i_reg/fd/output_3"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_dither.i_comb1_del/opt_has_reg.i_reg/fd/output_4"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_dither.i_comb1_del/opt_has_reg.i_reg/fd/output_5"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_dither.i_comb1_del/opt_has_reg.i_reg/fd/output_6"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_dither.i_comb1_del/opt_has_reg.i_reg/fd/output_7"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_dither.i_comb1_del/opt_has_reg.i_reg/fd/output_8"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_dither.i_comb1_del/opt_has_reg.i_reg/fd/output_9"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_dither.i_comb1_del/opt_has_reg.i_reg/fd/output_10"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_dither.i_comb1_del/opt_has_reg.i_reg/fd/output_11"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_dither.i_comb2_del/opt_has_reg.i_reg/fd/output_1"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_dither.i_comb2_del/opt_has_reg.i_reg/fd/output_2"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_dither.i_comb2_del/opt_has_reg.i_reg/fd/output_3"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_dither.i_comb2_del/opt_has_reg.i_reg/fd/output_4"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_dither.i_comb2_del/opt_has_reg.i_reg/fd/output_5"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_dither.i_comb2_del/opt_has_reg.i_reg/fd/output_6"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_dither.i_comb2_del/opt_has_reg.i_reg/fd/output_7"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_dither.i_comb2_del/opt_has_reg.i_reg/fd/output_8"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_dither.i_comb2_del/opt_has_reg.i_reg/fd/output_9"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_dither.i_comb2_del/opt_has_reg.i_reg/fd/output_10"
+        BEL
+        "iUSER_AP/iDDS_10/BU2/U0/i_dither.i_comb2_del/opt_has_reg.i_reg/fd/output_11"
+        BEL "iUSER_AP/iDDS_10/BU2/U0/lfsr4_15" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr4_14" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr4_9" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr4_8" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr4_7" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr4_6" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr4_5" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr4_4" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr4_3" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr4_2" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr4_1" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr4_0" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr3_9" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr3_8" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr3_7" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr3_6" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr3_5" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr3_4" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr3_3" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr3_2" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr3_1" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr3_0" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr1_12" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr1_11" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr1_10" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr1_9" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr1_8" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr1_7" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr1_6" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr1_5" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr1_4" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr1_3" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr1_2" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr1_1" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr1_0" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr2_9" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr2_8" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr2_7" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr2_6" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr2_5" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr2_4" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr2_3" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr2_2" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr2_1" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr2_0" PIN
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/Mram_sin_cos_lut.A_pins<15>" PIN
+        "iUSER_AP/iDDS_10/BU2/U0/i_rom/Mram_sin_cos_lut.B_pins<15>" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/Mshreg_lfsr2_13" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr2_13" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/Mshreg_lfsr4_13" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr4_13" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/Mshreg_lfsr3_14" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr3_14" BEL
+        "iUSER_AP/iDDS_10/BU2/channel<0>_shift1" BEL
+        "iUSER_AP/iDDS_10/BU2/channel<0>_shift2" BEL
+        "iUSER_AP/iDDS_10/BU2/channel<0>_shift3" BEL
+        "iUSER_AP/iDDS_10/BU2/channel<0>_shift4" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr2_132" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr4_132" BEL
+        "iUSER_AP/iDDS_10/BU2/U0/lfsr3_142" BEL "iUSER_AP/iq_out_fifoI/BU99"
+        BEL "iUSER_AP/iq_out_fifoI/BU102" BEL "iUSER_AP/iq_out_fifoI/BU108"
+        BEL "iUSER_AP/iq_out_fifoI/BU111" BEL "iUSER_AP/iq_out_fifoI/BU114"
+        BEL "iUSER_AP/iq_out_fifoI/BU146" BEL "iUSER_AP/iq_out_fifoI/BU152"
+        BEL "iUSER_AP/iq_out_fifoI/BU158" BEL "iUSER_AP/iq_out_fifoI/BU164"
+        BEL "iUSER_AP/iq_out_fifoI/BU169" BEL "iUSER_AP/iq_out_fifoI/BU178"
+        BEL "iUSER_AP/iq_out_fifoI/BU185" BEL "iUSER_AP/iq_out_fifoI/BU192"
+        BEL "iUSER_AP/iq_out_fifoI/BU199" BEL "iUSER_AP/iq_out_fifoI/BU206"
+        BEL "iUSER_AP/iq_out_fifoI/BU245" BEL "iUSER_AP/myDDCi/BU1292" BEL
+        "iUSER_AP/myDDCi/BU322" BEL "iUSER_AP/myDDCi/BU1192" BEL
+        "iUSER_AP/myDDCi/BU1194" BEL "iUSER_AP/myDDCi/BU1196" BEL
+        "iUSER_AP/myDDCi/BU1322" BEL "iUSER_AP/myDDCi/BU1324" BEL
+        "iUSER_AP/myDDCi/BU1315" BEL "iUSER_AP/myDDCi/BU1732" BEL
+        "iUSER_AP/myDDCi/BU2457" BEL "iUSER_AP/myDDCi/BU2448" BEL
+        "iUSER_AP/myDDCi/BU2453" BEL "iUSER_AP/myDDCi/BU4704" BEL
+        "iUSER_AP/myDDCi/BU4717" BEL "iUSER_AP/myDDCi/BU4723" BEL
+        "iUSER_AP/myDDCi/BU4729" BEL "iUSER_AP/myDDCi/BU4734" BEL
+        "iUSER_AP/myDDCi/BU4740" BEL "iUSER_AP/myDDCi/BU12558" BEL
+        "iUSER_AP/myDDCi/BU12564" BEL "iUSER_AP/myDDCi/BU12570" BEL
+        "iUSER_AP/myDDCi/BU12575" BEL "iUSER_AP/myDDCi/BU12583" BEL
+        "iUSER_AP/myDDCi/BU12596" BEL "iUSER_AP/myDDCi/BU12601" BEL
+        "iUSER_AP/myDDCi/BU12617" BEL "iUSER_AP/myDDCi/BU12621" BEL
+        "iUSER_AP/myDDCi/BU12623" BEL "iUSER_AP/myDDCi/BU18844" BEL
+        "iUSER_AP/myDDCi/BU18846" BEL "iUSER_AP/myDDCi/BU19385" BEL
+        "iUSER_AP/myDDCi/BU19407" BEL "iUSER_AP/myDDCi/BU19412" BEL
+        "iUSER_AP/myDDCi/BU19417" BEL "iUSER_AP/myDDCi/BU19422" BEL
+        "iUSER_AP/myDDCi/BU19427" BEL "iUSER_AP/myDDCi/BU19402" BEL
+        "iUSER_AP/myDDCi/BU19481" BEL "iUSER_AP/myDDCi/BU19487" BEL
+        "iUSER_AP/myDDCi/BU19493" BEL "iUSER_AP/myDDCi/BU19498" BEL
+        "iUSER_AP/myDDCi/BU19506" BEL "iUSER_AP/myDDCi/BU19521" BEL
+        "iUSER_AP/myDDCi/BU19526" BEL "iUSER_AP/myDDCi/BU19542" BEL
+        "iUSER_AP/myDDCi/BU19546" BEL "iUSER_AP/myDDCi/BU19548" BEL
+        "iUSER_AP/myDDCi/BU25144" BEL "iUSER_AP/myDDCi/BU25146" BEL
+        "iUSER_AP/myDDCi/BU25148" BEL "iUSER_AP/myDDCi/BU25150" BEL
+        "iUSER_AP/myDDCi/BU25392" BEL "iUSER_AP/myDDCi/BU25399" BEL "trig0"
+        BEL "wrt0";
+PIN gNV2ES_FIFO.gFCKG.iGCLK/gHFclk.iDLL_pins<10> = BEL
+        "gNV2ES_FIFO.gFCKG.iGCLK/gHFclk.iDLL" PINNAME CLKIN;
+TIMEGRP diclk = PIN "gNV2ES_FIFO.gFCKG.iGCLK/gHFclk.iDLL_pins<10>";
+PIN iUSER_AP/iRawFifo511x14/B8.B_pins<15> = BEL "iUSER_AP/iRawFifo511x14/B8.B"
+        PINNAME CLKB;
+TIMEGRP gNV2ES_FIFO_gFCKG_iGCLK_CLK0 = BEL "iRD/iCURR5" BEL "iRD/iCURR3" BEL
+        "iRD/iCURR0" BEL "iRD/iDVALID3" BEL "iRD/iDVALID0" BEL "iRD/iSEL3" BEL
+        "iRD/iDRBV3" BEL "iRD/iDRBV0" BEL "iRD/iDRAV3" BEL "iRD/iDRAV0" BEL
+        "iRD/iIRV5" BEL "iRD/iIRV3" BEL "iRD/iIRV0" BEL "iRD/iDIV" BEL
+        "iRD/iRD_WB3" BEL "iRD/iRD_WB0" BEL "iRD/iRD_WA3" BEL "iRD/iRD_WA0"
+        BEL "iRD/iREN3" BEL "iRD/iREN0" BEL "iRD/iRE3" BEL "iRD/iRE0" BEL
+        "iRD/iDI31" BEL "iRD/iDI30" BEL "iRD/iDI29" BEL "iRD/iDI28" BEL
+        "iRD/iDI27" BEL "iRD/iDI26" BEL "iRD/iDI25" BEL "iRD/iDI24" BEL
+        "iRD/iDI23" BEL "iRD/iDI22" BEL "iRD/iDI21" BEL "iRD/iDI20" BEL
+        "iRD/iDI19" BEL "iRD/iDI18" BEL "iRD/iDI17" BEL "iRD/iDI16" BEL
+        "iRD/iDI15" BEL "iRD/iDI14" BEL "iRD/iDI13" BEL "iRD/iDI12" BEL
+        "iRD/iDI11" BEL "iRD/iDI10" BEL "iRD/iDI9" BEL "iRD/iDI8" BEL
+        "iRD/iDI7" BEL "iRD/iDI6" BEL "iRD/iDI5" BEL "iRD/iDI4" BEL "iRD/iDI3"
+        BEL "iRD/iDI2" BEL "iRD/iDI1" BEL "iRD/iDI0" BEL "iRD/iAE9" BEL
+        "iRD/iAE6" BEL "iRD/iAE3" BEL "iRD/iAE0" BEL "iRD/iEF3" BEL "iRD/iEF0"
+        BEL "iRD/DRB_FD_31" BEL "iRD/DRB_FD_30" BEL "iRD/DRB_FD_29" BEL
+        "iRD/DRB_FD_28" BEL "iRD/DRB_FD_27" BEL "iRD/DRB_FD_26" BEL
+        "iRD/DRB_FD_25" BEL "iRD/DRB_FD_24" BEL "iRD/DRB_FD_23" BEL
+        "iRD/DRB_FD_22" BEL "iRD/DRB_FD_21" BEL "iRD/DRB_FD_20" BEL
+        "iRD/DRB_FD_19" BEL "iRD/DRB_FD_18" BEL "iRD/DRB_FD_17" BEL
+        "iRD/DRB_FD_16" BEL "iRD/DRB_FD_15" BEL "iRD/DRB_FD_14" BEL
+        "iRD/DRB_FD_13" BEL "iRD/DRB_FD_12" BEL "iRD/DRB_FD_11" BEL
+        "iRD/DRB_FD_10" BEL "iRD/DRB_FD_9" BEL "iRD/DRB_FD_8" BEL
+        "iRD/DRB_FD_7" BEL "iRD/DRB_FD_6" BEL "iRD/DRB_FD_5" BEL
+        "iRD/DRB_FD_4" BEL "iRD/DRB_FD_3" BEL "iRD/DRB_FD_2" BEL
+        "iRD/DRB_FD_1" BEL "iRD/DRB_FD_0" BEL "iRD/DRA_FD_31" BEL
+        "iRD/DRA_FD_30" BEL "iRD/DRA_FD_29" BEL "iRD/DRA_FD_28" BEL
+        "iRD/DRA_FD_27" BEL "iRD/DRA_FD_26" BEL "iRD/DRA_FD_25" BEL
+        "iRD/DRA_FD_24" BEL "iRD/DRA_FD_23" BEL "iRD/DRA_FD_22" BEL
+        "iRD/DRA_FD_21" BEL "iRD/DRA_FD_20" BEL "iRD/DRA_FD_19" BEL
+        "iRD/DRA_FD_18" BEL "iRD/DRA_FD_17" BEL "iRD/DRA_FD_16" BEL
+        "iRD/DRA_FD_15" BEL "iRD/DRA_FD_14" BEL "iRD/DRA_FD_13" BEL
+        "iRD/DRA_FD_12" BEL "iRD/DRA_FD_11" BEL "iRD/DRA_FD_10" BEL
+        "iRD/DRA_FD_9" BEL "iRD/DRA_FD_8" BEL "iRD/DRA_FD_7" BEL
+        "iRD/DRA_FD_6" BEL "iRD/DRA_FD_5" BEL "iRD/DRA_FD_4" BEL
+        "iRD/DRA_FD_3" BEL "iRD/DRA_FD_2" BEL "iRD/DRA_FD_1" BEL
+        "iRD/DRA_FD_0" BEL "iRD/V_REG_3" BEL "iWR/iDO31" BEL "iWR/iDO30" BEL
+        "iWR/iDO29" BEL "iWR/iDO28" BEL "iWR/iDO27" BEL "iWR/iDO26" BEL
+        "iWR/iDO25" BEL "iWR/iDO24" BEL "iWR/iDO23" BEL "iWR/iDO22" BEL
+        "iWR/iDO21" BEL "iWR/iDO20" BEL "iWR/iDO19" BEL "iWR/iDO18" BEL
+        "iWR/iDO17" BEL "iWR/iDO16" BEL "iWR/iDO2" BEL "iWR/iDO1" BEL
+        "iWR/iDO0" BEL "iWR/iWE2" BEL "iWR/iWE1" BEL "iWR/iAF2" BEL "iWR/iAF1"
+        BEL "iWR/READY_2" BEL "iWR/READY_1" BEL "iWR/WR_OK_2" BEL
+        "iWR/WR_OK_1" BEL "iUSER_AP/LED0/LEDcount_23" BEL
+        "iUSER_AP/LED0/LEDcount_22" BEL "iUSER_AP/LED0/LEDcount_21" BEL
+        "iUSER_AP/LED0/LEDcount_20" BEL "iUSER_AP/LED0/LEDcount_19" BEL
+        "iUSER_AP/LED0/LEDcount_18" BEL "iUSER_AP/LED0/LEDcount_17" BEL
+        "iUSER_AP/LED0/LEDcount_16" BEL "iUSER_AP/LED0/LEDcount_15" BEL
+        "iUSER_AP/LED0/LEDcount_14" BEL "iUSER_AP/LED0/LEDcount_13" BEL
+        "iUSER_AP/LED0/LEDcount_12" BEL "iUSER_AP/LED0/LEDcount_11" BEL
+        "iUSER_AP/LED0/LEDcount_10" BEL "iUSER_AP/LED0/LEDcount_9" BEL
+        "iUSER_AP/LED0/LEDcount_8" BEL "iUSER_AP/LED0/LEDcount_7" BEL
+        "iUSER_AP/LED0/LEDcount_6" BEL "iUSER_AP/LED0/LEDcount_5" BEL
+        "iUSER_AP/LED0/LEDcount_4" BEL "iUSER_AP/LED0/LEDcount_3" BEL
+        "iUSER_AP/LED0/LEDcount_2" BEL "iUSER_AP/LED0/LEDcount_1" BEL
+        "iUSER_AP/LED0/LEDcount_0" BEL "iUSER_AP/LED0/FF_REG" BEL
+        "iUSER_AP/LED0/COUNT" BEL "iUSER_AP/LED0/CLEAR" BEL
+        "iUSER_AP/PRFSetting_4" BEL "iUSER_AP/PRFSetting_3" BEL
+        "iUSER_AP/PRFSetting_2" BEL "iUSER_AP/PRFSetting_1" BEL
+        "iUSER_AP/PRFSetting_0" BEL "iUSER_AP/WidthSW_15" BEL
+        "iUSER_AP/WidthSW_14" BEL "iUSER_AP/WidthSW_13" BEL
+        "iUSER_AP/WidthSW_12" BEL "iUSER_AP/WidthSW_11" BEL
+        "iUSER_AP/WidthSW_10" BEL "iUSER_AP/WidthSW_9" BEL
+        "iUSER_AP/WidthSW_8" BEL "iUSER_AP/WidthSW_7" BEL "iUSER_AP/WidthSW_6"
+        BEL "iUSER_AP/WidthSW_5" BEL "iUSER_AP/WidthSW_4" BEL
+        "iUSER_AP/WidthSW_3" BEL "iUSER_AP/WidthSW_2" BEL "iUSER_AP/WidthSW_1"
+        BEL "iUSER_AP/WidthSW_0" BEL "iUSER_AP/FrecuencyHV_19" BEL
+        "iUSER_AP/FrecuencyHV_18" BEL "iUSER_AP/FrecuencyHV_17" BEL
+        "iUSER_AP/FrecuencyHV_16" BEL "iUSER_AP/FrecuencyHV_15" BEL
+        "iUSER_AP/FrecuencyHV_14" BEL "iUSER_AP/FrecuencyHV_13" BEL
+        "iUSER_AP/FrecuencyHV_12" BEL "iUSER_AP/FrecuencyHV_11" BEL
+        "iUSER_AP/FrecuencyHV_10" BEL "iUSER_AP/FrecuencyHV_9" BEL
+        "iUSER_AP/FrecuencyHV_8" BEL "iUSER_AP/FrecuencyHV_7" BEL
+        "iUSER_AP/FrecuencyHV_6" BEL "iUSER_AP/FrecuencyHV_5" BEL
+        "iUSER_AP/FrecuencyHV_4" BEL "iUSER_AP/FrecuencyHV_3" BEL
+        "iUSER_AP/FrecuencyHV_2" BEL "iUSER_AP/FrecuencyHV_1" BEL
+        "iUSER_AP/FrecuencyHV_0" BEL "iUSER_AP/WidthHv_7" BEL
+        "iUSER_AP/WidthHv_6" BEL "iUSER_AP/WidthHv_5" BEL "iUSER_AP/WidthHv_4"
+        BEL "iUSER_AP/WidthHv_3" BEL "iUSER_AP/WidthHv_2" BEL
+        "iUSER_AP/WidthHv_1" BEL "iUSER_AP/WidthHv_0" BEL
+        "iUSER_AP/DelaySW_11" BEL "iUSER_AP/DelaySW_10" BEL
+        "iUSER_AP/DelaySW_9" BEL "iUSER_AP/DelaySW_8" BEL "iUSER_AP/DelaySW_7"
+        BEL "iUSER_AP/DelaySW_6" BEL "iUSER_AP/DelaySW_5" BEL
+        "iUSER_AP/DelaySW_4" BEL "iUSER_AP/DelaySW_3" BEL "iUSER_AP/DelaySW_2"
+        BEL "iUSER_AP/DelaySW_1" BEL "iUSER_AP/DelaySW_0" BEL
+        "iUSER_AP/OUTFIFO_D_31" BEL "iUSER_AP/OUTFIFO_D_30" BEL
+        "iUSER_AP/OUTFIFO_D_29" BEL "iUSER_AP/OUTFIFO_D_28" BEL
+        "iUSER_AP/OUTFIFO_D_27" BEL "iUSER_AP/OUTFIFO_D_26" BEL
+        "iUSER_AP/OUTFIFO_D_25" BEL "iUSER_AP/OUTFIFO_D_24" BEL
+        "iUSER_AP/OUTFIFO_D_22" BEL "iUSER_AP/OUTFIFO_D_20" BEL
+        "iUSER_AP/OUTFIFO_D_19" BEL "iUSER_AP/OUTFIFO_D_18" BEL
+        "iUSER_AP/OUTFIFO_D_2" BEL "iUSER_AP/OUTPUTsequence_FFd1" BEL
+        "iUSER_AP/OUTFIFO_D_23" BEL "iUSER_AP/OUTFIFO_D_21" BEL
+        "iUSER_AP/OUTFIFO_D_0" BEL "iUSER_AP/IQ_FIFO_RD_EN" BEL
+        "iUSER_AP/EN_WriteRAW" BEL "iUSER_AP/PRFSetting_2_1" BEL
+        "iUSER_AP/PRFSetting_1_1" BEL "iUSER_AP/PRFSetting_0_1" PIN
+        "iUSER_AP/iRawFifo511x14/B8.B_pins<15>" BEL
+        "iUSER_AP/iRawFifo511x14/BU34" BEL "iUSER_AP/iRawFifo511x14/BU40" BEL
+        "iUSER_AP/iRawFifo511x14/BU46" BEL "iUSER_AP/iRawFifo511x14/BU52" BEL
+        "iUSER_AP/iRawFifo511x14/BU58" BEL "iUSER_AP/iRawFifo511x14/BU64" BEL
+        "iUSER_AP/iRawFifo511x14/BU70" BEL "iUSER_AP/iRawFifo511x14/BU76" BEL
+        "iUSER_AP/iRawFifo511x14/BU81" BEL "iUSER_AP/iRawFifo511x14/BU90" BEL
+        "iUSER_AP/iRawFifo511x14/BU97" BEL "iUSER_AP/iRawFifo511x14/BU104" BEL
+        "iUSER_AP/iRawFifo511x14/BU111" BEL "iUSER_AP/iRawFifo511x14/BU118"
+        BEL "iUSER_AP/iRawFifo511x14/BU125" BEL
+        "iUSER_AP/iRawFifo511x14/BU132" BEL "iUSER_AP/iRawFifo511x14/BU139"
+        BEL "iUSER_AP/iRawFifo511x14/BU146" BEL
+        "iUSER_AP/iRawFifo511x14/BU153" BEL "iUSER_AP/iRawFifo511x14/BU154"
+        BEL "iUSER_AP/iRawFifo511x14/BU158" BEL
+        "iUSER_AP/iRawFifo511x14/BU159" BEL "iUSER_AP/iRawFifo511x14/BU160"
+        BEL "iUSER_AP/iRawFifo511x14/BU164" BEL
+        "iUSER_AP/iRawFifo511x14/BU168" BEL "iUSER_AP/iRawFifo511x14/BU169"
+        BEL "iUSER_AP/iRawFifo511x14/BU173" BEL
+        "iUSER_AP/iRawFifo511x14/BU174" BEL "iUSER_AP/iRawFifo511x14/BU178"
+        BEL "iUSER_AP/iRawFifo511x14/BU179" BEL
+        "iUSER_AP/iRawFifo511x14/BU183" BEL "iUSER_AP/iRawFifo511x14/BU184"
+        BEL "iUSER_AP/iRawFifo511x14/BU188" BEL
+        "iUSER_AP/iRawFifo511x14/BU189" BEL "iUSER_AP/iRawFifo511x14/BU193"
+        BEL "iUSER_AP/iRawFifo511x14/BU197" BEL
+        "iUSER_AP/iRawFifo511x14/BU203" BEL "iUSER_AP/iRawFifo511x14/BU346"
+        BEL "iUSER_AP/iRawFifo511x14/BU348" BEL
+        "iUSER_AP/iRawFifo511x14/BU350" BEL "iUSER_AP/iRawFifo511x14/BU352"
+        BEL "iUSER_AP/iRawFifo511x14/BU354" BEL
+        "iUSER_AP/iRawFifo511x14/BU356" BEL "iUSER_AP/iRawFifo511x14/BU358"
+        BEL "iUSER_AP/iRawFifo511x14/BU360" BEL
+        "iUSER_AP/iRawFifo511x14/BU362" BEL "iUSER_AP/iRawFifo511x14/BU367"
+        BEL "iUSER_AP/iRawFifo511x14/BU372" BEL
+        "iUSER_AP/iRawFifo511x14/BU382" BEL "iUSER_AP/iRawFifo511x14/BU387"
+        BEL "iUSER_AP/iRawFifo511x14/BU392" BEL
+        "iUSER_AP/iRawFifo511x14/BU397" BEL "iUSER_AP/iRawFifo511x14/BU402"
+        BEL "iUSER_AP/iRawFifo511x14/BU407" BEL
+        "iUSER_AP/iRawFifo511x14/BU411" BEL "iUSER_AP/iq_out_fifoI/BU33" BEL
+        "iUSER_AP/iq_out_fifoI/BU39" BEL "iUSER_AP/iq_out_fifoI/BU45" BEL
+        "iUSER_AP/iq_out_fifoI/BU51" BEL "iUSER_AP/iq_out_fifoI/BU56" BEL
+        "iUSER_AP/iq_out_fifoI/BU65" BEL "iUSER_AP/iq_out_fifoI/BU72" BEL
+        "iUSER_AP/iq_out_fifoI/BU79" BEL "iUSER_AP/iq_out_fifoI/BU86" BEL
+        "iUSER_AP/iq_out_fifoI/BU93" BEL "iUSER_AP/iq_out_fifoI/BU120" BEL
+        "iUSER_AP/iq_out_fifoI/BU211" BEL "iUSER_AP/iq_out_fifoI/BU213" BEL
+        "iUSER_AP/iq_out_fifoI/BU215" BEL "iUSER_AP/iq_out_fifoI/BU217" BEL
+        "iUSER_AP/iq_out_fifoI/BU219" BEL "iUSER_AP/iq_out_fifoI/BU224" BEL
+        "iUSER_AP/iq_out_fifoI/BU227" BEL "iUSER_AP/iq_out_fifoI/BU233" BEL
+        "iUSER_AP/iq_out_fifoI/BU236" BEL "iUSER_AP/iq_out_fifoI/BU239";
+TS_osc3_pin = PERIOD TIMEGRP "osc3_pin" 100 MHz HIGH 50%;
+TS_diclk = PERIOD TIMEGRP "diclk" 100 MHz HIGH 50%;
+TS_drdy = PERIOD TIMEGRP "drdy" 100 MHz HIGH 50%;
+TS_gNV2ES_FIFO_gFCKG_iGCLK_CLK0 = PERIOD TIMEGRP
+        "gNV2ES_FIFO_gFCKG_iGCLK_CLK0" TS_diclk HIGH 50%;
+SCHEMATIC END;
+

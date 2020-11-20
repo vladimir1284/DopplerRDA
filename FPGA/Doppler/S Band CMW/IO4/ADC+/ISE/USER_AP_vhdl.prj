@@ -1,0 +1,5 @@
+vhdl work "C:\Proyecto Cyclos_Cuba\FPGA\New_Cyclop\IO4\ADC+\Src\led.vhd"
+vhdl work "C:\Proyecto Cyclos_Cuba\FPGA\New_Cyclop\IO4\ADC+\ISE\rawfifo255x14.vhd"
+vhdl work "C:\Proyecto Cyclos_Cuba\FPGA\New_Cyclop\IO4\ADC+\ISE\myddc.vhd"
+vhdl work "C:\Proyecto Cyclos_Cuba\FPGA\New_Cyclop\IO4\ADC+\ISE\iq_out_fifo.vhd"
+vhdl work "C:\Proyecto Cyclos_Cuba\FPGA\New_Cyclop\IO4\ADC+\Src\USER_AP_ADC.vhd"

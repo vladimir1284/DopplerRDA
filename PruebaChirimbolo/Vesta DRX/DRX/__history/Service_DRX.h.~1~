@@ -1,0 +1,23 @@
+//---------------------------------------------------------------------------
+#ifndef Service_DRXH
+#define Service_DRXH
+//---------------------------------------------------------------------------
+#include <SysUtils.hpp>
+#include <Classes.hpp>
+#include <SvcMgr.hpp>
+#include <vcl.h>
+//---------------------------------------------------------------------------
+class TDRX_Service : public TService
+{
+__published:    // IDE-managed Components
+private:        // User declarations
+public:         // User declarations
+	__fastcall TDRX_Service(TComponent* Owner);
+	TServiceController __fastcall GetServiceController(void);
+
+	friend void __stdcall ServiceController(unsigned CtrlCode);
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TDRX_Service *DRX_Service;
+//---------------------------------------------------------------------------
+#endif

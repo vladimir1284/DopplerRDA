@@ -1,0 +1,79 @@
+// ************************************************************************ //
+// Implementation class for interface IConfiguration
+// ************************************************************************ //
+#include <stdio.h>
+#include <vcl.h>
+#pragma hdrstop
+
+#if !defined(__Configuration_h__)
+#include "CommConfiguration.h"
+#endif
+
+// ************************************************************************ //
+//  TConfigurationImpl implements interface IConfiguration
+// ************************************************************************ //
+class TConfigurationImpl : public TInvokableClass, public IConfiguration
+{
+public:
+    /* Sample methods of IConfiguration */
+  SampleEnum     echoEnum(SampleEnum eValue);
+  TDoubleArray   echoDoubleArray(const TDoubleArray daValue);
+  TSampleStruct* echoStruct(const TSampleStruct* pStruct);
+  double         echoDouble(double dValue);
+
+  /* IUnknown */
+  HRESULT STDMETHODCALLTYPE QueryInterface(const GUID& IID, void **Obj)
+                        { return GetInterface(IID, Obj) ? S_OK : E_NOINTERFACE; }
+  ULONG STDMETHODCALLTYPE AddRef() { return TInvokableClass::_AddRef();  }
+  ULONG STDMETHODCALLTYPE Release() { return TInvokableClass::_Release();  }
+};
+
+
+SampleEnum TConfigurationImpl::echoEnum(SampleEnum eValue)
+{
+  /* TODO : Implement method echoEnum */
+  return eValue;
+}
+
+TDoubleArray TConfigurationImpl::echoDoubleArray(TDoubleArray daValue)
+{
+  /* TODO : Implement method echoDoubleArray */
+  return daValue;
+}
+
+TSampleStruct* TConfigurationImpl::echoStruct(const TSampleStruct* pEmployee)
+{
+  /* TODO : Implement method echoMyEmployee */
+  return new TSampleStruct();
+}
+
+double TConfigurationImpl::echoDouble(const double dValue)
+{
+  /* TODO : Implement method echoDouble */
+  return dValue;
+}
+
+
+static void __fastcall ConfigurationFactory(System::TObject* &obj)
+{
+  static _di_IConfiguration iInstance;
+  static TConfigurationImpl *instance = 0;
+  if (!instance)
+  {
+    instance = new TConfigurationImpl();
+    instance->GetInterface(iInstance);
+  }
+  obj = instance;
+}
+
+// ************************************************************************ //
+//  The following routine registers the interface and implementation class
+//  as well as the type used by the methods of the interface
+// ************************************************************************ //
+static void RegTypes()
+{
+  InvRegistry()->RegisterInterface(__delphirtti(IConfiguration));
+  InvRegistry()->RegisterInvokableClass(__classid(TConfigurationImpl), ConfigurationFactory);
+}
+#pragma startup RegTypes 32
+

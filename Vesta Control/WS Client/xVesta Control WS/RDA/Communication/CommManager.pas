@@ -1,0 +1,51 @@
+unit CommManager;
+
+interface
+
+uses
+  Types, XSBuiltIns, CommonObjs,
+  TxsRxsWS,
+  VideoWS;
+
+type
+  TCommunicationManager =
+  class
+    private
+      fAuthHeader : TAuthHeader;
+      fHost : string;
+
+      fVideo   : IVideoWS;
+      fPulse   : ITxsRxsWS;
+    private
+      function getVideo: IVideoWS;
+      function getVideoControl: IVideoWS;
+    public
+      constructor Create(Host : string);
+    public
+      property Video        : IVideoWS read getVideo;
+      property VideoControl : IVideoWS read getVideoControl;
+  end;
+
+
+implementation
+
+{ TCommunicationManager }
+
+constructor TCommunicationManager.Create(Host: string);
+begin
+  fHost := Host;
+
+  fAuthHeader := nil;
+  fVideo := nil;
+end;
+
+function TCommunicationManager.getVideo: IVideoWS;
+begin
+end;
+
+function TCommunicationManager.getVideoControl: IVideoWS;
+begin
+
+end;
+
+end.

@@ -1,0 +1,60 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{601785A4-00BE-446C-9CD6-0CFAB5FFFD84}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="drx_vesta.cbproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="drx_chirimbolo.cbproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="DRX_Service.cbproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="drx_vesta">
+			<MSBuild Projects="drx_vesta.cbproj"/>
+		</Target>
+		<Target Name="drx_vesta:Clean">
+			<MSBuild Targets="Clean" Projects="drx_vesta.cbproj"/>
+		</Target>
+		<Target Name="drx_vesta:Make">
+			<MSBuild Targets="Make" Projects="drx_vesta.cbproj"/>
+		</Target>
+		<Target Name="drx_chirimbolo">
+			<MSBuild Projects="drx_chirimbolo.cbproj"/>
+		</Target>
+		<Target Name="drx_chirimbolo:Clean">
+			<MSBuild Targets="Clean" Projects="drx_chirimbolo.cbproj"/>
+		</Target>
+		<Target Name="drx_chirimbolo:Make">
+			<MSBuild Targets="Make" Projects="drx_chirimbolo.cbproj"/>
+		</Target>
+		<Target Name="DRX_Service">
+			<MSBuild Projects="DRX_Service.cbproj"/>
+		</Target>
+		<Target Name="DRX_Service:Clean">
+			<MSBuild Targets="Clean" Projects="DRX_Service.cbproj"/>
+		</Target>
+		<Target Name="DRX_Service:Make">
+			<MSBuild Targets="Make" Projects="DRX_Service.cbproj"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="drx_vesta;drx_chirimbolo;DRX_Service"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="drx_vesta:Clean;drx_chirimbolo:Clean;DRX_Service:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="drx_vesta:Make;drx_chirimbolo:Make;DRX_Service:Make"/>
+		</Target>
+		<Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+	</Project>

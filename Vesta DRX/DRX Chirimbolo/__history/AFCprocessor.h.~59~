@@ -1,0 +1,82 @@
+#ifndef AFCprocessorH
+#define AFCprocessorH
+//---------------------------------------------------------------------------
+#include <Classes.hpp>
+#include <complex>
+
+#include "AFCRead.h"
+#include "FFTReal.h"
+//---------------------------------------------------------------------------
+
+static const int NUM_ESTIMATES = 200;
+
+//---------------------------------------------------------------------------
+
+class AFCProcessingThread : public TThread
+{
+public:
+		__fastcall AFCProcessingThread(bool CreateSuspended);
+
+		INT64  GetIFFrequencyEstimate();
+		INT64  GetTxPulsePowerEstimate();
+		INT64  GetTxFrequencyEstimate();
+		bool   GetDataReady();
+
+private:
+		AFCRead *fReadThread;
+
+		bool fDataReady;
+
+        FFTReal *TheFFT;
+		int FFTSize;
+		double *FFTIn;
+		double *FFTOut;
+		double *FFTAbs;
+
+		int CurrentBuffer;
+
+		INT64 *outputbuffer;
+		INT64 *LPIFEstimates;
+		INT64 *SPIFEstimates;
+		INT64 *LPTxEstimates;
+		INT64 *SPTxEstimates;
+
+		INT64 FreqEst;
+		INT64 HqFreqEst;
+		INT64 IFEstimate;
+		INT64 IFEstimateOut;
+		INT64 TxEstimateOut;
+
+		INT64 CurrentIFEstimate;
+		INT64 CurrentTxEstimate;
+
+		unsigned int *ModeData[2];
+
+		//Saving data
+		INT64 fFreqCrossingZero;
+		INT64 fFreqFFT;
+		INT64 fTxPowerEstimate;
+		int StartCell, StopCell;
+
+		INT64 TxPowerEstimate;
+		INT64  __fastcall UpdateFreqEst(INT64 IFFrequency, INT64* TXEstimates, INT64* IFEstimates, int Nsamples);
+		INT64  __fastcall GetFreqEst(INT64* TXEstimates, INT64* IFEstimates);
+		void __fastcall OutputValues(INT64);
+
+		void ResetFreqEstimate();
+
+		INT64 DoZeroCrossing(HE_PINT32BUFFER DataIn, int StartSample, int StopSample);
+		float DoPowerEstimation( HE_PINT32BUFFER DataIn,int StartSample, int StopSample);
+		INT64 GetMode(INT64* FreqEstimateArray);
+		void  DoFFT(HE_PINT32BUFFER DataIn);
+		double InterpolateFFT();
+
+		void ScaleData(HE_PINT32BUFFER DataIn, int NBuffers, int DataSize);
+protected:
+		void __fastcall Execute();
+};
+
+extern    AFCProcessingThread *   TheACFProcessingThread;
+
+//---------------------------------------------------------------------------
+#endif

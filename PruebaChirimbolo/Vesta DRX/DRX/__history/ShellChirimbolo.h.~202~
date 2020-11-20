@@ -1,0 +1,63 @@
+//---------------------------------------------------------------------------
+#ifndef ShellChirimboloH
+#define ShellChirimboloH
+//---------------------------------------------------------------------------
+#include <Classes.hpp>
+#include <Controls.hpp>
+#include <StdCtrls.hpp>
+#include <Forms.hpp>
+#include <ComCtrls.hpp>
+#include <Buttons.hpp>
+#include <ExtCtrls.hpp>
+#include <Dialogs.hpp>
+#include "perfgrap.h"
+
+#include "Radar.h"
+#include "IntegratedData.h"
+#include "FFTReal.h"
+#include "Chart.hpp"
+#include "TeEngine.hpp"
+#include "TeeProcs.hpp"
+#include "Series.hpp"
+#include "IdHTTPWebBrokerBridge.hpp"
+#include <IdBaseComponent.hpp>
+#include <IdCmdTCPServer.hpp>
+#include <IdComponent.hpp>
+#include <IdCustomTCPServer.hpp>
+#include <IdTCPServer.hpp>
+
+//---------------------------------------------------------------------------
+class TForm1 : public TForm
+{
+__published:	// IDE-managed Components
+	TTimer *Timer1;
+	void __fastcall FormCreate(TObject *Sender);
+	void __fastcall FormDestroy(TObject *Sender);
+	void __fastcall Timer1Timer(TObject *Sender);
+
+private:
+	TIdHTTPWebBrokerBridge* FWebBrokerBridge;
+
+	bool CurrentAFCChangesInhibited;
+	bool AFC_DisplayPause;
+	bool IQ_DisplayPause;
+	unsigned long StartTime;
+	unsigned long TxPackTime;
+	unsigned long RxPackTime;
+	IntegratedData* SetDataStore(int RayCount);
+	bool WaitForScan();
+	void __fastcall ConnectionEvent(TIdContext *AThread );
+
+public:		// User declarations
+	String fSample;
+	bool fAcquire;
+	int  IQ_Samples;
+
+	__fastcall TForm1(TComponent* Owner);
+	void __fastcall AFC_NewData(System::TObject* Sender, __int64 IF, __int64 Tx, double power, HE_PINT32BUFFER data, FFTReal* fft);
+	void __fastcall Sector_NewData(System::TObject* Sender, int Az, int El, int rays, int mode, int ndata, float *Power, float *Doppler, float *Width, float *SQI, float *CI);
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TForm1 *Form1;
+//---------------------------------------------------------------------------
+#endif

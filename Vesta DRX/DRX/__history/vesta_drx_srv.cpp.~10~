@@ -1,0 +1,70 @@
+#include <SysUtils.hpp>
+#include <SvcMgr.hpp>
+#include <IniFiles.hpp>
+#include <hesl.h>
+#pragma hdrstop
+
+#define Application Svcmgr::Application
+USEFORM("Service_DRX.cpp", DRX_srv); /* TService: File Type */
+USEFORM("Comm\CommModule.cpp", CommunicationModule); /* TWebModule: File Type */
+//---------------------------------------------------------------------------
+#pragma link "WebReq.obj"
+#pragma link "SockAppHlpr.obj"
+#pragma link "IndySystem.lib"
+#pragma link "IndyCore.lib"
+
+const SIZE_T MinWorkingSetSizeDefault = 500;
+const SIZE_T MaxWorkingSetSizeDefault = 1000;
+
+//---------------------------------------------------------------------------
+WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
+{
+	try
+	{
+		HANDLE CurrentProcess = GetCurrentProcess();
+		SetPriorityClass(CurrentProcess, REALTIME_PRIORITY_CLASS);
+		__try{
+			String configFileName = ExtractFileDir(ParamStr(0)) + "\\Config.ini";
+			TIniFile* config = new TIniFile(configFileName);
+			__try{
+				SIZE_T MinWorkingSetSize = (config != NULL) ? config->ReadInteger("Memory", "MinimumWorkingSetSize", MinWorkingSetSizeDefault) : MinWorkingSetSizeDefault;
+				SIZE_T MaxWorkingSetSize = (config != NULL) ? config->ReadInteger("Memory", "MaximumWorkingSetSize", MaxWorkingSetSizeDefault) : MaxWorkingSetSizeDefault;
+
+				MinWorkingSetSize *= 0x100000;
+				MaxWorkingSetSize *= 0x100000;
+
+				SetProcessWorkingSetSize(CurrentProcess, MinWorkingSetSize, MaxWorkingSetSize );
+			}
+			__finally{
+				config->Free();
+			}
+
+			if ((!Application->DelayInitialize) || (Application->Installing()))
+			{
+				Application->Initialize();
+			}
+			Application->CreateForm(__classid(TDRX_srv), &DRX_srv);
+		Application->CreateForm(__classid(TCommunicationModule), &CommunicationModule);
+		Application->Run();
+		}
+		__finally{
+			SetPriorityClass(CurrentProcess, NORMAL_PRIORITY_CLASS);
+		}
+	}
+	catch (Exception &exception)
+	{
+		Sysutils::ShowException(&exception, System::ExceptAddr());
+	}
+        catch(...)
+        {
+		try
+		{
+	        	throw Exception("");
+		}
+		catch(Exception &exception)
+		{
+			Sysutils::ShowException(&exception, System::ExceptAddr());
+		}
+        }
+	return 0;
+}

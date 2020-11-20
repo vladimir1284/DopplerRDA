@@ -1,0 +1,197 @@
+//---------------------------------------------------------------------------
+
+#ifndef configH
+#define configH
+
+#include <System.hpp>
+#include <vcl.h>
+#include "DataParameters.h"
+//---------------------------------------------------------------------------
+
+class TDataFilter : public TRemotable
+{
+	private:
+		double fB0;
+		double fB1;
+		double fB2;
+		double fB3;
+		double fB4;
+		double fC1;
+		double fC2;
+		double fC3;
+		double fC4;
+		double fMaxAngle;
+		int    fMaxHeigh;
+		int    fMaxDistance;
+		bool   fSQI;
+		bool   fSIG;
+		bool   fLOG;
+		bool   fCCOR;
+		bool   fSpeckles;
+		int    fSpeckleSize;
+
+	__published:
+	  __property double B0    = { read= fB0, write= fB0};
+	  __property double B1    = { read= fB1, write= fB1};
+	  __property double B2    = { read= fB2, write= fB2};
+	  __property double B3    = { read= fB3, write= fB3};
+	  __property double B4    = { read= fB4, write= fB4};
+	  __property double C1    = { read= fC1, write= fC1};
+	  __property double C2    = { read= fC2, write= fC2};
+	  __property double C3    = { read= fC3, write= fC3};
+	  __property double C4    = { read= fC4, write= fC4};
+
+	  __property double MaxAngle    = { read= fMaxAngle, write= fMaxAngle};
+	  __property int    MaxHeigh    = { read= fMaxHeigh, write= fMaxHeigh};
+	  __property int    MaxDistance = { read= fMaxDistance, write= fMaxDistance};
+
+	  __property bool   SQI  = { read= fSQI,  write= fSQI};
+	  __property bool   SIG  = { read= fSIG,  write= fSIG};
+	  __property bool   LOG  = { read= fLOG,  write= fLOG};
+	  __property bool   CCOR = { read= fCCOR, write= fCCOR};
+
+	  __property bool   Speckles    = { read= fSpeckles,    write= fSpeckles};
+	  __property int    SpeckleSize = { read= fSpeckleSize, write= fSpeckleSize};
+};
+
+class TSettings : public TRemotable
+{
+	private:
+		//stalo
+		int fScan_step;  //Hz
+		int fScan_delay; //ms
+		int fScan_width; //Hz
+
+		//afc
+		double fValid_power_tx;
+		double fPower_factor_tx;
+		int fStart_sample_lp;
+		int fStop_sample_lp;
+		int fStart_sample_sp;
+		int fStop_sample_sp;
+		double fLoopGain;
+
+		//iq
+		int    fSP_TX_PulsePosition;
+		int    fLP_TX_PulsePosition;
+		int    fSP_RX_PulsePosition;
+		int    fLP_RX_PulsePosition;
+
+		//general
+		int    fStream_Port;
+		int    fDoppler_Port;
+		int    fCommunication_Port;
+		int    fSectors;
+
+		INT64  fBand_Frequency;
+		double fBand_Length;
+		INT64  fStalo_Frequency;
+		INT64  fStalo_StartFrequencyLP;
+		INT64  fStalo_StartFrequencySP;
+
+		double fLP_MaxSpeed;
+		double fSP_Single_MaxSpeed;
+		double fSP_Dual_54_MaxSpeed;
+		double fSP_Dual_43_MaxSpeed;
+		double fSP_Dual_32_MaxSpeed;
+
+		int    fSensibility_lp;
+		int    fSensibility_sp;
+		int    fDinamic_range_lp;
+		int    fDinamic_range_sp;
+		String fConv_table_lp;
+		String fConv_table_sp;
+
+	__published:
+	  __property int    Scan_step  = { read= fScan_step , write= fScan_step };
+	  __property int    Scan_delay = { read= fScan_delay, write= fScan_delay};
+	  __property int    Scan_width = { read= fScan_width, write= fScan_width};
+
+			//afc
+	  __property double Valid_power_tx  = { read= fValid_power_tx , write= fValid_power_tx };
+	  __property double Power_factor_tx = { read= fPower_factor_tx, write= fPower_factor_tx};
+	  __property int    Start_sample_lp = { read= fStart_sample_lp, write= fStart_sample_lp};
+	  __property int    Stop_sample_lp  = { read= fStop_sample_lp , write= fStop_sample_lp };
+	  __property int    Start_sample_sp = { read= fStart_sample_sp, write= fStart_sample_sp};
+	  __property int    Stop_sample_sp  = { read= fStop_sample_sp , write= fStop_sample_sp };
+	  __property double LoopGain        = { read= fLoopGain       , write= fLoopGain       };
+	  __property INT64  Stalo_StartFrequencyLP = {read= fStalo_StartFrequencyLP, write= fStalo_StartFrequencyLP};
+	  __property INT64  Stalo_StartFrequencySP = {read= fStalo_StartFrequencySP, write= fStalo_StartFrequencySP};
+
+			//iq
+	  __property int    SP_TX_PulsePosition = { read= fSP_TX_PulsePosition, write= fSP_TX_PulsePosition};
+	  __property int    LP_TX_PulsePosition = { read= fLP_TX_PulsePosition, write= fLP_TX_PulsePosition};
+	  __property int    SP_RX_PulsePosition = { read= fSP_RX_PulsePosition, write= fSP_RX_PulsePosition};
+	  __property int    LP_RX_PulsePosition = { read= fLP_RX_PulsePosition, write= fLP_RX_PulsePosition};
+
+	  //general
+	  __property int    Stream_Port  = { read= fStream_Port,  write= fStream_Port};
+	  __property int    Doppler_Port = { read= fDoppler_Port, write= fDoppler_Port};
+	  __property int    Communication_Port = { read= fCommunication_Port, write= fCommunication_Port};
+	  __property int    Sectors      = { read= fSectors,      write= fSectors};
+
+	  __property INT64  Band_Frequency     = {read= fBand_Frequency,    write= fBand_Frequency   };
+	  __property INT64  Stalo_Frequency    = {read= fStalo_Frequency,   write= fStalo_Frequency  };
+	  __property double Band_Length        = {read= fBand_Length,       write= fBand_Length      };
+
+	  __property double _LP_MaxSpeed           = {read= fLP_MaxSpeed,         write= fLP_MaxSpeed        };
+	  __property double _SP_Single_MaxSpeed    = {read= fSP_Single_MaxSpeed,  write= fSP_Single_MaxSpeed };
+	  __property double _SP_Dual_54_MaxSpeed   = {read= fSP_Dual_54_MaxSpeed, write= fSP_Dual_54_MaxSpeed};
+	  __property double _SP_Dual_43_MaxSpeed   = {read= fSP_Dual_43_MaxSpeed, write= fSP_Dual_43_MaxSpeed};
+	  __property double _SP_Dual_32_MaxSpeed   = {read= fSP_Dual_32_MaxSpeed, write= fSP_Dual_32_MaxSpeed};
+
+	  __property int    Sensibility_LP     = { read= fSensibility_lp   , write= fSensibility_lp   };
+	  __property int    Sensibility_SP     = { read= fSensibility_sp   , write= fSensibility_sp   };
+	  __property int    Dinamic_range_LP   = { read= fDinamic_range_lp , write= fDinamic_range_lp };
+	  __property int    Dinamic_range_SP   = { read= fDinamic_range_sp , write= fDinamic_range_sp };
+	  __property String Conv_table_lp_text = { read= fConv_table_lp    , write= fConv_table_lp};
+	  __property String Conv_table_sp_text = { read= fConv_table_sp    , write= fConv_table_sp};
+};
+
+class TDRX_Parameters : public TRemotable
+{
+	private:
+		//stalo
+		int fShortPulse_NData;
+		int fLongPulse_NData;
+		int fDualPulse_NData;
+		int fShortPulse_Trigger;
+		int fLongPulse_Trigger;
+		int fShortPulse_CellSize;
+		int fLongPulse_CellSize;
+		int fShortPulse_Clock;
+		int fLongPulse_Clock;
+		int fSectors;
+		INT64 fIF;
+		INT64 fBand_Frequency;
+		double fBand_Length;
+		int fDualPulse_54Low_Trigger;
+		int fDualPulse_54High_Trigger;
+		int fDualPulse_43Low_Trigger;
+		int fDualPulse_43High_Trigger;
+		int fDualPulse_32Low_Trigger;
+		int fDualPulse_32High_Trigger;
+
+	__published:
+	  __property int    ShortPulse_NData         = { read= fShortPulse_NData,         write= fShortPulse_NData        };
+	  __property int    LongPulse_NData          = { read= fLongPulse_NData,          write= fLongPulse_NData         };
+	  __property int    DualPulse_NData          = { read= fDualPulse_NData,          write= fDualPulse_NData         };
+	  __property int    ShortPulse_Trigger       = { read= fShortPulse_Trigger,       write= fShortPulse_Trigger      };
+	  __property int    LongPulse_Trigger        = { read= fLongPulse_Trigger,        write= fLongPulse_Trigger       };
+	  __property int    ShortPulse_CellSize      = { read= fShortPulse_CellSize,      write= fShortPulse_CellSize     };
+	  __property int    LongPulse_CellSize       = { read= fLongPulse_CellSize,       write= fLongPulse_CellSize      };
+	  __property int    ShortPulse_Clock         = { read= fShortPulse_Clock,         write= fShortPulse_Clock        };
+	  __property int    LongPulse_Clock          = { read= fLongPulse_Clock,          write= fLongPulse_Clock         };
+	  __property int    Sectors                  = { read= fSectors,                  write= fSectors                 };
+	  __property INT64  IF                       = { read= fIF,                       write= fIF                      };
+	  __property INT64  Band_Frequency           = { read= fBand_Frequency,           write= fBand_Frequency          };
+	  __property double Band_Length              = { read= fBand_Length,              write= fBand_Length             };
+	  __property int    DualPulse_54Low_Trigger  = { read= fDualPulse_54Low_Trigger,  write= fDualPulse_54Low_Trigger };
+	  __property int    DualPulse_54High_Trigger = { read= fDualPulse_54High_Trigger, write= fDualPulse_54High_Trigger};
+	  __property int    DualPulse_43Low_Trigger  = { read= fDualPulse_43Low_Trigger,  write= fDualPulse_43Low_Trigger };
+	  __property int    DualPulse_43High_Trigger = { read= fDualPulse_43High_Trigger, write= fDualPulse_43High_Trigger};
+	  __property int    DualPulse_32Low_Trigger  = { read= fDualPulse_32Low_Trigger,  write= fDualPulse_32Low_Trigger };
+	  __property int    DualPulse_32High_Trigger = { read= fDualPulse_32High_Trigger, write= fDualPulse_32High_Trigger};
+};
+
+#endif

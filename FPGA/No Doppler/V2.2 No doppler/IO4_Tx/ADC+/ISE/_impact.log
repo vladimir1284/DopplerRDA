@@ -1,0 +1,37 @@
+iMPACT Version: 10.1
+
+iMPACT log file Started on Fri Aug 18 12:45:47 2017
+
+Recustomizing IP...
+in thread "AWT-EventQueue-0" java.lang.ArrayIndexOutOfBoundsException: 24
+	at javax.swing.plaf.basic.BasicListUI.updateLayoutState(Unknown Source)
+	at javax.swing.plaf.basic.BasicListUI.maybeUpdateLayoutState(Unknown Source)
+	at javax.swing.plaf.basic.BasicListUI.getCellBounds(Unknown Source)
+	at javax.swing.JList.getCellBounds(Unknown Source)
+	at javax.swing.JList.ensureIndexIsVisible(Unknown Source)
+	at javax.swing.plaf.basic.BasicComboPopup.setListSelection(Unknown Source)
+	at javax.swing.plaf.basic.BasicComboPopup.access$300(Unknown Source)
+	at javax.swing.plaf.basic.BasicComboPopup$Handler.itemStateChanged(UnknownSource)
+	at javax.swing.JComboBox.fireItemStateChanged(Unknown Source)
+	at javax.swing.JComboBox.selectedItemChanged(Unknown Source)
+	at javax.swing.JComboBox.intervalAdded(Unknown Source)
+	at javax.swing.AbstractListModel.fireIntervalAdded(Unknown Source)
+	at javax.swing.DefaultComboBoxModel.addElement(Unknown Source)
+	at javax.swing.JComboBox.addItem(Unknown Source)
+	atcom.xilinx.ip.async_fifo_v5_1.async_fifo_v5_1GUI.updateFifoDepthForBlockMemVirtex2(Unknown Source)
+	atcom.xilinx.ip.async_fifo_v5_1.async_fifo_v5_1GUI.updateFifoDepthForBlockMem(Unknown Source)
+	at com.xilinx.ip.async_fifo_v5_1.async_fifo_v5_1GUI.updateFifoDepth(UnknownSource)
+	at com.xilinx.ip.async_fifo_v5_1.async_fifo_v5_1GUI.isValidFifoDepth(UnknownSource)
+	at com.xilinx.ip.async_fifo_v5_1.async_fifo_v5_1GUI.textValueChanged(UnknownSource)
+	at java.awt.TextComponent.processTextEvent(Unknown Source)
+	at java.awt.TextComponent.processEvent(Unknown Source)
+	at java.awt.TextField.processEvent(Unknown Source)
+	at java.awt.Component.dispatchEventImpl(Unknown Source)
+	at java.awt.Component.dispatchEvent(Unknown Source)
+	at java.awt.EventQueue.dispatchEvent(Unknown Source)
+	at java.awt.EventDispatchThread.pumpOneEventForHierarchy(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.run(Unknown Source)
+Finished Recustomizing.

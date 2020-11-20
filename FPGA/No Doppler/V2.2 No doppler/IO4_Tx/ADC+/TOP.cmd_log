@@ -1,0 +1,1 @@
+ngdbuild -ise "E:/Robert/DRX_HLG/DDCv1_0/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "E:/Robert/DRX_HLG/DDCv1_0/IO4/ADC+/ISE/top.ngc" TOP.ngd

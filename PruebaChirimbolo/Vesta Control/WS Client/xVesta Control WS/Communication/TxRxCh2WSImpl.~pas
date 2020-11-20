@@ -1,0 +1,377 @@
+{ Invokable implementation File for TTxRxCh2WS which implements ITxRxCh2WS }
+
+unit TxRxCh2WSImpl;
+
+interface
+
+uses InvokeRegistry, Types, XSBuiltIns, TxRxCh2WSIntf, TxRxWSIntf, CommunicationObj;
+
+type
+  TTxRxCh2WS = class(TCommObj, ITxRxCh2WS)
+  public
+  // ITxRxStatus
+    function  Get_Tx_Caldeo: WordBool; safecall;
+    function  Get_Tx_Anodo: WordBool; safecall;
+    function  Get_Tx_Listo: WordBool; safecall;
+    function  Get_Tx_Averia: WordBool; safecall;
+    function  Get_Rx_Caldeo: WordBool; safecall;
+    function  Get_Rx_Anodo: WordBool; safecall;
+    function  Get_Rx_Averia: WordBool; safecall;
+    function  Get_Tx_Pulso: TxPulseEnum; safecall;
+    function  Get_TxRx_Ajuste: WordBool; safecall;
+    function  Get_Tx_Potencia: Integer; safecall;
+    function  Get_Rx_Sintonia: Integer; safecall;
+    function  Get_Rx_Ganancia: Integer; safecall;
+    function  Get_Rx_Ruido: Integer; safecall;
+    function  Get_Numero: Integer; safecall;
+    function  Get_Longitud_Onda: TWaveLengthEnum; safecall;
+    function  Get_Rx_Correccion: WordBool; safecall;
+    function  Get_Tx_Standby: WordBool; safecall;
+    function  Get_Tx_Potencia_Voltage: Single; safecall;
+    function  Get_Rx_Sintonia_Voltage: Single; safecall;
+    function  Get_Rx_Ganancia_Voltage: Single; safecall;
+    function  Get_Rx_Ruido_Voltage: Single; safecall;
+  // ITxRxControl
+    procedure Tx_Encender; safecall;
+    procedure Tx_Apagar; safecall;
+    procedure Set_Tx_Standby(value: WordBool); safecall;
+    procedure Rx_Encender; safecall;
+    procedure Rx_Apagar; safecall;
+    procedure Set_Rx_Correccion(value: WordBool); safecall;
+    procedure Set_Trabajo(value: WordBool); safecall;
+    // ITxRxMRL5M
+    function  Get_Rx_CMG: WordBool; safecall;
+    procedure Set_Rx_CMG(Value: WordBool); safecall;
+    procedure Rx_Ganancia_N; safecall;
+    procedure Rx_Ganancia_P; safecall;
+    function  Get_Rx_CMS: WordBool; safecall;
+    procedure Set_Rx_CMS(Value: WordBool); safecall;
+    procedure Rx_Sintonia_N; safecall;
+    procedure Rx_Sintonia_P; safecall;
+    //ITxRxMeasure
+    function Get_Rango_Tx_Potencia: Integer; safecall;
+    function Get_Rango_Rx_Sintonia: Integer; safecall;
+    function Get_Rango_Rx_Ganancia: Integer; safecall;
+    function Get_Rango_Rx_Ruido: Integer; safecall;
+    function Get_Sector_Tx_Potencia: Integer; safecall;
+    function Get_Sector_Rx_Sintonia: Integer; safecall;
+    function Get_Sector_Rx_Ganancia: Integer; safecall;
+    function Get_Sector_Rx_Ruido: Integer; safecall;
+
+    //ITxRxMeasureControl
+    procedure Set_Rango_Tx_Potencia(value: Integer); safecall;
+    procedure Set_Rango_Rx_Sintonia(value: Integer); safecall;
+    procedure Set_Rango_Rx_Ganancia(value: Integer); safecall;
+    procedure Set_Rango_Rx_Ruido(value: Integer); safecall;
+    procedure Set_Sector_Tx_Potencia(value: Integer); safecall;
+    procedure Set_Sector_Rx_Sintonia(value: Integer); safecall;
+    procedure Set_Sector_Rx_Ganancia(value: Integer); safecall;
+    procedure Set_Sector_Rx_Ruido(value: Integer); safecall;
+
+    function CheckCredentials : boolean; override;
+  end;
+
+implementation
+
+uses
+  Elbrus, ElbrusTypes, Users;
+
+{ TTxRxCh2WS }
+
+function TTxRxCh2WS.Get_Longitud_Onda: TWaveLengthEnum;
+begin
+  Result := wl_10cm;
+end;
+
+function TTxRxCh2WS.Get_Numero: Integer;
+begin
+  Result := 2;
+end;
+
+function TTxRxCh2WS.Get_Rx_Anodo: WordBool;
+begin
+  Result := (Snapshot.Digital_Input and di_Rx2_Anodo) <> 0;
+end;
+
+function TTxRxCh2WS.Get_Rx_Averia: WordBool;
+begin
+  Result := (Snapshot.Digital_Input and di_Rx2_Averia) <> 0;
+end;
+
+function TTxRxCh2WS.Get_Rx_Caldeo: WordBool;
+begin
+  Result := (Snapshot.Digital_Input and di_Rx2_Caldeo) <> 0;
+end;
+
+function TTxRxCh2WS.Get_Rx_Correccion: WordBool;
+begin
+  Result := (Snapshot.Digital_Output and do_Rx2_Correccion) <> 0;
+end;
+
+function TTxRxCh2WS.Get_Rx_Ganancia: Integer;
+begin
+  Result := Snapshot.Analog_Input[ai_Rx2_Ganancia];
+end;
+
+function TTxRxCh2WS.Get_Rx_Ganancia_Voltage: Single;
+begin
+  Result := BinaryToVoltage(ai_Rx2_Ganancia);
+end;
+
+function TTxRxCh2WS.Get_Rx_Ruido: Integer;
+begin
+  Result := Snapshot.Analog_Input[ai_Rx2_Ruido];
+end;
+
+function TTxRxCh2WS.Get_Rx_Ruido_Voltage: Single;
+begin
+  Result := BinaryToVoltage(ai_Rx2_Ruido);
+end;
+
+function TTxRxCh2WS.Get_Rx_Sintonia: Integer;
+begin
+  Result := Snapshot.Analog_Input[ai_Rx2_Sintonia];
+end;
+
+function TTxRxCh2WS.Get_Rx_Sintonia_Voltage: Single;
+begin
+  result := BinaryToVoltage( ai_Rx2_Sintonia );
+end;
+
+function TTxRxCh2WS.Get_Tx_Anodo: WordBool;
+begin
+  Result := (Snapshot.Digital_Input and di_Tx2_Anodo) <> 0;
+end;
+
+function TTxRxCh2WS.Get_Tx_Averia: WordBool;
+begin
+  Result := (Snapshot.Digital_Input and di_Tx2_Averia) <> 0;
+end;
+
+function TTxRxCh2WS.Get_Tx_Caldeo: WordBool;
+begin
+  Result := (Snapshot.Digital_Input and di_Tx2_Caldeo) <> 0;
+end;
+
+function TTxRxCh2WS.Get_Tx_Listo: WordBool;
+begin
+  Result := (Snapshot.Digital_Input and di_Tx2_Listo) <> 0;
+end;
+
+function TTxRxCh2WS.Get_Tx_Potencia: Integer;
+begin
+  Result := Snapshot.Analog_Input[ai_Tx2_Potencia];
+end;
+
+function TTxRxCh2WS.Get_Tx_Potencia_Voltage: Single;
+begin
+  result := BinaryToKW( Snapshot.Analog_Input[ai_Tx2_Potencia] );
+end;
+
+function TTxRxCh2WS.Get_Tx_Pulso: TxPulseEnum;
+begin
+  result := TxPulseEnum(Snapshot.Pulse);
+end;
+
+function TTxRxCh2WS.Get_Tx_Standby: WordBool;
+begin
+  Result := (Snapshot.Digital_Output and do_Tx2_Standby) <> 0;
+end;
+
+function TTxRxCh2WS.Get_TxRx_Ajuste: WordBool;
+begin
+  Result := (Snapshot.Digital_Input and di_TxRx2_Ajuste) <> 0;
+end;
+
+procedure TTxRxCh2WS.Rx_Apagar;
+begin
+  if InControl
+    then Elbrus.Rx2_Apagar
+end;
+
+procedure TTxRxCh2WS.Rx_Encender;
+begin
+  if InControl
+    then Elbrus.Rx2_Encender
+end;
+
+procedure TTxRxCh2WS.Set_Rx_Correccion(value: WordBool);
+begin
+  if InControl
+    then Elbrus.Rx2_Correccion(value);
+end;
+
+procedure TTxRxCh2WS.Set_Trabajo(value: WordBool);
+begin
+  if InControl
+    then
+      begin
+        { TODO : Para Pilon quitar el comentario }
+//        Elbrus.Tx2_Standby(true);
+        Elbrus.TxRx2_Trabajo(value);
+      end;
+end;
+
+procedure TTxRxCh2WS.Set_Tx_Standby(value: WordBool);
+begin
+  if InControl
+    then Elbrus.Tx2_Standby(value);
+end;
+
+procedure TTxRxCh2WS.Tx_Apagar;
+begin
+  if InControl
+    then Elbrus.Tx2_Apagar;
+end;
+
+procedure TTxRxCh2WS.Tx_Encender;
+begin
+  if InControl
+    then Elbrus.Tx2_Encender;
+end;
+
+function TTxRxCh2WS.CheckCredentials: boolean;
+begin
+  result := CheckAuthHeader >= ul_Operator;
+end;
+
+
+function TTxRxCh2WS.Get_Rx_CMG: WordBool;
+begin
+  Result := (Snapshot.Digital_Output and do_Rx2_CMG) <> 0;
+end;
+
+function TTxRxCh2WS.Get_Rx_CMS: WordBool;
+begin
+  Result := (Snapshot.Digital_Output and do_Rx2_CMS) <> 0;
+end;
+
+procedure TTxRxCh2WS.Rx_Ganancia_N;
+begin
+  if InControl
+    then Elbrus.Rx2_Ganancia_N;
+end;
+
+procedure TTxRxCh2WS.Rx_Ganancia_P;
+begin
+  if InControl
+    then Elbrus.Rx2_Ganancia_P;
+end;
+
+procedure TTxRxCh2WS.Rx_Sintonia_N;
+begin
+  if InControl
+    then Elbrus.Rx2_Sintonia_N;
+end;
+
+procedure TTxRxCh2WS.Rx_Sintonia_P;
+begin
+  if InControl
+    then Elbrus.Rx2_Sintonia_P;
+end;
+
+procedure TTxRxCh2WS.Set_Rx_CMG(Value: WordBool);
+begin
+  if InControl
+    then Elbrus.Rx2_CMG(Value);
+end;
+
+procedure TTxRxCh2WS.Set_Rx_CMS(Value: WordBool);
+begin
+  if InControl
+    then Elbrus.Rx2_CMS(Value);
+end;
+
+function TTxRxCh2WS.Get_Rango_Rx_Ganancia: Integer;
+begin
+  Result := integer(Snapshot.AI_Range[ai_Rx2_Ganancia]);
+end;
+
+function TTxRxCh2WS.Get_Rango_Rx_Ruido: Integer;
+begin
+  Result := integer(Snapshot.AI_Range[ai_Rx2_Ruido]);
+end;
+
+function TTxRxCh2WS.Get_Rango_Rx_Sintonia: Integer;
+begin
+  Result := integer(Snapshot.AI_Range[ai_Rx2_Sintonia]);
+end;
+
+function TTxRxCh2WS.Get_Rango_Tx_Potencia: Integer;
+begin
+  Result := integer(Snapshot.AI_Range[ai_Tx2_Potencia]);
+end;
+
+function TTxRxCh2WS.Get_Sector_Rx_Ganancia: Integer;
+begin
+  Result := integer(Snapshot.AI_Sector[ai_Rx2_Ganancia]);
+end;
+
+function TTxRxCh2WS.Get_Sector_Rx_Ruido: Integer;
+begin
+  Result := integer(Snapshot.AI_Sector[ai_Rx2_Ruido]);
+end;
+
+function TTxRxCh2WS.Get_Sector_Rx_Sintonia: Integer;
+begin
+  Result := integer(Snapshot.AI_Sector[ai_Rx2_Sintonia]);
+end;
+
+function TTxRxCh2WS.Get_Sector_Tx_Potencia: Integer;
+begin
+  Result := integer(Snapshot.AI_Sector[ai_Tx2_Potencia]);
+end;
+
+procedure TTxRxCh2WS.Set_Rango_Rx_Ganancia(value: Integer);
+begin
+  if InControl
+    then Elbrus.Set_AI_Range(ai_Rx2_Ganancia, TAIRange(Value));
+end;
+
+procedure TTxRxCh2WS.Set_Rango_Rx_Ruido(value: Integer);
+begin
+  if InControl
+    then Elbrus.Set_AI_Range(ai_Rx2_Ruido, TAIRange(Value));
+end;
+
+procedure TTxRxCh2WS.Set_Rango_Rx_Sintonia(value: Integer);
+begin
+  if InControl
+    then Elbrus.Set_AI_Range(ai_Rx2_Sintonia, TAIRange(Value));
+end;
+
+procedure TTxRxCh2WS.Set_Rango_Tx_Potencia(value: Integer);
+begin
+  if InControl
+    then Elbrus.Set_AI_Range(ai_Tx2_Potencia, TAIRange(Value));
+end;
+
+procedure TTxRxCh2WS.Set_Sector_Rx_Ganancia(value: Integer);
+begin
+  if InControl
+    then Elbrus.Set_AI_Sector(ai_Rx2_Ganancia, TAIRange(Value));
+end;
+
+procedure TTxRxCh2WS.Set_Sector_Rx_Ruido(value: Integer);
+begin
+  if InControl
+    then Elbrus.Set_AI_Sector(ai_Rx2_Ruido, TAIRange(Value));
+end;
+
+procedure TTxRxCh2WS.Set_Sector_Rx_Sintonia(value: Integer);
+begin
+  if InControl
+    then Elbrus.Set_AI_Sector(ai_Rx2_Sintonia, TAIRange(Value));
+end;
+
+procedure TTxRxCh2WS.Set_Sector_Tx_Potencia(value: Integer);
+begin
+  if InControl
+    then Elbrus.Set_AI_Sector(ai_Tx2_Potencia, TAIRange(Value));
+end;
+
+initialization
+  InvRegistry.RegisterInvokableClass(TTxRxCh2WS);
+
+end.
+ 

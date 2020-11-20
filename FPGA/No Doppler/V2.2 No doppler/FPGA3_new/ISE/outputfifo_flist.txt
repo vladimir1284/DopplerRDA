@@ -1,0 +1,9 @@
+# Output products list for <outputfifo>
+outputfifo.asy
+outputfifo.edn
+outputfifo.sym
+outputfifo.vhd
+outputfifo.vho
+outputfifo.xco
+outputfifo_flist.txt
+outputfifo_xmdf.tcl

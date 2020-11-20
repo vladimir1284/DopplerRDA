@@ -1,0 +1,27 @@
+//---------------------------------------------------------------------------
+
+#ifndef CommunicationManagerH
+#define CommunicationManagerH
+
+#include <IdContext.hpp>
+//---------------------------------------------------------------------------
+
+class CommunicationManager
+{
+	private:
+		String ProcessGetCommand(TIdContext *AContext, String command);
+		String ProcessPutCommand(TIdContext *AContext, String command);
+		void   SendConfig(TIdContext *AContext);
+		void   ReceiveConfig(TIdContext *AContext);
+		void   SendParameters(TIdContext *AContext);
+	public:
+		CommunicationManager();
+		~CommunicationManager(void);
+
+		void __fastcall CommunicationClientConnect(TIdContext *AContext);
+		void __fastcall CommunicationClientExecute(TIdContext *AContext);
+};
+
+extern CommunicationManager* theCommunicationManager;
+
+#endif

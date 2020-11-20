@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <vcl.h>
+#pragma hdrstop
+
+#if !defined(__AFC_WS_h__)
+#include "AFC_WS.h"
+#endif
+
+// ************************************************************************ //
+//  TAFC_WSImpl implements interface IAFC_WS
+// ************************************************************************ //
+class TAFC_WSImpl : public TInvokableClass, public IAFC_WS
+{
+public:
+  HRESULT STDMETHODCALLTYPE QueryInterface(const GUID& IID, void **Obj)
+                        { return GetInterface(IID, Obj) ? S_OK : E_NOINTERFACE; }
+  ULONG STDMETHODCALLTYPE AddRef() { return TInvokableClass::_AddRef();  }
+  ULONG STDMETHODCALLTYPE Release() { return TInvokableClass::_Release();  }
+};
+
+
+static void __fastcall AFC_WSFactory(System::TObject* &obj)
+{
+  static _di_IAFC_WS iInstance;
+  static TAFC_WSImpl *instance = 0;
+  if (!instance)
+  {
+    instance = new TAFC_WSImpl();
+    instance->GetInterface(iInstance);
+  }
+  obj = instance;
+}
+
+static void RegTypes()
+{
+  InvRegistry()->RegisterInterface(__delphirtti(IAFC_WS));
+  InvRegistry()->RegisterInvokableClass(__classid(TAFC_WSImpl), AFC_WSFactory);
+}
+#pragma startup RegTypes 32
+

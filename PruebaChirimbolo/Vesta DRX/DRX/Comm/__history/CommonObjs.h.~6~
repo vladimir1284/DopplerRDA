@@ -1,0 +1,30 @@
+//---------------------------------------------------------------------------
+
+#ifndef CommonObjsH
+#define CommonObjsH
+
+
+#include <System.hpp>
+#include <InvokeRegistry.hpp>
+#include <XSBuiltIns.hpp>
+#include <Types.hpp>
+
+#pragma option -b.
+
+class TAuthHeader : public TSOAPHeader {
+private:
+  AnsiString fUserName;
+  AnsiString fToken;
+__published:
+  __property AnsiString UserName = { read=fUserName, write=fUserName };
+  __property AnsiString Token = { read=fToken, write=fToken };
+};
+
+static void RegRemotableTypes()
+{
+	RemClassRegistry()->RegisterXSClass(__classid(TAuthHeader));
+}
+#pragma startup RegRemotableTypes 32
+
+//---------------------------------------------------------------------------
+#endif

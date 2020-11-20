@@ -1,0 +1,44 @@
+//---------------------------------------------------------------------------
+
+#ifndef DRX_Data_PackageH
+#define DRX_Data_PackageH
+
+#include <vcl.h>
+#include <heapi.h>
+//---------------------------------------------------------------------------
+
+class DRX_Data_Package{
+private:
+	short fAz;
+	short fEl;
+	short fBufferDataType;
+	short fNData;
+	short fCellSize;
+	String fDataType;
+	void*  fdata;
+	int   fRefCount;
+
+	short getBufferDataSize();
+	short getBufferSize();
+public:
+	__property short  CellSize       = { read= fCellSize};
+	__property short  Az             = { read= fAz};
+	__property short  El             = { read= fEl};
+	__property String DataType       = { read= fDataType};
+	__property short  NData          = { read= fNData};
+	__property short  BufferDataType = { read= fBufferDataType};
+	__property void*  Data           = { read= fdata};
+	__property short  BufferDataSize = { read= getBufferDataSize};
+	__property short  BufferSize     = { read= getBufferSize};
+
+	__property int    RefCount       = { read= fRefCount};
+
+	DRX_Data_Package();
+	~DRX_Data_Package();
+
+	void InitMsg(String _DataType, short _CellSize, short _Az, short _El, short _BufferDataType, short _NData, void* _Data);
+};
+
+//---------------------------------------------------------------------------
+
+#endif

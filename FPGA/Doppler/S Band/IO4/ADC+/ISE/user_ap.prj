@@ -1,0 +1,5 @@
+vhdl work "../Src/led.vhd"
+vhdl work "rawfifo255x14.vhd"
+vhdl work "./myddc.vhd"
+vhdl work "./iq_out_fifo.vhd"
+vhdl work "../Src/USER_AP_ADC.vhd"

@@ -1,0 +1,263 @@
+//---------------------------------------------------------------------------
+#include <vcl/forms.hpp>
+#include "Site.h"
+#include "Radar.h"
+#include <Math.hpp>
+#include <IniFiles.hpp>
+#include <math.h>
+#include <vcl.h>
+#include "config.h"
+
+#pragma hdrstop
+
+extern String   version_number;
+//---------------------------------------------------------------------------
+
+static String ConfigFileName = "Config.ini";
+
+static String site_Section   = "drx";
+static String afc_Section    = "afc";
+static String iq_Section     = "iq";
+static String rx_Section     = "rx";
+static String filter_Section = "filter";
+
+//afc
+static String start_sample_lp_Key = "start_sample_lp";
+static String stop_sample_lp_Key  = "stop_sample_lp";
+static String start_sample_sp_Key = "start_sample_sp";
+static String stop_sample_sp_Key  = "stop_sample_sp";
+static String scan_step_Key       = "scan_step";
+static String scan_delay_Key      = "scan_delay";
+static String scan_width_Key      = "scan_width";
+static String power_factor_tx_Key = "power_factor_tx";
+static String valid_power_tx_Key  = "valid_power_tx";
+static String loop_gain_Key       = "loop_gain";
+
+//iq
+static String sqi_threshold_Key        = "sqi_threshold";
+static String ci_threshold_Key         = "ci_threshold";
+static String log_threshold_Key        = "log_threshold";
+static String sig_threshold_Key        = "sig_threshold";
+static String ccor_threshold_Key       = "ccor_threshold";
+static String c1_Key                   = "c1";
+static String c2_Key                   = "c2";
+static String sp_tx_pulse_position_Key = "sp_tx_pulse_position";
+static String lp_tx_pulse_position_Key = "lp_tx_pulse_position";
+
+//rx
+static String noise_power_Key       = "noise_power";
+static String power_shot_Key        = "power_shot";
+static String sensibility_lp_Key    = "sensibility_lp";
+static String sensibility_sp_Key    = "sensibility_sp";
+static String sensibility_table_Key = "sensibility_table";
+static String dinamic_range_Key     = "dinamic_range";
+static String conv_table_Key        = "conv_table";
+
+//general
+static String ws_port_Key      = "ws_port";
+static String stream_port_Key  = "stream_port";
+static String doppler_port_Key = "doppler_port";
+static String master_Key       = "master";
+
+//filter
+static String max_angle_Key     = "max_angle";
+static String max_heigh_Key     = "max_heigh";
+static String max_distance_Key  = "max_distance";
+static String factor_b0_Key     = "factor_b0";
+static String factor_b1_Key     = "factor_b1";
+static String factor_b2_Key     = "factor_b2";
+static String factor_b3_Key     = "factor_b3";
+static String factor_b4_Key     = "factor_b4";
+static String factor_c1_Key     = "factor_c1";
+static String factor_c2_Key     = "factor_c2";
+static String factor_c3_Key     = "factor_c3";
+static String factor_c4_Key     = "factor_c4";
+
+Site::Site()
+{
+  settings = LoadData();
+  Conv_table = getConv_table();
+  TheRadar = new Radar(true);
+}
+//---------------------------------------------------------------------------
+TSettings* Site::LoadData()
+{
+	TSettings* result = new TSettings();
+
+	String configFileName = ExtractFileDir(ParamStr(0)) + "\\" + ConfigFileName;
+	TIniFile* config = new TIniFile(configFileName);
+	__try{
+		//general
+		result->WS_Port     = config->ReadInteger(site_Section, ws_port_Key, 8899);
+		result->Stream_Port = config->ReadInteger(site_Section, stream_port_Key, 9988);
+		result->Doppler_Port = config->ReadInteger(site_Section, doppler_port_Key, 9988);
+		result->Master = config->ReadBool(site_Section, master_Key, false);
+
+		//afc
+		result->Start_sample_lp = config->ReadInteger(afc_Section, start_sample_lp_Key, 5);
+		result->Stop_sample_lp  = config->ReadInteger(afc_Section, stop_sample_lp_Key, 165);
+		result->Start_sample_sp = config->ReadInteger(afc_Section, start_sample_sp_Key, 5);
+		result->Stop_sample_sp  = config->ReadInteger(afc_Section, stop_sample_sp_Key, 45);
+		result->Scan_step       = config->ReadInteger(afc_Section, scan_step_Key, 500000);
+		result->Scan_delay      = config->ReadInteger(afc_Section, scan_delay_Key, 400);
+		result->Scan_width      = config->ReadInteger(afc_Section, scan_width_Key, 30000000);
+		result->Power_factor_tx = config->ReadFloat(afc_Section, power_factor_tx_Key, 0);
+		result->Valid_power_tx  = config->ReadFloat(afc_Section, valid_power_tx_Key, 80);
+		result->LoopGain        = config->ReadFloat(afc_Section, loop_gain_Key, 1);
+		//iq
+		result->SP_TX_PulsePosition = config->ReadInteger(iq_Section, sp_tx_pulse_position_Key, 14);
+		result->LP_TX_PulsePosition = config->ReadInteger(iq_Section, lp_tx_pulse_position_Key, 7);
+		result->ThresholdSQI        = config->ReadFloat(iq_Section, sqi_threshold_Key, 0.4);
+		result->ThresholdCI         = config->ReadFloat(iq_Section, sqi_threshold_Key, 0.4);
+		result->ThresholdCCOR       = config->ReadFloat(iq_Section, sqi_threshold_Key, 0.4);
+		result->ThresholdLOG        = config->ReadFloat(iq_Section, sqi_threshold_Key, 0.4);
+		result->ThresholdSIG        = config->ReadFloat(iq_Section, sqi_threshold_Key, 0.4);
+		result->C1 = config->ReadFloat(iq_Section, c1_Key, 0);
+		result->C2 = config->ReadFloat(iq_Section, c2_Key, 0);
+
+		//rx
+		result->Sensibility_LP    = config->ReadInteger(rx_Section, sensibility_lp_Key, -134);
+		result->Sensibility_SP    = config->ReadInteger(rx_Section, sensibility_sp_Key, -137);
+		result->Sensibility_Table = config->ReadInteger(rx_Section, sensibility_table_Key, -137);
+		result->Dinamic_range     = config->ReadInteger(rx_Section, dinamic_range_Key, 70);
+		result->C2                = config->ReadFloat(rx_Section, c2_Key, 0);
+
+		result->Conv_table_text = config->ReadString(rx_Section, conv_table_Key, "");
+
+		//filter
+		result->MaxDistance     = config->ReadInteger(filter_Section, max_distance_Key, 0);
+		result->MaxHeigh        = config->ReadInteger(filter_Section, max_heigh_Key, 0);
+		result->MaxAngle        = config->ReadFloat(filter_Section, max_angle_Key, 0);
+		result->FactorB0        = config->ReadFloat(filter_Section, factor_b0_Key, 0);
+		result->FactorB1        = config->ReadFloat(filter_Section, factor_b1_Key, 0);
+		result->FactorB2        = config->ReadFloat(filter_Section, factor_b2_Key, 0);
+		result->FactorB3        = config->ReadFloat(filter_Section, factor_b3_Key, 0);
+		result->FactorB4        = config->ReadFloat(filter_Section, factor_b4_Key, 0);
+		result->FactorC1        = config->ReadFloat(filter_Section, factor_c1_Key, 0);
+		result->FactorC2        = config->ReadFloat(filter_Section, factor_c2_Key, 0);
+		result->FactorC3        = config->ReadFloat(filter_Section, factor_c3_Key, 0);
+		result->FactorC4        = config->ReadFloat(filter_Section, factor_c4_Key, 0);
+	}
+	__finally{
+		config->Free();
+	}
+
+	return result;
+}
+
+void Site::SaveData(TSettings* data){
+	String configFileName = ExtractFileDir(ParamStr(0)) + "\\" + ConfigFileName;
+	TIniFile* config = new TIniFile(configFileName);
+	__try{
+		//afc
+		config->WriteInteger(afc_Section, start_sample_lp_Key, data->Start_sample_lp);
+		config->WriteInteger(afc_Section, stop_sample_lp_Key, data->Stop_sample_lp);
+		config->WriteInteger(afc_Section, start_sample_sp_Key, data->Start_sample_sp);
+		config->WriteInteger(afc_Section, stop_sample_sp_Key, data->Stop_sample_sp);
+		config->WriteInteger(afc_Section, scan_step_Key, data->Scan_step);
+		config->WriteInteger(afc_Section, scan_delay_Key, data->Scan_delay);
+		config->WriteInteger(afc_Section, scan_width_Key, data->Scan_width);
+		config->WriteFloat(afc_Section, power_factor_tx_Key, data->Power_factor_tx);
+		config->WriteFloat(afc_Section, valid_power_tx_Key, data->Valid_power_tx);
+		config->WriteFloat(afc_Section, loop_gain_Key, data->LoopGain);
+
+		//iq
+		config->WriteInteger(iq_Section, sp_tx_pulse_position_Key, data->SP_TX_PulsePosition);
+		config->WriteInteger(iq_Section, lp_tx_pulse_position_Key, data->LP_TX_PulsePosition);
+
+		config->WriteFloat(iq_Section, sqi_threshold_Key, data->ThresholdSQI);
+		config->WriteFloat(iq_Section, ci_threshold_Key, data->ThresholdCI);
+		config->WriteFloat(iq_Section, sig_threshold_Key, data->ThresholdSIG);
+		config->WriteFloat(iq_Section, log_threshold_Key, data->ThresholdLOG);
+		config->WriteFloat(iq_Section, ccor_threshold_Key, data->ThresholdCCOR);
+		config->WriteFloat(iq_Section, c1_Key, data->C1);
+		config->WriteFloat(iq_Section, c2_Key, data->C2);
+
+		//rx
+		config->WriteInteger(rx_Section, sensibility_lp_Key, data->Sensibility_LP);
+		config->WriteInteger(rx_Section, sensibility_sp_Key, data->Sensibility_SP);
+		config->WriteInteger(rx_Section, sensibility_table_Key, data->Sensibility_Table);
+		config->WriteInteger(rx_Section, dinamic_range_Key, data->Dinamic_range);
+
+		config->WriteString(rx_Section, conv_table_Key, data->Conv_table_text);
+
+		//filter
+		config->WriteFloat(filter_Section, max_angle_Key, data->MaxAngle);
+		config->WriteInteger(filter_Section, max_distance_Key, data->MaxDistance);
+		config->WriteInteger(filter_Section, max_heigh_Key, data->MaxHeigh);
+
+		config->WriteFloat(filter_Section, factor_b0_Key, data->FactorB0);
+		config->WriteFloat(filter_Section, factor_b1_Key, data->FactorB1);
+		config->WriteFloat(filter_Section, factor_b2_Key, data->FactorB2);
+		config->WriteFloat(filter_Section, factor_b3_Key, data->FactorB3);
+		config->WriteFloat(filter_Section, factor_b4_Key, data->FactorB4);
+		config->WriteFloat(filter_Section, factor_c1_Key, data->FactorC1);
+		config->WriteFloat(filter_Section, factor_c2_Key, data->FactorC2);
+		config->WriteFloat(filter_Section, factor_c3_Key, data->FactorC3);
+		config->WriteFloat(filter_Section, factor_c4_Key, data->FactorC4);
+	}
+	__finally{
+		config->Free();
+	}
+}
+
+void Site::AssignData(TSettings* data)
+{
+	SaveData(data);
+	settings = LoadData();
+	Conv_table = getConv_table();
+}
+
+void Site::StoreData()
+{
+	SaveData(settings);
+}
+
+TDRX_Parameters* Site::GetParameters(){
+	TDRX_Parameters* result = new TDRX_Parameters();
+
+	result->ShortPulse_NData       = RAW_DATA_LENGTH_SP;
+	result->ShortPulse_Trigger     = 1000;
+	result->ShortPulse_CellSize    = BIN_LENGTH_SP;
+	result->ShortPulse_Clock       = 2000000;
+
+	result->LongPulse_NData        = RAW_DATA_LENGTH_LP;
+	result->LongPulse_Trigger      = 250;
+	result->LongPulse_CellSize     = BIN_LENGTH_LP;
+	result->LongPulse_Clock        = 500000;
+
+	result->DualPulse_NData        = RAW_DATA_LENGTH_SP_DUAL;
+	result->DualPulse_High_Trigger = 1200;
+	result->DualPulse_1_Trigger    = 960;
+	result->DualPulse_2_Trigger    = 900;
+	result->DualPulse_3_Trigger    = 800;
+
+	result->Sectors                = 360;
+	result->IF                     = IF;
+	result->SBand_Frequency        = SBand_Frequency;
+	result->SBand_Length           = SBand_Length;
+
+	return result;
+}
+
+TFloatArray Site::getConv_table(){
+	TFloatArray result;
+
+	TStrings* table = new TStringList();
+	__try{
+		table->Delimiter = ';';
+		table->DelimitedText = settings->Conv_table_text;
+
+		result.Length = table->Count;
+		for(int i=0; i<table->Count-1; i++){
+			result[i] = StrToFloat(table->Strings[i]);
+		}
+	}
+	__finally{
+		table->Free();
+	}
+
+	return result;
+}
+
+//---------------------------------------------------------------------------

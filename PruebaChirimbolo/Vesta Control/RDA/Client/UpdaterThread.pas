@@ -1,0 +1,421 @@
+unit UpdaterThread;
+
+interface
+
+uses
+  Classes, SyncObjs, Contnrs, Constants;
+
+const
+  MaxUpdatePackageCount = 100;
+  RefreshTime = 500;
+
+type
+  TUpdaterThread = class(TThread)
+  private
+    packages : TQueue;
+    lock : TCriticalSection;
+    package : TDataPackage;
+    rt_timer : cardinal;
+  private
+    procedure update_TX_RX_Power;
+    procedure update_TX_Burst;
+    procedure update_TX_Spectrum;
+    procedure update_RX_dBZ;
+    procedure update_RX_dBT;
+    procedure update_RX_V;
+    procedure update_RX_W;
+    procedure update_RT;
+
+    procedure ProcessAllAppMessages;
+  protected
+    procedure Execute; override;
+  public
+    constructor Create(ACreateSuspended: Boolean = True);
+    procedure   AddPackage(package : TDataPackage);
+  end;
+
+var
+  theUpdaterThread : TUpdaterThread;
+
+implementation
+
+uses
+  Windows, Shell_Client, Graphics, FrameVideo, SysUtils, Math, Dialogs,
+  RTForm, FrameDRX;
+
+{ TUpdaterThread }
+
+procedure TUpdaterThread.AddPackage(package: TDataPackage);
+begin
+  lock.Enter;
+  try
+    if packages.Count < MaxUpdatePackageCount
+      then packages.Push(package);
+  finally
+    lock.Leave;
+  end;
+end;
+
+constructor TUpdaterThread.Create(ACreateSuspended: Boolean);
+begin
+  inherited Create( true );
+  Priority := tpNormal;
+
+  lock := TCriticalSection.Create;
+  packages := TQueue.Create;
+
+  if not ACreateSuspended
+    then Resume;
+end;
+
+procedure TUpdaterThread.Execute;
+begin
+  rt_timer := GetTickCount;
+  while (not Terminated) do
+  begin
+    lock.Enter;
+    try
+      package := nil;
+      if packages.AtLeast(1)
+        then package := TDataPackage(packages.Pop);
+    finally
+      lock.Leave;
+    end;
+
+    if Assigned(package)
+      then
+        begin
+          try
+                 if package.msg = TX_Burst_Command    then Synchronize(update_TX_Burst)
+            else if package.msg = TX_RX_Power_Command then Synchronize(update_TX_RX_Power)
+            else if package.msg = TX_Spectrum_Command then Synchronize(update_TX_Spectrum)
+            else if package.msg = RX_dBZ_Command      then Synchronize(update_RX_dBZ)
+            else if package.msg = RX_dBT_Command      then Synchronize(update_RX_dBT)
+            else if package.msg = RX_V_Command        then Synchronize(update_RX_V)
+            else if package.msg = RX_W_Command        then Synchronize(update_RX_W);
+
+            if GetTickCount - rt_timer > RefreshTime
+              then
+                begin
+                  //Synchronize(update_RT);
+                  Synchronize(ProcessAllAppMessages);
+                  rt_timer := GetTickCount;
+                end;
+
+            package.Free;
+          except
+          end;
+          Sleep(10);
+        end
+      else Sleep(1000);
+  end;
+
+  packages.Free;
+  lock.Free;
+end;
+
+procedure TUpdaterThread.ProcessAllAppMessages;
+begin
+  ShellClient.ProcessAllMessages;
+end;
+
+procedure TUpdaterThread.update_RT;
+begin
+  with ShellClient.RT_Ch1 do
+    if Acquiring
+      then
+        begin
+          RTDisplay.PotMet := ShellClient.TxRx1.PotMet;
+          UpdateView;
+          RepaintData;
+        end;
+
+  with ShellClient.RT_Ch2 do
+  if Acquiring
+    then
+      begin
+        RTDisplay.PotMet := ShellClient.TxRx2.PotMet;
+        UpdateView;
+        RepaintData;
+      end;
+end;
+
+procedure TUpdaterThread.update_RX_dBZ;
+var
+  Az, El : double;
+begin
+  try
+    with ShellClient.Video do
+    begin
+      if (Acquiring_dBT_DBZ or Acquiring_dBZ_DBZ) and (((package.Channel = 0) and CheckBox1.Checked) or ((package.Channel = 1) and CheckBox2.Checked))
+        then UpdateData(package.Channel, package.Data, package.NData, package.CellSize, 1, 2, 10);
+    end;
+  except
+//    ShellClient.Video.StopAcquiring;
+  end;
+
+  Az := package.Az * AntennaConvFactor;
+  El := package.El * AntennaConvFactor;
+
+  with ShellClient.RT_Ch1 do
+  try
+    if Acquiring and ((cbDataType.ItemIndex = 0) or (cbDataType.ItemIndex = 4))
+       then
+         begin
+           RTDisplay.AddBeam(Az, El, package.CellSize, package.NData, package.Data);
+           Azimuth   := Az;
+           Elevation := El;
+         end;
+  except
+    StopAcquire;
+  end;
+
+  with ShellClient.RT_Ch2 do
+  try
+    if Acquiring and ((cbDataType.ItemIndex = 0) or (cbDataType.ItemIndex = 4))
+       then
+        begin
+          RTDisplay.AddBeam(Az, El, package.CellSize, package.NData, package.Data);
+          Azimuth   := Az;
+          Elevation := El;
+        end;
+  except
+    StopAcquire;
+  end;
+end;
+
+procedure TUpdaterThread.update_RX_dBT;
+var
+  Az, El : double;
+begin
+  try
+    with ShellClient.Video do
+    begin
+      if (Acquiring_dBT_DB or Acquiring_dBZ_DB) and (((package.Channel = 0) and CheckBox1.Checked) or ((package.Channel = 1) and CheckBox2.Checked))
+        then UpdateData(package.Channel, package.Data, package.NData, package.CellSize, 1, 2, 10);
+    end;
+  except
+//    ShellClient.Video.StopAcquiring;
+  end;
+
+  Az := package.Az * AntennaConvFactor;
+  El := package.El * AntennaConvFactor;
+
+  with ShellClient.RT_Ch1 do
+  try
+    if Acquiring and ((cbDataType.ItemIndex = 1) or (cbDataType.ItemIndex = 5))
+       then
+         begin
+           RTDisplay.AddBeam(Az, El, package.CellSize, package.NData, package.Data);
+           Azimuth   := Az;
+           Elevation := El;
+         end;
+  except
+    StopAcquire;
+  end;
+
+  with ShellClient.RT_Ch2 do
+  try
+    if Acquiring and ((cbDataType.ItemIndex = 1) or (cbDataType.ItemIndex = 5))
+       then
+         begin
+           RTDisplay.AddBeam(Az, El, package.CellSize, package.NData, package.Data);
+           Azimuth   := Az;
+           Elevation := El;
+         end;
+  except
+    StopAcquire;
+  end;
+end;
+
+procedure TUpdaterThread.update_RX_W;
+var
+  Az, El : double;
+begin
+  try
+    with ShellClient.Video do
+    begin
+      if Acquiring_Width and (((package.Channel = 0) and CheckBox1.Checked) or ((package.Channel = 1) and CheckBox2.Checked))
+        then UpdateData(package.Channel, package.Data, package.NData, package.CellSize, 1, 2, 50);
+    end;
+  except
+//    ShellClient.Video.StopAcquiring;
+  end;
+
+  Az := package.Az * AntennaConvFactor;
+  El := package.El * AntennaConvFactor;
+
+  with ShellClient.RT_Ch1 do
+  try
+    if Acquiring and (cbDataType.ItemIndex = 3)
+       then
+         begin
+           RTDisplay.AddBeam(Az, El, package.CellSize, package.NData, package.Data);
+           Azimuth   := Az;
+           Elevation := El;
+         end;
+  except
+    StopAcquire;
+  end;
+
+  with ShellClient.RT_Ch2 do
+  try
+    if Acquiring and (cbDataType.ItemIndex = 3)
+       then
+         begin
+           RTDisplay.AddBeam(Az, El, package.CellSize, package.NData, package.Data);
+           Azimuth   := Az;
+           Elevation := El;
+         end;
+  except
+    StopAcquire;
+  end;
+end;
+
+procedure TUpdaterThread.update_RX_V;
+var
+  Az, El : double;
+begin
+  try
+    with ShellClient.Video do
+    begin
+      if Acquiring_Speed and (((package.Channel = 0) and CheckBox1.Checked) or ((package.Channel = 1) and CheckBox2.Checked))
+        then UpdateData(package.Channel, package.Data, package.NData, package.CellSize, 1, 2, 50);
+    end;
+  except
+//    ShellClient.Video.StopAcquiring;
+  end;
+
+  Az := package.Az * AntennaConvFactor;
+  El := package.El * AntennaConvFactor;
+
+  with ShellClient.RT_Ch1 do
+  try
+    if Acquiring and (cbDataType.ItemIndex = 2)
+       then
+         begin
+           RTDisplay.AddBeam(Az, El, package.CellSize, package.NData, package.Data);
+           Azimuth   := Az;
+           Elevation := El;
+         end;
+  except
+    StopAcquire;
+  end;
+
+  with ShellClient.RT_Ch2 do
+  try
+    if Acquiring and (cbDataType.ItemIndex = 2)
+       then
+         begin
+           RTDisplay.AddBeam(Az, El, package.CellSize, package.NData, package.Data);
+           Azimuth   := Az;
+           Elevation := El;
+         end;
+  except
+    StopAcquire;
+  end;
+end;
+
+procedure TUpdaterThread.update_TX_Burst;
+var
+  i : integer;
+begin
+  with ShellClient.TxRx1.DRX do
+  try
+    if Acquiring.State and (package.Channel = 0)
+      then
+        begin
+          powerChart.Series[0].Clear;
+          for i := 0 to package.NData-1 do
+            powerChart.Series[0].AddY(PSmallInts(package.Data)^[i], '', clRed);
+        end;
+  except
+    powerChart.Series[0].Clear;
+    acquiring.State := false;
+  end;
+
+  with ShellClient.TxRx2.DRX do
+  try
+    if Acquiring.State and (package.Channel = 1)
+      then
+        begin
+          powerChart.Series[0].Clear;
+          for i := 0 to package.NData-1 do
+            powerChart.Series[0].AddY(PSmallInts(package.Data)^[i], '', clRed);
+        end;
+  except
+    powerChart.Series[0].Clear;
+    acquiring.State := false;
+  end;
+end;
+
+procedure TUpdaterThread.update_TX_RX_Power;
+begin
+  try
+    with ShellClient.Video do
+    begin
+      if Acquiring_Calibration and (((package.Channel = 0) and CheckBox1.Checked) or ((package.Channel = 1) and CheckBox2.Checked))
+        then UpdateData(package.Channel, package.Data, package.NData, package.CellSize, 1, 2, 10);
+    end;
+  except
+    //ShellClient.Video.StopAcquiring;
+  end;
+end;
+
+procedure TUpdaterThread.update_TX_Spectrum;
+var
+  i : integer;
+  x, y : double;
+  minIndex, maxIndex : integer;
+begin
+  minIndex := package.Az;
+  maxIndex := minIndex + package.NData;
+
+  with ShellClient.TxRx1.DRX do
+  try
+    if Acquiring.State and (package.Channel = 0)
+      then
+        begin
+          spectrumChart.Series[0].Clear;
+          try
+            for i := minIndex to maxIndex do
+            begin
+              x := i * 100e3 / package.El;
+              y := PSingles(package.Data)^[i-minIndex] / 1000;
+
+              spectrumChart.Series[0].AddXY(x, y, '', clRed);
+            end;
+          except
+            spectrumChart.Series[0].Clear;
+          end;
+        end;
+  except
+    spectrumChart.Series[0].Clear;
+    acquiring.State := false;
+  end;
+
+  with ShellClient.TxRx2.DRX do
+  try
+    if acquiring.State and (package.Channel = 1)
+      then
+        begin
+          spectrumChart.Series[0].Clear;
+          try
+            for i := minIndex to maxIndex do
+            begin
+              x := i * 100e3 / package.El;
+              y := PSingles(package.Data)^[i-minIndex];
+
+              spectrumChart.Series[0].AddXY(x, y, '', clRed);
+            end;
+          except
+            spectrumChart.Series[0].Clear;
+          end;
+        end;
+  except
+    spectrumChart.Series[0].Clear;
+    acquiring.State := false;
+  end;
+end;
+
+end.

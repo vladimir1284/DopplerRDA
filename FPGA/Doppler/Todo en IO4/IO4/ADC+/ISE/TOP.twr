@@ -1,0 +1,125 @@
+--------------------------------------------------------------------------------
+Release 10.1 Trace  (nt)
+Copyright (c) 1995-2008 Xilinx, Inc.  All rights reserved.
+
+C:\Xilinx\10.1\ISE\bin\nt\unwrapped\trce.exe -ise
+C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/Todo en IO4/IO4/ADC+/ISE/Ex1_Io4v.ise
+-intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+
+Design file:              TOP.ncd
+Physical constraint file: TOP.pcf
+Device,package,speed:     xc2v1000,fg456,-4 (PRODUCTION 1.121 2008-01-09, STEPPING level 0)
+Report level:             error report
+
+Environment Variable      Effect 
+--------------------      ------ 
+NONE                      No environment variables were set
+--------------------------------------------------------------------------------
+
+INFO:Timing:2752 - To get complete path coverage, use the unconstrained paths 
+   option. All paths that are not constrained will be reported in the 
+   unconstrained paths section(s) of the report.
+INFO:Timing:3339 - The clock-to-out numbers in this timing report are based on 
+   a 50 Ohm transmission line loading model.  For the details of this model, 
+   and for more information on accounting for different loading conditions, 
+   please see the device datasheet.
+
+================================================================================
+Timing constraint: TS_osc3_pin = PERIOD TIMEGRP "osc3_pin" 100 MHz HIGH 50%;
+
+ 167 paths analyzed, 70 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors)
+ Minimum period is   4.673ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_diclk = PERIOD TIMEGRP "diclk" 100 MHz HIGH 50%;
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_drdy = PERIOD TIMEGRP "drdy" 100 MHz HIGH 50%;
+
+ 164383 paths analyzed, 9496 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors)
+ Minimum period is   9.894ns.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: TS_gNV2ES_FIFO_gFCKG_iGCLK_CLK0 = PERIOD TIMEGRP         
+"gNV2ES_FIFO_gFCKG_iGCLK_CLK0" TS_diclk HIGH 50%;
+
+ 1585 paths analyzed, 501 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors)
+ Minimum period is   8.634ns.
+--------------------------------------------------------------------------------
+
+
+Derived Constraint Report
+Derived Constraints for TS_diclk
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+|                               |   Period    |       Actual Period       |      Timing Errors        |      Paths Analyzed       |
+|           Constraint          | Requirement |-------------+-------------|-------------+-------------|-------------+-------------|
+|                               |             |   Direct    | Derivative  |   Direct    | Derivative  |   Direct    | Derivative  |
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+|TS_diclk                       |     10.000ns|          N/A|      8.634ns|            0|            0|            0|         1585|
+| TS_gNV2ES_FIFO_gFCKG_iGCLK_CLK|     10.000ns|      8.634ns|          N/A|            0|            0|         1585|            0|
+| 0                             |             |             |             |             |             |             |             |
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+
+All constraints were met.
+
+
+Data Sheet report:
+-----------------
+All values displayed in nanoseconds (ns)
+
+Clock to Setup on destination clock diclk
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+diclk          |    8.634|         |         |         |
+---------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock drdy
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+drdy           |    9.894|         |         |         |
+---------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock osc3_pin
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+osc3_pin       |    4.673|         |         |         |
+---------------+---------+---------+---------+---------+
+
+
+Timing summary:
+---------------
+
+Timing errors: 0  Score: 0
+
+Constraints cover 166135 paths, 0 nets, and 23417 connections
+
+Design statistics:
+   Minimum period:   9.894ns   (Maximum frequency: 101.071MHz)
+
+
+Analysis completed Thu Mar 05 19:15:48 2020 
+--------------------------------------------------------------------------------
+
+Trace Settings:
+-------------------------
+Trace Settings 
+
+Peak Memory Usage: 217 MB
+
+
+

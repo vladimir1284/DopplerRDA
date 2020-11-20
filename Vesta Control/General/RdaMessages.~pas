@@ -1,0 +1,12 @@
+unit RdaMessages;
+
+interface
+
+const
+
+//  EOLEMessage = 'Ocurrio un error con el servidor, esta applicacion debera cerrarse';
+  EOLEMessage = 'Ocurrio de comunicación con el servidor, se desabilitará el refrescamiento de mensajes';
+
+implementation
+
+end.

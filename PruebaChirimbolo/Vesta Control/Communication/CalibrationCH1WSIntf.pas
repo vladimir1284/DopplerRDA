@@ -1,0 +1,20 @@
+unit CalibrationCH1WSIntf;
+
+interface
+
+uses InvokeRegistry, Types, XSBuiltIns, CalibrationWSIntf;
+
+type
+  ICalibrationCH1WS = interface(ICalibrationWS)
+  ['{E5419077-02E6-4875-B580-BC558E193767}']
+  end;
+
+implementation
+
+uses CommunicationObj;
+
+initialization
+  InvRegistry.RegisterInterface(TypeInfo(ICalibrationCH1WS));
+
+end.
+ 

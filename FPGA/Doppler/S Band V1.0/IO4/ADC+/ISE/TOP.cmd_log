@@ -1,0 +1,428 @@
+ngdbuild -ise "E:/Proyecto Radar Doppler CSB/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+xst -ise "E:/Proyecto Radar Doppler CSB/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "E:/Proyecto Radar Doppler CSB/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "E:/Proyecto Radar Doppler CSB/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "E:/Proyecto Radar Doppler CSB/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+map -ise "E:/Proyecto Radar Doppler CSB/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "E:/Proyecto Radar Doppler CSB/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "E:/Proyecto Radar Doppler CSB/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "E:/Proyecto Radar Doppler CSB/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "E:/Proyecto Radar Doppler CSB/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "E:/Proyecto Radar Doppler CSB/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "E:/Proyecto Radar Doppler CSB/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "E:/Proyecto Radar Doppler CSB/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "top.ngc" TOP.ngd
+xst -ise "E:/Proyecto Radar Doppler CSB/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "E:/Proyecto Radar Doppler CSB/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "E:/Proyecto Radar Doppler CSB/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "E:/Proyecto Radar Doppler CSB/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "E:/Proyecto Radar Doppler CSB/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "E:/Proyecto Radar Doppler CSB/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "E:/Proyecto Radar Doppler CSB/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "E:/Proyecto Radar Doppler CSB/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+xst -ise "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+xst -ise "E:/Proyecto Radar Doppler CSB/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "E:/Proyecto Radar Doppler CSB/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "E:/Proyecto Radar Doppler CSB/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "E:/Proyecto Radar Doppler CSB/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "E:/Proyecto Radar Doppler CSB/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "E:/Proyecto Radar Doppler CSB/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "E:/Proyecto Radar Doppler CSB/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "E:/Proyecto Radar Doppler CSB/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "D:/Proyecto Radar CSB/Doppler RDA/FPGA/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd
+xst -ise "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+xst -ise "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -ifn "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/IO4/ADC+/ISE/TOP.xst" -ofn "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/IO4/ADC+/ISE/TOP.syr"
+ngdbuild -ise "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -dd _ngo  -nt timestamp -i -p xc2v1000-fg456-4 "TOP.ngc" TOP.ngd
+map -ise "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -p xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd TOP.pcf
+par -ise "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -w -intstyle ise -ol std -t 1 TOP_map.ncd TOP.ncd TOP.pcf
+trce -ise "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -e 3 -s 4 -xml TOP TOP.ncd -o TOP.twr TOP.pcf -ucf Ex1_Io4v.ucf
+bitgen -ise "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar CSB/Doppler/S Band/IO4/ADC+/ISE/Ex1_Io4v.ise" -intstyle ise -f TOP.ut TOP.ncd

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2011/09/01 12:09:00.203.cpp,C:\Documents and Settings\jlperez\My Documents\RAD Studio\Projects\Unit2.cpp=D:\Work\Doppler RDA\Vesta DRX\DRX\Service_DRX.cpp</Transaction>
+    <Transaction>2011/09/01 12:09:00.203.h,C:\Documents and Settings\jlperez\My Documents\RAD Studio\Projects\Unit2.h=D:\Work\Doppler RDA\Vesta DRX\DRX\Service_DRX.h</Transaction>
+    <Transaction>2011/09/01 12:09:00.203.dfm,C:\Documents and Settings\jlperez\My Documents\RAD Studio\Projects\Unit2.dfm=D:\Work\Doppler RDA\Vesta DRX\DRX\Service_DRX.dfm</Transaction>
+    <Transaction>2011/09/01 12:09:19.890.cbproj,C:\Documents and Settings\jlperez\My Documents\RAD Studio\Projects\Project2.cbproj=D:\Work\Doppler RDA\Vesta DRX\DRX\vesta_drx_srv.cbproj</Transaction>
+  </Transactions>
+</BorlandProject>

@@ -1,0 +1,183 @@
+unit ConfigurationWSIntf;
+
+interface
+
+uses InvokeRegistry, Types, XSBuiltIns, CommunicationObj;
+
+type
+  IConfigurationWS = interface(IInvokable)
+  ['{712FF90D-6010-4692-BB7B-55889DD01519}']
+    // IConfiguration
+    function  Get_Osciloscope_Port: cardinal; safecall;
+    function  Get_Radar_ID: Integer; safecall;
+    function  Get_Obs_Directory: string; safecall;
+    function  Get_Beam_Ch1: Single; safecall;
+    function  Get_Beam_Ch2: Single; safecall;
+    function  Get_Speed_Accuracy: Integer; safecall;
+    function  Get_Angle_Accuracy: Integer; safecall;
+    function  Get_Pack_Method: Integer; safecall;
+    function  Get_Timeout_TxRx: Integer; safecall;
+    function  Get_Clutter_Clear: boolean; safecall;
+    function  Get_Clutter_Cells: Integer; safecall;
+    function  Get_Clutter_Threshold1: Integer; safecall;
+    function  Get_Clutter_Threshold2: Integer; safecall;
+    function  Get_Speckle_Remove: boolean; safecall;
+    function  Get_Save_Variance: boolean; safecall;
+    function  Get_N1Source: Integer; safecall;
+    function  Get_PLRate: Integer; safecall;
+    function  Get_PCRate: Integer; safecall;
+    function  Get_SampleRate: Integer; safecall;
+    function  Get_Ch1Port: Integer; safecall;
+    function  Get_Ch2Port: Integer; safecall;
+    function  Get_AngleCodeRate: Integer; safecall;
+    function  Get_AngleClockwiseRotationX: boolean; safecall;
+    function  Get_AngleClockwiseRotationY: boolean; safecall;
+    function  Get_AngleClockwiseRotationZ: boolean; safecall;
+    function  Get_PCTimes: TWordDynArray; safecall;
+    function  Get_PLTimes: TWordDynArray; safecall;
+    function  Get_AIGains: TWordDynArray; safecall;
+    function  Get_VideoGains: TWordDynArray; safecall;
+    function  Get_SpeckleUmbral: Integer; safecall;
+    function  Get_RadarName(RadarId: Integer): string; safecall;
+    function  Get_RadarOwner(RadarId: Integer): string; safecall;
+    function  Get_RadarRange(RadarId: Integer): Integer; safecall;
+    function  Get_RadarLatitude(RadarId: Integer): Single; safecall;
+    function  Get_RadarLongitude(RadarId: Integer): Single; safecall;
+    function  Get_RadarAltitude(RadarId: Integer): Single; safecall;
+    function  Get_RadarBrand(RadarId: Integer): RadarBrandsEnum; safecall;
+    function  Get_SendMsgOnError: boolean; safecall;
+    function  Get_TargetAddress: string; safecall;
+    function  Get_SMTPServer: string; safecall;
+    function  Get_SMTPUser: string; safecall;
+    function  Get_SMTPPassword: string; safecall;
+    function  Get_SMTPPort: Integer; safecall;
+    function  Get_SMTPFromAddress: string; safecall;
+    function  Get_ContinuosRegime: boolean; safecall;
+    procedure Set_ContinuosRegime(Value: boolean); safecall;
+    function  Get_Timeout_Radar: Integer; safecall;
+    procedure Set_Timeout_Radar(Value: Integer); safecall;
+    function  Get_Automatic_Obs: boolean; safecall;
+    procedure Set_Automatic_Obs(Value: boolean); safecall;
+    function  Get_Auto_Power_Off: boolean; safecall;
+    procedure Set_Auto_Power_Off(Value: boolean); safecall;
+    function  Get_WarmTime_Radar: Integer; safecall;
+    procedure Set_WarmTime_Radar(Value: Integer); safecall;
+    function  Get_RestTime_Radar: Integer; safecall;
+    procedure Set_RestTime_Radar(Value: Integer); safecall;
+    function  Get_RadarTemperature: Double; safecall;
+    function  Get_RadarPressure: Double; safecall;
+    function  Get_CheckPPIParam: boolean; safecall;
+    function  Get_SpeckleUmbralAz: Integer; safecall;
+    function  Get_SpeckleRemoveAz: boolean; safecall;
+    function  Get_ClockSource: boolean; safecall;
+
+    // IConfigurationControl
+    procedure SaveConfig; safecall;
+    procedure SaveAllConfig; safecall;
+
+    procedure Set_Osciloscope_Port(value: cardinal); safecall;
+    procedure Set_Radar_ID(value: Integer); safecall;
+    procedure Set_Obs_Directory(const value: string); safecall;
+    procedure Set_Beam_Ch1(value: Single); safecall;
+    procedure Set_Beam_Ch2(value: Single); safecall;
+    procedure Set_Speed_Accuracy(value: Integer); safecall;
+    procedure Set_Angle_Accuracy(value: Integer); safecall;
+    procedure Set_Pack_Method(value: Integer); safecall;
+    procedure Set_Timeout_TxRx(value: Integer); safecall;
+    procedure Set_Clutter_Clear(value: boolean); safecall;
+    procedure Set_Clutter_Cells(value: Integer); safecall;
+    procedure Set_Clutter_Threshold1(value: Integer); safecall;
+    procedure Set_Clutter_Threshold2(value: Integer); safecall;
+    procedure Set_Speckle_Remove(value: boolean); safecall;
+    procedure Set_Save_Variance(value: boolean); safecall;
+    procedure Set_N1Source(value: Integer); safecall;
+    procedure Set_PLRate(value: Integer); safecall;
+    procedure Set_PCRate(value: Integer); safecall;
+    procedure Set_SampleRate(value: Integer); safecall;
+    procedure Set_Ch1Port(value: Integer); safecall;
+    procedure Set_Ch2Port(value: Integer); safecall;
+    procedure Set_AngleCodeRate(value: Integer); safecall;
+    procedure Set_AngleClockwiseRotationX(value: boolean); safecall;
+    procedure Set_AngleClockwiseRotationY(value: boolean); safecall;
+    procedure Set_AngleClockwiseRotationZ(value: boolean); safecall;
+    procedure Set_PCTimes(Times: TWordDynArray); safecall;
+    procedure Set_PLTimes(Times: TWordDynArray); safecall;
+    procedure Set_AIGains(Gains: TWordDynArray); safecall;
+    procedure Set_VideoGains(Gains: TWordDynArray); safecall;
+    procedure Set_SpeckleUmbral(value: Integer); safecall;
+    procedure Set_SMTPPort(value: Integer); safecall;
+    procedure Set_SMTPUser(const value: string); safecall;
+    procedure Set_SMTPPassword(const value: string); safecall;
+    procedure Set_SendMsgOnError(value: boolean); safecall;
+    procedure Set_TargetAddress(const value: string); safecall;
+    procedure Set_SMTPServer(const value: string); safecall;
+    function  TestSMTPConfig: boolean; safecall;
+    function  SendTestEMail: boolean; safecall;
+    procedure Set_SMTPFromAddress(const value: string); safecall;
+    procedure Set_RadarTemperature(value: Double); safecall;
+    procedure Set_RadarPressure(value: Double); safecall;
+    procedure Set_CheckPPIParam(value: boolean); safecall;
+    procedure Set_SpeckleRemoveAz(value: boolean); safecall;
+    procedure Set_SpeckleUmbralAz(value: Integer); safecall;
+    procedure Set_ClockSource(value: boolean); safecall;
+
+    property Osciloscope_Port: cardinal                read Get_Osciloscope_Port             write Set_Osciloscope_Port;
+    property Radar_ID: Integer                         read Get_Radar_ID                     write Set_Radar_ID;
+    property Obs_Directory: string                     read Get_Obs_Directory                write Set_Obs_Directory;
+    property Beam_Ch1: Single                          read Get_Beam_Ch1                     write Set_Beam_Ch1;
+    property Beam_Ch2: Single                          read Get_Beam_Ch2                     write Set_Beam_Ch2;
+    property Speed_Accuracy: Integer                   read Get_Speed_Accuracy               write Set_Speed_Accuracy;
+    property Angle_Accuracy: Integer                   read Get_Angle_Accuracy               write Set_Angle_Accuracy;
+    property Pack_Method: Integer                      read Get_Pack_Method                  write Set_Pack_Method;
+    property Timeout_TxRx: Integer                     read Get_Timeout_TxRx                 write Set_Timeout_TxRx;
+    property Clutter_Clear: boolean                    read Get_Clutter_Clear                write Set_Clutter_Clear;
+    property Clutter_Cells: Integer                    read Get_Clutter_Cells                write Set_Clutter_Cells;
+    property Clutter_Threshold1: Integer               read Get_Clutter_Threshold1           write Set_Clutter_Threshold1;
+    property Clutter_Threshold2: Integer               read Get_Clutter_Threshold2           write Set_Clutter_Threshold2;
+    property Speckle_Remove: boolean                   read Get_Speckle_Remove               write Set_Speckle_Remove;
+    property Save_Variance: boolean                    read Get_Save_Variance                write Set_Save_Variance;
+    property N1Source: Integer                         read Get_N1Source                     write Set_N1Source;
+    property PLRate: Integer                           read Get_PLRate                       write Set_PLRate;
+    property PCRate: Integer                           read Get_PCRate                       write Set_PCRate;
+    property SampleRate: Integer                       read Get_SampleRate                   write Set_SampleRate;
+    property Ch1Port: Integer                          read Get_Ch1Port                      write Set_Ch1Port;
+    property Ch2Port: Integer                          read Get_Ch2Port                      write Set_Ch2Port;
+    property AngleCodeRate: Integer                    read Get_AngleCodeRate                write Set_AngleCodeRate;
+    property AngleClockwiseRotationX: boolean          read Get_AngleClockwiseRotationX      write Set_AngleClockwiseRotationX;
+    property AngleClockwiseRotationY: boolean          read Get_AngleClockwiseRotationY      write Set_AngleClockwiseRotationY;
+    property AngleClockwiseRotationZ: boolean          read Get_AngleClockwiseRotationZ      write Set_AngleClockwiseRotationZ;
+    property SpeckleUmbral: Integer                    read Get_SpeckleUmbral                write Set_SpeckleUmbral;
+    property ContinuosRegime: boolean                  read Get_ContinuosRegime              write Set_ContinuosRegime;
+    property Timeout_Radar: Integer                    read Get_Timeout_Radar                write Set_Timeout_Radar;
+    property Automatic_Obs: boolean                    read Get_Automatic_Obs                write Set_Automatic_Obs;
+    property Auto_Power_Off: boolean                   read Get_Auto_Power_Off               write Set_Auto_Power_Off;
+    property WarmTime_Radar: Integer                   read Get_WarmTime_Radar               write Set_WarmTime_Radar;
+    property RestTime_Radar: Integer                   read Get_RestTime_Radar               write Set_RestTime_Radar;
+    property RadarTemperature: Double                  read Get_RadarTemperature             write Set_RadarTemperature;
+    property RadarPressure: Double                     read Get_RadarPressure                write Set_RadarPressure;
+    property CheckPPIParam: boolean                    read Get_CheckPPIParam                write Set_CheckPPIParam;
+    property SpeckleUmbralAz: Integer                  read Get_SpeckleUmbralAz              write Set_SpeckleUmbralAz;
+    property SpeckleRemoveAz: boolean                  read Get_SpeckleRemoveAz              write Set_SpeckleRemoveAz;
+    property ClockSource: boolean                      read Get_ClockSource                  write Set_ClockSource;
+    property SendMsgOnError: boolean                   read Get_SendMsgOnError               write Set_SendMsgOnError;
+    property TargetAddress: string                     read Get_TargetAddress                write Set_TargetAddress;
+    property SMTPServer: string                        read Get_SMTPServer                   write Set_SMTPServer;
+    property SMTPUser: string                          read Get_SMTPUser                     write Set_SMTPUser;
+    property SMTPPassword: string                      read Get_SMTPPassword                 write Set_SMTPPassword;
+    property SMTPPort: Integer                         read Get_SMTPPort                     write Set_SMTPPort;
+    property SMTPFromAddress: string                   read Get_SMTPFromAddress              write Set_SMTPFromAddress;
+    property RadarName[RadarId: Integer]: string       read Get_RadarName;
+    property RadarOwner[RadarId: Integer]: string      read Get_RadarOwner;
+    property RadarRange[RadarId: Integer]: Integer     read Get_RadarRange;
+    property RadarLatitude[RadarId: Integer]: Single   read Get_RadarLatitude;
+    property RadarLongitude[RadarId: Integer]: Single  read Get_RadarLongitude;
+    property RadarAltitude[RadarId: Integer]: Single   read Get_RadarAltitude;
+    property RadarBrand[RadarId: Integer]: RadarBrandsEnum read Get_RadarBrand;
+  end;
+
+implementation
+
+initialization
+  InvRegistry.RegisterInterface(TypeInfo(IConfigurationWS));
+
+end.

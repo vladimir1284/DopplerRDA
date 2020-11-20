@@ -1,0 +1,429 @@
+//---------------------------------------------------------------------------
+#include <vcl/forms.hpp>
+#include "Site.h"
+#include "Radar.h"
+#include <Math.hpp>
+#include <IniFiles.hpp>
+#include <math.h>
+#include <vcl.h>
+#include "config.h"
+
+#pragma hdrstop
+
+extern String   version_number;
+//---------------------------------------------------------------------------
+
+static String ConfigFileName = "Config.ini";
+
+static String site_Section   = "drx";
+static String afc_Section    = "afc";
+static String iq_Section     = "iq";
+static String rx_Section     = "rx";
+static String filter_Section = "filter";
+
+//afc
+static String start_sample_lp_Key = "start_sample_lp";
+static String stop_sample_lp_Key  = "stop_sample_lp";
+static String start_sample_sp_Key = "start_sample_sp";
+static String stop_sample_sp_Key  = "stop_sample_sp";
+static String scan_step_Key       = "scan_step";
+static String scan_delay_Key      = "scan_delay";
+static String scan_width_Key      = "scan_width";
+static String power_factor_tx_Key = "power_factor_tx";
+static String valid_power_tx_Key  = "valid_power_tx";
+static String loop_gain_Key       = "loop_gain";
+static String stalo_power_Key     = "stalo_power";
+static String scan_start_lp_Key   = "scan_start_lp";
+static String scan_start_sp_Key   = "scan_start_sp";
+static String stalo_port_Key      = "stalo_port";
+
+//iq
+static String sqi_threshold_Key        = "sqi_threshold";
+static String ci_threshold_Key         = "ci_threshold";
+static String log_threshold_Key        = "log_threshold";
+static String sig_threshold_Key        = "sig_threshold";
+static String ccor_threshold_Key       = "ccor_threshold";
+static String c1_Key                   = "c1";
+static String c2_Key                   = "c2";
+static String sp_tx_pulse_position_Key = "sp_tx_pulse_position";
+static String lp_tx_pulse_position_Key = "lp_tx_pulse_position";
+static String sp_rx_pulse_position_Key = "sp_rx_pulse_position";
+static String lp_rx_pulse_position_Key = "lp_rx_pulse_position";
+
+//rx
+static String sensibility_lp_Key   = "sensibility_lp";
+static String sensibility_sp_Key   = "sensibility_sp";
+static String dinamic_range_lp_Key = "dinamic_range_lp";
+static String dinamic_range_sp_Key = "dinamic_range_sp";
+static String conv_table_lp_Key    = "conv_table_lp";
+static String conv_table_sp_Key    = "conv_table_sp";
+
+//general
+static String ws_port_Key      = "ws_port";
+static String stream_port_Key  = "stream_port";
+static String doppler_port_Key = "doppler_port";
+static String comm_port_Key    = "comm_port";
+static String tx_frequency_Key = "tx_frequency";
+static String sectors_Key      = "sectors";
+static String sectors_rays_LP_Key = "sector_rays_lp";
+static String sectors_rays_SP_Key = "sector_rays_sp";
+
+//filter
+static String max_angle_Key    = "max_angle";
+static String max_heigh_Key    = "max_heigh";
+static String max_distance_Key = "max_distance";
+static String factor_b0_Key    = "factor_b0";
+static String factor_b1_Key    = "factor_b1";
+static String factor_b2_Key    = "factor_b2";
+static String factor_b3_Key    = "factor_b3";
+static String factor_b4_Key    = "factor_b4";
+static String factor_c1_Key    = "factor_c1";
+static String factor_c2_Key    = "factor_c2";
+static String factor_c3_Key    = "factor_c3";
+static String factor_c4_Key    = "factor_c4";
+static String sqi_Key          = "sqi_flag";
+static String sig_Key          = "sig_flag";
+static String log_Key          = "log_flag";
+static String ccor_Key         = "ccor_flag";
+static String speckles_Key     = "speckles";
+static String speckle_dist_Key = "speckle_distance";
+
+Site::Site(){
+  LoadData();
+  Conv_table_lp = getConv_table_lp();
+  Conv_table_sp = getConv_table_sp();
+  TheRadar      = new Radar(true);
+}
+//---------------------------------------------------------------------------
+
+TSettings* Site::ExportData(){
+	TSettings* result = new TSettings();
+
+	result->Sectors               = fSectors;
+	result->Stream_Port           = fStream_Port;
+	result->Doppler_Port          = fDoppler_Port;
+	result->Communication_Port    = fCommunication_Port;
+
+	result->Band_Frequency        = fBand_Frequency;
+	result->Stalo_Frequency       = fStalo_Frequency;
+	result->Band_Length           = fBand_Length;
+
+	result->_LP_MaxSpeed          = fLP_MaxSpeed;
+	result->_SP_Single_MaxSpeed   = fSP_Single_MaxSpeed;
+	result->_SP_Dual_54_MaxSpeed  = fSP_Dual_54_MaxSpeed;
+	result->_SP_Dual_43_MaxSpeed  = fSP_Dual_43_MaxSpeed;
+	result->_SP_Dual_32_MaxSpeed  = fSP_Dual_32_MaxSpeed;
+
+	//afc
+	result->Start_sample_lp       = fStart_sample_lp;
+	result->Stop_sample_lp        = fStop_sample_lp;
+	result->Start_sample_sp       = fStart_sample_sp;
+	result->Stop_sample_sp        = fStop_sample_sp;
+	result->Scan_step             = fScan_step;
+	result->Scan_delay            = fScan_delay;
+	result->Scan_width            = fScan_width;
+	result->Power_factor_tx       = fPower_factor_tx;
+	result->Valid_power_tx        = fValid_power_tx;
+	result->LoopGain              = fLoopGain;
+	result->Stalo_StartFrequencyLP= fStalo_StartFrequencyLP;
+	result->Stalo_StartFrequencySP= fStalo_StartFrequencySP;
+
+	//iq
+	result->SP_TX_PulsePosition   = fSP_TX_PulsePosition;
+	result->LP_TX_PulsePosition   = fLP_TX_PulsePosition;
+	result->SP_RX_PulsePosition   = fSP_RX_PulsePosition;
+	result->LP_RX_PulsePosition   = fLP_RX_PulsePosition;
+
+	result->Sensibility_LP        = fSensibility_lp;
+	result->Sensibility_SP        = fSensibility_sp;
+	result->Dinamic_range_LP      = fDinamic_range_lp;
+	result->Dinamic_range_SP      = fDinamic_range_sp;
+	result->Conv_table_lp_text    = fConv_table_lp;
+	result->Conv_table_sp_text    = fConv_table_sp;
+
+	return result;
+}
+
+void Site::ImportData(TSettings* data){
+	//afc
+   fStart_sample_lp     = data->Start_sample_lp;
+   fStop_sample_lp      = data->Stop_sample_lp;
+   fStart_sample_sp     = data->Start_sample_sp;
+   fStop_sample_sp      = data->Stop_sample_sp;
+   fScan_step           = data->Scan_step;
+   fScan_delay          = data->Scan_delay;
+   fScan_width          = data->Scan_width;
+   fPower_factor_tx     = data->Power_factor_tx;
+   fValid_power_tx      = data->Valid_power_tx;
+   fLoopGain            = data->LoopGain;
+
+   fStalo_StartFrequencyLP = data->Stalo_StartFrequencyLP;
+   fStalo_StartFrequencySP = data->Stalo_StartFrequencySP;
+
+	//iq
+   fSP_TX_PulsePosition = data->SP_TX_PulsePosition;
+   fLP_TX_PulsePosition = data->LP_TX_PulsePosition;
+   fSP_RX_PulsePosition = data->SP_RX_PulsePosition;
+   fLP_RX_PulsePosition = data->LP_RX_PulsePosition;
+
+   fSensibility_lp      = data->Sensibility_LP;
+   fSensibility_sp      = data->Sensibility_SP;
+   fDinamic_range_lp    = data->Dinamic_range_LP;
+   fDinamic_range_sp    = data->Dinamic_range_SP;
+   fConv_table_lp       = data->Conv_table_lp_text;
+   fConv_table_sp       = data->Conv_table_sp_text;
+
+   SaveData();
+   LoadData();
+}
+
+void Site::LoadData()
+{
+	String configFileName = ExtractFileDir(ParamStr(0)) + "\\" + ConfigFileName;
+	TIniFile* config = new TIniFile(configFileName);
+	__try{
+		//general
+		fWS_Port      = config->ReadInteger(site_Section, ws_port_Key,      7788);
+		fStream_Port  = config->ReadInteger(site_Section, stream_port_Key,  8877);
+		fDoppler_Port = config->ReadInteger(site_Section, doppler_port_Key, 7887);
+		fCommunication_Port = config->ReadInteger(site_Section, comm_port_Key, 8778);
+		fSectors      = config->ReadInteger(site_Section, sectors_Key,      0);
+		fSectorRaysLP = config->ReadInteger(site_Section, sectors_rays_LP_Key, 10);
+		fSectorRaysSP = config->ReadInteger(site_Section, sectors_rays_SP_Key, 10);
+
+		fSectorWidth        = (double)AntennaMaxValue / (double)fSectors;
+		fHalfSectorWidth    = fSectorWidth / 2.0;
+		fQuarterSectorWidth = fSectorWidth / 4.0;
+
+		INT64 Tx_Frequency = config->ReadInteger(site_Section, tx_frequency_Key, 0);
+		fBand_Frequency    = Tx_Frequency * 1000000;
+		fStalo_Frequency   = fBand_Frequency - IF;
+		fBand_Length       = (double)SpeedLight / (double)fBand_Frequency;
+
+		fLP_MaxSpeed         = LP_PRF        * fBand_Length / 4.0;
+		fSP_Single_MaxSpeed  = SP_Single_PRF * fBand_Length / 4.0;
+
+		fSP_Dual_54_Low_MaxSpeed  = SP_Dual_54_Low_PRF  * fBand_Length / 4.0;
+		fSP_Dual_43_Low_MaxSpeed  = SP_Dual_43_Low_PRF  * fBand_Length / 4.0;
+		fSP_Dual_32_Low_MaxSpeed  = SP_Dual_32_Low_PRF  * fBand_Length / 4.0;
+		fSP_Dual_54_High_MaxSpeed = SP_Dual_54_High_PRF * fBand_Length / 4.0;
+		fSP_Dual_43_High_MaxSpeed = SP_Dual_43_High_PRF * fBand_Length / 4.0;
+		fSP_Dual_32_High_MaxSpeed = SP_Dual_32_High_PRF * fBand_Length / 4.0;
+
+		fSP_Dual_54_MaxSpeed = (fSP_Dual_54_Low_MaxSpeed  * fSP_Dual_54_High_MaxSpeed)/
+							   (fSP_Dual_54_High_MaxSpeed - fSP_Dual_54_Low_MaxSpeed);
+		fSP_Dual_43_MaxSpeed = (fSP_Dual_43_Low_MaxSpeed  * fSP_Dual_43_High_MaxSpeed)/
+							   (fSP_Dual_43_High_MaxSpeed - fSP_Dual_43_Low_MaxSpeed);
+		fSP_Dual_32_MaxSpeed = (fSP_Dual_32_Low_MaxSpeed  * fSP_Dual_32_High_MaxSpeed)/
+							   (fSP_Dual_32_High_MaxSpeed - fSP_Dual_32_Low_MaxSpeed);
+
+		fLP_CONV_FACTOR_              = fLP_MaxSpeed              / PI;
+		fSP_Single_CONV_FACTOR_       = fSP_Single_MaxSpeed       / PI;
+		fSP_Dual_54_Low_CONV_FACTOR_  = fSP_Dual_54_Low_MaxSpeed  / PI;
+		fSP_Dual_43_Low_CONV_FACTOR_  = fSP_Dual_43_Low_MaxSpeed  / PI;
+		fSP_Dual_32_Low_CONV_FACTOR_  = fSP_Dual_32_Low_MaxSpeed  / PI;
+		fSP_Dual_54_High_CONV_FACTOR_ = fSP_Dual_54_High_MaxSpeed / PI;
+		fSP_Dual_43_High_CONV_FACTOR_ = fSP_Dual_43_High_MaxSpeed / PI;
+		fSP_Dual_32_High_CONV_FACTOR_ = fSP_Dual_32_High_MaxSpeed / PI;
+
+		fSP_Dual_54_CONV_FACTOR_  =  (fBand_Length / (4.0 * PI)) * ((SP_Dual_54_High_PRF * SP_Dual_54_Low_PRF)/(SP_Dual_54_High_PRF - SP_Dual_54_Low_PRF));
+		fSP_Dual_43_CONV_FACTOR_  =  (fBand_Length / (4.0 * PI)) * ((SP_Dual_43_High_PRF * SP_Dual_43_Low_PRF)/(SP_Dual_43_High_PRF - SP_Dual_43_Low_PRF));
+		fSP_Dual_32_CONV_FACTOR_  =  (fBand_Length / (4.0 * PI)) * ((SP_Dual_32_High_PRF * SP_Dual_32_Low_PRF)/(SP_Dual_32_High_PRF - SP_Dual_32_Low_PRF));
+
+		//afc
+		fStart_sample_lp = config->ReadInteger(afc_Section, start_sample_lp_Key, 5);
+		fStop_sample_lp  = config->ReadInteger(afc_Section, stop_sample_lp_Key,  165);
+		fStart_sample_sp = config->ReadInteger(afc_Section, start_sample_sp_Key, 5);
+		fStop_sample_sp  = config->ReadInteger(afc_Section, stop_sample_sp_Key,  45);
+		fScan_step       = config->ReadInteger(afc_Section, scan_step_Key,       500000);
+		fScan_delay      = config->ReadInteger(afc_Section, scan_delay_Key,      400);
+		fScan_width      = config->ReadInteger(afc_Section, scan_width_Key,      30000000);
+		fPower_factor_tx = config->ReadFloat  (afc_Section, power_factor_tx_Key, 0);
+		fValid_power_tx  = config->ReadFloat  (afc_Section, valid_power_tx_Key,  80);
+		fLoopGain        = config->ReadFloat  (afc_Section, loop_gain_Key,       1);
+		fStalo_Power     = config->ReadFloat  (afc_Section, stalo_power_Key,     19);
+		fStaloPort       = config->ReadInteger(afc_Section, stalo_port_Key,      0);
+
+		INT64 scan_start = config->ReadInteger(afc_Section, scan_start_lp_Key, 2950);
+		fStalo_StartFrequencyLP = scan_start * 1000000;
+		scan_start = config->ReadInteger(afc_Section, scan_start_sp_Key, 2950);
+		fStalo_StartFrequencySP = scan_start * 1000000;
+
+		//iq
+		fSP_TX_PulsePosition = config->ReadInteger(iq_Section, sp_tx_pulse_position_Key, 14);
+		fLP_TX_PulsePosition = config->ReadInteger(iq_Section, lp_tx_pulse_position_Key, 7);
+		fSP_RX_PulsePosition = config->ReadInteger(iq_Section, sp_rx_pulse_position_Key, 14);
+		fLP_RX_PulsePosition = config->ReadInteger(iq_Section, lp_rx_pulse_position_Key, 7);
+		fThresholdSQI        = config->ReadFloat  (iq_Section, sqi_threshold_Key,        0.4);
+		fThresholdCI         = config->ReadFloat  (iq_Section, sqi_threshold_Key,        0.4);
+		fThresholdCCOR       = config->ReadFloat  (iq_Section, sqi_threshold_Key,        0.4);
+		fThresholdLOG        = config->ReadFloat  (iq_Section, sqi_threshold_Key,        0.4);
+		fThresholdSIG        = config->ReadFloat  (iq_Section, sqi_threshold_Key,        0.4);
+		fC1                  = config->ReadFloat  (iq_Section, c1_Key,                   0);
+		fC2                  = config->ReadFloat  (iq_Section, c2_Key,                   0);
+
+		//rx
+		fSensibility_lp   = config->ReadInteger(rx_Section, sensibility_lp_Key,   -140);
+		fSensibility_sp   = config->ReadInteger(rx_Section, sensibility_sp_Key,   -140);
+		fDinamic_range_lp = config->ReadInteger(rx_Section, dinamic_range_lp_Key, 70);
+		fDinamic_range_sp = config->ReadInteger(rx_Section, dinamic_range_sp_Key, 70);
+		fConv_table_lp    = config->ReadString (rx_Section, conv_table_lp_Key,    "");
+		fConv_table_sp    = config->ReadString (rx_Section, conv_table_sp_Key,    "");
+
+		//filter
+		fMaxDistance = config->ReadInteger(filter_Section, max_distance_Key, 0);
+		fMaxHeigh    = config->ReadInteger(filter_Section, max_heigh_Key,    0);
+		fMaxAngle    = config->ReadFloat  (filter_Section, max_angle_Key,    0);
+		fFactorB0    = config->ReadFloat  (filter_Section, factor_b0_Key,    0);
+		fFactorB1    = config->ReadFloat  (filter_Section, factor_b1_Key,    0);
+		fFactorB2    = config->ReadFloat  (filter_Section, factor_b2_Key,    0);
+		fFactorB3    = config->ReadFloat  (filter_Section, factor_b3_Key,    0);
+		fFactorB4    = config->ReadFloat  (filter_Section, factor_b4_Key,    0);
+		fFactorC1    = config->ReadFloat  (filter_Section, factor_c1_Key,    0);
+		fFactorC2    = config->ReadFloat  (filter_Section, factor_c2_Key,    0);
+		fFactorC3    = config->ReadFloat  (filter_Section, factor_c3_Key,    0);
+		fFactorC4    = config->ReadFloat  (filter_Section, factor_c4_Key,    0);
+		fSQI_Flag    = config->ReadBool   (filter_Section, sqi_Key,          false);
+		fSIG_Flag    = config->ReadBool   (filter_Section, sig_Key,          false);
+		fLOG_Flag    = config->ReadBool   (filter_Section, log_Key,          false);
+		fCCOR_Flag   = config->ReadBool   (filter_Section, ccor_Key,         false);
+		fSpeckles    = config->ReadBool   (filter_Section, speckles_Key,     false);
+		fSpeckleDistance = config->ReadInteger(filter_Section, speckle_dist_Key, 1000);
+	}
+	__finally{
+		config->Free();
+	}
+}
+
+void Site::SaveData(){
+	String configFileName = ExtractFileDir(ParamStr(0)) + "\\" + ConfigFileName;
+	TIniFile* config = new TIniFile(configFileName);
+	__try{
+		//afc
+		config->WriteInteger(afc_Section, start_sample_lp_Key, fStart_sample_lp);
+		config->WriteInteger(afc_Section, stop_sample_lp_Key,  fStop_sample_lp);
+		config->WriteInteger(afc_Section, start_sample_sp_Key, fStart_sample_sp);
+		config->WriteInteger(afc_Section, stop_sample_sp_Key,  fStop_sample_sp);
+		config->WriteInteger(afc_Section, scan_step_Key,       fScan_step);
+		config->WriteInteger(afc_Section, scan_delay_Key,      fScan_delay);
+		config->WriteInteger(afc_Section, scan_width_Key,      fScan_width);
+		config->WriteFloat  (afc_Section, power_factor_tx_Key, fPower_factor_tx);
+		config->WriteFloat  (afc_Section, valid_power_tx_Key,  fValid_power_tx);
+		config->WriteFloat  (afc_Section, loop_gain_Key,       fLoopGain);
+		config->WriteInteger(afc_Section, stalo_port_Key,      fStaloPort);
+
+		config->WriteInteger(afc_Section, scan_start_lp_Key, floor(fStalo_StartFrequencyLP/1000000));
+		config->WriteInteger(afc_Section, scan_start_sp_Key, floor(fStalo_StartFrequencySP/1000000));
+
+		//iq
+		config->WriteInteger(iq_Section, sp_tx_pulse_position_Key, fSP_TX_PulsePosition);
+		config->WriteInteger(iq_Section, lp_tx_pulse_position_Key, fLP_TX_PulsePosition);
+		config->WriteInteger(iq_Section, sp_rx_pulse_position_Key, fSP_RX_PulsePosition);
+		config->WriteInteger(iq_Section, lp_rx_pulse_position_Key, fLP_RX_PulsePosition);
+
+		//rx
+		config->WriteInteger(rx_Section, sensibility_lp_Key,   fSensibility_lp);
+		config->WriteInteger(rx_Section, sensibility_sp_Key,   fSensibility_sp);
+		config->WriteInteger(rx_Section, dinamic_range_lp_Key, fDinamic_range_lp);
+		config->WriteInteger(rx_Section, dinamic_range_sp_Key, fDinamic_range_sp);
+		config->WriteString (rx_Section, conv_table_lp_Key,    fConv_table_lp);
+		config->WriteString (rx_Section, conv_table_sp_Key,    fConv_table_sp);
+
+		//filter
+		config->WriteFloat  (filter_Section, max_angle_Key,    fMaxAngle);
+		config->WriteInteger(filter_Section, max_distance_Key, fMaxDistance);
+		config->WriteInteger(filter_Section, max_heigh_Key,    fMaxHeigh);
+
+		config->WriteFloat(filter_Section, factor_b0_Key, fFactorB0);
+		config->WriteFloat(filter_Section, factor_b1_Key, fFactorB1);
+		config->WriteFloat(filter_Section, factor_b2_Key, fFactorB2);
+		config->WriteFloat(filter_Section, factor_b3_Key, fFactorB3);
+		config->WriteFloat(filter_Section, factor_b4_Key, fFactorB4);
+		config->WriteFloat(filter_Section, factor_c1_Key, fFactorC1);
+		config->WriteFloat(filter_Section, factor_c2_Key, fFactorC2);
+		config->WriteFloat(filter_Section, factor_c3_Key, fFactorC3);
+		config->WriteFloat(filter_Section, factor_c4_Key, fFactorC4);
+
+		config->WriteBool(filter_Section, sqi_Key,  fSQI_Flag);
+		config->WriteBool(filter_Section, sig_Key,  fSIG_Flag);
+		config->WriteBool(filter_Section, log_Key,  fLOG_Flag);
+		config->WriteBool(filter_Section, ccor_Key, fCCOR_Flag);
+
+		config->WriteBool(filter_Section, speckles_Key, fSpeckles);
+		config->WriteInteger(filter_Section, speckle_dist_Key, fSpeckleDistance);
+	}
+	__finally{
+		config->Free();
+	}
+}
+
+TDRX_Parameters* Site::GetParameters(){
+	TDRX_Parameters* result = new TDRX_Parameters();
+
+	result->ShortPulse_NData       = RAW_DATA_LENGTH_SP;
+	result->ShortPulse_Trigger     = SP_Single_PRF;
+	result->ShortPulse_CellSize    = BIN_LENGTH_SP;
+	result->ShortPulse_Clock       = 2000000;
+
+	result->LongPulse_NData        = RAW_DATA_LENGTH_LP;
+	result->LongPulse_Trigger      = LP_PRF;
+	result->LongPulse_CellSize     = BIN_LENGTH_LP;
+	result->LongPulse_Clock        = 500000;
+
+	result->DualPulse_NData          = RAW_DATA_LENGTH_SP_DUAL;
+	result->DualPulse_54Low_Trigger  = SP_Dual_54_Low_PRF;
+	result->DualPulse_54High_Trigger = SP_Dual_54_High_PRF;
+	result->DualPulse_43Low_Trigger  = SP_Dual_43_Low_PRF;
+	result->DualPulse_43High_Trigger = SP_Dual_43_High_PRF;
+	result->DualPulse_32Low_Trigger  = SP_Dual_32_Low_PRF;
+	result->DualPulse_32High_Trigger = SP_Dual_32_High_PRF;
+
+	result->Sectors                = fSectors;
+	result->IF                     = IF;
+	result->Band_Frequency         = fBand_Frequency;
+	result->Band_Length            = fBand_Length;
+
+	return result;
+}
+
+TFloatArray Site::getConv_table_lp(){
+	TFloatArray result;
+
+	TStrings* table = new TStringList();
+	__try{
+		table->Delimiter = ';';
+		table->DelimitedText = fConv_table_lp;
+
+		result.Length = table->Count;
+		for(int i=0; i<table->Count-1; i++){
+			result[i] = StrToFloat(table->Strings[i]);
+		}
+	}
+	__finally{
+		table->Free();
+	}
+
+	return result;
+}
+
+TFloatArray Site::getConv_table_sp(){
+	TFloatArray result;
+
+	TStrings* table = new TStringList();
+	__try{
+		table->Delimiter = ';';
+		table->DelimitedText = fConv_table_sp;
+
+		result.Length = table->Count;
+		for(int i=0; i<table->Count-1; i++){
+			result[i] = StrToFloat(table->Strings[i]);
+		}
+	}
+	__finally{
+		table->Free();
+	}
+
+	return result;
+}
+
+//---------------------------------------------------------------------------

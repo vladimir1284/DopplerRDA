@@ -1,0 +1,8 @@
+[Inputs]
+CLOCK
+CE
+=DATA_OUT[14:0]=
+[Outputs]
+=CONN_C_OUT[14:0]=
+=CONN_C_EN[14:0]=
+[BiDir]

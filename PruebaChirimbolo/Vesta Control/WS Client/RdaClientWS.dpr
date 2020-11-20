@@ -1,0 +1,103 @@
+program RdaClientWS;
+
+uses
+  Windows,
+  Forms,
+  FrameMotor in 'Components\FrameMotor.pas' {Frame_Motor: TFrame},
+  FrameRadar in 'Components\FrameRadar.pas' {Frame_Radar: TFrame},
+  FrameAntenna in 'Components\FrameAntenna.pas' {Frame_Antenna: TFrame},
+  FrameSynchro in 'Components\FrameSynchro.pas' {Frame_Synchro: TFrame},
+  FrameObservations in 'Components\FrameObservations.pas' {Frame_Observations: TFrame},
+  EditTemplate in 'Components\EditTemplate.pas' {Edit_Template},
+  EditFormat in 'Components\EditFormat.pas' {Edit_Format},
+  FrameAdmin in 'Components\FrameAdmin.pas' {Frame_Admin: TFrame},
+  FrameVideo in 'Components\FrameVideo.pas' {Frame_Video: TFrame},
+  FrameTxRxCalib in 'Components\FrameTxRxCalib.pas' {Frame_TxRx_Calibration: TFrame},
+  FrameCalibration in 'Components\FrameCalibration.pas' {Frame_Calibration: TFrame},
+  FrameConfiguration in 'Components\FrameConfiguration.pas' {Frame_Configuration: TFrame},
+  FrameObservation in 'Components\FrameObservation.pas' {Frame_Observation: TFrame},
+  LoginDialog in 'Modules\LoginDialog.pas' {FLogin},
+  MotorCalib in 'Components\MotorCalib.pas' {MotorCalib_Dialog},
+  AboutDialog in '..\General\AboutDialog.pas' {FAboutDialog},
+  WaitDialog in 'Modules\WaitDialog.pas' {FWait},
+  DirList in '..\General\DirList.pas' {DirectoryList},
+  RdaMessages in '..\General\RdaMessages.pas',
+  FrameSunPosition in 'Components\FrameSunPosition.pas' {Frame_SunPosition: TFrame},
+  FrameLogs in 'Components\FrameLogs.pas' {Frame_Logs: TFrame},
+  Constants in '..\General\Constants.pas',
+  EditFTPSettings in 'Components\EditFTPSettings.pas' {FTPSettings},
+  Shell_Client in 'Modules\Shell_Client.pas' {ShellClient},
+  FrameControl in 'Components\FrameControl.pas' {Frame_Control: TFrame},
+  RTConfiguration in 'Client\RTConfiguration.pas',
+  EditUser in 'Components\EditUser.pas' {Edit_User},
+  RTForm in 'Components\RTForm.pas' {RealTimeForm},
+  LogBoard in 'Components\LogBoard.pas' {LogScreen},
+  PlotForm in 'Components\PlotForm.pas' {RxPlotForm},
+  FrameStatistics in 'Components\FrameStatistics.pas' {Frame_Statistics: TFrame},
+  DataReceiverThread in 'Client\DataReceiverThread.pas',
+  UpdaterThread in 'Client\UpdaterThread.pas',
+  Angle in '..\General\Angle.pas',
+  Measure in '..\General\Measure.pas',
+  CalcSunPosition in '..\General\CalcSunPosition.pas',
+  CalcFunctions in '..\General\CalcFunctions.pas',
+  Calculus in '..\General\Calculus.pas',
+  ElbrusTypes in '..\General\ElbrusTypes.pas',
+  EditFilter in 'Components\EditFilter.pas' {Edit_Filter},
+  FrameTx in 'Components\FrameTx.pas' {Frame_Tx: TFrame},
+  FrameDRX in 'Components\FrameDRX.pas' {Frame_DRX: TFrame},
+  Rda_TLB in 'C:\Program Files\Borland\Delphi7\Imports\Rda_TLB.pas',
+  IAntennaProxy in 'Proxies\IAntennaProxy.pas',
+  IAZMotorProxy in 'Proxies\IAZMotorProxy.pas',
+  IELMotorProxy in 'Proxies\IELMotorProxy.pas',
+  IVideoProxy in 'Proxies\IVideoProxy.pas',
+  ISynchroProxy in 'Proxies\ISynchroProxy.pas',
+  ICalibrationCH1Proxy in 'Proxies\ICalibrationCH1Proxy.pas',
+  ICalibrationCH2Proxy in 'Proxies\ICalibrationCH2Proxy.pas',
+  ITxRxCh1Proxy in 'Proxies\ITxRxCh1Proxy.pas',
+  ITxRxCh2Proxy in 'Proxies\ITxRxCh2Proxy.pas',
+  ILoginProxy in 'Proxies\ILoginProxy.pas',
+  IConfigurationProxy in 'Proxies\IConfigurationProxy.pas',
+  IObservationsProxy in 'Proxies\IObservationsProxy.pas',
+  IRadarProxy in 'Proxies\IRadarProxy.pas',
+  IStatisticsProxy in 'Proxies\IStatisticsProxy.pas',
+  ILogProxy in 'Proxies\ILogProxy.pas',
+  IVestaProxy in 'Proxies\IVestaProxy.pas';
+
+{$R *.RES}
+
+var
+  OnlyOneClient : THandle;
+
+begin
+  Application.Initialize;
+  Application.Title := 'Cliente RDA';
+  Application.CreateForm(TShellClient, ShellClient);
+  Application.CreateForm(TEdit_Filter, Edit_Filter);
+  OnlyOneClient := CreateMutex( nil, true, OnlyOneRdaClientName );
+  try
+    if GetLastError = ERROR_ALREADY_EXISTS
+      then
+        begin
+          Application.MessageBox('Ya se esta ejecutando un cliente.'#13#10#13#10 +
+                                 'Por favor, utilice el que esta en uso o cierre'#13#10 +
+                                 'el mismo antes de intentar utilizar otro.',
+                                 'Fallo de ejecucion', MB_ICONSTOP);
+          Application.Terminate;
+        end
+      else
+        begin
+          with Application.MainForm as TShellClient do
+            if Initialize
+              then
+                begin
+                  ShellClient.Timer1.Enabled := true;
+                  ShellClient.Frame_Logs.Init;
+                end
+              else Close;
+          Application.Run;
+        end;  
+  finally
+    ReleaseMutex( OnlyOneClient );
+  end;
+end.
+

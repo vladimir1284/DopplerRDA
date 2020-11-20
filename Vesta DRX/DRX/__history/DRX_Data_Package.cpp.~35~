@@ -1,0 +1,67 @@
+//---------------------------------------------------------------------------
+#pragma hdrstop
+
+#include "DRX_Data_Package.h"
+#include <Math.hpp>
+#include "DataParameters.h"
+//---------------------------------------------------------------------------
+
+#pragma package(smart_init)
+
+DRX_Data_Package::DRX_Data_Package(){
+	_Az = 0;
+	_El = 0;
+	_DataType = 0;
+	_NData = 0;
+
+	_data = NULL;
+}
+
+DRX_Data_Package::~DRX_Data_Package(){
+	if(_data != NULL)
+	 	FreeMemory(_data);
+}
+
+void DRX_Data_Package::InitMsg(String msg, short Azimuth, short Elevation, short BufferType, short NData, void* Data){
+	_DataType = msg;
+	_NData = NData;
+	_Az = Azimuth;
+	_El = Elevation;
+	_BufferDataType = BufferType;
+
+	_data = AllocMem(BufferSize);
+	memcpy(_data, Data, BufferSize);
+}
+
+short DRX_Data_Package::getBufferDataSize(){
+	int result = 0;
+	switch (_BufferDataType) {
+		case dtShort:
+			result = 2;
+			break;
+		case dtUShort:
+			result = 2;
+			break;
+		case dtInt:
+			result = 4;
+			break;
+		case dtUIint:
+			result = 4;
+			break;
+		case dtInt64:
+			result = 8;
+			break;
+		case dtFloat:
+			result = 4;
+			break;
+		case dtDouble:
+			result = 8;
+			break;
+	}
+
+	return result;
+}
+
+short DRX_Data_Package::getBufferSize(){
+	return _NData * getBufferDataSize();
+}

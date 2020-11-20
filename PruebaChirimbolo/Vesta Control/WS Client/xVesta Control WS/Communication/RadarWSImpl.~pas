@@ -1,0 +1,127 @@
+unit RadarWSImpl;
+
+interface
+
+uses InvokeRegistry, Types, XSBuiltIns, RadarWSIntf, CommunicationObj;
+
+type
+
+  TRadarWS = class(TCommObj, IRadarWS)
+  public
+    function Get_Red_Listo: WordBool; safecall;
+    function Get_Radar_On_P: WordBool; safecall;
+    function Get_Radar_On_N: WordBool; safecall;
+    function Get_Muestra_P: Integer; safecall;
+    function Get_Muestra_N: Integer; safecall;
+    function Get_Radar_Encender: WordBool; safecall;
+    function Get_Radar_Apagar: WordBool; safecall;
+    function Get_Rango_Muestra_P: Integer; safecall;
+    function Get_Rango_Muestra_N: Integer; safecall;
+    function Get_Sector_Muestra_P: Integer; safecall;
+    function Get_Sector_Muestra_N: Integer; safecall;
+
+    procedure Encender_Radar; safecall;
+    procedure Apagar_Radar; safecall;
+    procedure Set_Rango_Muestra_P(Param1: Integer); safecall;
+    procedure Set_Rango_Muestra_N(Param1: Integer); safecall;
+    procedure Set_Sector_Muestra_P(Param1: Integer); safecall;
+    procedure Set_Sector_Muestra_N(Param1: Integer); safecall;
+  end;
+
+implementation
+
+uses
+  ElbrusTypes, Elbrus;
+
+{ TRadarWS }
+
+procedure TRadarWS.Apagar_Radar;
+begin
+
+end;
+
+procedure TRadarWS.Encender_Radar;
+begin
+
+end;
+
+function TRadarWS.Get_Muestra_N: Integer;
+begin
+
+end;
+
+function TRadarWS.Get_Muestra_P: Integer;
+begin
+
+end;
+
+function TRadarWS.Get_Radar_Apagar: WordBool;
+begin
+
+end;
+
+function TRadarWS.Get_Radar_Encender: WordBool;
+begin
+
+end;
+
+function TRadarWS.Get_Radar_On_N: WordBool;
+begin
+
+end;
+
+function TRadarWS.Get_Radar_On_P: WordBool;
+begin
+
+end;
+
+function TRadarWS.Get_Rango_Muestra_N: Integer;
+begin
+
+end;
+
+function TRadarWS.Get_Rango_Muestra_P: Integer;
+begin
+
+end;
+
+function TRadarWS.Get_Red_Listo: WordBool;
+begin
+  Result := (Snapshot.Digital_Input and di_Red_Listo) <> 0;
+end;
+
+function TRadarWS.Get_Sector_Muestra_N: Integer;
+begin
+
+end;
+
+function TRadarWS.Get_Sector_Muestra_P: Integer;
+begin
+
+end;
+
+procedure TRadarWS.Set_Rango_Muestra_N(Param1: Integer);
+begin
+
+end;
+
+procedure TRadarWS.Set_Rango_Muestra_P(Param1: Integer);
+begin
+
+end;
+
+procedure TRadarWS.Set_Sector_Muestra_N(Param1: Integer);
+begin
+
+end;
+
+procedure TRadarWS.Set_Sector_Muestra_P(Param1: Integer);
+begin
+
+end;
+
+initialization
+  InvRegistry.RegisterInvokableClass(TRadarWS);
+
+end.
+ 

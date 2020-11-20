@@ -1,0 +1,49 @@
+//---------------------------------------------------------------------------
+#ifndef SiteH
+#define SiteH
+#include <vcl/classes.hpp>
+#include "Radar.h"
+#include "config.h"
+
+//---------------------------------------------------------------------------
+
+class Site
+{
+	private:
+		bool tx_burst;
+		bool tx_spectrum;
+		bool rx_power;
+		bool rx_spectrum;
+		bool rx_speed;
+		bool rx_sqi;
+		bool rx_ci;
+	public:
+		Settings* settings;
+
+		Site();
+		Settings* LoadData();
+		void StoreData();
+		void SaveData(Settings* data);
+		void AssignData(Settings* data);
+		bool HasNoiseSource();
+
+		void setPowerFactorTX(double factor);
+
+		__property bool TX_Burst     = { read= tx_burst,    write= tx_burst};
+		__property bool TX_Spectrum  = { read= tx_spectrum, write= tx_spectrum};
+		__property bool RX_Power     = { read= rx_power,    write= rx_power};
+		__property bool RX_Spectrum  = { read= rx_spectrum, write= rx_spectrum};
+		__property bool RX_Speed     = { read= rx_speed,    write= rx_speed};
+		__property bool RX_Sqi       = { read= rx_sqi,      write= rx_sqi};
+		__property bool RX_Ci        = { read= rx_ci,       write= rx_ci};
+	public:
+		Radar * TheRadar;
+};
+
+//---------------------------------------------------------------------------
+
+extern Site* ThisSite;
+
+//---------------------------------------------------------------------------
+
+#endif

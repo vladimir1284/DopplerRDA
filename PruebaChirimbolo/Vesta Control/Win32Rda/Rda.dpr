@@ -1,0 +1,204 @@
+program Rda;
+
+uses
+  Forms,
+  IdTCPServer,
+  IniFiles,
+  Windows,
+  SysUtils,
+  Rda_TLB in 'Rda_TLB.pas',
+  VestaRda in 'VestaRda.pas' {VestaRda: CoClass},
+  Elbrus in 'Elbrus.pas',
+  RDAObj in 'RDAObj.pas',
+  Calib in 'Calib.pas',
+  Config in 'Config.pas',
+  EventLog in 'EventLog.pas',
+  Layout in 'Layout.pas',
+  Observation in 'Observation.pas',
+  Operator in 'Operator.pas',
+  RDAReg in 'RDAReg.pas',
+  Users in 'Users.pas',
+  Radar in 'Radar.pas',
+  MotorAz in 'MotorAz.pas',
+  MotorEl in 'MotorEl.pas',
+  Antenna in 'Antenna.pas',
+  Configuration in 'Configuration.pas',
+  Observations in 'Observations.pas',
+  Template in 'Template.pas',
+  TxsRxs in 'TxsRxs.pas',
+  TxRx1 in 'TxRx1.pas',
+  TxRx2 in 'TxRx2.pas',
+  Mutex in '..\General\Mutex.pas',
+  Scale in '..\General\Scale.pas',
+  Advantech in 'Advantech.pas',
+  Constants in '..\General\Constants.pas',
+  Deva in '..\General\Deva.pas',
+  ElbrusTypes in '..\General\ElbrusTypes.pas',
+  LogTools in 'LogTools.pas',
+  Description in '..\General\Description.pas',
+  Encoder in '..\General\Encoder.pas',
+  StatisticsConfig in 'StatisticsConfig.pas',
+  StatisticsManager in 'StatisticsManager.pas',
+  VestaDispatch in '..\General\VestaDispatch.pas',
+  Communication_Module in 'Communication_Module.pas' {CommunicationModule: TWebModule},
+  ManagerDRX in 'CommDRX\ManagerDRX.pas',
+  AntennaWSImpl in '..\Communication\AntennaWSImpl.pas',
+  AntennaWSIntf in '..\Communication\AntennaWSIntf.pas',
+  AZMotorWSImpl in '..\Communication\AZMotorWSImpl.pas',
+  AZMotorWSIntf in '..\Communication\AZMotorWSIntf.pas',
+  ELMotorWSImpl in '..\Communication\ELMotorWSImpl.pas',
+  ELMotorWSIntf in '..\Communication\ELMotorWSIntf.pas',
+  VideoWSImpl in '..\Communication\VideoWSImpl.pas',
+  VideoWSIntf in '..\Communication\VideoWSIntf.pas',
+  CalibrationCH1WSImpl in '..\Communication\CalibrationCH1WSImpl.pas',
+  CalibrationCH1WSIntf in '..\Communication\CalibrationCH1WSIntf.pas',
+  CalibrationCH2WSImpl in '..\Communication\CalibrationCH2WSImpl.pas',
+  CalibrationCH2WSIntf in '..\Communication\CalibrationCH2WSIntf.pas',
+  TxRxWSIntf in '..\Communication\TxRxWSIntf.pas',
+  TxRxCh1WSImpl in '..\Communication\TxRxCh1WSImpl.pas',
+  TxRxCh1WSIntf in '..\Communication\TxRxCh1WSIntf.pas',
+  CalibrationWSIntf in '..\Communication\CalibrationWSIntf.pas',
+  TxRxCh2WSImpl in '..\Communication\TxRxCh2WSImpl.pas',
+  TxRxCh2WSIntf in '..\Communication\TxRxCh2WSIntf.pas',
+  MotorWSIntf in '..\Communication\MotorWSIntf.pas',
+  LoginWSImpl in '..\Communication\LoginWSImpl.pas',
+  LoginWSIntf in '..\Communication\LoginWSIntf.pas',
+  CommunicationObj in '..\Communication\CommunicationObj.pas',
+  ConfigurationWSImpl in '..\Communication\ConfigurationWSImpl.pas',
+  ConfigurationWSIntf in '..\Communication\ConfigurationWSIntf.pas',
+  ObservationsWSImpl in '..\Communication\ObservationsWSImpl.pas',
+  ObservationsWSIntf in '..\Communication\ObservationsWSIntf.pas',
+  RadarWSImpl in '..\Communication\RadarWSImpl.pas',
+  RadarWSIntf in '..\Communication\RadarWSIntf.pas',
+  StatisticsWSImpl in '..\Communication\StatisticsWSImpl.pas',
+  StatisticsWSIntf in '..\Communication\StatisticsWSIntf.pas',
+  LogWSImpl in '..\Communication\LogWSImpl.pas',
+  LogWSIntf in '..\Communication\LogWSIntf.pas',
+  VestaWSImpl in '..\Communication\VestaWSImpl.pas',
+  VestaWSIntf in '..\Communication\VestaWSIntf.pas',
+  LayoutManager in 'LayoutManager.pas',
+  DataSenderThread in '..\Communication\DataSenderThread.pas',
+  DRX_DataReceiver in 'CommDRX\DRX_DataReceiver.pas',
+  Measure in '..\General\Measure.pas',
+  Parameters in '..\General\Parameters.pas',
+  DRX_Configuration_WS in 'CommDRX\DRX_Configuration_WS.pas',
+  DRX_AFC_WS in 'CommDRX\DRX_AFC_WS.pas',
+  DRX_Sync_WS in 'CommDRX\DRX_Sync_WS.pas',
+  DRX_WS in 'CommDRX\DRX_WS.pas',
+  Shell_Rda in '..\RDA\Modules\Shell_Rda.pas' {ShellRDA},
+  ObservationReceiver in 'ObservationReceiver.pas';
+
+{$R *.TLB}
+
+{$R *.res}
+
+var
+  CurrentProcess : integer;
+  Setup : TIniFile;
+  MinWorkingSetSize,
+  MaxWorkingSetSize : Cardinal;
+  OnlyOneServer : THandle;
+
+const
+  //Default Values
+  MinWorkingSetSizeDefault = 64;
+  MaxWorkingSetSizeDefault = 128;
+
+procedure InitializateSystem;
+begin
+  try
+    theStatisticsConfig := TStatisticsConfig.Create;
+    theConfiguration    := TConfig.Create;
+    InitDRX;
+    theCalibration      := TCalib.Create;
+    InitUsers;
+    InitLayouts;
+    InitElbrus;
+    theOperator    := TOperator.Create;
+
+    theDataSender := TIdTCPServer.Create(nil);
+    theDataSender.DefaultPort := theConfiguration.Stream_Port;
+    theDataSender.MaxConnectionReply.Clear;
+    theDataSender.MaxConnectionReply.Text.Add( MaxConnectionError );
+    theDataSender.ThreadClass := TDataSenderThread;
+    theDataSender.Active := true;
+  except
+    on E : ECardError do
+    begin
+      Done_Devices;
+      LogMessages.AddLogRawMessage( Now, lcError, 'Automatic', ElbrusZone, 'Error inicializando el sistema', E.Message );
+      raise;
+    end;
+    else raise;
+  end;
+end;
+
+procedure FinalizateSystem;
+begin
+  try
+    theDataSender.Active := false;
+    theDataSender.Free;
+    if Assigned(theOperator)
+      then theOperator.Free;
+    DoneUsers;
+    if Assigned(theConfiguration) and theConfiguration.AutoPowerOff
+      then Elbrus.Apagar_Radar;
+    if Initialized
+      then DoneElbrus;
+    DoneDRX;
+    theStatisticsConfig.Free;
+    theConfiguration.Free;
+    theCalibration.Free;
+  except
+  end;  
+end;
+
+begin
+  try
+    OnlyOneServer := CreateMutex( nil, true, OnlyOneRdaServerName );
+    if (OnlyOneServer = 0) or (GetLastError = ERROR_ALREADY_EXISTS)
+      then raise Exception.Create( 'Ya esta ejecutandose un servidor' );
+
+    CurrentProcess := GetCurrentProcess;
+    SetPriorityClass( CurrentProcess, REALTIME_PRIORITY_CLASS );
+
+    try
+      Setup := TIniFile.Create( ExtractFilePath( ParamStr(0) ) + ConfigFile );
+      try
+        //Lo leo en MBs y lo convierto en Bytes multiplicando por $100000
+        if Assigned( Setup )
+          then
+            begin
+              MinWorkingSetSize := Setup.ReadInteger( MemoryKey, MinWorkingSetSizeValue, MinWorkingSetSizeDefault ) * $100000;
+              MaxWorkingSetSize := Setup.ReadInteger( MemoryKey, MaxWorkingSetSizeValue, MaxWorkingSetSizeDefault ) * $100000;
+            end
+          else
+            begin
+              MinWorkingSetSize := MinWorkingSetSizeDefault * $100000;
+              MaxWorkingSetSize := MaxWorkingSetSizeDefault * $100000;
+            end;
+      finally
+        Setup.Free;
+      end;
+
+      //Reservo memoria en RAM
+      SetProcessWorkingSetSize(CurrentProcess, MinWorkingSetSize, MaxWorkingSetSize );
+      Application.Initialize;
+      Application.Title := 'RDA';
+      Application.ShowMainForm := true;
+
+      InitializateSystem;
+      try
+        Application.CreateForm(TCommunicationModule, CommunicationModule);
+  Application.CreateForm(TShellRDA, ShellRDA);
+  Application.Run;
+      finally
+        FinalizateSystem;
+      end;
+    finally
+      SetPriorityClass( CurrentProcess, NORMAL_PRIORITY_CLASS );
+      ReleaseMutex( OnlyOneServer );
+    end;
+  except
+  end;
+end.

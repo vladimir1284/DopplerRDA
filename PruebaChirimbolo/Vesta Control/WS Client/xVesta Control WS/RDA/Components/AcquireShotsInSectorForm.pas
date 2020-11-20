@@ -1,0 +1,193 @@
+unit AcquireShotsInSectorForm;
+
+interface
+
+uses
+  SysUtils, Forms,
+  StdCtrls, ExtCtrls, Controls, Classes;
+
+type
+  TAcquireShotsInSector = class(TForm)
+    Label1: TLabel;
+    ScanType: TComboBox;
+    CellCount: TLabeledEdit;
+    StartAngle: TLabeledEdit;
+    FinishAngle: TLabeledEdit;
+    Button1: TButton;
+    Timeout: TLabeledEdit;
+    Ch3cm: TCheckBox;
+    Ch10cm: TCheckBox;
+    Path: TLabeledEdit;
+    UM: TComboBox;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure Button1Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+  private
+    procedure UpdateView;
+    procedure LoadData;
+    procedure SaveData;
+  public
+    { Public declarations }
+  end;
+
+var
+  AcquireShotsInSector : TAcquireShotsInSector;
+
+implementation
+
+uses
+  Shell_Client, Rda_TLB, Registry;
+
+{$R *.dfm}
+
+const
+  ClientRootKey = {HKEY_CURRENT_USER} '\SOFTWARE\LDT\Vesta\RDAClient';
+  AcquireShotsKey = ClientRootKey + '\AcquireShots';
+
+//Values
+  CellCountValue   = 'CellCount';
+  TimeoutValue     = 'Timeout';
+  UMValue          = 'UM';
+  PathValue        = 'Path';
+  StartAngleValue  = 'StartAngle';
+  FinishAngleValue = 'FinishAngle';
+  ScanKindValue    = 'ScanKind';
+  Channel1Value    = 'Channel1';
+  Channel2Value    = 'Channel2';
+
+//Defaults
+  DefaultCellCount = '3000';
+  DefaultTimeout = '1';
+  DefaultUM = 2;
+  DefaultPath = '';
+  DefaultStartAngle = '0';
+  DefaultFinishAngle = '90';
+  DefaultScanKind = 0;
+  DefaultChannel1 = false;
+  DefaultChannel2 = true;
+
+procedure TAcquireShotsInSector.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Action := caHide;
+end;
+
+procedure TAcquireShotsInSector.Button1Click(Sender: TObject);
+var
+  ScanKind : DesignKind;
+  TempTimeout : integer;
+begin
+  if Ch3cm.Checked or Ch10cm.Checked
+    then
+      try
+        if ScanType.ItemIndex = 0
+          then ScanKind := dk_PPI
+          else ScanKind := dk_RHI;
+        case UM.ItemIndex of
+          0 : TempTimeout := StrToInt( Timeout.Text );
+          1 : TempTimeout := 1000 * StrToInt( Timeout.Text );
+          2 : TempTimeout := 60 * 1000 * StrToInt( Timeout.Text );
+        end;
+        ShellClient.Video.Video.Acquire_ShotsInSector( StrToFloat( StartAngle.Text ), StrToFloat( FinishAngle.Text ),
+                                                       TempTimeout, ScanKind, StrToInt( CellCount.Text ),
+                                                       Ch3cm.Checked, Ch10cm.Checked, Path.Text );
+      except
+      end;
+end;
+
+procedure TAcquireShotsInSector.FormShow(Sender: TObject);
+begin
+  UpdateView;
+end;
+
+procedure TAcquireShotsInSector.UpdateView;
+begin
+end;
+
+procedure TAcquireShotsInSector.FormCreate(Sender: TObject);
+begin
+  LoadData; 
+  UpdateView;
+end;
+
+procedure TAcquireShotsInSector.LoadData;
+begin
+  with TRegistry.Create do
+  try
+    if OpenKey(AcquireShotsKey, false)
+      then
+        begin
+          if ValueExists( CellCountValue )
+            then CellCount.Text := IntToStr( ReadInteger( CellCountValue ) )
+            else CellCount.Text := DefaultCellCount;
+          if ValueExists( TimeoutValue )
+            then Timeout.Text := IntToStr( ReadInteger( TimeoutValue ) )
+            else Timeout.Text := DefaultTimeout;
+          if ValueExists( UMValue )
+            then UM.ItemIndex := ReadInteger( UMValue )
+            else UM.ItemIndex := DefaultUM;
+          if ValueExists( PathValue )
+            then Path.Text := ReadString( PathValue )
+            else Path.Text := DefaultPath;
+          if ValueExists( StartAngleValue )
+            then StartAngle.Text := FormatFloat( '0.0', ReadFloat( StartAngleValue ) )
+            else StartAngle.Text := DefaultStartAngle;
+          if ValueExists( FinishAngleValue )
+            then FinishAngle.Text := FormatFloat( '0.0', ReadFloat( FinishAngleValue ) )
+            else FinishAngle.Text := DefaultFinishAngle;
+          if ValueExists( ScanKindValue )
+            then ScanType.ItemIndex := ReadInteger( ScanKindValue )
+            else ScanType.ItemIndex := DefaultScanKind;
+          if ValueExists( Channel1Value )
+            then Ch3cm.Checked := ReadBool( Channel1Value )
+            else Ch3cm.Checked := DefaultChannel1;
+          if ValueExists( Channel2Value )
+            then Ch10cm.Checked := ReadBool( Channel2Value )
+            else Ch10cm.Checked := DefaultChannel2;
+        end
+      else
+        begin
+          CellCount.Text := DefaultCellCount;
+          Timeout.Text := DefaultTimeout;
+          UM.ItemIndex := DefaultUM;
+          Path.Text := DefaultPath;
+          StartAngle.Text := DefaultStartAngle;
+          FinishAngle.Text := DefaultFinishAngle;
+          ScanType.ItemIndex := DefaultScanKind;
+          Ch3cm.Checked := DefaultChannel1;
+          Ch10cm.Checked := DefaultChannel2;
+        end;
+  finally
+    free;
+  end;
+end;
+
+procedure TAcquireShotsInSector.SaveData;
+begin
+  with TRegistry.Create do
+    try
+      if OpenKey(AcquireShotsKey, true)
+        then
+          begin
+            WriteInteger( CellCountValue, StrToInt( CellCount.Text ) );
+            WriteInteger( TimeoutValue, StrToInt( Timeout.Text ) );
+            WriteInteger( UMValue, UM.ItemIndex );
+            WriteString( PathValue, Path.Text );
+            WriteFloat( StartAngleValue, StrToFloat( StartAngle.Text ) );
+            WriteFloat( FinishAngleValue, StrToFloat( FinishAngle.Text ) );
+            WriteInteger( ScanKindValue, ScanType.ItemIndex );
+            WriteBool( Channel1Value, Ch3cm.Checked );
+            WriteBool( Channel2Value, Ch10cm.Checked );
+          end;
+    finally
+      Free;
+    end;
+end;
+
+procedure TAcquireShotsInSector.FormDestroy(Sender: TObject);
+begin
+  SaveData;
+end;
+
+end.

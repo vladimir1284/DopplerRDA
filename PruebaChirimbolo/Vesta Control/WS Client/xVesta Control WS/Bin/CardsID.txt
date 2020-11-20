@@ -1,0 +1,10 @@
+Identificadores de las tarjetas
+
+pci1710 - 96
+pci1714 - 152
+pci1720 - 107
+pci1730 - 135
+pci1780 - 149
+
+USB4761  - 200
+USB4711B - 216

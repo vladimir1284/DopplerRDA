@@ -1,0 +1,95 @@
+#include <vcl.h>
+#include <stdio.h>
+#include <fastmath.h>
+#include <exception>
+#include <iostream>
+#include <vcl.h>
+#include <mem.h>
+#pragma hdrstop
+
+#include "IntegratedData.h"
+#include "DataParameters.h"
+
+void IntegratedData::Clear(){
+	for(int i = 0; i < NRays; i++){
+		TheRawStuff.dBZData[i] = new float[NBins];
+		memset(TheRawStuff.dBZData[i], 0, NBins * sizeof(TheRawStuff.dBZData[i][0]));
+
+		TheRawStuff.CIData[i] = new float[NBins];
+		memset(TheRawStuff.CIData[i], 0, NBins * sizeof(TheRawStuff.CIData[i][0]));
+
+		TheRawStuff.VData[i] = new float[NBins];
+		memset(TheRawStuff.VData[i], 0, NBins * sizeof(TheRawStuff.VData[i][0]));
+
+		TheRawStuff.WData[i] = new float[NBins];
+		memset(TheRawStuff.WData[i], 0, NBins * sizeof(TheRawStuff.WData[i][0]));
+
+		TheRawStuff.SQIData[i] = new float[NBins];
+		memset(TheRawStuff.SQIData[i], 0, NBins * sizeof(TheRawStuff.SQIData[i][0]));
+	}
+	ProcessedCount = 0;
+	Error = false;
+}
+
+IntegratedData::IntegratedData(int Sectors, int Cells, int ReqElev, int ReqSpeed, int Mode){
+  NRays          = Sectors;
+  NBins          = Cells;
+  RequestedElev  = ReqElev;
+  RequestedSpeed = ReqSpeed;
+  DataMode       = Mode;
+
+  try {
+	 TheRawStuff.dBZData  = AllocMem(NRays * NBins * sizeof(float));
+	 TheRawStuff.CIData   = AllocMem(NRays * NBins * sizeof(float));
+	 TheRawStuff.VData    = AllocMem(NRays * NBins * sizeof(float));
+	 TheRawStuff.WData    = AllocMem(NRays * NBins * sizeof(float));
+	 TheRawStuff.SQIData  = AllocMem(NRays * NBins * sizeof(float));
+
+	 TheRawStuff.Azimuth   = AllocMem(NRays * sizeof(short));
+	 TheRawStuff.Elevation = AllocMem(NRays * sizeof(short));
+
+	 Clear();
+  }
+  catch(std::bad_alloc) {
+    exit(-1);
+  }
+
+  BinLength = (DataMode == LP_MODE) ? BIN_LENGTH_LP : BIN_LENGTH_SP;
+
+  StartDateTime = time(NULL);
+}
+
+IntegratedData::~IntegratedData(){
+	for(int i = 0; i < NRays; i++){
+		delete[] TheRawStuff.dBZData[i];
+		TheRawStuff.dBZData[i] = NULL;
+		delete[] TheRawStuff.CIData[i];
+		TheRawStuff.CIData[i] = NULL;
+		delete[] TheRawStuff.VData[i];
+		TheRawStuff.VData[i] = NULL;
+		delete[] TheRawStuff.WData[i];
+		TheRawStuff.WData[i] = NULL;
+
+		delete[] TheRawStuff.SQIData[i];
+		TheRawStuff.SQIData[i] = NULL;
+	}
+
+	delete[] TheRawStuff.dBZData;
+	TheRawStuff.dBZData = NULL;
+	delete[] TheRawStuff.CIData;
+	TheRawStuff.CIData = NULL;
+	delete[] TheRawStuff.VData;
+	TheRawStuff.VData = NULL;
+	delete[] TheRawStuff.WData;
+	TheRawStuff.WData = NULL;
+
+	delete[] TheRawStuff.SQIData;
+	TheRawStuff.SQIData = NULL;
+
+	FreeMemory(TheRawStuff.Azimuth);
+	FreeMemory(TheRawStuff.Elevation);
+}
+
+
+
+

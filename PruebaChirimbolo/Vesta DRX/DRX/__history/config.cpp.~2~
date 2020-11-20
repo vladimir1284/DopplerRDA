@@ -1,0 +1,113 @@
+//---------------------------------------------------------------------------
+
+
+#pragma hdrstop
+
+#include "config.h"
+
+//---------------------------------------------------------------------------
+
+#pragma package(smart_init)
+
+static String ConfigFileName = "Config.ini";
+static String GeneralKey = "General";
+static String AFC_Section = "afc";
+static String IQ_Section = "iq";
+static String Site_Section = "site";
+
+static String StartSampleLP_Key = "start_sample_lp";
+static String StopSampleLP_Key = "stop_sample_lp";
+static String StartSampleSP_Key = "start_sample_sp";
+static String StopSampleSP_Key = "stop_sample_sp";
+static String ScanStep_Key = "scan_step";
+static String ScanDelay_Key = "scan_delay";
+static String ScanWidth_Key = "scan_width";
+static String Power_FactorTX_Key = "power_factor_tx";
+
+static String SQI_Threshold_Key = "sqi_threshold";
+static String C1_Key = "C1";
+static String C2_Key = "C2";
+static String SP_TX_PulsePosition_Key = "sp_tx_pulse_position";
+static String LP_TX_PulsePosition_Key = "lp_tx_pulse_position";
+
+static String NoiseSource_Key = "C2";
+static String NoisePower_Key = "noise_power";
+
+Site::Site()
+{
+  LoadData();
+  TheRadar = new Radar(true, StaloPort);
+}
+//---------------------------------------------------------------------------
+void __fastcall Site::LoadData()
+{
+	String configFileName = ExtractFileDir(ParamStr(0)) + "\\" + ConfigFileName;
+	TIniFile* config = new TIniFile(configFileName);
+	__try{
+		//afc
+		StartSampleLP = config->ReadInteger(AFC_Section, StartSampleLP_Key, 5);
+		StopSampleLP  = config->ReadInteger(AFC_Section, StopSampleLP_Key, 165);
+		StartSampleSP = config->ReadInteger(AFC_Section, StartSampleSP_Key, 5);
+		StopSampleSP  = config->ReadInteger(AFC_Section, StopSampleSP_Key, 45);
+		ScanStep  = config->ReadInteger(AFC_Section, ScanStep_Key, 500000);
+		ScanDelay = config->ReadInteger(AFC_Section, ScanDelay_Key, 400);
+		ScanWidth = config->ReadInteger(AFC_Section, ScanWidth_Key, 30000000);
+		PowerFactorTX = config->ReadFloat(AFC_Section, Power_FactorTX_Key, 0);
+		//iq
+		SP_TX_PulsePosition = config->ReadInteger(IQ_Section, SP_TX_PulsePosition_Key, 14);
+		LP_TX_PulsePosition = config->ReadInteger(IQ_Section, LP_TX_PulsePosition_Key, 7);
+		ThresholdSQI = config->ReadFloat(IQ_Section, SQI_Threshold_Key, 0.4);
+		C1 = config->ReadFloat(IQ_Section, C1_Key, 0);
+		C2 = config->ReadFloat(IQ_Section, C2_Key, 0);
+		//site
+		NoiseSource = config->ReadInteger(Site_Section, NoiseSource_Key, 0);
+		NoiseFactor = config->ReadFloat(Site_Section, NoisePower_Key, 0);
+	}
+	__finally{
+		config->Free();
+	}
+}
+
+void __fastcall Site::SaveData()
+{
+	String configFileName = ExtractFileDir(ParamStr(0)) + "\\" + ConfigFileName;
+	TIniFile* config = new TIniFile(configFileName);
+	__try{
+		//afc
+		config->WriteInteger(AFC_Section, StartSampleLP_Key, StartSampleLP);
+		config->WriteInteger(AFC_Section, StopSampleLP_Key, StopSampleLP);
+		config->WriteInteger(AFC_Section, StartSampleSP_Key, StartSampleSP);
+		config->WriteInteger(AFC_Section, StopSampleSP_Key, StopSampleSP);
+		config->WriteInteger(AFC_Section, ScanStep_Key, ScanStep);
+		config->WriteInteger(AFC_Section, ScanDelay_Key, ScanDelay);
+		config->WriteInteger(AFC_Section, ScanWidth_Key, ScanWidth);
+		config->WriteFloat(AFC_Section, Power_FactorTX_Key, PowerFactorTX);
+
+		//iq
+		config->WriteInteger(IQ_Section, SP_TX_PulsePosition_Key, SP_TX_PulsePosition);
+		config->WriteInteger(IQ_Section, LP_TX_PulsePosition_Key, LP_TX_PulsePosition);
+
+		config->WriteFloat(IQ_Section, SQI_Threshold_Key, ThresholdSQI);
+		config->WriteFloat(IQ_Section, C1_Key, C1);
+		config->WriteFloat(IQ_Section, C2_Key, C2);
+		//site
+		config->WriteInteger(Site_Section, NoiseSource_Key, NoiseSource);
+		config->WriteFloat(Site_Section, NoiseSource_Key, NoiseFactor);
+	}
+	__finally{
+		config->Free();
+	}
+}
+
+bool Site::HasNoiseSource(){
+  return NoiseSource == 1;
+}
+
+void Site::setPowerFactorTX(double factor){
+	PowerFactorTX = factor;
+}
+
+void Site::ScanStaloPort(){
+	StaloPort = 4;
+}
+

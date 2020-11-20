@@ -1,0 +1,30 @@
+C:\Users\rda\documents\visual studio 2010\Projects\ClassLibrary5\ClassLibrary5\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\rda\documents\visual studio 2010\Projects\ClassLibrary5\ClassLibrary5\bin\Debug\ClassLibrary5.dll
+C:\Users\rda\documents\visual studio 2010\Projects\ClassLibrary5\ClassLibrary5\bin\Debug\ClassLibrary5.pdb
+C:\Users\rda\documents\visual studio 2010\Projects\ClassLibrary5\ClassLibrary5\bin\Debug\ClassLibrary5.tlb
+C:\Users\rda\documents\visual studio 2010\Projects\ClassLibrary5\ClassLibrary5\obj\Debug\ClassLibrary5.dll
+C:\Users\rda\documents\visual studio 2010\Projects\ClassLibrary5\ClassLibrary5\obj\Debug\ClassLibrary5.pdb
+C:\Users\rda\documents\visual studio 2010\Projects\ClassLibrary5\ClassLibrary5\bin\Debug\Advantech.Protocol.dll
+C:\Users\rda\documents\visual studio 2010\Projects\ClassLibrary5\ClassLibrary5\bin\Debug\Advantech.Adam.xml
+C:\Users\rda\documents\visual studio 2010\Projects\ClassLibrary5\ClassLibrary5\bin\Debug\Advantech.Common.xml
+C:\Users\rda\documents\visual studio 2010\Projects\ClassLibrary5\ClassLibrary5\bin\Debug\Advantech.Protocol.xml
+E:\ClassLibrary5\ClassLibrary5\bin\Debug\Advantech.Protocol.dll
+E:\ClassLibrary5\ClassLibrary5\bin\Debug\Advantech.Adam.xml
+E:\ClassLibrary5\ClassLibrary5\bin\Debug\Advantech.Common.xml
+E:\ClassLibrary5\ClassLibrary5\bin\Debug\Advantech.Protocol.xml
+E:\ClassLibrary5\ClassLibrary5\obj\Debug\ResolveAssemblyReference.cache
+E:\ClassLibrary5\ClassLibrary5\bin\Debug\ModBusLibrary1.dll
+E:\ClassLibrary5\ClassLibrary5\bin\Debug\ModBusLibrary1.pdb
+E:\ClassLibrary5\ClassLibrary5\bin\Debug\ModBusLibrary1.tlb
+E:\ClassLibrary5\ClassLibrary5\obj\Debug\ModBusLibrary1.dll
+E:\ClassLibrary5\ClassLibrary5\obj\Debug\ModBusLibrary1.pdb
+D:\Radar Doppler\copia drx\Doppler RDA\Vesta DRX\ModbusLib\ClassLibrary5\ClassLibrary5\bin\Debug\ModBusLibrary1.dll
+D:\Radar Doppler\copia drx\Doppler RDA\Vesta DRX\ModbusLib\ClassLibrary5\ClassLibrary5\bin\Debug\ModBusLibrary1.pdb
+D:\Radar Doppler\copia drx\Doppler RDA\Vesta DRX\ModbusLib\ClassLibrary5\ClassLibrary5\bin\Debug\ModBusLibrary1.tlb
+D:\Radar Doppler\copia drx\Doppler RDA\Vesta DRX\ModbusLib\ClassLibrary5\ClassLibrary5\bin\Debug\Advantech.Protocol.dll
+D:\Radar Doppler\copia drx\Doppler RDA\Vesta DRX\ModbusLib\ClassLibrary5\ClassLibrary5\bin\Debug\Advantech.Adam.xml
+D:\Radar Doppler\copia drx\Doppler RDA\Vesta DRX\ModbusLib\ClassLibrary5\ClassLibrary5\bin\Debug\Advantech.Common.xml
+D:\Radar Doppler\copia drx\Doppler RDA\Vesta DRX\ModbusLib\ClassLibrary5\ClassLibrary5\bin\Debug\Advantech.Protocol.xml
+D:\Radar Doppler\copia drx\Doppler RDA\Vesta DRX\ModbusLib\ClassLibrary5\ClassLibrary5\obj\Debug\ResolveAssemblyReference.cache
+D:\Radar Doppler\copia drx\Doppler RDA\Vesta DRX\ModbusLib\ClassLibrary5\ClassLibrary5\obj\Debug\ModBusLibrary1.dll
+D:\Radar Doppler\copia drx\Doppler RDA\Vesta DRX\ModbusLib\ClassLibrary5\ClassLibrary5\obj\Debug\ModBusLibrary1.pdb

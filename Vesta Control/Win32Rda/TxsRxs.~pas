@@ -1,0 +1,130 @@
+unit TxsRxs;
+
+{$WARN SYMBOL_PLATFORM OFF}
+
+interface
+
+uses
+  Windows, ActiveX, ComObj,
+  RDAObj,
+  Rda_TLB, Advantech;
+
+type
+  PInt = integer;
+
+  TTxsRxs =
+    class(TRDAObject, ITxsRxs, IVideo, IVideoControl)
+      protected  // TxsRxs
+        function Get_TxRxCount: Integer; safecall;
+        function GetTxRx(Index: Integer): ITxRxStatus; safecall;
+      protected  // IVideo
+        procedure StartAcquiring(Ch1: WordBool; Ch2: WordBool); safecall;
+        function  Frequency(Channel: Integer): Integer; safecall;
+      protected  // IVideoControl
+        procedure StartRT; safecall;
+    end;
+
+const
+  Class_TxsRxs: TGUID = '{047CC592-D471-4C16-815A-7700259E0BB8}';
+
+implementation
+
+uses
+  ComServ,
+  SysUtils,
+  ElbrusTypes, Elbrus,
+  Config, Radars, Description,
+  TxRx1, TxRx2, Shell_Rda, ManagerDRX, DataSenderThread,
+  Constants;
+
+function TTxsRxs.Get_TxRxCount: Integer;
+begin
+  case Radars.Find(TRadar(theConfiguration.RadarID)).Brand of
+    rbRC32B : Result := 1;
+    rbMRL5,
+    rbMRL5M : Result := 2;
+    else Result := 0;
+  end;
+end;
+
+function TTxsRxs.GetTxRx(Index: Integer): ITxRxStatus;
+begin
+  case Radars.Find(TRadar(theConfiguration.RadarID)).Brand of
+    rbRC32B:
+      if Index = 1
+        then Result := TTxRx2.Create(UserName, Level)
+        else Result := nil;
+     rbMRL5, rbMRL5M:
+       case Index of
+         0:   Result := TTxRx1.Create(UserName, Level);
+         1:   Result := TTxRx2.Create(UserName, Level);
+         else Result := nil;
+       end;
+     else Result := nil;
+  end;
+end;
+
+procedure TTxsRxs.StartRT;
+begin
+  try
+    if DRX1.Ready
+      then
+        begin
+          WantedPackages(0);
+          DRX1.DataReceiver.WantAllPackages;
+          DRX1.DRX_WS.StartDataFlow(true);
+        end;
+  except
+    DRX1.Validate;
+  end;
+
+  try
+    if DRX2.Ready
+      then
+        begin
+          WantedPackages(1);
+          DRX2.DataReceiver.WantAllPackages;
+          DRX2.DRX_WS.StartDataFlow(true);
+        end;
+  except
+    DRX2.Validate;
+  end;
+end;
+
+procedure TTxsRxs.StartAcquiring(Ch1: WordBool; Ch2: WordBool);
+begin
+  try
+    if ch1 and DRX1.Ready
+      then
+        begin
+          WantedPackages(0);
+          DRX1.DataReceiver.WantAllPackages;
+          DRX1.DRX_WS.StartDataFlow(false);
+        end;
+  except
+    DRX1.Validate;
+  end;
+
+  try
+    if ch2 and DRX2.Ready
+      then
+        begin
+          WantedPackages(1);
+          DRX2.DataReceiver.WantAllPackages;
+          DRX2.DRX_WS.StartDataFlow(false);
+        end;
+  except
+    DRX2.Validate;
+  end;
+end;
+
+function TTxsRxs.Frequency(Channel: Integer): Integer;
+begin
+  if Channel = 0
+    then result := SnapShot^.Tx1_Sample_Rate
+    then result := SnapShot^.Tx2_Sample_Rate;
+end;
+
+initialization
+  TComObjectFactory.Create(ComServer, TTxsRxs, Class_TxsRxs, 'TxsRxs', '', ciMultiInstance, tmApartment);
+end.

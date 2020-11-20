@@ -1,0 +1,150 @@
+{ Invokable implementation File for TELMotorWS which implements IELMotorWS }
+
+unit ELMotorWSImpl;
+
+interface
+
+uses InvokeRegistry, Types, XSBuiltIns, ELMotorWSIntf, CommunicationObj;
+
+type
+
+  { TELMotorWS }
+  TELMotorWS = class(TCommObj, IELMotorWS)
+  public
+  //Status
+    function  Get_Posicion: Integer; safecall;
+    function  Get_Velocidad: Integer; safecall;
+    function  Get_Corriente: Integer; safecall;
+    function  Get_SP_Posicion: Integer; safecall;
+    function  Get_SP_Velocidad: Integer; safecall;
+    function  Get_Lazo_Posicion: WordBool; safecall;
+    function  Get_Acc_Listo: WordBool; safecall;
+    function  Get_Marca_Posicion: Integer; safecall;
+    function  Get_Lazo_Sector: WordBool; safecall;
+    //Control
+    procedure Set_SP_Posicion(Value: Integer); safecall;
+    procedure Set_SP_Velocidad(Value: Integer); safecall;
+    procedure Set_Lazo_Posicion(Value: WordBool); safecall;
+    function  Get_Lazo_Posicion_K: Single; safecall;
+    procedure Set_Lazo_Posicion_K(Value: Single); safecall;
+    function  Get_Lazo_Velocidad_K: Single; safecall;
+    procedure Set_Lazo_Velocidad_K(Value: Single); safecall;
+    procedure Set_Marca_Posicion(Value: Integer); safecall;
+    procedure Set_Lazo_Sector(Value: WordBool); safecall;
+
+    function CheckCredentials : boolean; override;
+  end;
+
+implementation
+
+uses
+  Users, Elbrus, ElbrusTypes;
+
+function TELMotorWS.Get_Acc_Listo: WordBool;
+begin
+  Result := (SnapShot.Digital_Input and di_Acc_Listo_El) <> 0;
+end;
+
+function TELMotorWS.Get_Corriente: Integer;
+begin
+  Result := Snapshot.Analog_Input[ai_Corriente_El];
+end;
+
+function TELMotorWS.Get_Lazo_Posicion: WordBool;
+begin
+  Result := Snapshot.Position_Loop_El;
+end;
+
+function TELMotorWS.Get_Lazo_Sector: WordBool;
+begin
+  Result := Snapshot.Sector_Loop_El;
+end;
+
+function TELMotorWS.Get_Marca_Posicion: Integer;
+begin
+  Result := Snapshot.Mark_Position_El;
+end;
+
+function TELMotorWS.Get_Posicion: Integer;
+begin
+  Result := Snapshot.Position_El;
+end;
+
+function TELMotorWS.Get_SP_Posicion: Integer;
+begin
+  Result := Snapshot.SP_Position_El;
+end;
+
+function TELMotorWS.Get_SP_Velocidad: Integer;
+begin
+  Result := Snapshot.SP_Velocity_El;
+end;
+
+function TELMotorWS.Get_Velocidad: Integer;
+begin
+  Result := Snapshot.Velocity_El;
+end;
+
+function TELMotorWS.CheckCredentials: boolean;
+begin
+  result := CheckAuthHeader >= ul_Operator;
+end;
+
+function TELMotorWS.Get_Lazo_Posicion_K: Single;
+begin
+  Result := Snapshot.Position_Loop_El_K;
+end;
+
+function TELMotorWS.Get_Lazo_Velocidad_K: Single;
+begin
+  Result := Snapshot.Velocity_Loop_El_K;
+end;
+
+procedure TELMotorWS.Set_Lazo_Posicion(Value: WordBool);
+begin
+  if InControl
+    then Elbrus.Set_Lazo_Posicion_El(Value);
+end;
+
+procedure TELMotorWS.Set_Lazo_Posicion_K(Value: Single);
+begin
+  if InControl
+    then Elbrus.Set_Lazo_K_Pos_El(Value);
+end;
+
+procedure TELMotorWS.Set_Lazo_Sector(Value: WordBool);
+begin
+  if InControl
+    then Elbrus.Set_Lazo_Sector_El(Value);
+end;
+
+procedure TELMotorWS.Set_Lazo_Velocidad_K(Value: Single);
+begin
+  if InControl
+    then Elbrus.Set_Lazo_K_Vel_El(Value);
+end;
+
+procedure TELMotorWS.Set_Marca_Posicion(Value: Integer);
+begin
+  if InControl
+    then Elbrus.Set_Mark_Posicion_El(Value);
+end;
+
+procedure TELMotorWS.Set_SP_Posicion(Value: Integer);
+begin
+  if InControl
+    then Elbrus.Set_SP_Posicion_El(Value);
+end;
+
+procedure TELMotorWS.Set_SP_Velocidad(Value: Integer);
+begin
+  if InControl
+    then Elbrus.Set_SP_Velocidad_El(Value);
+end;
+
+initialization
+  { Invokable classes must be registered }
+  InvRegistry.RegisterInvokableClass(TELMotorWS);
+
+end.
+ 

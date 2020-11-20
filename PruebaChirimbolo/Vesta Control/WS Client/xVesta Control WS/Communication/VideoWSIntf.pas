@@ -1,0 +1,28 @@
+{ Invokable interface IVideoWS }
+
+unit VideoWSIntf;
+
+interface
+
+uses InvokeRegistry, Types, XSBuiltIns, CommunicationObj;
+
+type
+  IVideoWS = interface(IInvokable)
+  ['{2EED7948-3AF4-4EC5-9D4B-F6A74E0C1281}']
+    // IVideo
+    function Get_Osciloscope_Port: cardinal; safecall;
+    function Get_Frecuencia_AD: Integer; safecall;
+    function Adquirir_Cuadros(Frames: Integer; Shots: Integer; Cells: Integer; Source: boolean): TChannelsData; safecall;
+    // IVideoControl
+    procedure Set_Frecuencia_AD(Value: Integer); safecall;
+
+    property Frecuencia_AD: Integer read Get_Frecuencia_AD write Set_Frecuencia_AD;
+  end;
+
+implementation
+
+initialization
+  InvRegistry.RegisterInterface(TypeInfo(IVideoWS));
+
+end.
+ 

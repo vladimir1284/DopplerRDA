@@ -1,0 +1,227 @@
+//---------------------------------------------------------------------------
+#ifndef SiteH
+#define SiteH
+#include <vcl/classes.hpp>
+#include "Radar.h"
+#include "config.h"
+
+//---------------------------------------------------------------------------
+
+class Site
+{
+	private:
+		//stalo
+		int fScan_step;  //Hz
+		int fScan_delay; //ms
+		int fScan_width; //Hz
+		int fStaloPort;
+
+		//afc
+		double fValid_power_tx;
+		double fPower_factor_tx;
+		int fStart_sample_lp;
+		int fStop_sample_lp;
+		int fStart_sample_sp;
+		int fStop_sample_sp;
+		double fLoopGain;
+		INT64  fStalo_StartFrequencyLP;
+		INT64  fStalo_StartFrequencySP;
+
+		//iq
+		double fThresholdSQI;
+		double fThresholdCI;
+		double fThresholdCCOR;
+		double fThresholdSIG;
+		double fThresholdLOG;
+		double fC1;
+		double fC2;
+		int    fSP_TX_PulsePosition;
+		int    fLP_TX_PulsePosition;
+		int    fSP_RX_PulsePosition;
+		int    fLP_RX_PulsePosition;
+
+		//rx
+		int    fSensibility_lp;
+		int    fSensibility_sp;
+		int    fDinamic_range_lp;
+		int    fDinamic_range_sp;
+		String fConv_table_lp;
+		String fConv_table_sp;
+
+		//general
+		int    fWS_Port;
+		int    fStream_Port;
+		int    fDoppler_Port;
+		int    fSectors;
+		int    fSectorRays;
+
+		INT64  fBand_Frequency;
+		double fBand_Length;
+		INT64  fStalo_Frequency;
+		double fStalo_Power;
+
+		double fLP_MaxSpeed;
+		double fSP_Single_MaxSpeed;
+		double fSP_Dual_54_Low_MaxSpeed;
+		double fSP_Dual_43_Low_MaxSpeed;
+		double fSP_Dual_32_Low_MaxSpeed;
+		double fSP_Dual_54_High_MaxSpeed;
+		double fSP_Dual_43_High_MaxSpeed;
+		double fSP_Dual_32_High_MaxSpeed;
+		double fSP_Dual_54_MaxSpeed;
+		double fSP_Dual_43_MaxSpeed;
+		double fSP_Dual_32_MaxSpeed;
+
+		double fLP_CONV_FACTOR_;
+		double fSP_Single_CONV_FACTOR_;
+		double fSP_Dual_54_Low_CONV_FACTOR_;
+		double fSP_Dual_43_Low_CONV_FACTOR_;
+		double fSP_Dual_32_Low_CONV_FACTOR_;
+		double fSP_Dual_54_High_CONV_FACTOR_;
+		double fSP_Dual_43_High_CONV_FACTOR_;
+		double fSP_Dual_32_High_CONV_FACTOR_;
+		double fSP_Dual_54_CONV_FACTOR_;
+		double fSP_Dual_43_CONV_FACTOR_;
+		double fSP_Dual_32_CONV_FACTOR_;
+
+		//filter
+		double fMaxAngle;
+		int    fMaxHeigh;
+		int    fMaxDistance;
+		double fFactorB0;
+		double fFactorB1;
+		double fFactorB2;
+		double fFactorB3;
+		double fFactorB4;
+		double fFactorC1;
+		double fFactorC2;
+		double fFactorC3;
+		double fFactorC4;
+		bool   fSQI_Flag;
+		bool   fCI_Flag;
+		bool   fSIG_Flag;
+		bool   fLOG_Flag;
+		bool   fCCOR_Flag;
+
+		double fSectorWidth;
+		double fHalfSectorWidth;
+		double fQuarterSectorWidth;
+	public:
+		Site();
+		TSettings* ExportData();
+		void ImportData(TSettings* data);
+		void LoadData();
+		void SaveData();
+		TDRX_Parameters* GetParameters();
+		TFloatArray getConv_table_lp();
+		TFloatArray Conv_table_lp;
+		TFloatArray getConv_table_sp();
+		TFloatArray Conv_table_sp;
+	public:
+		Radar * TheRadar;
+
+	  __property int    Scan_step  = { read= fScan_step , write= fScan_step };
+	  __property int    Scan_delay = { read= fScan_delay, write= fScan_delay};
+	  __property int    Scan_width = { read= fScan_width, write= fScan_width};
+
+			//afc
+	  __property double Valid_power_tx  = { read= fValid_power_tx , write= fValid_power_tx };
+	  __property double Power_factor_tx = { read= fPower_factor_tx, write= fPower_factor_tx};
+	  __property int    Start_sample_lp = { read= fStart_sample_lp, write= fStart_sample_lp};
+	  __property int    Stop_sample_lp  = { read= fStop_sample_lp , write= fStop_sample_lp };
+	  __property int    Start_sample_sp = { read= fStart_sample_sp, write= fStart_sample_sp};
+	  __property int    Stop_sample_sp  = { read= fStop_sample_sp , write= fStop_sample_sp };
+	  __property double LoopGain        = { read= fLoopGain       , write= fLoopGain       };
+	  __property double Stalo_Power     = { read= fStalo_Power    , write= fStalo_Power    };
+	  __property int    Stalo_Port      = { read= fStaloPort      , write= fStaloPort      };
+	  __property INT64  Stalo_StartFrequencyLP = {read= fStalo_StartFrequencyLP, write= fStalo_StartFrequencyLP};
+	  __property INT64  Stalo_StartFrequencySP = {read= fStalo_StartFrequencySP, write= fStalo_StartFrequencySP};
+
+			//iq
+	  __property double ThresholdSQI        = { read= fThresholdSQI       , write= fThresholdSQI       };
+	  __property double ThresholdCI         = { read= fThresholdCI        , write= fThresholdCI        };
+	  __property double ThresholdCCOR       = { read= fThresholdCCOR      , write= fThresholdCCOR      };
+	  __property double ThresholdSIG        = { read= fThresholdSIG       , write= fThresholdSIG       };
+	  __property double ThresholdLOG        = { read= fThresholdLOG       , write= fThresholdLOG       };
+	  __property double C1                  = { read= fC1};
+	  __property double C2                  = { read= fC2};
+	  __property int    SP_TX_PulsePosition = { read= fSP_TX_PulsePosition, write= fSP_TX_PulsePosition};
+	  __property int    LP_TX_PulsePosition = { read= fLP_TX_PulsePosition, write= fLP_TX_PulsePosition};
+	  __property int    SP_RX_PulsePosition = { read= fSP_RX_PulsePosition, write= fSP_RX_PulsePosition};
+	  __property int    LP_RX_PulsePosition = { read= fLP_RX_PulsePosition, write= fLP_RX_PulsePosition};
+
+			//rx
+	  __property int    Sensibility_LP     = { read= fSensibility_lp   , write= fSensibility_lp   };
+	  __property int    Sensibility_SP     = { read= fSensibility_sp   , write= fSensibility_sp   };
+	  __property int    Dinamic_range_LP   = { read= fDinamic_range_lp , write= fDinamic_range_lp };
+	  __property int    Dinamic_range_SP   = { read= fDinamic_range_sp , write= fDinamic_range_sp };
+	  __property String Conv_table_lp_text = { read= fConv_table_lp    , write= fConv_table_lp};
+	  __property String Conv_table_sp_text = { read= fConv_table_sp    , write= fConv_table_sp};
+
+	  //general
+	  __property int    WS_Port      = { read= fWS_Port     };
+	  __property int    Stream_Port  = { read= fStream_Port };
+	  __property int    Doppler_Port = { read= fDoppler_Port};
+	  __property int    Sectors      = { read= fSectors,      write= fSectors};
+	  __property int    SectorRays   = { read= fSectorRays,   write= fSectorRays};
+
+	  __property INT64  Band_Frequency     = {read= fBand_Frequency,    write= fBand_Frequency   };
+	  __property INT64  Stalo_Frequency    = {read= fStalo_Frequency,   write= fStalo_Frequency  };
+	  __property double Band_Length        = {read= fBand_Length,       write= fBand_Length      };
+
+	  __property double _LP_MaxSpeed               = {read= fLP_MaxSpeed             };
+	  __property double _SP_Single_MaxSpeed        = {read= fSP_Single_MaxSpeed      };
+	  __property double _SP_Dual_54_Low_MaxSpeed   = {read= fSP_Dual_54_Low_MaxSpeed,};
+	  __property double _SP_Dual_43_Low_MaxSpeed   = {read= fSP_Dual_43_Low_MaxSpeed };
+	  __property double _SP_Dual_32_Low_MaxSpeed   = {read= fSP_Dual_32_Low_MaxSpeed };
+	  __property double _SP_Dual_54_High_MaxSpeed  = {read= fSP_Dual_54_High_MaxSpeed};
+	  __property double _SP_Dual_43_High_MaxSpeed  = {read= fSP_Dual_43_High_MaxSpeed};
+	  __property double _SP_Dual_32_High_MaxSpeed  = {read= fSP_Dual_32_High_MaxSpeed};
+	  __property double _SP_Dual_54_MaxSpeed       = {read= fSP_Dual_54_MaxSpeed     };
+	  __property double _SP_Dual_43_MaxSpeed       = {read= fSP_Dual_43_MaxSpeed     };
+	  __property double _SP_Dual_32_MaxSpeed       = {read= fSP_Dual_32_MaxSpeed     };
+
+	  __property double _LP_CONV_FACTOR_              = {read= fLP_CONV_FACTOR_            };
+	  __property double _SP_Single_CONV_FACTOR_       = {read= fSP_Single_CONV_FACTOR_     };
+	  __property double _SP_Dual_54_Low_CONV_FACTOR_  = {read= fSP_Dual_54_Low_CONV_FACTOR_};
+	  __property double _SP_Dual_43_Low_CONV_FACTOR_  = {read= fSP_Dual_43_Low_CONV_FACTOR_};
+	  __property double _SP_Dual_32_Low_CONV_FACTOR_  = {read= fSP_Dual_32_Low_CONV_FACTOR_};
+	  __property double _SP_Dual_54_High_CONV_FACTOR_ = {read= fSP_Dual_54_High_CONV_FACTOR_};
+	  __property double _SP_Dual_43_High_CONV_FACTOR_ = {read= fSP_Dual_43_High_CONV_FACTOR_};
+	  __property double _SP_Dual_32_High_CONV_FACTOR_ = {read= fSP_Dual_32_High_CONV_FACTOR_};
+	  __property double _SP_Dual_54_CONV_FACTOR_      = {read= fSP_Dual_54_CONV_FACTOR_};
+	  __property double _SP_Dual_43_CONV_FACTOR_      = {read= fSP_Dual_43_CONV_FACTOR_};
+	  __property double _SP_Dual_32_CONV_FACTOR_      = {read= fSP_Dual_32_CONV_FACTOR_};
+
+	  //filter
+	  __property double MaxAngle    = { read= fMaxAngle,    write= fMaxAngle};
+	  __property int    MaxHeigh    = { read= fMaxHeigh,    write= fMaxHeigh};
+	  __property int    MaxDistance = { read= fMaxDistance, write= fMaxDistance};
+	  __property double FactorB0    = { read= fFactorB0,    write= fFactorB0};
+	  __property double FactorB1    = { read= fFactorB1,    write= fFactorB1};
+	  __property double FactorB2    = { read= fFactorB2,    write= fFactorB2};
+	  __property double FactorB3    = { read= fFactorB3,    write= fFactorB3};
+	  __property double FactorB4    = { read= fFactorB4,    write= fFactorB4};
+	  __property double FactorC1    = { read= fFactorC1,    write= fFactorC1};
+	  __property double FactorC2    = { read= fFactorC2,    write= fFactorC2};
+	  __property double FactorC3    = { read= fFactorC3,    write= fFactorC3};
+	  __property double FactorC4    = { read= fFactorC4,    write= fFactorC4};
+	  __property bool   SQI_Flag    = { read= fSQI_Flag,    write= fSQI_Flag};
+	  __property bool   CI_Flag     = { read= fCI_Flag,     write= fCI_Flag};
+	  __property bool   SIG_Flag    = { read= fSIG_Flag,    write= fSIG_Flag};
+	  __property bool   LOG_Flag    = { read= fLOG_Flag,    write= fLOG_Flag};
+	  __property bool   CCOR_Flag   = { read= fCCOR_Flag,   write= fCCOR_Flag};
+
+	  //fixed
+	  __property double SectorWidth              = { read= fSectorWidth       };
+	  __property double HalfSectorWidth          = { read= fHalfSectorWidth   };
+	  __property double QuarterSectorWidth       = { read= fQuarterSectorWidth};
+};
+
+//---------------------------------------------------------------------------
+
+extern Site* ThisSite;
+
+//---------------------------------------------------------------------------
+
+#endif

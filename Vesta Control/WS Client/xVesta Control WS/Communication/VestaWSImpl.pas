@@ -1,0 +1,49 @@
+unit VestaWSImpl;
+
+interface
+
+uses InvokeRegistry, Types, XSBuiltIns, VestaWSIntf;
+
+type
+  TVestaWS = class(TInvokableClass, IVestaWS)
+  public
+    function Get_Version: WideString; safecall;
+    function Get_SystemDateTime: TDateTime; safecall;
+    function Get_SystemTimeZone: Double; safecall;
+  end;
+
+implementation
+
+uses
+  SysUtils, Windows, VersionInfo;
+
+{ TVestaWS }
+
+function TVestaWS.Get_SystemDateTime: TDateTime;
+begin
+  result := Now;
+end;
+
+function TVestaWS.Get_SystemTimeZone: Double;
+var
+  TimeZoneInfo : TTimeZoneInformation;
+begin
+  try
+    GetTimeZoneInformation( TimeZoneInfo );
+    result := TimeZoneInfo.Bias div TimeZoneInfo.DaylightBias;
+  except
+    result := -5;
+  end;
+end;
+
+function TVestaWS.Get_Version: WideString;
+begin
+  result := '[' + GetVersionString(vs_FileVersion) + ']';
+end;
+
+initialization
+  { Invokable classes must be registered }
+  InvRegistry.RegisterInvokableClass(TVestaWS);
+
+end.
+ 

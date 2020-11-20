@@ -1,0 +1,111 @@
+V3 79
+FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/rawfifo255x14.vhd" 2008/07/31.12:32:40 K.31
+EN work/rawfifo255x14 1326747916 \
+      FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/rawfifo255x14.vhd" \
+      PB ieee/std_logic_1164 1200023565
+AR work/rawfifo255x14/rawfifo255x14_a 1326747917 \
+      FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/rawfifo255x14.vhd" \
+      EN work/rawfifo255x14 1326747916
+FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/Src/led.vhd" 2007/11/12.15:43:32 K.31
+EN work/LED_CNTR 1326747918 \
+      FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/Src/led.vhd" \
+      PB ieee/std_logic_1164 1200023565 PH ieee/NUMERIC_STD 1200023568
+AR work/LED_CNTR/RTL 1326747919 \
+      FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/Src/led.vhd" \
+      EN work/LED_CNTR 1326747918
+FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/Src/USER_AP_ADC.vhd" 2012/01/16.16:05:02 K.31
+PH work/CONFIG 1326747942 \
+      FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/Src/USER_AP_ADC.vhd"
+EN work/USER_AP 1326747943 \
+      FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/Src/USER_AP_ADC.vhd" \
+      PB ieee/std_logic_1164 1200023565 PH ieee/NUMERIC_STD 1200023568 \
+      PH work/CONFIG 1326747942
+AR work/USER_AP/ADC 1326747944 \
+      FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/Src/USER_AP_ADC.vhd" \
+      EN work/USER_AP 1326747943 CP myddc CP iq_out_fifo CP rawfifo255x14 CP bufg \
+      CP LED_CNTR CP FDC
+FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/HE_ADC.vhd" 2007/11/12.15:43:32 K.31
+EN work/HE_ADC 1326747938 \
+      FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/HE_ADC.vhd" \
+      PB ieee/std_logic_1164 1200023565
+AR work/HE_ADC/RTL 1326747939 \
+      FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/HE_ADC.vhd" \
+      EN work/HE_ADC 1326747938 CP FDC
+FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/HE_DAC.vhd" 2007/11/12.15:43:32 K.31
+EN work/HE_DAC 1326747940 \
+      FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/HE_DAC.vhd" \
+      PB ieee/std_logic_1164 1200023565
+AR work/HE_DAC/RTL 1326747941 \
+      FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/HE_DAC.vhd" \
+      EN work/HE_DAC 1326747940 CP FD
+FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/HE_RWCLK.vhd" 2007/11/12.15:43:32 K.31
+EN work/HE_RWCLK 1326747920 \
+      FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/HE_RWCLK.vhd" \
+      PB ieee/std_logic_1164 1200023565
+AR work/HE_RWCLK/RTL 1326747921 \
+      FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/HE_RWCLK.vhd" \
+      EN work/HE_RWCLK 1326747920 CP FDP CP CLKDLLHF CP CLKDLL CP bufg
+FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/HE_SCLK.vhd" 2007/11/12.15:43:32 K.31
+EN work/HE_SCLK 1326747936 \
+      FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/HE_SCLK.vhd" \
+      PB ieee/std_logic_1164 1200023565
+AR work/HE_SCLK/RTL 1326747937 \
+      FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/HE_SCLK.vhd" \
+      EN work/HE_SCLK 1326747936 CP bufg
+FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/HE_USER.vhd" 2007/11/12.15:43:32 K.31
+EN work/HE_USER 1326747934 \
+      FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/HE_USER.vhd" \
+      PB ieee/std_logic_1164 1200023565 PB ieee/std_logic_arith 1200023566 \
+      PB ieee/STD_LOGIC_UNSIGNED 1200023567
+AR work/HE_USER/RTL 1326747935 \
+      FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/HE_USER.vhd" \
+      EN work/HE_USER 1326747934 CP FD
+FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/Common/HE_WR_6F.vhd" 2007/11/12.15:43:32 K.31
+EN work/HE_WR_6F 1326747932 \
+      FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/Common/HE_WR_6F.vhd" \
+      PB ieee/std_logic_1164 1200023565
+AR work/HE_WR_6F/RTL 1326747933 \
+      FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/Common/HE_WR_6F.vhd" \
+      EN work/HE_WR_6F 1326747932 CP FD CP FDC
+FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/TOP.vhd" 2007/11/12.15:43:32 K.31
+EN work/TOP 1326747945 \
+      FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/TOP.vhd" \
+      PB ieee/std_logic_1164 1200023565 PH work/CONFIG 1326747942
+AR work/TOP/RTL 1326747946 \
+      FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/TOP.vhd" EN work/TOP 1326747945 \
+      CP iobuf CP IBUF CP IBUFG CP OBUF_F_24 CP HE_RWCLK CP ES_RD_LF CP ES_RD_HF \
+      CP ES_WR_LF CP ES_WR_HF CP HE_RD_6F CP OBUF_F_8 CP HE_WR_6F CP HE_USER \
+      CP OBUFTDS CP HE_SCLK CP HE_ADC CP HE_DAC CP OBUF_F_12 CP USER_AP
+FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/V2ES_RWC.vhd" 2007/11/12.15:43:32 K.31
+EN work/ES_RD_LF 1326747922 \
+      FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/V2ES_RWC.vhd" \
+      PB ieee/std_logic_1164 1200023565
+AR work/ES_RD_LF/RTL 1326747923 \
+      FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/V2ES_RWC.vhd" \
+      EN work/ES_RD_LF 1326747922 CP CLKDLL CP bufg
+EN work/ES_RD_HF 1326747924 \
+      FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/V2ES_RWC.vhd" \
+      PB ieee/std_logic_1164 1200023565
+AR work/ES_RD_HF/RTL 1326747925 \
+      FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/V2ES_RWC.vhd" \
+      EN work/ES_RD_HF 1326747924 CP CLKDLLHF CP bufg
+EN work/ES_WR_LF 1326747926 \
+      FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/V2ES_RWC.vhd" \
+      PB ieee/std_logic_1164 1200023565
+AR work/ES_WR_LF/RTL 1326747927 \
+      FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/V2ES_RWC.vhd" \
+      EN work/ES_WR_LF 1326747926 CP CLKDLL CP bufg
+EN work/ES_WR_HF 1326747928 \
+      FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/V2ES_RWC.vhd" \
+      PB ieee/std_logic_1164 1200023565
+AR work/ES_WR_HF/RTL 1326747929 \
+      FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/V2ES_RWC.vhd" \
+      EN work/ES_WR_HF 1326747928 CP CLKDLLHF CP bufg
+FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/Common/V2_RD_6F.vhd" 2007/11/12.15:43:32 K.31
+EN work/HE_RD_6F 1326747930 \
+      FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/Common/V2_RD_6F.vhd" \
+      PB ieee/std_logic_1164 1200023565
+AR work/HE_RD_6F/RTL 1326747931 \
+      FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/Common/V2_RD_6F.vhd" \
+      EN work/HE_RD_6F 1326747930 CP FD CP FDCE CP FDC CP lut4 CP lut3 CP lut2 \
+      CP lut4_l CP MUXCY_L CP FDPE

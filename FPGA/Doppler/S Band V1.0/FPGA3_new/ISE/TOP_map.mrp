@@ -1,0 +1,2743 @@
+Release 10.1 Map K.31 (nt)
+Xilinx Mapping Report File for Design 'TOP'
+
+Design Information
+------------------
+Command Line   : map -ise "C:/Robert_Work/Proyecto Radar Doppler/Proyecto Radar
+CSB/Doppler/S Band/FPGA3_new/ISE/Ex1_Fpga3v.ise" -intstyle ise -p
+xc2v1000-fg456-4 -cm area -pr off -k 4 -c 100 -tx off -o TOP_map.ncd TOP.ngd
+TOP.pcf 
+Target Device  : xc2v1000
+Target Package : fg456
+Target Speed   : -4
+Mapper Version : virtex2 -- $Revision: 1.46 $
+Mapped Date    : Sat Mar 07 15:23:11 2020
+
+Design Summary
+--------------
+Number of errors:      0
+Number of warnings:  379
+Logic Utilization:
+  Total Number Slice Registers:       1,628 out of  10,240   15%
+    Number used as Flip Flops:        1,596
+    Number used as Latches:              32
+  Number of 4 input LUTs:             1,276 out of  10,240   12%
+Logic Distribution:
+  Number of occupied Slices:          1,137 out of   5,120   22%
+    Number of Slices containing only related logic:   1,137 out of   1,137 100%
+    Number of Slices containing unrelated logic:          0 out of   1,137   0%
+      *See NOTES below for an explanation of the effects of unrelated logic.
+  Total Number of 4 input LUTs:       1,408 out of  10,240   13%
+    Number used as logic:             1,216
+    Number used as a route-thru:        132
+    Number used as Shift registers:      60
+  Number of bonded IOBs:                208 out of     324   64%
+    IOB Flip Flops:                      72
+  Number of RAMB16s:                     29 out of      40   72%
+  Number of BUFGMUXs:                     1 out of      16    6%
+  Number of DCMs:                         1 out of       8   12%
+
+  Number of RPM macros:            3
+Peak Memory Usage:  199 MB
+Total REAL time to MAP completion:  4 secs 
+Total CPU time to MAP completion:   4 secs 
+
+NOTES:
+
+   Related logic is defined as being logic that shares connectivity - e.g. two
+   LUTs are "related" if they share common inputs.  When assembling slices,
+   Map gives priority to combine logic that is related.  Doing so results in
+   the best timing performance.
+
+   Unrelated logic shares no connectivity.  Map will only begin packing
+   unrelated logic into a slice once 99% of the slices are occupied through
+   related logic packing.
+
+   Note that once logic distribution reaches the 99% level through related
+   logic packing, this does not mean the device is completely utilized.
+   Unrelated logic packing will then begin, continuing until all usable LUTs
+   and FFs are occupied.  Depending on your timing budget, increased levels of
+   unrelated logic packing may adversely affect the overall timing performance
+   of your design.
+
+Table of Contents
+-----------------
+Section 1 - Errors
+Section 2 - Warnings
+Section 3 - Informational
+Section 4 - Removed Logic Summary
+Section 5 - Removed Logic
+Section 6 - IOB Properties
+Section 7 - RPMs
+Section 8 - Guide Report
+Section 9 - Area Group and Partition Summary
+Section 10 - Modular Design Summary
+Section 11 - Timing Report
+Section 12 - Configuration String Information
+Section 13 - Control Set Information
+Section 14 - Utilization by Hierarchy
+
+Section 1 - Errors
+------------------
+
+Section 2 - Warnings
+--------------------
+WARNING:LIT:243 - Logical network clki2_IBUF has no load.
+WARNING:LIT:395 - The above warning message base_net_load_rule is repeated 167
+   more times for the following (max. 5 shown):
+   clki3_IBUF,
+   clkin0_IBUF,
+   clkin1_IBUF,
+   config_IBUF,
+   r1out_a_IBUF
+   To see the details of these warning messages, please use the -detail switch.
+WARNING:MapLib:793 - Bi-directional network umi<2> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network umi<2> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network umi<3> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network umi<3> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<0> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<0> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<1> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<1> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<2> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<2> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<3> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<3> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<4> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<4> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<5> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<5> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<6> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<6> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<7> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<7> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<8> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<8> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<9> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<9> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<10> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<10> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<11> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<11> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<12> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<12> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<13> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<13> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<14> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<14> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<0> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<0> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<1> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<1> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<2> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<2> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<3> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<3> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<4> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<4> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<5> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<5> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<6> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<6> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<7> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<7> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<8> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<8> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<9> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<9> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<10> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<10> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<11> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<11> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<12> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<12> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<13> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<13> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<14> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<14> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<0> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<0> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<1> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<1> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<2> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<2> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<3> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<3> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<4> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<4> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<5> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<5> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<6> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<6> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<7> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<7> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<8> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<8> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<9> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<9> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<10> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<10> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<11> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<11> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<12> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<12> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<13> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<13> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<14> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<14> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<6> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<6> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<7> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<7> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<8> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<8> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<9> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<9> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<10> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<10> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<11> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<11> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<12> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<12> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<13> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<13> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<14> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<14> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network umi<2> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network umi<3> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<0> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<1> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<2> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<3> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<4> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<5> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<6> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<7> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<8> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<9> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<10> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<11> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<12> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<13> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<14> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<0> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<1> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<2> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<3> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<4> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<5> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<6> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<7> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<8> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<9> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<10> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<11> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<12> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<13> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<14> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<0> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<1> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<2> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<3> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<4> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<5> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<6> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<7> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<8> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<9> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<10> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<11> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<12> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<13> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<14> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<6> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<7> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<8> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<9> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<10> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<11> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<12> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<13> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<14> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network umi<2> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network umi<3> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<0> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<1> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<2> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<3> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<4> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<5> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<6> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<7> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<8> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<9> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<10> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<11> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<12> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<13> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<14> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<0> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<1> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<2> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<3> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<4> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<5> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<6> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<7> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<8> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<9> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<10> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<11> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<12> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<13> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<14> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<0> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<1> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<2> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<3> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<4> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<5> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<6> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<7> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<8> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<9> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<10> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<11> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<12> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<13> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<14> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<6> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<7> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<8> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<9> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<10> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<11> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<12> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<13> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<14> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network umi<2> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network umi<3> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<0> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<1> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<2> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<3> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<4> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<5> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<6> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<7> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<8> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<9> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<10> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<11> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<12> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<13> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_c<14> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<0> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<1> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<2> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<3> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<4> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<5> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<6> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<7> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<8> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<9> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<10> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<11> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<12> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<13> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_d<14> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<0> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<1> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<2> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<3> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<4> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<5> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<6> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<7> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<8> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<9> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<10> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<11> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<12> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<13> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_e<14> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<6> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<7> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<8> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<9> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<10> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<11> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<12> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<13> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:793 - Bi-directional network dio_f<14> is driven by a constant. 
+   This can result in a short.  This can be fixed by removing the constant
+   source or changing the bi-directional network.
+WARNING:MapLib:701 - Signal osc0_pin connected to top level port osc0_pin has
+   been removed.
+WARNING:MapLib:701 - Signal osc1_pin connected to top level port osc1_pin has
+   been removed.
+WARNING:MapLib:701 - Signal osc2_pin connected to top level port osc2_pin has
+   been removed.
+WARNING:MapLib:701 - Signal doclk connected to top level port doclk has been
+   removed.
+WARNING:MapLib:701 - Signal dio_a<3> connected to top level port dio_a<3> has
+   been removed.
+WARNING:MapLib:701 - Signal dio_a<4> connected to top level port dio_a<4> has
+   been removed.
+WARNING:MapLib:701 - Signal dio_a<5> connected to top level port dio_a<5> has
+   been removed.
+WARNING:MapLib:701 - Signal dio_a<6> connected to top level port dio_a<6> has
+   been removed.
+WARNING:MapLib:701 - Signal dio_a<7> connected to top level port dio_a<7> has
+   been removed.
+WARNING:MapLib:701 - Signal dio_a<8> connected to top level port dio_a<8> has
+   been removed.
+WARNING:MapLib:701 - Signal dio_a<9> connected to top level port dio_a<9> has
+   been removed.
+WARNING:MapLib:701 - Signal dio_a<10> connected to top level port dio_a<10> has
+   been removed.
+WARNING:MapLib:701 - Signal dio_a<11> connected to top level port dio_a<11> has
+   been removed.
+WARNING:MapLib:701 - Signal dio_a<12> connected to top level port dio_a<12> has
+   been removed.
+WARNING:MapLib:701 - Signal dio_a<13> connected to top level port dio_a<13> has
+   been removed.
+WARNING:MapLib:701 - Signal dio_a<14> connected to top level port dio_a<14> has
+   been removed.
+WARNING:MapLib:701 - Signal dio_b<0> connected to top level port dio_b<0> has
+   been removed.
+WARNING:MapLib:701 - Signal dio_b<1> connected to top level port dio_b<1> has
+   been removed.
+WARNING:MapLib:701 - Signal dio_b<2> connected to top level port dio_b<2> has
+   been removed.
+WARNING:MapLib:701 - Signal dio_b<3> connected to top level port dio_b<3> has
+   been removed.
+WARNING:MapLib:701 - Signal dio_b<4> connected to top level port dio_b<4> has
+   been removed.
+WARNING:MapLib:701 - Signal dio_b<5> connected to top level port dio_b<5> has
+   been removed.
+WARNING:MapLib:701 - Signal dio_b<6> connected to top level port dio_b<6> has
+   been removed.
+WARNING:MapLib:701 - Signal dio_b<7> connected to top level port dio_b<7> has
+   been removed.
+WARNING:MapLib:701 - Signal dio_b<8> connected to top level port dio_b<8> has
+   been removed.
+WARNING:MapLib:701 - Signal dio_b<9> connected to top level port dio_b<9> has
+   been removed.
+WARNING:MapLib:701 - Signal dio_b<10> connected to top level port dio_b<10> has
+   been removed.
+WARNING:MapLib:701 - Signal dio_b<11> connected to top level port dio_b<11> has
+   been removed.
+WARNING:MapLib:701 - Signal dio_b<12> connected to top level port dio_b<12> has
+   been removed.
+WARNING:MapLib:701 - Signal dio_b<13> connected to top level port dio_b<13> has
+   been removed.
+WARNING:MapLib:701 - Signal dio_b<14> connected to top level port dio_b<14> has
+   been removed.
+WARNING:MapLib:701 - Signal dif_ae<5> connected to top level port dif_ae<5> has
+   been removed.
+WARNING:MapLib:701 - Signal dif_ae<4> connected to top level port dif_ae<4> has
+   been removed.
+WARNING:MapLib:701 - Signal dif_ae<3> connected to top level port dif_ae<3> has
+   been removed.
+WARNING:MapLib:701 - Signal dif_ae<0> connected to top level port dif_ae<0> has
+   been removed.
+WARNING:MapLib:701 - Signal dif_ef<5> connected to top level port dif_ef<5> has
+   been removed.
+WARNING:MapLib:701 - Signal dif_ef<4> connected to top level port dif_ef<4> has
+   been removed.
+WARNING:MapLib:701 - Signal dif_ef<3> connected to top level port dif_ef<3> has
+   been removed.
+WARNING:MapLib:701 - Signal dif_ef<0> connected to top level port dif_ef<0> has
+   been removed.
+WARNING:MapLib:701 - Signal dof_af<5> connected to top level port dof_af<5> has
+   been removed.
+WARNING:MapLib:701 - Signal dof_af<4> connected to top level port dof_af<4> has
+   been removed.
+WARNING:MapLib:701 - Signal dof_af<3> connected to top level port dof_af<3> has
+   been removed.
+WARNING:MapLib:701 - Signal dof_af<2> connected to top level port dof_af<2> has
+   been removed.
+WARNING:MapLib:701 - Signal dof_af<1> connected to top level port dof_af<1> has
+   been removed.
+WARNING:MapLib:701 - Signal dof_ff<5> connected to top level port dof_ff<5> has
+   been removed.
+WARNING:MapLib:701 - Signal dof_ff<4> connected to top level port dof_ff<4> has
+   been removed.
+WARNING:MapLib:701 - Signal dof_ff<3> connected to top level port dof_ff<3> has
+   been removed.
+WARNING:MapLib:701 - Signal dof_ff<2> connected to top level port dof_ff<2> has
+   been removed.
+WARNING:MapLib:701 - Signal dof_ff<1> connected to top level port dof_ff<1> has
+   been removed.
+WARNING:MapLib:701 - Signal dof_ff<0> connected to top level port dof_ff<0> has
+   been removed.
+WARNING:MapLib:701 - Signal vinit connected to top level port vinit has been
+   removed.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net iUSER_AP/SSI_clk2 is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net iUSER_AP/PRFin is sourced
+   by a combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net iUSER_AP/SSI_clk_int is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:367 - The signal <addr_flagsel_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <clki2_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <clki3_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <r1out_a_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <r1out_b_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <r2out_a_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <r2out_b_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <mid<0>_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <mid<1>_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <mid<2>_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <mid<3>_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <clkin0_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <clkin1_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <config_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <qttl_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <cid<0>_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <cid<1>_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <cid<2>_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <cid<3>_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B370.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B373.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B382.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B391.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B376.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B385.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B379.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B388.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B733.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B742.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B751.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B736.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B745.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B754.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B739.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B748.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B10.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B13.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B22.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B16.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B25.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B19.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B28.A>:<RAMB16_RAMB16A>.  The block is configured
+   to use an input parity pins. There is a dangling output parity pin.
+WARNING:PhysDesignRules:1063 - Dangling pins on
+   block:<iUSER_AP/myOUTFIFO/B7.A>:<RAMB16_RAMB16A>.  The block is configured to
+   use an input parity pins. There is a dangling output parity pin.
+
+Section 3 - Informational
+-------------------------
+INFO:MapLib:562 - No environment variables are currently set.
+INFO:MapLib:986 - The SAVE constraint for nets has been made more strict
+   starting in 10.1, such that the net driver and load blocks will be preserved
+   as well. To revert to the original behavior please set XIL_MAP_OLD_SAVE.
+INFO:MapLib:985 - SAVE has been detected on the following signals (maximum 5
+   shown):
+   clki2,
+   clki3,
+   clkin0,
+   clkin1,
+   config.
+   To list all affected signals, run Map -detail.
+
+Section 4 - Removed Logic Summary
+---------------------------------
+ 604 block(s) removed
+  84 block(s) optimized away
+ 557 signal(s) removed
+
+Section 5 - Removed Logic
+-------------------------
+
+The trimmed logic report below shows the logic removed from your design due to
+sourceless or loadless signals, and VCC or ground connections.  If the removal
+of a signal or symbol results in the subsequent removal of an additional signal
+or symbol, the message explaining that second removal will be indented.  This
+indentation will be repeated as a chain of related logic is removed.
+
+To quickly locate the original cause for the removal of a chain of logic, look
+above the place where that logic is listed in the trimming report, then locate
+the lines that are least indented (begin at the leftmost edge).
+
+Loadless block "iOSC0" (BUF) removed.
+ The signal "osc0_pin" is loadless and has been removed.
+  Loadless block "osc0_pin" (PAD) removed.
+Loadless block "iOSC1" (BUF) removed.
+ The signal "osc1_pin" is loadless and has been removed.
+  Loadless block "osc1_pin" (PAD) removed.
+Loadless block "iOSC2" (BUF) removed.
+ The signal "osc2_pin" is loadless and has been removed.
+  Loadless block "osc2_pin" (PAD) removed.
+Loadless block "iRD/iDRBCE0" (ROM) removed.
+ The signal "iRD/DRAV<0>" is loadless and has been removed.
+  Loadless block "iRD/iDRAV0" (FF) removed.
+   The signal "iRD/DRAVc<0>" is loadless and has been removed.
+    Loadless block "iRD/DRAVc<0>28" (MUX) removed.
+     The signal "N222" is loadless and has been removed.
+      Loadless block "iRD/DRAVc<0>28_F" (ROM) removed.
+       The signal "iRD/IRV<0>" is loadless and has been removed.
+        Loadless block "iRD/iIRV0" (FF) removed.
+         The signal "iRD/IRVc<0>" is loadless and has been removed.
+          Loadless block "iRD/iIRVC0" (ROM) removed.
+           The signal "iRD/RDY_FN3" is loadless and has been removed.
+            Loadless block "iRD/iRDY_F3" (ROM) removed.
+           The signal "iRD/Y<0>" is loadless and has been removed.
+            Loadless block "iRD/iY0" (ROM) removed.
+           The signal "iRD/X<0>" is loadless and has been removed.
+            Loadless block "iRD/iX0" (ROM) removed.
+             The signal "iRD/T<0>" is loadless and has been removed.
+              Loadless block "iRD/iT0" (ROM) removed.
+             The signal "INFIFO_DVALID<0>" is loadless and has been removed.
+              Loadless block "iRD/iDVALID0" (FF) removed.
+               The signal "iRD/DVALIDc<0>" is loadless and has been removed.
+                Loadless block "iRD/iDVC0" (ROM) removed.
+                 The signal "iRD/DRBV<0>" is loadless and has been removed.
+                  Loadless block "iRD/iDRBV0" (FF) removed.
+                   The signal "iRD/DRBVc<0>" is loadless and has been removed.
+                    Loadless block "iRD/iDRBVC0" (ROM) removed.
+                     The signal "iRD/W<0>" is loadless and has been removed.
+                      Loadless block "iRD/iW0" (ROM) removed.
+                     The signal "iRD/V<0>" is loadless and has been removed.
+                      Loadless block "iRD/iV0" (ROM) removed.
+                       The signal "iRD/NEXT_FIFO<0>" is loadless and has been removed.
+                 The signal "iRD/U<0>" is loadless and has been removed.
+                  Loadless block "iRD/iU0" (ROM) removed.
+       The signal "iRD/S<0>" is loadless and has been removed.
+        Loadless block "iRD/iS0" (ROM) removed.
+       The signal "iRD/DRAVc<0>5" is loadless and has been removed.
+        Loadless block "iRD/DRAVc<0>5" (ROM) removed.
+     The signal "N223" is loadless and has been removed.
+      Loadless block "iRD/DRAVc<0>28_G" (ROM) removed.
+ The signal "iRD/V_REG<0>" is loadless and has been removed.
+  Loadless block "iRD/V_REG_0" (FF) removed.
+Loadless block "iRD/iDRBCE3" (ROM) removed.
+ The signal "iRD/DRAV<3>" is loadless and has been removed.
+  Loadless block "iRD/iDRAV3" (FF) removed.
+   The signal "iRD/DRAVc<3>" is loadless and has been removed.
+    Loadless block "iRD/DRAVc<3>28" (MUX) removed.
+     The signal "N216" is loadless and has been removed.
+      Loadless block "iRD/DRAVc<3>28_F" (ROM) removed.
+       The signal "iRD/IRV<3>" is loadless and has been removed.
+        Loadless block "iRD/iIRV3" (FF) removed.
+         The signal "iRD/IRVc<3>" is loadless and has been removed.
+          Loadless block "iRD/iIRVC3" (ROM) removed.
+           The signal "iRD/RDY_FN6" is loadless and has been removed.
+            Loadless block "iRD/iRDY_F6" (ROM) removed.
+           The signal "iRD/Y<3>" is loadless and has been removed.
+            Loadless block "iRD/iY3" (ROM) removed.
+           The signal "iRD/X<3>" is loadless and has been removed.
+            Loadless block "iRD/iX3" (ROM) removed.
+             The signal "iRD/T<3>" is loadless and has been removed.
+              Loadless block "iRD/iT3" (ROM) removed.
+             The signal "INFIFO_DVALID<3>" is loadless and has been removed.
+              Loadless block "iRD/iDVALID3" (FF) removed.
+               The signal "iRD/DVALIDc<3>" is loadless and has been removed.
+                Loadless block "iRD/iDVC3" (ROM) removed.
+                 The signal "iRD/DRBV<3>" is loadless and has been removed.
+                  Loadless block "iRD/iDRBV3" (FF) removed.
+                   The signal "iRD/DRBVc<3>" is loadless and has been removed.
+                    Loadless block "iRD/iDRBVC3" (ROM) removed.
+                     The signal "iRD/W<3>" is loadless and has been removed.
+                      Loadless block "iRD/iW3" (ROM) removed.
+                     The signal "iRD/V<3>" is loadless and has been removed.
+                      Loadless block "iRD/iV3" (ROM) removed.
+                       The signal "iRD/NEXT_FIFO<3>" is loadless and has been removed.
+                 The signal "iRD/U<3>" is loadless and has been removed.
+                  Loadless block "iRD/iU3" (ROM) removed.
+       The signal "iRD/S<3>" is loadless and has been removed.
+        Loadless block "iRD/iS3" (ROM) removed.
+       The signal "iRD/DRAVc<3>5" is loadless and has been removed.
+        Loadless block "iRD/DRAVc<3>5" (ROM) removed.
+     The signal "N217" is loadless and has been removed.
+      Loadless block "iRD/DRAVc<3>28_G" (ROM) removed.
+ The signal "iRD/V_REG<3>" is loadless and has been removed.
+  Loadless block "iRD/V_REG_3" (FF) removed.
+Loadless block "iRD/iDRBCE4" (ROM) removed.
+ The signal "iRD/DRAV<4>" is loadless and has been removed.
+  Loadless block "iRD/iDRAV4" (FF) removed.
+   The signal "iRD/DRAVc<4>" is loadless and has been removed.
+    Loadless block "iRD/DRAVc<4>28" (MUX) removed.
+     The signal "N214" is loadless and has been removed.
+      Loadless block "iRD/DRAVc<4>28_F" (ROM) removed.
+       The signal "iRD/IRV<4>" is loadless and has been removed.
+        Loadless block "iRD/iIRV4" (FF) removed.
+         The signal "iRD/IRVc<4>" is loadless and has been removed.
+          Loadless block "iRD/iIRVC4" (ROM) removed.
+           The signal "iRD/RDY_FN2" is loadless and has been removed.
+            Loadless block "iRD/iRDY_F2" (ROM) removed.
+           The signal "iRD/RDY_FN7" is loadless and has been removed.
+            Loadless block "iRD/iRDY_F7" (ROM) removed.
+           The signal "iRD/Y<4>" is loadless and has been removed.
+            Loadless block "iRD/iY4" (ROM) removed.
+           The signal "iRD/X<4>" is loadless and has been removed.
+            Loadless block "iRD/iX4" (ROM) removed.
+             The signal "iRD/T<4>" is loadless and has been removed.
+              Loadless block "iRD/iT4" (ROM) removed.
+             The signal "INFIFO_DVALID<4>" is loadless and has been removed.
+              Loadless block "iRD/iDVALID4" (FF) removed.
+               The signal "iRD/DVALIDc<4>" is loadless and has been removed.
+                Loadless block "iRD/iDVC4" (ROM) removed.
+                 The signal "iRD/DRBV<4>" is loadless and has been removed.
+                  Loadless block "iRD/iDRBV4" (FF) removed.
+                   The signal "iRD/DRBVc<4>" is loadless and has been removed.
+                    Loadless block "iRD/iDRBVC4" (ROM) removed.
+                     The signal "iRD/W<4>" is loadless and has been removed.
+                      Loadless block "iRD/iW4" (ROM) removed.
+                     The signal "iRD/V<4>" is loadless and has been removed.
+                      Loadless block "iRD/iV4" (ROM) removed.
+                       The signal "iRD/NEXT_FIFO<4>" is loadless and has been removed.
+                 The signal "iRD/U<4>" is loadless and has been removed.
+                  Loadless block "iRD/iU4" (ROM) removed.
+       The signal "iRD/S<4>" is loadless and has been removed.
+        Loadless block "iRD/iS4" (ROM) removed.
+       The signal "iRD/DRAVc<4>5" is loadless and has been removed.
+        Loadless block "iRD/DRAVc<4>5" (ROM) removed.
+     The signal "N215" is loadless and has been removed.
+      Loadless block "iRD/DRAVc<4>28_G" (ROM) removed.
+ The signal "iRD/V_REG<4>" is loadless and has been removed.
+  Loadless block "iRD/V_REG_4" (FF) removed.
+Loadless block "iRD/iDRBCE5" (ROM) removed.
+ The signal "iRD/DRAV<5>" is loadless and has been removed.
+  Loadless block "iRD/iDRAV5" (FF) removed.
+   The signal "iRD/DRAVc<5>" is loadless and has been removed.
+    Loadless block "iRD/DRAVc<5>28" (MUX) removed.
+     The signal "N212" is loadless and has been removed.
+      Loadless block "iRD/DRAVc<5>28_F" (ROM) removed.
+       The signal "iRD/IRV<5>" is loadless and has been removed.
+        Loadless block "iRD/iIRV5" (FF) removed.
+         The signal "iRD/IRVc<5>" is loadless and has been removed.
+          Loadless block "iRD/iIRVC5" (ROM) removed.
+           The signal "iRD/RDY_FN8" is loadless and has been removed.
+            Loadless block "iRD/iRDY_F8" (ROM) removed.
+           The signal "iRD/Y<5>" is loadless and has been removed.
+            Loadless block "iRD/iY5" (ROM) removed.
+           The signal "iRD/X<5>" is loadless and has been removed.
+            Loadless block "iRD/iX5" (ROM) removed.
+             The signal "iRD/T<5>" is loadless and has been removed.
+              Loadless block "iRD/iT5" (ROM) removed.
+             The signal "INFIFO_DVALID<5>" is loadless and has been removed.
+              Loadless block "iRD/iDVALID5" (FF) removed.
+               The signal "iRD/DVALIDc<5>" is loadless and has been removed.
+                Loadless block "iRD/iDVC5" (ROM) removed.
+                 The signal "iRD/DRBV<5>" is loadless and has been removed.
+                  Loadless block "iRD/iDRBV5" (FF) removed.
+                   The signal "iRD/DRBVc<5>" is loadless and has been removed.
+                    Loadless block "iRD/iDRBVC5" (ROM) removed.
+                     The signal "iRD/W<5>" is loadless and has been removed.
+                      Loadless block "iRD/iW5" (ROM) removed.
+                     The signal "iRD/V<5>" is loadless and has been removed.
+                      Loadless block "iRD/iV5" (ROM) removed.
+                 The signal "iRD/U<5>" is loadless and has been removed.
+                  Loadless block "iRD/iU5" (ROM) removed.
+       The signal "iRD/S<5>" is loadless and has been removed.
+        Loadless block "iRD/iS5" (ROM) removed.
+       The signal "iRD/DRAVc<5>5" is loadless and has been removed.
+        Loadless block "iRD/DRAVc<5>5" (ROM) removed.
+     The signal "N213" is loadless and has been removed.
+      Loadless block "iRD/DRAVc<5>28_G" (ROM) removed.
+ The signal "iRD/V_REG<5>" is loadless and has been removed.
+  Loadless block "iRD/V_REG_5" (FF) removed.
+Loadless block "iRD/iSEL0" (FF) removed.
+Loadless block "iRD/iSEL3" (FF) removed.
+Loadless block "iRD/iSEL4" (FF) removed.
+Loadless block "iRD/iSEL5" (FF) removed.
+Loadless block "iUSER_AP/AngPosBy360/BU419" (FF) removed.
+ The signal "iUSER_AP/AngPosBy360/N1" is loadless and has been removed.
+ The signal "iUSER_AP/AngPosBy360/N5483" is loadless and has been removed.
+  Loadless block "iUSER_AP/AngPosBy360/BU417" (XOR) removed.
+   The signal "iUSER_AP/AngPosBy360/N5554" is loadless and has been removed.
+    Loadless block "iUSER_AP/AngPosBy360/BU410" (MUX) removed.
+     The signal "iUSER_AP/AngPosBy360/N5548" is loadless and has been removed.
+      Loadless block "iUSER_AP/AngPosBy360/BU404" (MUX) removed.
+       The signal "iUSER_AP/AngPosBy360/N5542" is loadless and has been removed.
+        Loadless block "iUSER_AP/AngPosBy360/BU398" (MUX) removed.
+         The signal "iUSER_AP/AngPosBy360/N5536" is loadless and has been removed.
+          Loadless block "iUSER_AP/AngPosBy360/BU392" (MUX) removed.
+           The signal "iUSER_AP/AngPosBy360/N5530" is loadless and has been removed.
+            Loadless block "iUSER_AP/AngPosBy360/BU386" (MUX) removed.
+             The signal "iUSER_AP/AngPosBy360/N5524" is loadless and has been removed.
+              Loadless block "iUSER_AP/AngPosBy360/BU380" (MUX) removed.
+               The signal "iUSER_AP/AngPosBy360/N5518" is loadless and has been removed.
+                Loadless block "iUSER_AP/AngPosBy360/BU374" (MUX) removed.
+                 The signal "iUSER_AP/AngPosBy360/N5512" is loadless and has been removed.
+                  Loadless block "iUSER_AP/AngPosBy360/BU368" (MUX) removed.
+                   The signal "iUSER_AP/AngPosBy360/N5506" is loadless and has been removed.
+                    Loadless block "iUSER_AP/AngPosBy360/BU362" (MUX) removed.
+                     The signal "iUSER_AP/AngPosBy360/N5500" is loadless and has been removed.
+                      Loadless block "iUSER_AP/AngPosBy360/BU356" (MUX) removed.
+                     The signal "iUSER_AP/AngPosBy360/N721" is loadless and has been removed.
+                      Loadless block "iUSER_AP/AngPosBy360/BU197" (XOR) removed.
+                       The signal "iUSER_AP/AngPosBy360/N4772" is loadless and has been removed.
+                        Loadless block "iUSER_AP/AngPosBy360/BU192" (MUX) removed.
+                       The signal "iUSER_AP/AngPosBy360/N4774" is loadless and has been removed.
+                        Loadless block "iUSER_AP/AngPosBy360/BU195" (ROM) removed.
+                         The signal "iUSER_AP/AngPosBy360/N1334" is loadless and has been removed.
+                          Loadless block "iUSER_AP/AngPosBy360/BU147" (ROM) removed.
+                     The signal "iUSER_AP/AngPosBy360/N5503" is loadless and has been removed.
+                      Loadless block "iUSER_AP/AngPosBy360/BU361" (ROM) removed.
+                       The signal "iUSER_AP/AngPosBy360/N1551" is loadless and has been removed.
+                        Loadless block "iUSER_AP/AngPosBy360/BU227" (ROM) removed.
+                         The signal "iUSER_AP/AngPosBy360/N519" is loadless and has been removed.
+                          Loadless block "iUSER_AP/AngPosBy360/BU54" (FF) removed.
+                           The signal "iUSER_AP/DataAng<11>" is loadless and has been removed.
+                            Loadless block "iUSER_AP/DataAng<11>" (MUX) removed.
+                             The signal "N230" is loadless and has been removed.
+                              Loadless block "iUSER_AP/DataAng<11>_F" (ROM) removed.
+                             The signal "N231" is loadless and has been removed.
+                              Loadless block "iUSER_AP/DataAng<11>_G" (ROM) removed.
+                   The signal "iUSER_AP/AngPosBy360/N720" is loadless and has been removed.
+                    Loadless block "iUSER_AP/AngPosBy360/BU201" (XOR) removed.
+                     The signal "iUSER_AP/AngPosBy360/N4777" is loadless and has been removed.
+                      Loadless block "iUSER_AP/AngPosBy360/BU196" (MUX) removed.
+                     The signal "iUSER_AP/AngPosBy360/N4779" is loadless and has been removed.
+                      Loadless block "iUSER_AP/AngPosBy360/BU199" (ROM) removed.
+                       The signal "iUSER_AP/AngPosBy360/N1333" is loadless and has been removed.
+                        Loadless block "iUSER_AP/AngPosBy360/BU151" (ROM) removed.
+                   The signal "iUSER_AP/AngPosBy360/N5509" is loadless and has been removed.
+                    Loadless block "iUSER_AP/AngPosBy360/BU367" (ROM) removed.
+                     The signal "iUSER_AP/AngPosBy360/N750" is loadless and has been removed.
+                      Loadless block "iUSER_AP/AngPosBy360/BU306" (XOR) removed.
+                       The signal "iUSER_AP/AngPosBy360/N4176" is loadless and has been removed.
+                        Loadless block "iUSER_AP/AngPosBy360/BU304" (ROM) removed.
+                         The signal "iUSER_AP/AngPosBy360/N1550" is loadless and has been removed.
+                          Loadless block "iUSER_AP/AngPosBy360/BU231" (ROM) removed.
+                         The signal "iUSER_AP/AngPosBy360/N518" is loadless and has been removed.
+                          Loadless block "iUSER_AP/AngPosBy360/BU56" (FF) removed.
+                           The signal "iUSER_AP/DataAng<12>" is loadless and has been removed.
+                            Loadless block "iUSER_AP/DataAng<12>1" (ROM) removed.
+                 The signal "iUSER_AP/AngPosBy360/N719" is loadless and has been removed.
+                  Loadless block "iUSER_AP/AngPosBy360/BU205" (XOR) removed.
+                   The signal "iUSER_AP/AngPosBy360/N4782" is loadless and has been removed.
+                    Loadless block "iUSER_AP/AngPosBy360/BU200" (MUX) removed.
+                   The signal "iUSER_AP/AngPosBy360/N4784" is loadless and has been removed.
+                    Loadless block "iUSER_AP/AngPosBy360/BU203" (ROM) removed.
+                     The signal "iUSER_AP/AngPosBy360/N1332" is loadless and has been removed.
+                      Loadless block "iUSER_AP/AngPosBy360/BU155" (ROM) removed.
+                 The signal "iUSER_AP/AngPosBy360/N5515" is loadless and has been removed.
+                  Loadless block "iUSER_AP/AngPosBy360/BU373" (ROM) removed.
+                   The signal "iUSER_AP/AngPosBy360/N749" is loadless and has been removed.
+                    Loadless block "iUSER_AP/AngPosBy360/BU310" (XOR) removed.
+                     The signal "iUSER_AP/AngPosBy360/N4179" is loadless and has been removed.
+                      Loadless block "iUSER_AP/AngPosBy360/BU305" (MUX) removed.
+                     The signal "iUSER_AP/AngPosBy360/N4181" is loadless and has been removed.
+                      Loadless block "iUSER_AP/AngPosBy360/BU308" (ROM) removed.
+                       The signal "iUSER_AP/AngPosBy360/N1549" is loadless and has been removed.
+                        Loadless block "iUSER_AP/AngPosBy360/BU235" (ROM) removed.
+                       The signal "iUSER_AP/AngPosBy360/N517" is loadless and has been removed.
+                        Loadless block "iUSER_AP/AngPosBy360/BU58" (FF) removed.
+                         The signal "iUSER_AP/DataAng<13>" is loadless and has been removed.
+                          Loadless block "iUSER_AP/DataAng<13>1" (ROM) removed.
+               The signal "iUSER_AP/AngPosBy360/N718" is loadless and has been removed.
+                Loadless block "iUSER_AP/AngPosBy360/BU204" (MUX) removed.
+               The signal "iUSER_AP/AngPosBy360/N5521" is loadless and has been removed.
+                Loadless block "iUSER_AP/AngPosBy360/BU379" (ROM) removed.
+                 The signal "iUSER_AP/AngPosBy360/N748" is loadless and has been removed.
+                  Loadless block "iUSER_AP/AngPosBy360/BU314" (XOR) removed.
+                   The signal "iUSER_AP/AngPosBy360/N4184" is loadless and has been removed.
+                    Loadless block "iUSER_AP/AngPosBy360/BU309" (MUX) removed.
+                   The signal "iUSER_AP/AngPosBy360/N4186" is loadless and has been removed.
+                    Loadless block "iUSER_AP/AngPosBy360/BU312" (ROM) removed.
+                     The signal "iUSER_AP/AngPosBy360/N1548" is loadless and has been removed.
+                      Loadless block "iUSER_AP/AngPosBy360/BU239" (ROM) removed.
+                     The signal "iUSER_AP/AngPosBy360/N1642" is loadless and has been removed.
+                      Loadless block "iUSER_AP/AngPosBy360/BU272" (ROM) removed.
+             The signal "iUSER_AP/AngPosBy360/N5527" is loadless and has been removed.
+              Loadless block "iUSER_AP/AngPosBy360/BU385" (ROM) removed.
+               The signal "iUSER_AP/AngPosBy360/N747" is loadless and has been removed.
+                Loadless block "iUSER_AP/AngPosBy360/BU318" (XOR) removed.
+                 The signal "iUSER_AP/AngPosBy360/N4189" is loadless and has been removed.
+                  Loadless block "iUSER_AP/AngPosBy360/BU313" (MUX) removed.
+                 The signal "iUSER_AP/AngPosBy360/N4191" is loadless and has been removed.
+                  Loadless block "iUSER_AP/AngPosBy360/BU316" (ROM) removed.
+                   The signal "iUSER_AP/AngPosBy360/N1547" is loadless and has been removed.
+                    Loadless block "iUSER_AP/AngPosBy360/BU243" (ROM) removed.
+                   The signal "iUSER_AP/AngPosBy360/N1641" is loadless and has been removed.
+                    Loadless block "iUSER_AP/AngPosBy360/BU276" (ROM) removed.
+           The signal "iUSER_AP/AngPosBy360/N5533" is loadless and has been removed.
+            Loadless block "iUSER_AP/AngPosBy360/BU391" (ROM) removed.
+             The signal "iUSER_AP/AngPosBy360/N746" is loadless and has been removed.
+              Loadless block "iUSER_AP/AngPosBy360/BU322" (XOR) removed.
+               The signal "iUSER_AP/AngPosBy360/N4194" is loadless and has been removed.
+                Loadless block "iUSER_AP/AngPosBy360/BU317" (MUX) removed.
+               The signal "iUSER_AP/AngPosBy360/N4196" is loadless and has been removed.
+                Loadless block "iUSER_AP/AngPosBy360/BU320" (ROM) removed.
+                 The signal "iUSER_AP/AngPosBy360/N1546" is loadless and has been removed.
+                  Loadless block "iUSER_AP/AngPosBy360/BU247" (ROM) removed.
+                 The signal "iUSER_AP/AngPosBy360/N1640" is loadless and has been removed.
+                  Loadless block "iUSER_AP/AngPosBy360/BU280" (ROM) removed.
+         The signal "iUSER_AP/AngPosBy360/N5539" is loadless and has been removed.
+          Loadless block "iUSER_AP/AngPosBy360/BU397" (ROM) removed.
+           The signal "iUSER_AP/AngPosBy360/N745" is loadless and has been removed.
+            Loadless block "iUSER_AP/AngPosBy360/BU326" (XOR) removed.
+             The signal "iUSER_AP/AngPosBy360/N4199" is loadless and has been removed.
+              Loadless block "iUSER_AP/AngPosBy360/BU321" (MUX) removed.
+             The signal "iUSER_AP/AngPosBy360/N4201" is loadless and has been removed.
+              Loadless block "iUSER_AP/AngPosBy360/BU324" (ROM) removed.
+               The signal "iUSER_AP/AngPosBy360/N1545" is loadless and has been removed.
+                Loadless block "iUSER_AP/AngPosBy360/BU251" (ROM) removed.
+               The signal "iUSER_AP/AngPosBy360/N1639" is loadless and has been removed.
+                Loadless block "iUSER_AP/AngPosBy360/BU284" (ROM) removed.
+       The signal "iUSER_AP/AngPosBy360/N5545" is loadless and has been removed.
+        Loadless block "iUSER_AP/AngPosBy360/BU403" (ROM) removed.
+         The signal "iUSER_AP/AngPosBy360/N744" is loadless and has been removed.
+          Loadless block "iUSER_AP/AngPosBy360/BU330" (XOR) removed.
+           The signal "iUSER_AP/AngPosBy360/N4204" is loadless and has been removed.
+            Loadless block "iUSER_AP/AngPosBy360/BU325" (MUX) removed.
+           The signal "iUSER_AP/AngPosBy360/N4206" is loadless and has been removed.
+            Loadless block "iUSER_AP/AngPosBy360/BU328" (ROM) removed.
+             The signal "iUSER_AP/AngPosBy360/N1638" is loadless and has been removed.
+              Loadless block "iUSER_AP/AngPosBy360/BU288" (ROM) removed.
+     The signal "iUSER_AP/AngPosBy360/N5551" is loadless and has been removed.
+      Loadless block "iUSER_AP/AngPosBy360/BU409" (ROM) removed.
+       The signal "iUSER_AP/AngPosBy360/N743" is loadless and has been removed.
+        Loadless block "iUSER_AP/AngPosBy360/BU334" (XOR) removed.
+         The signal "iUSER_AP/AngPosBy360/N4209" is loadless and has been removed.
+          Loadless block "iUSER_AP/AngPosBy360/BU329" (MUX) removed.
+         The signal "iUSER_AP/AngPosBy360/N4211" is loadless and has been removed.
+          Loadless block "iUSER_AP/AngPosBy360/BU332" (ROM) removed.
+           The signal "iUSER_AP/AngPosBy360/N1637" is loadless and has been removed.
+            Loadless block "iUSER_AP/AngPosBy360/BU292" (ROM) removed.
+   The signal "iUSER_AP/AngPosBy360/N5557" is loadless and has been removed.
+    Loadless block "iUSER_AP/AngPosBy360/BU415" (ROM) removed.
+     The signal "iUSER_AP/AngPosBy360/N742" is loadless and has been removed.
+      Loadless block "iUSER_AP/AngPosBy360/BU333" (MUX) removed.
+Loadless block "iUSER_AP/AngPosBy360/BU421" (FF) removed.
+ The signal "iUSER_AP/AngPosBy360/N5484" is loadless and has been removed.
+  Loadless block "iUSER_AP/AngPosBy360/BU416" (MUX) removed.
+Loadless block "iUSER_AP/I_LPFILTER/BU1186" (ROM) removed.
+ The signal "iUSER_AP/I_LPFILTER/N6204" is loadless and has been removed.
+  Loadless block "iUSER_AP/I_LPFILTER/BU1197" (FF) removed.
+   The signal "iUSER_AP/I_LPFILTER/N7641" is loadless and has been removed.
+Loadless block "iUSER_AP/I_LPFILTER/BU1550" (ROM) removed.
+ The signal "iUSER_AP/I_LPFILTER/N2522" is loadless and has been removed.
+  Loadless block "iUSER_AP/I_LPFILTER/BU1561" (FF) removed.
+   The signal "iUSER_AP/I_LPFILTER/N3887" is loadless and has been removed.
+Loadless block "iUSER_AP/I_LPFILTER/BU2095" (AND) removed.
+Loadless block "iUSER_AP/I_LPFILTER/BU416" (ROM) removed.
+ The signal "iUSER_AP/I_LPFILTER/N4457" is loadless and has been removed.
+  Loadless block "iUSER_AP/I_LPFILTER/BU427" (FF) removed.
+   The signal "iUSER_AP/I_LPFILTER/N5914" is loadless and has been removed.
+Loadless block "iUSER_AP/I_LPFILTER/BU805" (ROM) removed.
+ The signal "iUSER_AP/I_LPFILTER/N745" is loadless and has been removed.
+  Loadless block "iUSER_AP/I_LPFILTER/BU816" (FF) removed.
+   The signal "iUSER_AP/I_LPFILTER/N2235" is loadless and has been removed.
+Loadless block "iUSER_AP/Q_LPFILTER/BU1186" (ROM) removed.
+ The signal "iUSER_AP/Q_LPFILTER/N6204" is loadless and has been removed.
+  Loadless block "iUSER_AP/Q_LPFILTER/BU1197" (FF) removed.
+   The signal "iUSER_AP/Q_LPFILTER/N7641" is loadless and has been removed.
+Loadless block "iUSER_AP/Q_LPFILTER/BU1550" (ROM) removed.
+ The signal "iUSER_AP/Q_LPFILTER/N2522" is loadless and has been removed.
+  Loadless block "iUSER_AP/Q_LPFILTER/BU1561" (FF) removed.
+   The signal "iUSER_AP/Q_LPFILTER/N3887" is loadless and has been removed.
+Loadless block "iUSER_AP/Q_LPFILTER/BU2095" (AND) removed.
+Loadless block "iUSER_AP/Q_LPFILTER/BU416" (ROM) removed.
+ The signal "iUSER_AP/Q_LPFILTER/N4457" is loadless and has been removed.
+  Loadless block "iUSER_AP/Q_LPFILTER/BU427" (FF) removed.
+   The signal "iUSER_AP/Q_LPFILTER/N5914" is loadless and has been removed.
+Loadless block "iUSER_AP/Q_LPFILTER/BU805" (ROM) removed.
+ The signal "iUSER_AP/Q_LPFILTER/N745" is loadless and has been removed.
+  Loadless block "iUSER_AP/Q_LPFILTER/BU816" (FF) removed.
+   The signal "iUSER_AP/Q_LPFILTER/N2235" is loadless and has been removed.
+Loadless block "iUSER_AP/myOUTFIFO/BU1327" (FF) removed.
+Loadless block "iUSER_AP/myOUTFIFO/BU1367" (ROM) removed.
+Loadless block "iUSER_AP/myOUTFIFO/BU1614" (FF) removed.
+Loadless block "iUSER_AP/myOUTFIFO/BU1654" (ROM) removed.
+Loadless block "iWR/iAF1" (FF) removed.
+ The signal "dof_af_1_IBUF" is loadless and has been removed.
+  Loadless block "dof_af_1_IBUF" (BUF) removed.
+   The signal "dof_af<1>" is loadless and has been removed.
+    Loadless block "dof_af<1>" (PAD) removed.
+Loadless block "iWR/iAF2" (FF) removed.
+ The signal "dof_af_2_IBUF" is loadless and has been removed.
+  Loadless block "dof_af_2_IBUF" (BUF) removed.
+   The signal "dof_af<2>" is loadless and has been removed.
+    Loadless block "dof_af<2>" (PAD) removed.
+Loadless block "iWR/iAF3" (FF) removed.
+ The signal "dof_af_3_IBUF" is loadless and has been removed.
+  Loadless block "dof_af_3_IBUF" (BUF) removed.
+   The signal "dof_af<3>" is loadless and has been removed.
+    Loadless block "dof_af<3>" (PAD) removed.
+Loadless block "iWR/iAF4" (FF) removed.
+ The signal "dof_af_4_IBUF" is loadless and has been removed.
+  Loadless block "dof_af_4_IBUF" (BUF) removed.
+   The signal "dof_af<4>" is loadless and has been removed.
+    Loadless block "dof_af<4>" (PAD) removed.
+Loadless block "iWR/iAF5" (FF) removed.
+ The signal "dof_af_5_IBUF" is loadless and has been removed.
+  Loadless block "dof_af_5_IBUF" (BUF) removed.
+   The signal "dof_af<5>" is loadless and has been removed.
+    Loadless block "dof_af<5>" (PAD) removed.
+Loadless block "iWR/iFF0" (FF) removed.
+ The signal "dof_ff_0_IBUF" is loadless and has been removed.
+  Loadless block "dof_ff_0_IBUF" (BUF) removed.
+   The signal "dof_ff<0>" is loadless and has been removed.
+    Loadless block "dof_ff<0>" (PAD) removed.
+Loadless block "iWR/iFF1" (FF) removed.
+ The signal "dof_ff_1_IBUF" is loadless and has been removed.
+  Loadless block "dof_ff_1_IBUF" (BUF) removed.
+   The signal "dof_ff<1>" is loadless and has been removed.
+    Loadless block "dof_ff<1>" (PAD) removed.
+Loadless block "iWR/iFF2" (FF) removed.
+ The signal "dof_ff_2_IBUF" is loadless and has been removed.
+  Loadless block "dof_ff_2_IBUF" (BUF) removed.
+   The signal "dof_ff<2>" is loadless and has been removed.
+    Loadless block "dof_ff<2>" (PAD) removed.
+Loadless block "iWR/iFF3" (FF) removed.
+ The signal "dof_ff_3_IBUF" is loadless and has been removed.
+  Loadless block "dof_ff_3_IBUF" (BUF) removed.
+   The signal "dof_ff<3>" is loadless and has been removed.
+    Loadless block "dof_ff<3>" (PAD) removed.
+Loadless block "iWR/iFF4" (FF) removed.
+ The signal "dof_ff_4_IBUF" is loadless and has been removed.
+  Loadless block "dof_ff_4_IBUF" (BUF) removed.
+   The signal "dof_ff<4>" is loadless and has been removed.
+    Loadless block "dof_ff<4>" (PAD) removed.
+Loadless block "iWR/iFF5" (FF) removed.
+ The signal "dof_ff_5_IBUF" is loadless and has been removed.
+  Loadless block "dof_ff_5_IBUF" (BUF) removed.
+   The signal "dof_ff<5>" is loadless and has been removed.
+    Loadless block "dof_ff<5>" (PAD) removed.
+Loadless block "iDOCLK" (CKBUF) removed.
+ The signal "doclk" is loadless and has been removed.
+  Loadless block "doclk" (PAD) removed.
+The signal "iUMI1/O" is sourceless and has been removed.
+The signal "iUMI2/O" is sourceless and has been removed.
+The signal "iUMI3/O" is sourceless and has been removed.
+The signal "iDIOA0/O" is sourceless and has been removed.
+The signal "iDIOA3/O" is sourceless and has been removed.
+The signal "iDIOA4/O" is sourceless and has been removed.
+The signal "iDIOA5/O" is sourceless and has been removed.
+The signal "iDIOA6/O" is sourceless and has been removed.
+The signal "iDIOA7/O" is sourceless and has been removed.
+The signal "iDIOA8/O" is sourceless and has been removed.
+The signal "iDIOA9/O" is sourceless and has been removed.
+The signal "iDIOA10/O" is sourceless and has been removed.
+The signal "iDIOA11/O" is sourceless and has been removed.
+The signal "iDIOA12/O" is sourceless and has been removed.
+The signal "iDIOA13/O" is sourceless and has been removed.
+The signal "iDIOA14/O" is sourceless and has been removed.
+The signal "iDIOB0/O" is sourceless and has been removed.
+The signal "iDIOB1/O" is sourceless and has been removed.
+The signal "iDIOB2/O" is sourceless and has been removed.
+The signal "iDIOB3/O" is sourceless and has been removed.
+The signal "iDIOB4/O" is sourceless and has been removed.
+The signal "iDIOB5/O" is sourceless and has been removed.
+The signal "iDIOB6/O" is sourceless and has been removed.
+The signal "iDIOB7/O" is sourceless and has been removed.
+The signal "iDIOB8/O" is sourceless and has been removed.
+The signal "iDIOB9/O" is sourceless and has been removed.
+The signal "iDIOB10/O" is sourceless and has been removed.
+The signal "iDIOB11/O" is sourceless and has been removed.
+The signal "iDIOB12/O" is sourceless and has been removed.
+The signal "iDIOB13/O" is sourceless and has been removed.
+The signal "iDIOB14/O" is sourceless and has been removed.
+The signal "iDIOC0/O" is sourceless and has been removed.
+The signal "iDIOC1/O" is sourceless and has been removed.
+The signal "iDIOC2/O" is sourceless and has been removed.
+The signal "iDIOC3/O" is sourceless and has been removed.
+The signal "iDIOC4/O" is sourceless and has been removed.
+The signal "iDIOC5/O" is sourceless and has been removed.
+The signal "iDIOC6/O" is sourceless and has been removed.
+The signal "iDIOC7/O" is sourceless and has been removed.
+The signal "iDIOC8/O" is sourceless and has been removed.
+The signal "iDIOC9/O" is sourceless and has been removed.
+The signal "iDIOC10/O" is sourceless and has been removed.
+The signal "iDIOC11/O" is sourceless and has been removed.
+The signal "iDIOC12/O" is sourceless and has been removed.
+The signal "iDIOC13/O" is sourceless and has been removed.
+The signal "iDIOC14/O" is sourceless and has been removed.
+The signal "iDIOD0/O" is sourceless and has been removed.
+The signal "iDIOD1/O" is sourceless and has been removed.
+The signal "iDIOD2/O" is sourceless and has been removed.
+The signal "iDIOD3/O" is sourceless and has been removed.
+The signal "iDIOD4/O" is sourceless and has been removed.
+The signal "iDIOD5/O" is sourceless and has been removed.
+The signal "iDIOD6/O" is sourceless and has been removed.
+The signal "iDIOD7/O" is sourceless and has been removed.
+The signal "iDIOD8/O" is sourceless and has been removed.
+The signal "iDIOD9/O" is sourceless and has been removed.
+The signal "iDIOD10/O" is sourceless and has been removed.
+The signal "iDIOD11/O" is sourceless and has been removed.
+The signal "iDIOD12/O" is sourceless and has been removed.
+The signal "iDIOD13/O" is sourceless and has been removed.
+The signal "iDIOD14/O" is sourceless and has been removed.
+The signal "iDIOE0/O" is sourceless and has been removed.
+The signal "iDIOE1/O" is sourceless and has been removed.
+The signal "iDIOE2/O" is sourceless and has been removed.
+The signal "iDIOE3/O" is sourceless and has been removed.
+The signal "iDIOE4/O" is sourceless and has been removed.
+The signal "iDIOE5/O" is sourceless and has been removed.
+The signal "iDIOE6/O" is sourceless and has been removed.
+The signal "iDIOE7/O" is sourceless and has been removed.
+The signal "iDIOE8/O" is sourceless and has been removed.
+The signal "iDIOE9/O" is sourceless and has been removed.
+The signal "iDIOE10/O" is sourceless and has been removed.
+The signal "iDIOE11/O" is sourceless and has been removed.
+The signal "iDIOE12/O" is sourceless and has been removed.
+The signal "iDIOE13/O" is sourceless and has been removed.
+The signal "iDIOE14/O" is sourceless and has been removed.
+The signal "iDIOF0/O" is sourceless and has been removed.
+The signal "iDIOF1/O" is sourceless and has been removed.
+The signal "iDIOF2/O" is sourceless and has been removed.
+The signal "iDIOF3/O" is sourceless and has been removed.
+The signal "iDIOF4/O" is sourceless and has been removed.
+The signal "iDIOF5/O" is sourceless and has been removed.
+The signal "iDIOF6/O" is sourceless and has been removed.
+The signal "iDIOF7/O" is sourceless and has been removed.
+The signal "iDIOF8/O" is sourceless and has been removed.
+The signal "iDIOF9/O" is sourceless and has been removed.
+The signal "iDIOF10/O" is sourceless and has been removed.
+The signal "iDIOF11/O" is sourceless and has been removed.
+The signal "iDIOF12/O" is sourceless and has been removed.
+The signal "iDIOF13/O" is sourceless and has been removed.
+The signal "iDIOF14/O" is sourceless and has been removed.
+The signal "iUSER_AP/AngPosBy360/q<22>" is sourceless and has been removed.
+The signal "iUSER_AP/AngPosBy360/q<21>" is sourceless and has been removed.
+The signal "iUSER_AP/AngPosBy360/q<20>" is sourceless and has been removed.
+The signal "iUSER_AP/AngPosBy360/q<19>" is sourceless and has been removed.
+The signal "iUSER_AP/AngPosBy360/q<18>" is sourceless and has been removed.
+The signal "iUSER_AP/AngPosBy360/q<17>" is sourceless and has been removed.
+The signal "iUSER_AP/AngPosBy360/q<16>" is sourceless and has been removed.
+The signal "iUSER_AP/AngPosBy360/q<15>" is sourceless and has been removed.
+The signal "iUSER_AP/AngPosBy360/q<14>" is sourceless and has been removed.
+The signal "iUSER_AP/AngPosBy360/q<12>" is sourceless and has been removed.
+The signal "iUSER_AP/AngPosBy360/q<11>" is sourceless and has been removed.
+The signal "iUSER_AP/AngPosBy360/q<10>" is sourceless and has been removed.
+The signal "iUSER_AP/AngPosBy360/q<9>" is sourceless and has been removed.
+The signal "iUSER_AP/AngPosBy360/q<8>" is sourceless and has been removed.
+The signal "iUSER_AP/AngPosBy360/q<7>" is sourceless and has been removed.
+The signal "iUSER_AP/AngPosBy360/q<6>" is sourceless and has been removed.
+The signal "iUSER_AP/AngPosBy360/q<5>" is sourceless and has been removed.
+The signal "iUSER_AP/AngPosBy360/q<4>" is sourceless and has been removed.
+The signal "iUSER_AP/AngPosBy360/q<3>" is sourceless and has been removed.
+The signal "iUSER_AP/AngPosBy360/q<2>" is sourceless and has been removed.
+The signal "iUSER_AP/AngPosBy360/q<1>" is sourceless and has been removed.
+The signal "iUSER_AP/AngPosBy360/q<0>" is sourceless and has been removed.
+The signal "iUSER_AP/AngPosBy360/N1247" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/AngPosBy360/BU430" (FF) removed.
+  The signal "iUSER_AP/AngPosBy360/N205" is sourceless and has been removed.
+   Sourceless block "iUSER_AP/AngPosBy360/BU446" (BUF) removed.
+The signal "iUSER_AP/AngPosBy360/N1246" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/AngPosBy360/BU432" (FF) removed.
+  The signal "iUSER_AP/AngPosBy360/N204" is sourceless and has been removed.
+   Sourceless block "iUSER_AP/AngPosBy360/BU447" (BUF) removed.
+The signal "iUSER_AP/AngPosBy360/N728" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/AngPosBy360/BU434" (FF) removed.
+  The signal "iUSER_AP/AngPosBy360/N203" is sourceless and has been removed.
+   Sourceless block "iUSER_AP/AngPosBy360/BU448" (BUF) removed.
+The signal "iUSER_AP/AngPosBy360/N727" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/AngPosBy360/BU436" (FF) removed.
+  The signal "iUSER_AP/AngPosBy360/N202" is sourceless and has been removed.
+   Sourceless block "iUSER_AP/AngPosBy360/BU449" (BUF) removed.
+The signal "iUSER_AP/AngPosBy360/N726" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/AngPosBy360/BU438" (FF) removed.
+  The signal "iUSER_AP/AngPosBy360/N201" is sourceless and has been removed.
+   Sourceless block "iUSER_AP/AngPosBy360/BU450" (BUF) removed.
+The signal "iUSER_AP/AngPosBy360/N725" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/AngPosBy360/BU440" (FF) removed.
+  The signal "iUSER_AP/AngPosBy360/N200" is sourceless and has been removed.
+   Sourceless block "iUSER_AP/AngPosBy360/BU451" (BUF) removed.
+The signal "iUSER_AP/AngPosBy360/N5471" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/AngPosBy360/BU347" (FF) removed.
+  The signal "iUSER_AP/AngPosBy360/N199" is sourceless and has been removed.
+   Sourceless block "iUSER_AP/AngPosBy360/BU452" (BUF) removed.
+The signal "iUSER_AP/AngPosBy360/N5472" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/AngPosBy360/BU353" (FF) removed.
+  The signal "iUSER_AP/AngPosBy360/N198" is sourceless and has been removed.
+   Sourceless block "iUSER_AP/AngPosBy360/BU453" (BUF) removed.
+The signal "iUSER_AP/AngPosBy360/N5474" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/AngPosBy360/BU365" (FF) removed.
+  The signal "iUSER_AP/AngPosBy360/N196" is sourceless and has been removed.
+   Sourceless block "iUSER_AP/AngPosBy360/BU455" (BUF) removed.
+The signal "iUSER_AP/AngPosBy360/N5475" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/AngPosBy360/BU371" (FF) removed.
+  The signal "iUSER_AP/AngPosBy360/N195" is sourceless and has been removed.
+   Sourceless block "iUSER_AP/AngPosBy360/BU456" (BUF) removed.
+The signal "iUSER_AP/AngPosBy360/N5476" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/AngPosBy360/BU377" (FF) removed.
+  The signal "iUSER_AP/AngPosBy360/N194" is sourceless and has been removed.
+   Sourceless block "iUSER_AP/AngPosBy360/BU457" (BUF) removed.
+The signal "iUSER_AP/AngPosBy360/N5477" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/AngPosBy360/BU383" (FF) removed.
+  The signal "iUSER_AP/AngPosBy360/N193" is sourceless and has been removed.
+   Sourceless block "iUSER_AP/AngPosBy360/BU458" (BUF) removed.
+The signal "iUSER_AP/AngPosBy360/N5478" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/AngPosBy360/BU389" (FF) removed.
+  The signal "iUSER_AP/AngPosBy360/N192" is sourceless and has been removed.
+   Sourceless block "iUSER_AP/AngPosBy360/BU459" (BUF) removed.
+The signal "iUSER_AP/AngPosBy360/N5479" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/AngPosBy360/BU395" (FF) removed.
+  The signal "iUSER_AP/AngPosBy360/N191" is sourceless and has been removed.
+   Sourceless block "iUSER_AP/AngPosBy360/BU460" (BUF) removed.
+The signal "iUSER_AP/AngPosBy360/N5480" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/AngPosBy360/BU401" (FF) removed.
+  The signal "iUSER_AP/AngPosBy360/N190" is sourceless and has been removed.
+   Sourceless block "iUSER_AP/AngPosBy360/BU461" (BUF) removed.
+The signal "iUSER_AP/AngPosBy360/N5481" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/AngPosBy360/BU407" (FF) removed.
+  The signal "iUSER_AP/AngPosBy360/N189" is sourceless and has been removed.
+   Sourceless block "iUSER_AP/AngPosBy360/BU462" (BUF) removed.
+The signal "iUSER_AP/AngPosBy360/N5482" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/AngPosBy360/BU413" (FF) removed.
+  The signal "iUSER_AP/AngPosBy360/N188" is sourceless and has been removed.
+   Sourceless block "iUSER_AP/AngPosBy360/BU463" (BUF) removed.
+The signal "iUSER_AP/AngPosBy360/N207" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/AngPosBy360/BU444" (BUF) removed.
+The signal "iUSER_AP/AngPosBy360/N206" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/AngPosBy360/BU445" (BUF) removed.
+The signal "iUSER_AP/myOUTFIFO/N27922" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/myOUTFIFO/BU1323" (MUX) removed.
+  The signal "iUSER_AP/myOUTFIFO/BU1323/O" is sourceless and has been removed.
+   Sourceless block "iUSER_AP/myOUTFIFO/BU1323/MUXCY_L_BUF" (BUF) removed.
+    The signal "iUSER_AP/myOUTFIFO/BU1323/LO" is sourceless and has been removed.
+The signal "iUSER_AP/myOUTFIFO/N29644" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/myOUTFIFO/BU1610" (MUX) removed.
+  The signal "iUSER_AP/myOUTFIFO/BU1610/O" is sourceless and has been removed.
+   Sourceless block "iUSER_AP/myOUTFIFO/BU1610/MUXCY_L_BUF" (BUF) removed.
+    The signal "iUSER_AP/myOUTFIFO/BU1610/LO" is sourceless and has been removed.
+The signal "iUSER_AP/myOUTFIFO/BU1320/O" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/myOUTFIFO/BU1320/MUXCY_L_BUF" (BUF) removed.
+  The signal "iUSER_AP/myOUTFIFO/BU1320/LO" is sourceless and has been removed.
+The signal "iUSER_AP/myOUTFIFO/BU1320/S" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/myOUTFIFO/BU1320" (MUX) removed.
+The signal "iUSER_AP/myOUTFIFO/BU1607/O" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/myOUTFIFO/BU1607/MUXCY_L_BUF" (BUF) removed.
+  The signal "iUSER_AP/myOUTFIFO/BU1607/LO" is sourceless and has been removed.
+The signal "iUSER_AP/myOUTFIFO/BU1607/S" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/myOUTFIFO/BU1607" (MUX) removed.
+The signal "iUSER_AP/Q_LPFILTER/DOUT<32>" is sourceless and has been removed.
+The signal "iUSER_AP/Q_LPFILTER/DOUT<31>" is sourceless and has been removed.
+The signal "iUSER_AP/Q_LPFILTER/DOUT<13>" is sourceless and has been removed.
+The signal "iUSER_AP/Q_LPFILTER/DOUT<12>" is sourceless and has been removed.
+The signal "iUSER_AP/Q_LPFILTER/DOUT<11>" is sourceless and has been removed.
+The signal "iUSER_AP/Q_LPFILTER/DOUT<10>" is sourceless and has been removed.
+The signal "iUSER_AP/Q_LPFILTER/DOUT<9>" is sourceless and has been removed.
+The signal "iUSER_AP/Q_LPFILTER/DOUT<8>" is sourceless and has been removed.
+The signal "iUSER_AP/Q_LPFILTER/DOUT<7>" is sourceless and has been removed.
+The signal "iUSER_AP/Q_LPFILTER/DOUT<6>" is sourceless and has been removed.
+The signal "iUSER_AP/Q_LPFILTER/DOUT<5>" is sourceless and has been removed.
+The signal "iUSER_AP/Q_LPFILTER/DOUT<4>" is sourceless and has been removed.
+The signal "iUSER_AP/Q_LPFILTER/DOUT<3>" is sourceless and has been removed.
+The signal "iUSER_AP/Q_LPFILTER/DOUT<2>" is sourceless and has been removed.
+The signal "iUSER_AP/Q_LPFILTER/DOUT<1>" is sourceless and has been removed.
+The signal "iUSER_AP/Q_LPFILTER/DOUT<0>" is sourceless and has been removed.
+The signal "iUSER_AP/Q_LPFILTER/N2215" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/Q_LPFILTER/BU812" (FF) removed.
+  The signal "iUSER_AP/Q_LPFILTER/N2198" is sourceless and has been removed.
+The signal "iUSER_AP/Q_LPFILTER/N3748" is sourceless and has been removed.
+The signal "iUSER_AP/Q_LPFILTER/N3867" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/Q_LPFILTER/BU1557" (FF) removed.
+  The signal "iUSER_AP/Q_LPFILTER/N3850" is sourceless and has been removed.
+The signal "iUSER_AP/Q_LPFILTER/N5768" is sourceless and has been removed.
+The signal "iUSER_AP/Q_LPFILTER/N5894" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/Q_LPFILTER/BU423" (FF) removed.
+  The signal "iUSER_AP/Q_LPFILTER/N5877" is sourceless and has been removed.
+The signal "iUSER_AP/Q_LPFILTER/N7621" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/Q_LPFILTER/BU1193" (FF) removed.
+  The signal "iUSER_AP/Q_LPFILTER/N7604" is sourceless and has been removed.
+The signal "iUSER_AP/Q_LPFILTER/N8676" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/Q_LPFILTER/BU2103" (FF) removed.
+  The signal "iUSER_AP/Q_LPFILTER/N8675" is sourceless and has been removed.
+   Sourceless block "iUSER_AP/Q_LPFILTER/BU2136" (FF) removed.
+ Sourceless block "iUSER_AP/Q_LPFILTER/BU2138" (FF) removed.
+The signal "iUSER_AP/Q_LPFILTER/N8677" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/Q_LPFILTER/BU2105" (FF) removed.
+ Sourceless block "iUSER_AP/Q_LPFILTER/BU2140" (FF) removed.
+The signal "iUSER_AP/Q_LPFILTER/N8678" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/Q_LPFILTER/BU2107" (FF) removed.
+ Sourceless block "iUSER_AP/Q_LPFILTER/BU2142" (FF) removed.
+The signal "iUSER_AP/Q_LPFILTER/N8679" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/Q_LPFILTER/BU2109" (FF) removed.
+ Sourceless block "iUSER_AP/Q_LPFILTER/BU2144" (FF) removed.
+The signal "iUSER_AP/Q_LPFILTER/N8680" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/Q_LPFILTER/BU2111" (FF) removed.
+ Sourceless block "iUSER_AP/Q_LPFILTER/BU2146" (FF) removed.
+The signal "iUSER_AP/Q_LPFILTER/N8681" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/Q_LPFILTER/BU2113" (FF) removed.
+ Sourceless block "iUSER_AP/Q_LPFILTER/BU2148" (FF) removed.
+The signal "iUSER_AP/Q_LPFILTER/N8682" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/Q_LPFILTER/BU2115" (FF) removed.
+ Sourceless block "iUSER_AP/Q_LPFILTER/BU2150" (FF) removed.
+The signal "iUSER_AP/Q_LPFILTER/N8683" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/Q_LPFILTER/BU2117" (FF) removed.
+ Sourceless block "iUSER_AP/Q_LPFILTER/BU2152" (FF) removed.
+The signal "iUSER_AP/Q_LPFILTER/N8684" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/Q_LPFILTER/BU2119" (FF) removed.
+ Sourceless block "iUSER_AP/Q_LPFILTER/BU2154" (FF) removed.
+The signal "iUSER_AP/Q_LPFILTER/N8685" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/Q_LPFILTER/BU2121" (FF) removed.
+ Sourceless block "iUSER_AP/Q_LPFILTER/BU2156" (FF) removed.
+The signal "iUSER_AP/Q_LPFILTER/N8686" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/Q_LPFILTER/BU2123" (FF) removed.
+ Sourceless block "iUSER_AP/Q_LPFILTER/BU2158" (FF) removed.
+The signal "iUSER_AP/Q_LPFILTER/N8687" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/Q_LPFILTER/BU2125" (FF) removed.
+ Sourceless block "iUSER_AP/Q_LPFILTER/BU2160" (FF) removed.
+The signal "iUSER_AP/Q_LPFILTER/N8688" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/Q_LPFILTER/BU2127" (FF) removed.
+ Sourceless block "iUSER_AP/Q_LPFILTER/BU2162" (FF) removed.
+The signal "iUSER_AP/I_LPFILTER/DOUT<32>" is sourceless and has been removed.
+The signal "iUSER_AP/I_LPFILTER/DOUT<31>" is sourceless and has been removed.
+The signal "iUSER_AP/I_LPFILTER/DOUT<13>" is sourceless and has been removed.
+The signal "iUSER_AP/I_LPFILTER/DOUT<12>" is sourceless and has been removed.
+The signal "iUSER_AP/I_LPFILTER/DOUT<11>" is sourceless and has been removed.
+The signal "iUSER_AP/I_LPFILTER/DOUT<10>" is sourceless and has been removed.
+The signal "iUSER_AP/I_LPFILTER/DOUT<9>" is sourceless and has been removed.
+The signal "iUSER_AP/I_LPFILTER/DOUT<8>" is sourceless and has been removed.
+The signal "iUSER_AP/I_LPFILTER/DOUT<7>" is sourceless and has been removed.
+The signal "iUSER_AP/I_LPFILTER/DOUT<6>" is sourceless and has been removed.
+The signal "iUSER_AP/I_LPFILTER/DOUT<5>" is sourceless and has been removed.
+The signal "iUSER_AP/I_LPFILTER/DOUT<4>" is sourceless and has been removed.
+The signal "iUSER_AP/I_LPFILTER/DOUT<3>" is sourceless and has been removed.
+The signal "iUSER_AP/I_LPFILTER/DOUT<2>" is sourceless and has been removed.
+The signal "iUSER_AP/I_LPFILTER/DOUT<1>" is sourceless and has been removed.
+The signal "iUSER_AP/I_LPFILTER/DOUT<0>" is sourceless and has been removed.
+The signal "iUSER_AP/I_LPFILTER/N2215" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/I_LPFILTER/BU812" (FF) removed.
+  The signal "iUSER_AP/I_LPFILTER/N2198" is sourceless and has been removed.
+The signal "iUSER_AP/I_LPFILTER/N3748" is sourceless and has been removed.
+The signal "iUSER_AP/I_LPFILTER/N3867" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/I_LPFILTER/BU1557" (FF) removed.
+  The signal "iUSER_AP/I_LPFILTER/N3850" is sourceless and has been removed.
+The signal "iUSER_AP/I_LPFILTER/N5768" is sourceless and has been removed.
+The signal "iUSER_AP/I_LPFILTER/N5894" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/I_LPFILTER/BU423" (FF) removed.
+  The signal "iUSER_AP/I_LPFILTER/N5877" is sourceless and has been removed.
+The signal "iUSER_AP/I_LPFILTER/N7621" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/I_LPFILTER/BU1193" (FF) removed.
+  The signal "iUSER_AP/I_LPFILTER/N7604" is sourceless and has been removed.
+The signal "iUSER_AP/I_LPFILTER/N8676" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/I_LPFILTER/BU2103" (FF) removed.
+  The signal "iUSER_AP/I_LPFILTER/N8675" is sourceless and has been removed.
+   Sourceless block "iUSER_AP/I_LPFILTER/BU2136" (FF) removed.
+ Sourceless block "iUSER_AP/I_LPFILTER/BU2138" (FF) removed.
+The signal "iUSER_AP/I_LPFILTER/N8677" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/I_LPFILTER/BU2105" (FF) removed.
+ Sourceless block "iUSER_AP/I_LPFILTER/BU2140" (FF) removed.
+The signal "iUSER_AP/I_LPFILTER/N8678" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/I_LPFILTER/BU2107" (FF) removed.
+ Sourceless block "iUSER_AP/I_LPFILTER/BU2142" (FF) removed.
+The signal "iUSER_AP/I_LPFILTER/N8679" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/I_LPFILTER/BU2109" (FF) removed.
+ Sourceless block "iUSER_AP/I_LPFILTER/BU2144" (FF) removed.
+The signal "iUSER_AP/I_LPFILTER/N8680" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/I_LPFILTER/BU2111" (FF) removed.
+ Sourceless block "iUSER_AP/I_LPFILTER/BU2146" (FF) removed.
+The signal "iUSER_AP/I_LPFILTER/N8681" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/I_LPFILTER/BU2113" (FF) removed.
+ Sourceless block "iUSER_AP/I_LPFILTER/BU2148" (FF) removed.
+The signal "iUSER_AP/I_LPFILTER/N8682" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/I_LPFILTER/BU2115" (FF) removed.
+ Sourceless block "iUSER_AP/I_LPFILTER/BU2150" (FF) removed.
+The signal "iUSER_AP/I_LPFILTER/N8683" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/I_LPFILTER/BU2117" (FF) removed.
+ Sourceless block "iUSER_AP/I_LPFILTER/BU2152" (FF) removed.
+The signal "iUSER_AP/I_LPFILTER/N8684" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/I_LPFILTER/BU2119" (FF) removed.
+ Sourceless block "iUSER_AP/I_LPFILTER/BU2154" (FF) removed.
+The signal "iUSER_AP/I_LPFILTER/N8685" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/I_LPFILTER/BU2121" (FF) removed.
+ Sourceless block "iUSER_AP/I_LPFILTER/BU2156" (FF) removed.
+The signal "iUSER_AP/I_LPFILTER/N8686" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/I_LPFILTER/BU2123" (FF) removed.
+ Sourceless block "iUSER_AP/I_LPFILTER/BU2158" (FF) removed.
+The signal "iUSER_AP/I_LPFILTER/N8687" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/I_LPFILTER/BU2125" (FF) removed.
+ Sourceless block "iUSER_AP/I_LPFILTER/BU2160" (FF) removed.
+The signal "iUSER_AP/I_LPFILTER/N8688" is sourceless and has been removed.
+ Sourceless block "iUSER_AP/I_LPFILTER/BU2127" (FF) removed.
+ Sourceless block "iUSER_AP/I_LPFILTER/BU2162" (FF) removed.
+
+The trimmed logic reported below is either:
+   1. part of a cycle
+   2. part of disabled logic
+   3. a side-effect of other trimmed logic
+
+The signal "dif_ae<0>" is unused and has been removed.
+ Unused block "dif_ae<0>" (PAD) removed.
+The signal "dif_ae<3>" is unused and has been removed.
+ Unused block "dif_ae<3>" (PAD) removed.
+The signal "dif_ae<4>" is unused and has been removed.
+ Unused block "dif_ae<4>" (PAD) removed.
+The signal "dif_ae<5>" is unused and has been removed.
+ Unused block "dif_ae<5>" (PAD) removed.
+The signal "dif_ae_0_IBUF" is unused and has been removed.
+ Unused block "dif_ae_0_IBUF" (BUF) removed.
+The signal "dif_ae_3_IBUF" is unused and has been removed.
+ Unused block "dif_ae_3_IBUF" (BUF) removed.
+The signal "dif_ae_4_IBUF" is unused and has been removed.
+ Unused block "dif_ae_4_IBUF" (BUF) removed.
+The signal "dif_ae_5_IBUF" is unused and has been removed.
+ Unused block "dif_ae_5_IBUF" (BUF) removed.
+The signal "dif_ef<0>" is unused and has been removed.
+ Unused block "dif_ef<0>" (PAD) removed.
+The signal "dif_ef<3>" is unused and has been removed.
+ Unused block "dif_ef<3>" (PAD) removed.
+The signal "dif_ef<4>" is unused and has been removed.
+ Unused block "dif_ef<4>" (PAD) removed.
+The signal "dif_ef<5>" is unused and has been removed.
+ Unused block "dif_ef<5>" (PAD) removed.
+The signal "dif_ef_0_IBUF" is unused and has been removed.
+ Unused block "dif_ef_0_IBUF" (BUF) removed.
+The signal "dif_ef_3_IBUF" is unused and has been removed.
+ Unused block "dif_ef_3_IBUF" (BUF) removed.
+The signal "dif_ef_4_IBUF" is unused and has been removed.
+ Unused block "dif_ef_4_IBUF" (BUF) removed.
+The signal "dif_ef_5_IBUF" is unused and has been removed.
+ Unused block "dif_ef_5_IBUF" (BUF) removed.
+The signal "dio_a<10>" is unused and has been removed.
+ Unused block "dio_a<10>" (PAD) removed.
+ Unused block "iDIOA10/OBUFT" (TRI) removed.
+The signal "dio_a<11>" is unused and has been removed.
+ Unused block "dio_a<11>" (PAD) removed.
+ Unused block "iDIOA11/OBUFT" (TRI) removed.
+The signal "dio_a<12>" is unused and has been removed.
+ Unused block "dio_a<12>" (PAD) removed.
+ Unused block "iDIOA12/OBUFT" (TRI) removed.
+The signal "dio_a<13>" is unused and has been removed.
+ Unused block "dio_a<13>" (PAD) removed.
+ Unused block "iDIOA13/OBUFT" (TRI) removed.
+The signal "dio_a<14>" is unused and has been removed.
+ Unused block "dio_a<14>" (PAD) removed.
+ Unused block "iDIOA14/OBUFT" (TRI) removed.
+The signal "dio_a<3>" is unused and has been removed.
+ Unused block "dio_a<3>" (PAD) removed.
+ Unused block "iDIOA3/OBUFT" (TRI) removed.
+The signal "dio_a<4>" is unused and has been removed.
+ Unused block "dio_a<4>" (PAD) removed.
+ Unused block "iDIOA4/OBUFT" (TRI) removed.
+The signal "dio_a<5>" is unused and has been removed.
+ Unused block "dio_a<5>" (PAD) removed.
+ Unused block "iDIOA5/OBUFT" (TRI) removed.
+The signal "dio_a<6>" is unused and has been removed.
+ Unused block "dio_a<6>" (PAD) removed.
+ Unused block "iDIOA6/OBUFT" (TRI) removed.
+The signal "dio_a<7>" is unused and has been removed.
+ Unused block "dio_a<7>" (PAD) removed.
+ Unused block "iDIOA7/OBUFT" (TRI) removed.
+The signal "dio_a<8>" is unused and has been removed.
+ Unused block "dio_a<8>" (PAD) removed.
+ Unused block "iDIOA8/OBUFT" (TRI) removed.
+The signal "dio_a<9>" is unused and has been removed.
+ Unused block "dio_a<9>" (PAD) removed.
+ Unused block "iDIOA9/OBUFT" (TRI) removed.
+The signal "dio_b<0>" is unused and has been removed.
+ Unused block "dio_b<0>" (PAD) removed.
+ Unused block "iDIOB0/OBUFT" (TRI) removed.
+The signal "dio_b<10>" is unused and has been removed.
+ Unused block "dio_b<10>" (PAD) removed.
+ Unused block "iDIOB10/OBUFT" (TRI) removed.
+The signal "dio_b<11>" is unused and has been removed.
+ Unused block "dio_b<11>" (PAD) removed.
+ Unused block "iDIOB11/OBUFT" (TRI) removed.
+The signal "dio_b<12>" is unused and has been removed.
+ Unused block "dio_b<12>" (PAD) removed.
+ Unused block "iDIOB12/OBUFT" (TRI) removed.
+The signal "dio_b<13>" is unused and has been removed.
+ Unused block "dio_b<13>" (PAD) removed.
+ Unused block "iDIOB13/OBUFT" (TRI) removed.
+The signal "dio_b<14>" is unused and has been removed.
+ Unused block "dio_b<14>" (PAD) removed.
+ Unused block "iDIOB14/OBUFT" (TRI) removed.
+The signal "dio_b<1>" is unused and has been removed.
+ Unused block "dio_b<1>" (PAD) removed.
+ Unused block "iDIOB1/OBUFT" (TRI) removed.
+The signal "dio_b<2>" is unused and has been removed.
+ Unused block "dio_b<2>" (PAD) removed.
+ Unused block "iDIOB2/OBUFT" (TRI) removed.
+The signal "dio_b<3>" is unused and has been removed.
+ Unused block "dio_b<3>" (PAD) removed.
+ Unused block "iDIOB3/OBUFT" (TRI) removed.
+The signal "dio_b<4>" is unused and has been removed.
+ Unused block "dio_b<4>" (PAD) removed.
+ Unused block "iDIOB4/OBUFT" (TRI) removed.
+The signal "dio_b<5>" is unused and has been removed.
+ Unused block "dio_b<5>" (PAD) removed.
+ Unused block "iDIOB5/OBUFT" (TRI) removed.
+The signal "dio_b<6>" is unused and has been removed.
+ Unused block "dio_b<6>" (PAD) removed.
+ Unused block "iDIOB6/OBUFT" (TRI) removed.
+The signal "dio_b<7>" is unused and has been removed.
+ Unused block "dio_b<7>" (PAD) removed.
+ Unused block "iDIOB7/OBUFT" (TRI) removed.
+The signal "dio_b<8>" is unused and has been removed.
+ Unused block "dio_b<8>" (PAD) removed.
+ Unused block "iDIOB8/OBUFT" (TRI) removed.
+The signal "dio_b<9>" is unused and has been removed.
+ Unused block "dio_b<9>" (PAD) removed.
+ Unused block "iDIOB9/OBUFT" (TRI) removed.
+The signal "iRD/AE_DEL<0>" is unused and has been removed.
+ Unused block "iRD/iAE6" (FF) removed.
+  The signal "iRD/AE_IFF<0>" is unused and has been removed.
+   Unused block "iRD/iAE0" (FF) removed.
+The signal "iRD/AE_DEL<3>" is unused and has been removed.
+ Unused block "iRD/iAE9" (FF) removed.
+  The signal "iRD/AE_IFF<3>" is unused and has been removed.
+   Unused block "iRD/iAE3" (FF) removed.
+The signal "iRD/AE_DEL<4>" is unused and has been removed.
+ Unused block "iRD/iAE10" (FF) removed.
+  The signal "iRD/AE_IFF<4>" is unused and has been removed.
+   Unused block "iRD/iAE4" (FF) removed.
+The signal "iRD/AE_DEL<5>" is unused and has been removed.
+ Unused block "iRD/iAE11" (FF) removed.
+  The signal "iRD/AE_IFF<5>" is unused and has been removed.
+   Unused block "iRD/iAE5" (FF) removed.
+The signal "iRD/AE_REG<0>" is unused and has been removed.
+ Unused block "iRD/AE_REG<0>1" (ROM) removed.
+The signal "iRD/AE_REG<3>" is unused and has been removed.
+ Unused block "iRD/AE_REG<3>1" (ROM) removed.
+The signal "iRD/AE_REG<4>" is unused and has been removed.
+ Unused block "iRD/AE_REG<4>1" (ROM) removed.
+The signal "iRD/AE_REG<5>" is unused and has been removed.
+ Unused block "iRD/AE_REG<5>1" (ROM) removed.
+The signal "iRD/CMUX_A<0>" is unused and has been removed.
+The signal "iRD/CMUX_B<3>" is unused and has been removed.
+ Unused block "iRD/iCMB3/LUT4_L_BUF" (BUF) removed.
+  The signal "iRD/iCMB3/O" is unused and has been removed.
+   Unused block "iRD/iCMB3" (ROM) removed.
+    The signal "iRD/EF_REG<3>" is unused and has been removed.
+     Unused block "iRD/iEF3" (FF) removed.
+The signal "iRD/CMUX_B<4>" is unused and has been removed.
+ Unused block "iRD/iCMB4/LUT4_L_BUF" (BUF) removed.
+  The signal "iRD/iCMB4/O" is unused and has been removed.
+   Unused block "iRD/iCMB4" (ROM) removed.
+    The signal "iRD/EF_REG<4>" is unused and has been removed.
+     Unused block "iRD/iEF4" (FF) removed.
+The signal "iRD/EF_REG<0>" is unused and has been removed.
+ Unused block "iRD/iEF0" (FF) removed.
+The signal "iRD/EF_REG<5>" is unused and has been removed.
+ Unused block "iRD/iEF5" (FF) removed.
+The signal "iRD/RD_OK<0>" is unused and has been removed.
+ Unused block "iRD/iRD_OK0" (ROM) removed.
+  The signal "iRD/RD_WA<0>" is unused and has been removed.
+   Unused block "iRD/iRD_WA0" (FF) removed.
+    The signal "iRD/RD_WAc<0>" is unused and has been removed.
+     Unused block "iRD/iRDWA0" (ROM) removed.
+      The signal "iRD/RENc<0>" is unused and has been removed.
+      The signal "iRD/RD_WB<0>" is unused and has been removed.
+       Unused block "iRD/iRD_WB0" (FF) removed.
+        The signal "iRD/RD_WBc<0>" is unused and has been removed.
+         Unused block "iRD/iRDWB0" (ROM) removed.
+The signal "iRD/RD_OK<3>" is unused and has been removed.
+ Unused block "iRD/iRD_OK3" (ROM) removed.
+  The signal "iRD/RD_WA<3>" is unused and has been removed.
+   Unused block "iRD/iRD_WA3" (FF) removed.
+    The signal "iRD/RD_WAc<3>" is unused and has been removed.
+     Unused block "iRD/iRDWA3" (ROM) removed.
+      The signal "iRD/RENc<3>" is unused and has been removed.
+      The signal "iRD/RD_WB<3>" is unused and has been removed.
+       Unused block "iRD/iRD_WB3" (FF) removed.
+        The signal "iRD/RD_WBc<3>" is unused and has been removed.
+         Unused block "iRD/iRDWB3" (ROM) removed.
+The signal "iRD/RD_OK<4>" is unused and has been removed.
+ Unused block "iRD/iRD_OK4" (ROM) removed.
+  The signal "iRD/RD_WA<4>" is unused and has been removed.
+   Unused block "iRD/iRD_WA4" (FF) removed.
+    The signal "iRD/RD_WAc<4>" is unused and has been removed.
+     Unused block "iRD/iRDWA4" (ROM) removed.
+      The signal "iRD/RENc<4>" is unused and has been removed.
+      The signal "iRD/RD_WB<4>" is unused and has been removed.
+       Unused block "iRD/iRD_WB4" (FF) removed.
+        The signal "iRD/RD_WBc<4>" is unused and has been removed.
+         Unused block "iRD/iRDWB4" (ROM) removed.
+The signal "iRD/RD_OK<5>" is unused and has been removed.
+ Unused block "iRD/iRD_OK5" (ROM) removed.
+  The signal "iRD/RD_WA<5>" is unused and has been removed.
+   Unused block "iRD/iRD_WA5" (FF) removed.
+    The signal "iRD/RD_WAc<5>" is unused and has been removed.
+     Unused block "iRD/iRDWA5" (ROM) removed.
+      The signal "iRD/RENc<5>" is unused and has been removed.
+      The signal "iRD/RD_WB<5>" is unused and has been removed.
+       Unused block "iRD/iRD_WB5" (FF) removed.
+        The signal "iRD/RD_WBc<5>" is unused and has been removed.
+         Unused block "iRD/iRDWB5" (ROM) removed.
+The signal "iRD/READ_RQ_DL1<0>" is unused and has been removed.
+The signal "iRD/READ_RQ_DL1<3>" is unused and has been removed.
+The signal "iRD/READ_RQ_DL1<4>" is unused and has been removed.
+The signal "iRD/READ_RQ_DL1<5>" is unused and has been removed.
+The signal "iRD/READ_RQ_DL2<0>" is unused and has been removed.
+The signal "iRD/READ_RQ_DL2<3>" is unused and has been removed.
+The signal "iRD/READ_RQ_DL2<4>" is unused and has been removed.
+The signal "iRD/READ_RQ_DL2<5>" is unused and has been removed.
+The signal "iRD/SPECIALc<0>" is unused and has been removed.
+The signal "iRD/SPECIALc<3>" is unused and has been removed.
+The signal "iRD/SPECIALc<4>" is unused and has been removed.
+The signal "iRD/SPECIALc<5>" is unused and has been removed.
+The signal "iRD/Z<0>" is unused and has been removed.
+ Unused block "iRD/iZ0" (ROM) removed.
+The signal "iRD/Z<3>" is unused and has been removed.
+ Unused block "iRD/iZ3" (ROM) removed.
+The signal "iRD/Z<4>" is unused and has been removed.
+ Unused block "iRD/iZ4" (ROM) removed.
+The signal "iRD/Z<5>" is unused and has been removed.
+ Unused block "iRD/iZ5" (ROM) removed.
+The signal "vinit" is unused and has been removed.
+ Unused block "vinit_OBUFT" (TRI) removed.
+The signal "iRD/iCMUX5/O" is unused and has been removed.
+ Unused block "iRD/iCMUX5" (MUX) removed.
+The signal "iRD/iCMUX4/O" is unused and has been removed.
+ Unused block "iRD/iCMUX4" (MUX) removed.
+The signal "iRD/iCMUX3/O" is unused and has been removed.
+ Unused block "iRD/iCMUX3" (MUX) removed.
+The signal "iRD/iCMB2/O" is unused and has been removed.
+ Unused block "iRD/iCMB2" (ROM) removed.
+Unused block "iDIOA0/IBUF" (BUF) removed.
+Unused block "iDIOA1/OBUFT" (TRI) removed.
+Unused block "iDIOA10/IBUF" (BUF) removed.
+Unused block "iDIOA11/IBUF" (BUF) removed.
+Unused block "iDIOA12/IBUF" (BUF) removed.
+Unused block "iDIOA13/IBUF" (BUF) removed.
+Unused block "iDIOA14/IBUF" (BUF) removed.
+Unused block "iDIOA2/OBUFT" (TRI) removed.
+Unused block "iDIOA3/IBUF" (BUF) removed.
+Unused block "iDIOA4/IBUF" (BUF) removed.
+Unused block "iDIOA5/IBUF" (BUF) removed.
+Unused block "iDIOA6/IBUF" (BUF) removed.
+Unused block "iDIOA7/IBUF" (BUF) removed.
+Unused block "iDIOA8/IBUF" (BUF) removed.
+Unused block "iDIOA9/IBUF" (BUF) removed.
+Unused block "iDIOB0/IBUF" (BUF) removed.
+Unused block "iDIOB1/IBUF" (BUF) removed.
+Unused block "iDIOB10/IBUF" (BUF) removed.
+Unused block "iDIOB11/IBUF" (BUF) removed.
+Unused block "iDIOB12/IBUF" (BUF) removed.
+Unused block "iDIOB13/IBUF" (BUF) removed.
+Unused block "iDIOB14/IBUF" (BUF) removed.
+Unused block "iDIOB2/IBUF" (BUF) removed.
+Unused block "iDIOB3/IBUF" (BUF) removed.
+Unused block "iDIOB4/IBUF" (BUF) removed.
+Unused block "iDIOB5/IBUF" (BUF) removed.
+Unused block "iDIOB6/IBUF" (BUF) removed.
+Unused block "iDIOB7/IBUF" (BUF) removed.
+Unused block "iDIOB8/IBUF" (BUF) removed.
+Unused block "iDIOB9/IBUF" (BUF) removed.
+Unused block "iDIOC0/IBUF" (BUF) removed.
+Unused block "iDIOC1/IBUF" (BUF) removed.
+Unused block "iDIOC10/IBUF" (BUF) removed.
+Unused block "iDIOC11/IBUF" (BUF) removed.
+Unused block "iDIOC12/IBUF" (BUF) removed.
+Unused block "iDIOC13/IBUF" (BUF) removed.
+Unused block "iDIOC14/IBUF" (BUF) removed.
+Unused block "iDIOC2/IBUF" (BUF) removed.
+Unused block "iDIOC3/IBUF" (BUF) removed.
+Unused block "iDIOC4/IBUF" (BUF) removed.
+Unused block "iDIOC5/IBUF" (BUF) removed.
+Unused block "iDIOC6/IBUF" (BUF) removed.
+Unused block "iDIOC7/IBUF" (BUF) removed.
+Unused block "iDIOC8/IBUF" (BUF) removed.
+Unused block "iDIOC9/IBUF" (BUF) removed.
+Unused block "iDIOD0/IBUF" (BUF) removed.
+Unused block "iDIOD1/IBUF" (BUF) removed.
+Unused block "iDIOD10/IBUF" (BUF) removed.
+Unused block "iDIOD11/IBUF" (BUF) removed.
+Unused block "iDIOD12/IBUF" (BUF) removed.
+Unused block "iDIOD13/IBUF" (BUF) removed.
+Unused block "iDIOD14/IBUF" (BUF) removed.
+Unused block "iDIOD2/IBUF" (BUF) removed.
+Unused block "iDIOD3/IBUF" (BUF) removed.
+Unused block "iDIOD4/IBUF" (BUF) removed.
+Unused block "iDIOD5/IBUF" (BUF) removed.
+Unused block "iDIOD6/IBUF" (BUF) removed.
+Unused block "iDIOD7/IBUF" (BUF) removed.
+Unused block "iDIOD8/IBUF" (BUF) removed.
+Unused block "iDIOD9/IBUF" (BUF) removed.
+Unused block "iDIOE0/IBUF" (BUF) removed.
+Unused block "iDIOE1/IBUF" (BUF) removed.
+Unused block "iDIOE10/IBUF" (BUF) removed.
+Unused block "iDIOE11/IBUF" (BUF) removed.
+Unused block "iDIOE12/IBUF" (BUF) removed.
+Unused block "iDIOE13/IBUF" (BUF) removed.
+Unused block "iDIOE14/IBUF" (BUF) removed.
+Unused block "iDIOE2/IBUF" (BUF) removed.
+Unused block "iDIOE3/IBUF" (BUF) removed.
+Unused block "iDIOE4/IBUF" (BUF) removed.
+Unused block "iDIOE5/IBUF" (BUF) removed.
+Unused block "iDIOE6/IBUF" (BUF) removed.
+Unused block "iDIOE7/IBUF" (BUF) removed.
+Unused block "iDIOE8/IBUF" (BUF) removed.
+Unused block "iDIOE9/IBUF" (BUF) removed.
+Unused block "iDIOF0/IBUF" (BUF) removed.
+Unused block "iDIOF1/IBUF" (BUF) removed.
+Unused block "iDIOF10/IBUF" (BUF) removed.
+Unused block "iDIOF11/IBUF" (BUF) removed.
+Unused block "iDIOF12/IBUF" (BUF) removed.
+Unused block "iDIOF13/IBUF" (BUF) removed.
+Unused block "iDIOF14/IBUF" (BUF) removed.
+Unused block "iDIOF2/IBUF" (BUF) removed.
+Unused block "iDIOF3/IBUF" (BUF) removed.
+Unused block "iDIOF4/IBUF" (BUF) removed.
+Unused block "iDIOF5/IBUF" (BUF) removed.
+Unused block "iDIOF6/IBUF" (BUF) removed.
+Unused block "iDIOF7/IBUF" (BUF) removed.
+Unused block "iDIOF8/IBUF" (BUF) removed.
+Unused block "iDIOF9/IBUF" (BUF) removed.
+Unused block "iUMI0/OBUFT" (TRI) removed.
+Unused block "iUMI1/IBUF" (BUF) removed.
+Unused block "iUMI2/IBUF" (BUF) removed.
+Unused block "iUMI3/IBUF" (BUF) removed.
+Unused block "iUSER_AP/AngPosBy360/BU169" (XOR) removed.
+Unused block "iUSER_AP/AngPosBy360/BU173" (XOR) removed.
+Unused block "iUSER_AP/AngPosBy360/BU177" (XOR) removed.
+Unused block "iUSER_AP/AngPosBy360/BU181" (XOR) removed.
+Unused block "iUSER_AP/AngPosBy360/BU345" (XOR) removed.
+Unused block "iUSER_AP/AngPosBy360/BU351" (XOR) removed.
+Unused block "iUSER_AP/AngPosBy360/BU426" (FF) removed.
+Unused block "iUSER_AP/AngPosBy360/BU428" (FF) removed.
+Unused block "iUSER_AP/AngPosBy360/BU441" (BUF) removed.
+Unused block "iUSER_AP/AngPosBy360/BU442" (BUF) removed.
+Unused block "iUSER_AP/AngPosBy360/BU443" (BUF) removed.
+Unused block "iUSER_AP/AngPosBy360/BU78" (ROM) removed.
+Unused block "iUSER_AP/AngPosBy360/BU82" (ROM) removed.
+Unused block "iUSER_AP/I_LPFILTER/BU1191" () removed.
+Unused block "iUSER_AP/I_LPFILTER/BU1195" () removed.
+Unused block "iUSER_AP/I_LPFILTER/BU1555" () removed.
+Unused block "iUSER_AP/I_LPFILTER/BU1559" () removed.
+Unused block "iUSER_AP/I_LPFILTER/BU2129" (FF) removed.
+Unused block "iUSER_AP/I_LPFILTER/BU2199" (FF) removed.
+Unused block "iUSER_AP/I_LPFILTER/BU2201" (FF) removed.
+Unused block "iUSER_AP/I_LPFILTER/BU421" () removed.
+Unused block "iUSER_AP/I_LPFILTER/BU425" () removed.
+Unused block "iUSER_AP/I_LPFILTER/BU810" () removed.
+Unused block "iUSER_AP/I_LPFILTER/BU814" () removed.
+Unused block "iUSER_AP/Q_LPFILTER/BU1191" () removed.
+Unused block "iUSER_AP/Q_LPFILTER/BU1195" () removed.
+Unused block "iUSER_AP/Q_LPFILTER/BU1555" () removed.
+Unused block "iUSER_AP/Q_LPFILTER/BU1559" () removed.
+Unused block "iUSER_AP/Q_LPFILTER/BU2129" (FF) removed.
+Unused block "iUSER_AP/Q_LPFILTER/BU2199" (FF) removed.
+Unused block "iUSER_AP/Q_LPFILTER/BU2201" (FF) removed.
+Unused block "iUSER_AP/Q_LPFILTER/BU421" () removed.
+Unused block "iUSER_AP/Q_LPFILTER/BU425" () removed.
+Unused block "iUSER_AP/Q_LPFILTER/BU810" () removed.
+Unused block "iUSER_AP/Q_LPFILTER/BU814" () removed.
+Unused block "iUSER_AP/iMyCounter/GND" (ZERO) removed.
+Unused block "iUSER_AP/iMyCounter/VCC" (ONE) removed.
+Unused block "iUSER_AP/myOUTFIFO/BU1322" (ROM) removed.
+Unused block "iUSER_AP/myOUTFIFO/BU1609" (ROM) removed.
+Unused block "vcs_IOBUF/OBUFT" (TRI) removed.
+Unused block "vinit" (PAD) removed.
+Unused block "vwrite_IOBUF/OBUFT" (TRI) removed.
+Unused block "iUSER_AP/AngPosBy360/BU411" (XOR) removed.
+Unused block "iUSER_AP/AngPosBy360/BU405" (XOR) removed.
+Unused block "iUSER_AP/AngPosBy360/BU399" (XOR) removed.
+Unused block "iUSER_AP/AngPosBy360/BU393" (XOR) removed.
+Unused block "iUSER_AP/AngPosBy360/BU387" (XOR) removed.
+Unused block "iUSER_AP/AngPosBy360/BU381" (XOR) removed.
+Unused block "iUSER_AP/AngPosBy360/BU375" (XOR) removed.
+Unused block "iUSER_AP/AngPosBy360/BU369" (XOR) removed.
+Unused block "iUSER_AP/AngPosBy360/BU363" (XOR) removed.
+
+Optimized Block(s):
+TYPE 		BLOCK
+GND 		XST_GND
+VCC 		XST_VCC
+INV 		iRD/DIF_OEN<0>1_INV_0
+INV 		iRD/DIF_OEN<3>1_INV_0
+INV 		iRD/DIF_OEN<4>1_INV_0
+LUT2 		iRD/SPECIALc<0>1
+LUT2 		iRD/SPECIALc<3>1
+LUT2 		iRD/SPECIALc<4>1
+LUT2 		iRD/SPECIALc<5>1
+LUT4_L 		iRD/iCMA0
+LOCALBUF 		iRD/iCMA0/LUT4_L_BUF
+LUT4_L 		iRD/iCMA3
+LOCALBUF 		iRD/iCMA3/LUT4_L_BUF
+LUT4_L 		iRD/iCMA4
+LOCALBUF 		iRD/iCMA4/LUT4_L_BUF
+LUT4_L 		iRD/iCMB0
+LOCALBUF 		iRD/iCMB0/LUT4_L_BUF
+FDCE 		iRD/iCURR0
+   optimized to 0
+FDCE 		iRD/iCURR3
+   optimized to 0
+FDCE 		iRD/iCURR4
+   optimized to 0
+LUT3 		iRD/iIDLE1
+LUT2 		iRD/iNEXT0
+LUT2 		iRD/iNEXT3
+LUT2 		iRD/iNEXT4
+LUT2 		iRD/iNEXT5
+LUT3 		iRD/iRDY1
+FDC 		iRD/iRD_DL10
+   optimized to 0
+FDC 		iRD/iRD_DL13
+   optimized to 0
+FDC 		iRD/iRD_DL14
+   optimized to 0
+FDC 		iRD/iRD_DL15
+   optimized to 0
+FDC 		iRD/iRD_DL20
+   optimized to 0
+FDC 		iRD/iRD_DL23
+   optimized to 0
+FDC 		iRD/iRD_DL24
+   optimized to 0
+FDC 		iRD/iRD_DL25
+   optimized to 0
+FDC 		iRD/iRE0
+   optimized to 0
+FDC 		iRD/iRE3
+   optimized to 0
+FDC 		iRD/iRE4
+   optimized to 0
+FDC 		iRD/iRE5
+   optimized to 0
+LUT4 		iRD/iREADY0
+LUT4 		iRD/iREADY3
+LUT4 		iRD/iREADY4
+LUT4 		iRD/iREADY5
+FDC 		iRD/iREN0
+   optimized to 0
+FDC 		iRD/iREN3
+   optimized to 0
+FDC 		iRD/iREN4
+   optimized to 0
+FDC 		iRD/iREN5
+   optimized to 0
+LUT4 		iRD/iRENC0
+LUT4 		iRD/iRENC3
+LUT4 		iRD/iRENC4
+LUT4 		iRD/iRENC5
+FDC 		iRD/iSPECIAL0
+   optimized to 0
+FDC 		iRD/iSPECIAL3
+   optimized to 0
+FDC 		iRD/iSPECIAL4
+   optimized to 0
+FDC 		iRD/iSPECIAL5
+   optimized to 0
+LUT3 		iRD/iT1
+LUT3 		iRD/iT2
+LUT4 		iRD/iX1
+LUT4 		iRD/iX2
+GND 		iUSER_AP/AngPosBy360/GND
+VCC 		iUSER_AP/AngPosBy360/VCC
+LUT4 		iUSER_AP/I_LPFILTER/BU1513
+FDE 		iUSER_AP/I_LPFILTER/BU1515
+   optimized to 0
+LUT4 		iUSER_AP/I_LPFILTER/BU376
+FDE 		iUSER_AP/I_LPFILTER/BU378
+   optimized to 0
+GND 		iUSER_AP/I_LPFILTER/GND
+VCC 		iUSER_AP/I_LPFILTER/VCC
+LUT4 		iUSER_AP/Q_LPFILTER/BU1513
+FDE 		iUSER_AP/Q_LPFILTER/BU1515
+   optimized to 0
+LUT4 		iUSER_AP/Q_LPFILTER/BU376
+FDE 		iUSER_AP/Q_LPFILTER/BU378
+   optimized to 0
+GND 		iUSER_AP/Q_LPFILTER/GND
+VCC 		iUSER_AP/Q_LPFILTER/VCC
+GND 		iUSER_AP/iMyCounter/BU2/XST_GND
+VCC 		iUSER_AP/iMyCounter/BU2/XST_VCC
+GND 		iUSER_AP/myOUTFIFO/GND
+VCC 		iUSER_AP/myOUTFIFO/VCC
+FDC 		iWR/iWE1
+   optimized to 0
+FDC 		iWR/iWE2
+   optimized to 0
+FDC 		iWR/iWE3
+   optimized to 0
+FDC 		iWR/iWE4
+   optimized to 0
+FDC 		iWR/iWE5
+   optimized to 0
+MUXCY_L 		iRD/iCMUX11
+MUXCY 		iUSER_AP/I_LPFILTER/BU1663
+MUXCY 		iUSER_AP/Q_LPFILTER/BU1663
+
+To enable printing of redundant blocks removed and signals merged, set the
+detailed map report option and rerun map.
+
+Section 6 - IOB Properties
+--------------------------
+
++----------------------------------------------------------------------------------------------------------------------------------------+
+| IOB Name                           | Type             | Direction | IO Standard | Drive    | Slew | Reg (s)      | Resistor | IOB      |
+|                                    |                  |           |             | Strength | Rate |              |          | Delay    |
++----------------------------------------------------------------------------------------------------------------------------------------+
+| addr_flagsel                       | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| booten                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| cid<0>                             | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| cid<1>                             | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| cid<2>                             | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| cid<3>                             | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| clki2                              | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| clki3                              | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| clkin0                             | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| clkin1                             | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| clkout                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| config                             | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| di<0>                              | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| di<1>                              | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| di<2>                              | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| di<3>                              | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| di<4>                              | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| di<5>                              | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| di<6>                              | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| di<7>                              | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| di<8>                              | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| di<9>                              | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| di<10>                             | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| di<11>                             | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| di<12>                             | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| di<13>                             | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| di<14>                             | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| di<15>                             | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| di<16>                             | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| di<17>                             | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| di<18>                             | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| di<19>                             | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| di<20>                             | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| di<21>                             | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| di<22>                             | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| di<23>                             | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| di<24>                             | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| di<25>                             | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| di<26>                             | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| di<27>                             | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| di<28>                             | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| di<29>                             | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| di<30>                             | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| di<31>                             | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| diclk                              | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| dif_ae<1>                          | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| dif_ae<2>                          | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| dif_ef<1>                          | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| dif_ef<2>                          | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| dif_oen<0>                         | IOB              | OUTPUT    | LVTTL       | 8        | FAST |              |          |          |
+| dif_oen<1>                         | IOB              | OUTPUT    | LVTTL       | 8        | FAST |              |          |          |
+| dif_oen<2>                         | IOB              | OUTPUT    | LVTTL       | 8        | FAST |              |          |          |
+| dif_oen<3>                         | IOB              | OUTPUT    | LVTTL       | 8        | FAST |              |          |          |
+| dif_oen<4>                         | IOB              | OUTPUT    | LVTTL       | 8        | FAST |              |          |          |
+| dif_oen<5>                         | IOB              | OUTPUT    | LVTTL       | 8        | FAST |              |          |          |
+| dif_ren<0>                         | IOB              | OUTPUT    | LVTTL       | 8        | FAST |              |          |          |
+| dif_ren<1>                         | IOB              | OUTPUT    | LVTTL       | 8        | FAST | OFF1         |          |          |
+| dif_ren<2>                         | IOB              | OUTPUT    | LVTTL       | 8        | FAST | OFF1         |          |          |
+| dif_ren<3>                         | IOB              | OUTPUT    | LVTTL       | 8        | FAST |              |          |          |
+| dif_ren<4>                         | IOB              | OUTPUT    | LVTTL       | 8        | FAST |              |          |          |
+| dif_ren<5>                         | IOB              | OUTPUT    | LVTTL       | 8        | FAST |              |          |          |
+| dio_a<0>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_a<1>                           | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| dio_a<2>                           | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| dio_c<0>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_c<1>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_c<2>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_c<3>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_c<4>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_c<5>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_c<6>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_c<7>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_c<8>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_c<9>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_c<10>                          | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_c<11>                          | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_c<12>                          | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_c<13>                          | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_c<14>                          | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_d<0>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_d<1>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_d<2>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_d<3>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_d<4>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_d<5>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_d<6>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_d<7>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_d<8>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_d<9>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_d<10>                          | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_d<11>                          | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_d<12>                          | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_d<13>                          | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_d<14>                          | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_e<0>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_e<1>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_e<2>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_e<3>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_e<4>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_e<5>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_e<6>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_e<7>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_e<8>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_e<9>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_e<10>                          | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_e<11>                          | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_e<12>                          | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_e<13>                          | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_e<14>                          | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_f<0>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_f<1>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_f<2>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_f<3>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_f<4>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_f<5>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_f<6>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_f<7>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_f<8>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_f<9>                           | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_f<10>                          | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_f<11>                          | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_f<12>                          | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_f<13>                          | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| dio_f<14>                          | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| do<0>                              | IOB              | OUTPUT    | LVTTL       | 12       | SLOW | OFF1         |          |          |
+| do<1>                              | IOB              | OUTPUT    | LVTTL       | 12       | SLOW | OFF1         |          |          |
+| do<2>                              | IOB              | OUTPUT    | LVTTL       | 12       | SLOW | OFF1         |          |          |
+| do<3>                              | IOB              | OUTPUT    | LVTTL       | 12       | SLOW | OFF1         |          |          |
+| do<4>                              | IOB              | OUTPUT    | LVTTL       | 12       | SLOW | OFF1         |          |          |
+| do<5>                              | IOB              | OUTPUT    | LVTTL       | 12       | SLOW | OFF1         |          |          |
+| do<6>                              | IOB              | OUTPUT    | LVTTL       | 12       | SLOW | OFF1         |          |          |
+| do<7>                              | IOB              | OUTPUT    | LVTTL       | 12       | SLOW | OFF1         |          |          |
+| do<8>                              | IOB              | OUTPUT    | LVTTL       | 12       | SLOW | OFF1         |          |          |
+| do<9>                              | IOB              | OUTPUT    | LVTTL       | 12       | SLOW | OFF1         |          |          |
+| do<10>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW | OFF1         |          |          |
+| do<11>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW | OFF1         |          |          |
+| do<12>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW | OFF1         |          |          |
+| do<13>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW | OFF1         |          |          |
+| do<14>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW | OFF1         |          |          |
+| do<15>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW | OFF1         |          |          |
+| do<16>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW | OFF1         |          |          |
+| do<17>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW | OFF1         |          |          |
+| do<18>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW | OFF1         |          |          |
+| do<19>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW | OFF1         |          |          |
+| do<20>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW | OFF1         |          |          |
+| do<21>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW | OFF1         |          |          |
+| do<22>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW | OFF1         |          |          |
+| do<23>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW | OFF1         |          |          |
+| do<24>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW | OFF1         |          |          |
+| do<25>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW | OFF1         |          |          |
+| do<26>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW | OFF1         |          |          |
+| do<27>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW | OFF1         |          |          |
+| do<28>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW | OFF1         |          |          |
+| do<29>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW | OFF1         |          |          |
+| do<30>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW | OFF1         |          |          |
+| do<31>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW | OFF1         |          |          |
+| dof_af<0>                          | IOB              | INPUT     | LVTTL       |          |      | INFF1        |          |          |
+| dof_wen<0>                         | IOB              | OUTPUT    | LVTTL       | 8        | FAST | OFF1         |          |          |
+| dof_wen<1>                         | IOB              | OUTPUT    | LVTTL       | 8        | FAST |              |          |          |
+| dof_wen<2>                         | IOB              | OUTPUT    | LVTTL       | 8        | FAST |              |          |          |
+| dof_wen<3>                         | IOB              | OUTPUT    | LVTTL       | 8        | FAST |              |          |          |
+| dof_wen<4>                         | IOB              | OUTPUT    | LVTTL       | 8        | FAST |              |          |          |
+| dof_wen<5>                         | IOB              | OUTPUT    | LVTTL       | 8        | FAST |              |          |          |
+| dttl                               | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| f0                                 | IOB              | OUTPUT    | LVTTL       | 24       | FAST |              |          |          |
+| f1                                 | IOB              | OUTPUT    | LVTTL       | 24       | FAST |              |          |          |
+| fast_a                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| fast_b                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| hdplx_a                            | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| hdplx_b                            | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| led<0>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| led<1>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| led<2>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| led<3>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| led<4>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| mid<0>                             | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| mid<1>                             | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| mid<2>                             | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| mid<3>                             | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| osc3_pin                           | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| qttl                               | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| r1out_a                            | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| r1out_b                            | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| r2out_a                            | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| r2out_b                            | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| reset_pin                          | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| rs485_232_a                        | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| rs485_232_b                        | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| t1in_a                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| t1in_b                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| t2in_a                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| t2in_b                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| udpres                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| umi<0>                             | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| umi<1>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| umi<2>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| umi<3>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| vbusy                              | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| vcs                                | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| vpd<0>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| vpd<1>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| vpd<2>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| vpd<3>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| vpd<4>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| vpd<5>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| vpd<6>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| vpd<7>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| vwrite                             | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
++----------------------------------------------------------------------------------------------------------------------------------------+
+
+Section 7 - RPMs
+----------------
+iUSER_AP/AngPosBy360/times360/tl/cm/m3/r1
+iUSER_AP/myOUTFIFO/outputfifo/control/rd_blk
+iUSER_AP/myOUTFIFO/outputfifo/control/wr_blk
+
+Section 8 - Guide Report
+------------------------
+Guide not run on this design.
+
+Section 9 - Area Group and Partition Summary
+--------------------------------------------
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+Area Group Information
+----------------------
+
+  No area groups were found in this design.
+
+----------------------
+
+Section 10 - Modular Design Summary
+-----------------------------------
+Modular Design not used for this design.
+
+Section 11 - Timing Report
+--------------------------
+This design was not run using timing mode.
+
+Section 12 - Configuration String Details
+-----------------------------------------
+Use the "-detail" map option to print out Configuration Strings
+
+Section 13 - Control Set Information
+------------------------------------
+No control set information for this architecture.
+
+Section 14 - Utilization by Hierarchy
+-------------------------------------
+
+This feature is not supported for this architecture.

@@ -1,0 +1,10 @@
+# Output products list for <DDS2>
+DDS2.ngc
+DDS2.v
+DDS2.veo
+DDS2.vhd
+DDS2.vho
+DDS2.xco
+DDS2_dds_compiler_v2_1_xst_1.ngc_xst.xrpt
+DDS2_flist.txt
+DDS2_xmdf.tcl

@@ -1,0 +1,46 @@
+{ Invokable interface IAntennaWS }
+
+unit AntennaWSIntf;
+
+interface
+
+uses InvokeRegistry, Types, XSBuiltIns, ElbrusTypes, Elbrus, MotorAz, MotorEl, Rda_TLB;
+
+type
+  { Invokable interfaces must derive from IInvokable }
+  IAntennaWS = interface(IInvokable)
+  ['{E5342DDF-910D-4454-AE9B-B270C4865639}']
+  //Status
+    function  Get_Estado: LongWord; safecall;
+    function  Get_Antena_Listo: WordBool; safecall;
+    function  Get_Averia_Excitacion: WordBool; safecall;
+    function  Get_Limite_N: WordBool; safecall;
+    function  Get_Limite_P: WordBool; safecall;
+    function  Get_Acc_Listo: WordBool; safecall;
+    function  Get_Cupula_Abierta: WordBool; safecall;
+    function  Get_Acc_On: WordBool; safecall;
+  //Control
+    procedure Encender_Acc; safecall;
+    procedure Apagar_Acc; safecall;
+    procedure Alarma_Sonora(Tiempo: Integer); safecall;
+
+    property Estado: LongWord read Get_Estado;
+    property Antena_Listo: WordBool read Get_Antena_Listo;
+    property Averia_Excitacion: WordBool read Get_Averia_Excitacion;
+    property Limite_N: WordBool read Get_Limite_N;
+    property Limite_P: WordBool read Get_Limite_P;
+    property Acc_Listo: WordBool read Get_Acc_Listo;
+    property Cupula_Abierta: WordBool read Get_Cupula_Abierta;
+    property Acc_On: WordBool read Get_Acc_On;
+  end;
+
+implementation
+
+uses CommunicationObj;
+
+initialization
+  { Invokable interfaces must be registered }
+  InvRegistry.RegisterInterface(TypeInfo(IAntennaWS));
+
+end.
+ 

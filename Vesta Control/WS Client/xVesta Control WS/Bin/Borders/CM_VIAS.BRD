@@ -1,0 +1,109 @@
+Carreteras
+77.8451 21.3836 ; Radar de Camaguey
+0               ; No default
+1000 1000       ; Celdas de 1 km x 1 km
+100             ; Rango de 100 km
+0 255 0         ; Color (Rojo Verde Azul)
+6               ; # de lineas
+Central
+33
+  -71   41      ; Crucero Gaspar - Piedrecitas
+  -58   33
+  -48   29      ; Piedrecitas - Florida
+  -43   26
+  -39   21
+  -40   18
+  -38   16      ; Florida - La Vallita
+  -28    6      ; La Vallita - CamagÅey
+  -25    3
+  -18    3
+  -15    1
+  -12    2      ; Camaguey
+   -7   -1
+   -3   -3      ; CamagÅey - Vidot
+   -2   -4      
+    0   -5
+    5   -9
+    6  -11
+    7  -11       ; Vidot - Sibanic£
+   17  -12      
+   22  -13      
+   24  -14
+   28  -18
+   34  -16       ; Sibanic£ - Cascorro
+   35  -16
+   38  -19
+   41  -20       ; Cascorro - Gu†imaro
+   42  -25
+   52  -36       ; Gu†imaro - Las Tunas
+   60  -36
+   70  -39
+   80  -39
+   91  -47
+Nuevitas
+19
+   -7   -1       ; CamagÅey - Altagracia
+   -6    2
+   -5    2
+    1    5
+    4    5
+   10    7       ; Altagracia - Minas
+   12    8      
+   15    9      
+   22   12      
+   23   11      
+   25   11       ; Minas - Entronque Lugare§o
+   26   11      
+   26   10
+   38    6
+   39    7       ; Entronque Lugare§o - Nuevitas
+   41    8      
+   46   10
+   53   16
+   60   17
+Santa Lucia
+16
+   39    7       ; Entronque Lugare§o - San Miguel
+   39    6
+   44    4
+   50    7
+   54    5       ; San Miguel - Santa Lucia
+   60    1
+   70    4
+   74    3
+   84   13      
+   84   14      
+   85   15      
+   86   16        ; Santa Lucia - La Boca
+   85   16
+   84   17
+   84   19
+   80   23
+Lugare§o
+2
+   39    7       ; Entronque Lugare§o - Lugare§o
+   40   18      
+Vertientes
+6
+   -7   -1       ; CamagÅey - Vertientes
+  -10   -2
+  -17   -8
+  -19   -9
+  -26  -12      
+  -31  -13
+Santa Cruz del Sur
+14
+   -7   -1       ; CamagÅey - Contramaestre
+   -6   -8      
+   -5  -13
+   -6  -19
+   -5  -23       ; Contramaestre - La Jagua
+   -4  -25
+   -3  -32
+   -4  -33
+   -7  -35
+   -8  -42
+   -7  -52       ; La Jagua - Santa Cruz del Sur
+  -13  -66      
+  -15  -68      
+  -15  -73

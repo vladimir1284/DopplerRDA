@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RootFolder label="COREGEN" treetype="folder" language="COREGEN">
+	<Folder label="VERILOG Component Instantiation" treetype="folder">
+		<Template label="fifo15x32" treetype="template">
+		</Template>
+		<Template label="outputfifo" treetype="template">
+		</Template>
+		<Template label="lpfilter" treetype="template">
+		</Template>
+		<Template label="times360" treetype="template">
+ 
+ 
+// The following must be inserted into your Verilog file for this
+// core to be instantiated. Change the instance name and port connections
+// (in parentheses) to your own signal names.
+ 
+times360 YourInstanceName (
+    .clk(clk),
+    .a(a), // Bus [13 : 0] 
+    .q(q)); // Bus [22 : 0] 
+
+ 
+		</Template>
+		<Template label="mypll" treetype="template">
+		</Template>
+		<Template label="uart" treetype="template">
+		</Template>
+	</Folder>
+	<Folder label="VHDL Component Instantiation" treetype="folder">
+		<Template label="fifo15x32" treetype="template">
+		</Template>
+		<Template label="outputfifo" treetype="template">
+ 
+ 
+-- The following code must appear in the VHDL architecture header:
+ 
+component outputfifo
+    port (
+    din: IN std_logic_VECTOR(31 downto 0);
+    wr_en: IN std_logic;
+    wr_clk: IN std_logic;
+    rd_en: IN std_logic;
+    rd_clk: IN std_logic;
+    ainit: IN std_logic;
+    dout: OUT std_logic_VECTOR(31 downto 0);
+    full: OUT std_logic;
+    empty: OUT std_logic);
+end component;
+
+
+ 
+-------------------------------------------------------------
+ 
+-- The following code must appear in the VHDL architecture body.
+-- Substitute your own instance name and net names.
+ 
+your_instance_name : outputfifo
+        port map (
+            din =&gt; din,
+            wr_en =&gt; wr_en,
+            wr_clk =&gt; wr_clk,
+            rd_en =&gt; rd_en,
+            rd_clk =&gt; rd_clk,
+            ainit =&gt; ainit,
+            dout =&gt; dout,
+            full =&gt; full,
+            empty =&gt; empty);
+ 
+		</Template>
+		<Template label="lpfilter" treetype="template">
+ 
+ 
+-- The following code must appear in the VHDL architecture header:
+ 
+component lpfilter
+    port (
+    ND: IN std_logic;
+    RDY: OUT std_logic;
+    CLK: IN std_logic;
+    RST: IN std_logic;
+    RFD: OUT std_logic;
+    DIN: IN std_logic_VECTOR(15 downto 0);
+    DOUT: OUT std_logic_VECTOR(32 downto 0));
+end component;
+
+
+ 
+-------------------------------------------------------------
+ 
+-- The following code must appear in the VHDL architecture body.
+-- Substitute your own instance name and net names.
+ 
+your_instance_name : lpfilter
+        port map (
+            ND =&gt; ND,
+            RDY =&gt; RDY,
+            CLK =&gt; CLK,
+            RST =&gt; RST,
+            RFD =&gt; RFD,
+            DIN =&gt; DIN,
+            DOUT =&gt; DOUT);
+ 
+		</Template>
+		<Template label="times360" treetype="template">
+ 
+ 
+-- The following code must appear in the VHDL architecture header:
+ 
+component times360
+    port (
+    clk: IN std_logic;
+    a: IN std_logic_VECTOR(13 downto 0);
+    q: OUT std_logic_VECTOR(22 downto 0));
+end component;
+
+
+ 
+-------------------------------------------------------------
+ 
+-- The following code must appear in the VHDL architecture body.
+-- Substitute your own instance name and net names.
+ 
+your_instance_name : times360
+        port map (
+            clk =&gt; clk,
+            a =&gt; a,
+            q =&gt; q);
+ 
+		</Template>
+		<Template label="mypll" treetype="template">
+		</Template>
+		<Template label="uart" treetype="template">
+		</Template>
+	</Folder>
+</RootFolder>

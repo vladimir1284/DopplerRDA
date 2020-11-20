@@ -1,0 +1,59 @@
+##############################################################
+#
+# Xilinx Core Generator version K.31
+# Date: Wed Aug 06 19:07:39 2014
+#
+##############################################################
+#
+#  This file contains the customisation parameters for a
+#  Xilinx CORE Generator IP GUI. It is strongly recommended
+#  that you do not manually alter this file as it may cause
+#  unexpected and unsupported behavior.
+#
+##############################################################
+#
+# BEGIN Project Options
+SET addpads = False
+SET asysymbol = True
+SET busformat = BusFormatAngleBracketNotRipped
+SET createndf = False
+SET designentry = VHDL
+SET device = xc2v1000
+SET devicefamily = virtex2
+SET flowvendor = Foundation_iSE
+SET formalverification = False
+SET foundationsym = False
+SET implementationfiletype = Edif
+SET package = fg456
+SET removerpms = False
+SET simulationfiles = Behavioral
+SET speedgrade = -4
+SET verilogsim = False
+SET vhdlsim = True
+# END Project Options
+# BEGIN Select
+SELECT Distributed_Arithmetic_FIR_Filter family Xilinx,_Inc. 8.0
+# END Select
+# BEGIN Parameters
+CSET clock_cycles_per_output_sample=17
+CSET coefficient_data_type=Signed
+CSET coefficient_file="D:\Robert\Proyecto Radar Doppler\Proyecto Cyclos_Cuba\FPGA\New_Cyclop\X Band\FPGA3_new\250-450-29tap.coe"
+CSET coefficient_reload=Fixed_Coefficients
+CSET coefficient_width=16
+CSET component_name=lpfilter
+CSET filter_type=Decimation
+CSET implementation_option=Clock_Cycles_Per_Output_Sample
+CSET impulse_response=Symmetric
+CSET input_data_type=Signed
+CSET input_data_width=16
+CSET number_of_channels=1
+CSET number_of_taps=29
+CSET optimize_coefficients=true
+CSET register_output=true
+CSET reset=true
+CSET sample_rate_change=4
+CSET zero_packing_factor=1
+# END Parameters
+GENERATE
+# CRC: f1b78545
+

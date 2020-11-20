@@ -1,0 +1,57 @@
+unit FrameRealTime;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, 
+  Dialogs, StdCtrls, ExtCtrls;
+
+type
+  TRealTime = class(TFrame)
+    Label1: TLabel;
+    CheckBox1: TCheckBox;
+    Timer1: TTimer;
+    procedure Timer1Timer(Sender: TObject);
+    procedure CheckBox1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    procedure StartAcquisition;
+    procedure StopAcquisition;
+    procedure UpdateView;
+  end;
+
+implementation
+
+{$R *.dfm}
+
+procedure TRealTime.StartAcquisition;
+begin
+  Timer1.Enabled := true;
+  CheckBox1.Checked := true;
+end;
+
+procedure TRealTime.StopAcquisition;
+begin
+  Timer1.Enabled := false;
+  CheckBox1.Checked := false;
+end;
+
+procedure TRealTime.Timer1Timer(Sender: TObject);
+begin
+  UpdateView;
+end;
+
+procedure TRealTime.CheckBox1Click(Sender: TObject);
+begin
+  if CheckBox1.Checked
+    then StartAcquisition
+    else StopAcquisition;
+end;
+
+procedure TRealTime.UpdateView;
+begin
+//..
+end;
+
+end.

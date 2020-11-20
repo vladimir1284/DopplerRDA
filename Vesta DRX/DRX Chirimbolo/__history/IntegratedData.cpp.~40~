@@ -1,0 +1,158 @@
+#include <vcl.h>
+#include <stdio.h>
+#include <fastmath.h>
+#include <exception>
+#include <iostream>
+#include <vcl.h>
+#include <mem.h>
+#pragma hdrstop
+
+#include "IntegratedData.h"
+#include "DataParameters.h"
+
+IntegratedData::IntegratedData(int beam, int Rays, int RawBins, int Mode, float ReqElev){
+  NRays         = Rays;
+  NBins         = RawBins;
+  BeamNumber    = beam;
+  DataMode      = Mode;
+  RequestedElev = ReqElev;
+
+  try {
+	 TheRawStuff.dBZData  = new float*[NRays];
+	 TheRawStuff.CIData   = new float*[NRays];
+	 TheRawStuff.VData    = new float*[NRays];
+	 TheRawStuff.PDataI   = new float*[NRays];
+	 TheRawStuff.PDataQ   = new float*[NRays];
+	 TheRawStuff.SQIData  = new float*[NRays];
+	 TheRawStuff.SqPhaseI = new float*[NRays];
+	 TheRawStuff.SqPhaseQ = new float*[NRays];
+
+	 TheRawStuff.AugReflect  = new short*[NRays];
+	 TheRawStuff.AugVelocity = new short*[NRays];
+	 TheRawStuff.NData       = new int[NRays];
+	 TheRawStuff.NPulses     = new int[NRays];
+	 TheRawStuff.Mode        = new short[NRays];
+
+	 TheRawStuff.AverageAzimuth   = new float[NRays];
+	 TheRawStuff.AverageElevation = new float[NRays];
+	 TheRawStuff.Frequency        = new float[NRays];
+
+	 for(int i = 0; i < NRays; i++){
+		TheRawStuff.dBZData[i] = new float[NBins];
+		memset(TheRawStuff.dBZData[i], 0, NBins * sizeof(TheRawStuff.dBZData[i][0]));
+
+		TheRawStuff.CIData[i] = new float[NBins];
+		memset(TheRawStuff.CIData[i], 0, NBins * sizeof(TheRawStuff.CIData[i][0]));
+
+		TheRawStuff.VData[i] = new float[NBins];
+		memset(TheRawStuff.VData[i], 0, NBins * sizeof(TheRawStuff.VData[i][0]));
+
+		TheRawStuff.SQIData[i] = new float[NBins];
+		memset(TheRawStuff.SQIData[i], 0, NBins * sizeof(TheRawStuff.SQIData[i][0]));
+
+		TheRawStuff.AugReflect[i]  = new short[NBins];
+		memset(TheRawStuff.AugReflect[i], 0, NBins * sizeof(TheRawStuff.AugReflect[i][0]));
+
+		TheRawStuff.AugVelocity[i] = new short[NBins];
+		memset(TheRawStuff.AugVelocity[i], 0, NBins * sizeof(TheRawStuff.AugVelocity[i][0]));
+
+		TheRawStuff.PDataI[i] = new float[NBins];
+		memset(TheRawStuff.PDataI[i], 0, NBins * sizeof(TheRawStuff.PDataI[i][0]));
+
+		TheRawStuff.PDataQ[i] = new float[NBins];
+		memset(TheRawStuff.PDataQ[i], 0, NBins * sizeof(TheRawStuff.PDataQ[i][0]));
+
+		TheRawStuff.SqPhaseI[i] = new float[NBins];
+		memset(TheRawStuff.SqPhaseI[i], 0, NBins * sizeof(TheRawStuff.SqPhaseI[i][0]));
+
+		TheRawStuff.SqPhaseQ[i] = new float[NBins];
+		memset(TheRawStuff.SqPhaseQ[i], 0, NBins * sizeof(TheRawStuff.SqPhaseQ[i][0]));
+	 }
+  }
+  catch(std::bad_alloc) {
+    exit(-1);
+  }
+
+  BinLength = (DataMode == LP_MODE) ? BIN_LENGTH_LP : BIN_LENGTH_SP;
+
+  StartDateTime = time(NULL);
+
+  ReadCount     = 0;
+  Full          = false;
+  Finished      = false;
+  NRaysComplete = 0;
+}
+
+IntegratedData::~IntegratedData(){
+/* Delete data, nulling out arrays for ease of trapping
+   out of scope accesses */
+	for(int i = 0; i < NRays; i++){
+		delete[] TheRawStuff.dBZData[i];
+		TheRawStuff.dBZData[i] = NULL;
+		delete[] TheRawStuff.CIData[i];
+		TheRawStuff.CIData[i] = NULL;
+		delete[] TheRawStuff.VData[i];
+		TheRawStuff.VData[i] = NULL;
+
+		delete[] TheRawStuff.PDataI[i];
+		TheRawStuff.PDataI[i] = NULL;
+
+		delete[] TheRawStuff.PDataQ[i];
+		TheRawStuff.PDataQ[i] = NULL;
+
+		delete[]  TheRawStuff.SqPhaseI[i];
+		TheRawStuff.SqPhaseI[i] = NULL;
+		delete[]  TheRawStuff.SqPhaseQ[i];
+		TheRawStuff.SqPhaseQ[i] = NULL;
+
+		delete[] TheRawStuff.SQIData[i];
+		TheRawStuff.SQIData[i] = NULL;
+
+		delete[] TheRawStuff.AugReflect[i];
+		TheRawStuff.AugReflect[i] = NULL;
+		delete[] TheRawStuff.AugVelocity[i];
+		TheRawStuff.AugVelocity[i] = NULL;
+	}
+
+	delete[] TheRawStuff.dBZData;
+	TheRawStuff.dBZData = NULL;
+	delete[] TheRawStuff.CIData;
+	TheRawStuff.CIData = NULL;
+	delete[] TheRawStuff.VData;
+	TheRawStuff.VData = NULL;
+
+
+	delete[] TheRawStuff.PDataI;
+	TheRawStuff.PDataI = NULL;
+	delete[] TheRawStuff.PDataQ;
+	TheRawStuff.PDataQ = NULL;
+
+	delete[]  TheRawStuff.SqPhaseI;
+	TheRawStuff.SqPhaseI = NULL;
+	delete[]  TheRawStuff.SqPhaseQ;
+	TheRawStuff.SqPhaseQ = NULL;
+
+	delete[] TheRawStuff.SQIData;
+	TheRawStuff.SQIData = NULL;
+
+	delete[] TheRawStuff.AugReflect;
+	TheRawStuff.AugReflect = NULL;
+	delete[] TheRawStuff.AugVelocity;
+	TheRawStuff.AugVelocity = NULL;
+	delete[] TheRawStuff.AverageAzimuth;
+	TheRawStuff.AverageAzimuth = NULL;
+	delete[] TheRawStuff.AverageElevation;
+	TheRawStuff.AverageElevation = NULL;
+	delete[] TheRawStuff.NData;
+	TheRawStuff.NData = NULL;
+	delete[] TheRawStuff.NPulses;
+	TheRawStuff.NPulses = NULL;
+	delete[] TheRawStuff.Frequency;
+	TheRawStuff.Frequency = NULL;
+	delete[] TheRawStuff.Mode;
+	TheRawStuff.Mode = NULL;
+}
+
+
+
+

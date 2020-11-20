@@ -1,0 +1,13 @@
+# Output products list for <ddcv1_0>
+ddcv1_0.asy
+ddcv1_0.edn
+ddcv1_0.v
+ddcv1_0.veo
+ddcv1_0.vhd
+ddcv1_0.vho
+ddcv1_0_CFIR.mif
+ddcv1_0_PFIR.mif
+TRIG_ROM.mif
+ddcv1_0.xco
+ddcv1_0.xcp
+ddcv1_0.sym

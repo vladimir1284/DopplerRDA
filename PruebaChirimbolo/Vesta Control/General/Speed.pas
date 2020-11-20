@@ -1,0 +1,65 @@
+unit Speed;
+
+{$DEFINE Antenna14Bits}
+
+interface
+
+  type
+    TSpeed = integer;
+    float  = single;
+
+{$IFDEF Antenna12Bits}
+  const
+    spd_0 =   0;
+    spd_1 =  68;
+    spd_2 = 137;
+    spd_3 = 205;
+    spd_4 = 273;
+    spd_5 = 341;
+    spd_6 = 410;
+    spd_7 = 478;
+    spd_8 = 546;
+    spd_9 = 614;
+
+    CPSsPerRPM = 4096 / 60;
+    RPMsPerCPS = 60 / 4096;
+{$ENDIF}
+
+{$IFDEF Antenna14Bits}
+  const
+    spd_0 = 0;
+    spd_1 = 273;
+    spd_2 = 546;
+    spd_3 = 819;
+    spd_4 = 1092;
+    spd_5 = 1365;
+    spd_6 = 1638;
+    spd_7 = 1911;
+    spd_8 = 2185;
+    spd_9 = 2458;
+
+    CPSsPerRPM = 16384 / 60;
+    RPMsPerCPS = 60 / 16384;
+{$ENDIF}
+
+  function CodeSpeed( CPS : TSpeed ) : float;
+  function SpeedCode( RPM : float  ) : TSpeed;
+
+implementation
+
+
+// Public procedures & functions
+
+  function CodeSpeed( CPS : TSpeed ) : float;
+  begin
+    Result := CPS * RPMsPerCPS;
+  end;
+
+  function SpeedCode( RPM : float  ) : TSpeed;
+  begin
+    Result := Round(RPM * CPSsPerRPM);
+  end;
+
+
+end.
+

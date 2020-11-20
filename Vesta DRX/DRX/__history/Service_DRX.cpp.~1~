@@ -1,0 +1,23 @@
+//---------------------------------------------------------------------------
+#include "Service_DRX.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+
+TDRX_Service *DRX_Service;
+//---------------------------------------------------------------------------
+__fastcall TDRX_Service::TDRX_Service(TComponent* Owner)
+	: TService(Owner)
+{
+}
+
+TServiceController __fastcall TDRX_Service::GetServiceController(void)
+{
+	return (TServiceController) ServiceController;
+}
+
+void __stdcall ServiceController(unsigned CtrlCode)
+{
+	DRX_Service->Controller(CtrlCode);
+}
+//---------------------------------------------------------------------------

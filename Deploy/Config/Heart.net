@@ -1,0 +1,71 @@
+#--------------------------------------------------------------------------
+# Network files can be used both by HeartConf and the Server/Loader.
+# The Server/Loader will boot processors and load bitstreams onto FPGA and
+# HERON-IO modules, and will program HEART, according to your statements.
+# HeartConf will just program HEART. If you want to maintain a network file
+# that works with both Server/Loader and HeartConf, make sure that you use
+# valid filenames and bitstreams in this network file.
+#--------------------------------------------------------------------------
+
+#--------------------------------------------------------------------------
+# Board description
+# BD API        Board_type      Board_Id        Device_Id
+#--------------------------------------------------------------------------
+# Using API
+BD API hep9a 0 0
+
+#-------------------------------------------------------------------------
+# Define your nodes in the system.
+# The Server/Loader needs valid filenames (*.out file for the 'C6x) and
+# and bitstreams (*.rbt) for fpga/heronio modules. For HEARTCONF just any
+# string (no string ok) will do. But to keep the network file valid for
+# both Server/Loader and HeartConf you should maintain proper filenames.
+# The HERON-ID is important. It's an 8 bit entity, lowest 4 bits are the
+# slot id (1,2,3,4, 5 (host) or 6 (inter-board connector)). Bits 7/6/5/4
+# are made up of the board number (is the red switch setting).
+# ND  BD_nb  ND_NAME  ND_Type        HERON-ID  filename(s)
+#-------------------------------------------------------------------------
+# To define an FPGA or HERON-IO    module (assume in slot 2 & 3 ):
+
+ fpga  0     io4       normal      0x02    IO4\top.rbt
+ fpga  0     fpga3     normal      0x03    FPGA3\top.rbt
+# To define a host PC interface:
+ pcif   0     pc       normal     0x05
+
+
+#-------------------------------------------------------------------------
+# Only used by the Server/Loader. BOOTSLOT tells the Server/Loader what
+# timeslot to use to boot a processor. HeartConf ignores the statement.
+# Bootpath description.
+# BOOTSLOT  ND_NAME  TIMESLOT
+#-------------------------------------------------------------------------
+
+# BOOTSLOT HERON 5
+
+#-------------------------------------------------------------------------
+# Only used by the Server/Loader. TOHOST/FROMHOST tells the Server/Loader
+# what FIFO to use for host communication. HeartConf ignores the statement.
+# Number of the link connected to the host system
+# HOSTLINK  PORT
+#-------------------------------------------------------------------------
+# TOHOST     0
+# FROMHOST   0
+
+#-------------------------------------------------------------------------
+# The actual HEART programming statements. Used by both Server/Loader and
+# HeartConf. 
+#       from:slot  fifo  to:slot   fifo   timeslots
+#-------------------------------------------------------------------------
+
+# PC output fifos
+heart      pc     1     io4       3       1	      # PC to digital IO  (set stalo, az , el and set PRF Setting) 
+heart      pc     4     io4       0       1           # PC to A->D to set NCO freq.
+heart      pc     0     fpga3     2       1           
+
+#IO4 output fifos 
+heart      io4    1     pc 	  2       2           # RAW IF samples
+heart      io4    2     fpga3     1       2           # DDC SAMPLES (I+Q)
+
+
+#FGPA3 output
+heart      fpga3  0     pc        3      2            # (I+Q),Az,El

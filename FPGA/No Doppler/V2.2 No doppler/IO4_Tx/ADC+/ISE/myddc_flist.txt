@@ -1,0 +1,14 @@
+# Output products list for <myddc>
+myddc.asy
+myddc.edn
+myddc.sym
+myddc.v
+myddc.veo
+myddc.vhd
+myddc.vho
+myddc.xco
+myddc_CFIR.mif
+myddc_flist.txt
+myddc_PFIR.mif
+myddc_xmdf.tcl
+TRIG_ROM.mif

@@ -1,0 +1,101 @@
+// ************************************************************************ //
+// The types declared in this file were generated from data read from the
+// WSDL File described below:
+// WSDL     : http://localhost:9999/wsdl/IAntennaWS
+// Encoding : utf-8
+// Version  : 1.0
+// (4/10/2011 9:38:08 PM - 1.33.2.5)
+// ************************************************************************ //
+
+unit AntennaWS;
+
+interface
+
+uses InvokeRegistry, SOAPHTTPClient, Types, XSBuiltIns;
+
+type
+
+  // ************************************************************************ //
+  // The following types, referred to in the WSDL document are not being represented
+  // in this file. They are either aliases[@] of other types represented or were referred
+  // to but never[!] declared in the document. The types from the latter category
+  // typically map to predefined/known XML or Borland types; however, they could also 
+  // indicate incorrect WSDL documents that failed to declare or import a schema type.
+  // ************************************************************************ //
+  // !:unsignedInt     - "http://www.w3.org/2001/XMLSchema"
+  // !:boolean         - "http://www.w3.org/2001/XMLSchema"
+  // !:int             - "http://www.w3.org/2001/XMLSchema"
+
+
+  // ************************************************************************ //
+  // Namespace : urn:AntennaWSIntf-IAntennaWS
+  // soapAction: urn:AntennaWSIntf-IAntennaWS#%operationName%
+  // transport : http://schemas.xmlsoap.org/soap/http
+  // style     : rpc
+  // binding   : IAntennaWSbinding
+  // service   : IAntennaWSservice
+  // port      : IAntennaWSPort
+  // URL       : http://localhost:9999/soap/IAntennaWS
+  // ************************************************************************ //
+  IAntennaWS = interface(IInvokable)
+  ['{AF956BBF-4A7C-B97D-F274-D183551A3508}']
+    function  Get_Estado: Cardinal; stdcall;
+    function  Get_Antena_Listo: Boolean; stdcall;
+    function  Get_Averia_Excitacion: Boolean; stdcall;
+    function  Get_Limite_N: Boolean; stdcall;
+    function  Get_Limite_P: Boolean; stdcall;
+    function  Get_Acc_Listo: Boolean; stdcall;
+    function  Get_Cupula_Abierta: Boolean; stdcall;
+    function  Get_Acc_On: Boolean; stdcall;
+    procedure Encender_Acc; stdcall;
+    procedure Apagar_Acc; stdcall;
+    procedure Alarma_Sonora(const Tiempo: Integer); stdcall;
+  end;
+
+function GetIAntennaWS(UseWSDL: Boolean=System.False; Addr: string=''; HTTPRIO: THTTPRIO = nil): IAntennaWS;
+
+
+implementation
+
+function GetIAntennaWS(UseWSDL: Boolean; Addr: string; HTTPRIO: THTTPRIO): IAntennaWS;
+const
+  defWSDL = 'http://localhost:9999/wsdl/IAntennaWS';
+  defURL  = 'http://localhost:9999/soap/IAntennaWS';
+  defSvc  = 'IAntennaWSservice';
+  defPrt  = 'IAntennaWSPort';
+var
+  RIO: THTTPRIO;
+begin
+  Result := nil;
+  if (Addr = '') then
+  begin
+    if UseWSDL then
+      Addr := defWSDL
+    else
+      Addr := defURL;
+  end;
+  if HTTPRIO = nil then
+    RIO := THTTPRIO.Create(nil)
+  else
+    RIO := HTTPRIO;
+  try
+    Result := (RIO as IAntennaWS);
+    if UseWSDL then
+    begin
+      RIO.WSDLLocation := Addr;
+      RIO.Service := defSvc;
+      RIO.Port := defPrt;
+    end else
+      RIO.URL := Addr;
+  finally
+    if (Result = nil) and (HTTPRIO = nil) then
+      RIO.Free;
+  end;
+end;
+
+
+initialization
+  InvRegistry.RegisterInterface(TypeInfo(IAntennaWS), 'urn:AntennaWSIntf-IAntennaWS', 'utf-8');
+  InvRegistry.RegisterDefaultSOAPAction(TypeInfo(IAntennaWS), 'urn:AntennaWSIntf-IAntennaWS#%operationName%');
+
+end.

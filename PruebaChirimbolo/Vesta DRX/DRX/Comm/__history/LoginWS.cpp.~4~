@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <vcl.h>
+#pragma hdrstop
+
+#if !defined(__LoginWS_h__)
+#include "LoginWS.h"
+#endif
+
+// ************************************************************************ //
+//  TLoginWSImpl implements interface ILoginWS
+// ************************************************************************ //
+class TLoginWSImpl : public TInvokableClass, public ILoginWS
+{
+public:
+	bool Login(String UserName, String Password);
+	bool Logout();
+public:
+  HRESULT STDMETHODCALLTYPE QueryInterface(const GUID& IID, void **Obj)
+						{ return GetInterface(IID, Obj) ? S_OK : E_NOINTERFACE; }
+  ULONG STDMETHODCALLTYPE AddRef() { return TInvokableClass::_AddRef();  }
+  ULONG STDMETHODCALLTYPE Release() { return TInvokableClass::_Release();  }
+};
+
+bool TLoginWSImpl::Login(String UserName, String Password){
+	bool result = false;
+	if((UserName == "control") && (Password == "txrx")){
+		result = true;
+		//this->FSOAPHeaders
+	}
+
+	return result;
+}
+
+bool TLoginWSImpl::Logout(){
+	return true;
+}
+
+static void __fastcall LoginWSFactory(System::TObject* &obj)
+{
+  static _di_ILoginWS iInstance;
+  static TLoginWSImpl *instance = 0;
+  if (!instance)
+  {
+    instance = new TLoginWSImpl();
+    instance->GetInterface(iInstance);
+  }
+  obj = instance;
+}
+
+static void RegTypes()
+{
+  InvRegistry()->RegisterInterface(__delphirtti(ILoginWS));
+  InvRegistry()->RegisterInvokableClass(__classid(TLoginWSImpl), LoginWSFactory);
+}
+#pragma startup RegTypes 32
+

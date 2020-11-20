@@ -1,0 +1,433 @@
+object RealTimeForm: TRealTimeForm
+  Left = 321
+  Top = 96
+  Width = 762
+  Height = 573
+  AlphaBlend = True
+  Caption = 'Display de Tiempo Real'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  OnActivate = FormActivate
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Splitter1: TSplitter
+    Left = 626
+    Top = 0
+    Width = 2
+    Height = 520
+    Align = alRight
+    Beveled = True
+  end
+  object StatusBar1: TStatusBar
+    Left = 0
+    Top = 520
+    Width = 754
+    Height = 19
+    Panels = <
+      item
+        Alignment = taCenter
+        Width = 120
+      end
+      item
+        Alignment = taCenter
+        Width = 110
+      end
+      item
+        Width = 100
+      end
+      item
+        Alignment = taCenter
+        Width = 110
+      end
+      item
+        Alignment = taCenter
+        Width = 70
+      end
+      item
+        Width = 100
+      end
+      item
+        Width = 60
+      end
+      item
+        Width = 60
+      end
+      item
+        Width = 50
+      end>
+    OnDrawPanel = StatusBar1DrawPanel
+  end
+  object RTDisplay: TRTDisplay
+    Left = 0
+    Top = 0
+    Width = 626
+    Height = 520
+    CellSize = 150
+    CellCount = 3000
+    ShowMap = True
+    ShowOutline = False
+    ShowRadar = True
+    BackgroundColor = clBtnFace
+    MapColor = clBlack
+    BeamWidth = 1.500000000000000000
+    PPI_RHI = True
+    DataType = dtDBZ
+    Zoom = 100
+    MapScale = 1000
+    BoardRange = 500
+    ShowRings = False
+    RingsColor = clWhite
+    RingDistance = 1000
+    Align = alClient
+    PopupMenu = PopupMenu1
+    OnMouseMove = RTDisplayMouseMove
+    OnDblClick = RTDisplayDblClick
+  end
+  object ScrollBox1: TScrollBox
+    Left = 628
+    Top = 0
+    Width = 126
+    Height = 520
+    Align = alRight
+    BevelInner = bvNone
+    BevelOuter = bvNone
+    TabOrder = 2
+    object Cliente: TGroupBox
+      Left = 0
+      Top = 0
+      Width = 122
+      Height = 406
+      Align = alClient
+      Caption = 'Parametros'
+      TabOrder = 0
+      DesignSize = (
+        122
+        406)
+      object Label3: TLabel
+        Left = 38
+        Top = 21
+        Width = 32
+        Height = 13
+        Anchors = [akTop, akRight]
+        Caption = 'Celdas'
+      end
+      object Label4: TLabel
+        Left = 8
+        Top = 41
+        Width = 56
+        Height = 13
+        Anchors = [akTop, akRight]
+        Caption = 'Tama'#241'o (m)'
+      end
+      object Label5: TLabel
+        Left = 17
+        Top = 65
+        Width = 42
+        Height = 13
+        Anchors = [akTop, akRight]
+        Caption = 'Cantidad'
+      end
+      object Label6: TLabel
+        Left = 8
+        Top = 90
+        Width = 56
+        Height = 13
+        Anchors = [akTop, akRight]
+        Caption = 'Alcance (m)'
+      end
+      object Label8: TLabel
+        Left = 15
+        Top = 114
+        Width = 47
+        Height = 13
+        Anchors = [akTop, akRight]
+        Caption = 'Anillas (m)'
+      end
+      object Label7: TLabel
+        Left = 34
+        Top = 139
+        Width = 61
+        Height = 13
+        Anchors = [akTop, akRight]
+        Caption = 'Visualizaci'#243'n'
+      end
+      object Label1: TLabel
+        Left = 41
+        Top = 156
+        Width = 27
+        Height = 13
+        Anchors = [akTop, akRight]
+        Caption = 'Zoom'
+      end
+      object Label2: TLabel
+        Left = 20
+        Top = 197
+        Width = 72
+        Height = 13
+        Anchors = [akTop, akRight]
+        Caption = 'Color de Fondo'
+      end
+      object Label9: TLabel
+        Left = 13
+        Top = 234
+        Width = 88
+        Height = 13
+        Anchors = [akTop, akRight]
+        Caption = 'Color de las Anillas'
+      end
+      object Edit2: TEdit
+        Left = 66
+        Top = 38
+        Width = 48
+        Height = 21
+        Anchors = [akTop, akRight]
+        TabOrder = 0
+        OnExit = Edit2Exit
+        OnKeyPress = Edit2KeyPress
+      end
+      object Edit3: TEdit
+        Left = 66
+        Top = 61
+        Width = 48
+        Height = 21
+        Anchors = [akTop, akRight]
+        TabOrder = 1
+        OnExit = Edit3Exit
+        OnKeyPress = Edit3KeyPress
+      end
+      object Edit4: TEdit
+        Left = 66
+        Top = 84
+        Width = 48
+        Height = 21
+        Anchors = [akTop, akRight]
+        ReadOnly = True
+        TabOrder = 2
+      end
+      object Edit5: TEdit
+        Left = 66
+        Top = 108
+        Width = 48
+        Height = 21
+        Anchors = [akTop, akRight]
+        TabOrder = 3
+        OnExit = Edit5Exit
+        OnKeyPress = Edit5KeyPress
+      end
+      object ColorBox1: TColorBox
+        Left = 8
+        Top = 210
+        Width = 100
+        Height = 22
+        Anchors = [akTop, akRight]
+        ItemHeight = 16
+        TabOrder = 4
+        OnSelect = ColorBox1Select
+      end
+      object Edit1: TEdit
+        Left = 29
+        Top = 171
+        Width = 37
+        Height = 21
+        Anchors = [akTop, akRight]
+        TabOrder = 5
+        Text = '100'
+        OnExit = Edit1Exit
+        OnKeyPress = Edit1KeyPress
+      end
+      object RingColor: TColorBox
+        Left = 6
+        Top = 248
+        Width = 100
+        Height = 22
+        Anchors = [akTop, akRight]
+        ItemHeight = 16
+        TabOrder = 6
+        OnSelect = RingColorSelect
+      end
+      object CheckBox7: TCheckBox
+        Left = 5
+        Top = 342
+        Width = 88
+        Height = 17
+        Anchors = [akTop, akRight]
+        Caption = 'Mostrar Anillas'
+        TabOrder = 7
+        OnClick = CheckBox7Click
+      end
+      object CheckBox3: TCheckBox
+        Left = 5
+        Top = 274
+        Width = 89
+        Height = 17
+        Anchors = [akTop, akRight]
+        Caption = 'Mostrar Mapa'
+        TabOrder = 8
+        OnClick = CheckBox3Click
+      end
+      object CheckBox6: TCheckBox
+        Left = 5
+        Top = 291
+        Width = 89
+        Height = 17
+        Anchors = [akTop, akRight]
+        Caption = 'Mostrar Costas'
+        TabOrder = 9
+        OnClick = CheckBox6Click
+      end
+      object CheckBox4: TCheckBox
+        Left = 5
+        Top = 308
+        Width = 89
+        Height = 17
+        Anchors = [akTop, akRight]
+        Caption = 'Mostrar Radar'
+        TabOrder = 10
+        OnClick = CheckBox4Click
+      end
+      object CheckBox5: TCheckBox
+        Left = 5
+        Top = 325
+        Width = 56
+        Height = 17
+        Anchors = [akTop, akRight]
+        Caption = 'PPI'
+        TabOrder = 11
+        OnClick = CheckBox5Click
+      end
+      object UpDown1: TUpDown
+        Left = 66
+        Top = 171
+        Width = 17
+        Height = 21
+        Anchors = [akTop, akRight]
+        Associate = Edit1
+        Max = 10000
+        Increment = 5
+        Position = 100
+        TabOrder = 12
+        Thousands = False
+        OnClick = UpDown1Click
+      end
+      object cbDataType: TComboBox
+        Left = 5
+        Top = 362
+        Width = 111
+        Height = 21
+        Style = csDropDownList
+        Anchors = [akTop, akRight]
+        ItemHeight = 13
+        TabOrder = 13
+        OnSelect = cbDataTypeSelect
+        Items.Strings = (
+          'DBZ'
+          'DBT'
+          'V'
+          'W'
+          'DBZ (DB)'
+          'DBT (DB)')
+      end
+    end
+    object Acions: TGroupBox
+      Left = 0
+      Top = 406
+      Width = 122
+      Height = 110
+      Align = alBottom
+      Caption = 'Acciones'
+      TabOrder = 1
+      DesignSize = (
+        122
+        110)
+      object Label10: TLabel
+        Left = 33
+        Top = 90
+        Width = 46
+        Height = 13
+        Anchors = [akRight, akBottom]
+        Caption = 'Opacidad'
+      end
+      object btnStart: TButton
+        Left = 4
+        Top = 22
+        Width = 113
+        Height = 22
+        Anchors = [akRight, akBottom]
+        Caption = 'Iniciar RT'
+        TabOrder = 0
+        OnClick = btnStartClick
+      end
+      object TrackBar1: TTrackBar
+        Left = 3
+        Top = 73
+        Width = 119
+        Height = 17
+        Anchors = [akLeft, akRight, akBottom]
+        Max = 255
+        Min = 150
+        PageSize = 1
+        Frequency = 10
+        Position = 255
+        TabOrder = 1
+        ThumbLength = 10
+        OnChange = TrackBar1Change
+      end
+      object CheckBox1: TCheckBox
+        Left = 9
+        Top = 55
+        Width = 95
+        Height = 17
+        Anchors = [akRight, akBottom]
+        Caption = 'Transparente'
+        TabOrder = 2
+        OnClick = CheckBox1Click
+      end
+    end
+  end
+  object ColorDialog1: TColorDialog
+    Left = 560
+    Top = 456
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 528
+    Top = 456
+    object Centrar1: TMenuItem
+      Caption = 'Centrar Imagen'
+      OnClick = Centrar1Click
+    end
+    object CambiarEscala1: TMenuItem
+      Caption = 'Cambiar Escala'
+      OnClick = CambiarEscala1Click
+    end
+    object BorrarDatos1: TMenuItem
+      Caption = 'Borrar Datos'
+      OnClick = BorrarDatos1Click
+    end
+    object PantallaCompleta1: TMenuItem
+      AutoCheck = True
+      Caption = 'Pantalla Completa'
+      OnClick = PantallaCompleta1Click
+    end
+  end
+  object OpenDialog1: TOpenDialog
+    DefaultExt = '.pal'
+    Filter = 'Escalas de colores|*.pal'
+    Left = 497
+    Top = 456
+  end
+  object ApplicationEvents1: TApplicationEvents
+    OnMessage = ApplicationEvents1Message
+    Left = 832
+    Top = 40
+  end
+end

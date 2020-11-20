@@ -1,0 +1,524 @@
+//---------------------------------------------------------------------------
+#include "Radar.h"
+#include "QuickSyn.h"
+#include "IntegratedData.h"
+#include "DataParameters.h"
+#include "FIFOinterface.h"
+#include "Site.h"
+
+#include "\ModBusLib\ModBusLibrary1_OCX.h"
+ #include "\ModBusLib\ModBusLibrary1_OCX.cpp"
+#pragma hdrstop
+
+#pragma package(smart_init)
+ IModLib*ModBudObj;
+//---------------------------------------------------------------------------
+__fastcall Radar::Radar(bool CreateSuspended) : TThread(CreateSuspended){
+	Priority = tpHighest;
+
+	fGathering     = false;
+	CurrentIntAzim = 0;
+	CurrentIntElev = 0;
+	CurrentSTALOFrequency = 0;
+	fAFCChangesInhibited = false;
+	fLastError = "";
+	fStaloUpdateTime = 0;
+
+	Stalo = new QuickSyn();
+	SetupInterface();
+	fInitializeSTALO = false;
+}
+//---------------------------------------------------------------------------
+
+void Radar::setRequestedPulseMode(int value){      //By Robert
+	if(!UpdatePulseModeNeeded){
+
+		   switch (value) {
+		  case 0:
+			RequestedPulseMode = RequestedPRF_Rate * 5;
+			setPulseMode= 0;
+			RecuestedHVWidth= 50;
+			break;
+		  case 1:
+			RequestedPulseMode = RequestedPRF_Rate * 5;
+			setRequestedFrecuency(ThisSite->short_pulse_frecuency);
+			setRequestedDelaySW( ThisSite->short_pulse_delaySW);
+			setRequestedWidthSW( ThisSite->short_pulse_widthSW);
+			RecuestedHVWidth = ThisSite->short_pulse_width * 100;
+			//RecuestedHVWidth = 80;
+			setPulseMode= 1;
+			break;
+		  case 2:
+			RequestedPulseMode = RequestedPRF_Rate * 5;
+			setPulseMode= 2;
+			RecuestedHVWidth = 100;
+			break;
+		  case 3 :
+			RequestedPulseMode = LP_MODE ;
+			setRequestedFrecuency( ThisSite->long_pulse_frecuency);
+			setRequestedDelaySW( ThisSite->long_pulse_delaySW);
+			setRequestedWidthSW( ThisSite->long_pulse_widthSW);
+			RecuestedHVWidth = ThisSite->long_pulse_width * 100;
+			//RecuestedHVWidth = 200;
+		    setPulseMode= 4;
+			break ;
+		default:
+			;
+
+	}
+}
+}
+void Radar::setRequestedPRF_Rate(int value){
+	if(!UpdatePulseModeNeeded){
+		RequestedPRF_Rate = value; //By Robert
+	   //	RequestedPRF_Rate = value  & 0x3;
+	   if(RequestedPulseMode != LP_MODE)
+		RequestedPulseMode = RequestedPRF_Rate * 5;
+	}
+}
+
+void Radar::setRequestedFrecuency(int value) {
+	 if(!UpdatePulseModeNeeded){
+		RecuestedHVFrecuency = ceil(100000000/value);
+
+	}
+
+}
+void Radar::setRequestedSectorMode(int value){
+	if(!UpdatePulseModeNeeded){
+		RequestedSectorMode = value;
+	}
+}
+
+void Radar::setRequestedOutputMode(bool value){
+	if(!UpdatePulseModeNeeded){
+		RequestedOutputMode = value;
+	}
+}
+
+void Radar::setRequestedDelayTxMA(float value){
+	  if(!UpdatePulseModeNeeded){
+
+		RequestedDelayTxMA = value * 100; ;
+	}
+}
+void Radar::setRequestedWidthTxMA(float value){
+	  if(!UpdatePulseModeNeeded){
+		RequestedWidthTxMA = value*100; ;
+	}
+}
+
+void Radar::setRequestedDelayRFG(float value){
+	 if(!UpdatePulseModeNeeded){
+	   RequestedDelayRFG = value * 100;
+	 }
+}
+
+void Radar::setRequestedWidthRFG(float value){
+	 if(!UpdatePulseModeNeeded){
+	   RequestedWidthRFG = value * 100;
+	 }
+}
+
+void Radar::setRequestedDelaySW(float value){
+	 if(!UpdatePulseModeNeeded){
+	   RequestedDelaySW = value * 100;
+	 }
+}
+
+void Radar::setRequestedWidthSW(float value){
+	  if(!UpdatePulseModeNeeded){
+		RequestedWidthSW = value * 100;
+	  }
+}
+
+int Radar::getPRF_Rate(){
+	return CurrentPRF_Rate;
+}
+
+int Radar::getSectorMode(){
+	return CurrentSectorMode;
+}
+
+bool Radar::getOutputMode(){
+	return CurrentOutputMode;
+}
+
+void Radar::DisableSynch(){
+	setRequestedOutputMode(false);
+	UpdateSynch();
+}
+
+void Radar::EnableSynch(){
+	setRequestedOutputMode(true);
+	UpdateSynch();
+}
+
+void Radar::UpdateSynch(){
+	if(!UpdatePulseModeNeeded)
+		UpdatePulseModeNeeded = true;
+}
+
+bool Radar::SyncChanging(){
+  return UpdatePulseModeNeeded;
+}
+
+void Radar::SetSyncWord(){
+	int Sync_Code = (int)1 << Code_Sync;
+
+	int Sync_Data = 0;
+	int Sync_Data1 = 0;  //by robert
+	int Sync_Data2 = 0;   // By Robert
+
+	if(RequestedPulseMode != LP_MODE)
+		Sync_Data |= (int)1 << Value_Pulse_Length;
+
+
+   	if(RequestedPRF_Rate != PRF_Rate_None)
+		Sync_Data |= (int)1 << Value_PRF_Mode;
+
+   //	Sync_Data |= (int)1 << Value_Calibration_Mode;
+
+		Sync_Data |= RequestedPRF_Rate << Value_PRF_Rate;
+
+	int rays = 0;
+	if(RequestedSectorMode == smRays)
+	   rays = (RequestedPulseMode == LP_MODE) ? ThisSite->SectorRaysLP : ThisSite->SectorRaysSP;
+
+	Sync_Data |= rays << Value_Sector_Mode;
+
+	if(RequestedSectorMode == smElevation)
+		Sync_Data |= (int)1 << Value_Sector_Direction;
+
+
+
+
+	UpdatePulseMode = Sync_Code | Sync_Data;
+	DIOInterface->WriteWord(UpdatePulseMode);
+	//by Robert
+
+	Sync_Data1  =  RecuestedHVFrecuency   << 8;
+	// Sync_Data2=  rgPLPC->ItemIndex;
+
+
+
+	PRFWord = CodeSynchroHV |	Sync_Data1 | RecuestedHVWidth;
+	SynchroInterface->WriteWord(PRFWord);       //Set HV
+	Sleep(1);
+
+	Sync_Data2|= RequestedPRF_Rate << 3;
+	Sync_Data2 |= (int)1 << Value_Calibration_Mode;
+ //	Sync_Data2 |= rays << Value_Sector_Mode;
+	PRFWord = CodeSynchroPRFSetting| Sync_Data2 | setPulseMode ;
+	SynchroInterface->WriteWord(PRFWord);   //Set PRF Setting
+	Sleep(1);
+	if(RequestedOutputMode){
+	  //	Sync_Data |= (int)1 << Value_Sync_Output;
+	  Sync_Data2 |= (int)1 << Value_Sync_Output; // By Robert
+	  PRFWord =  PRFWord | Sync_Data2;
+	  TheProcessingThread->ResetFilter();
+	  SynchroInterface->WriteWord(PRFWord);   //Set PRF Setting
+	}
+
+	/*Sync_Data1  =0;
+	Sync_Data1  = RequestedDelayTxMA << 16;
+	PRFWord =  CodeSynchroTxMa | 	Sync_Data1 | RequestedWidthTxMA;
+	SynchroInterface->WriteWord(PRFWord);      //Set TxMA
+	Sleep(1);
+	Sync_Data1  =0;
+	Sync_Data1  = RequestedDelayRFG << 16;
+	PRFWord =  CodeSynchroRFG | Sync_Data1 |  RequestedWidthRFG;
+	SynchroInterface->WriteWord(PRFWord);         //Set RFG
+	Sleep(1);    */
+	Sync_Data1  =0;
+	Sync_Data1  = RequestedDelaySW << 16;
+	PRFWord =  CodeSynchroSW | Sync_Data1 |  RequestedWidthSW;
+	SynchroInterface->WriteWord(PRFWord);         //Set SW
+	Sleep(1);
+
+	CurrentPulseMode  = RequestedPulseMode;
+	CurrentPRF_Rate   = RequestedPRF_Rate;
+	CurrentSectorMode = RequestedSectorMode;
+	CurrentOutputMode = RequestedOutputMode;
+
+	ClearDigitalOutputs();
+	UpdatePulseModeNeeded = false;
+}
+
+//Antena
+void Radar::SetCurrentIntAzim(int Value){
+	CurrentIntAzim = Value;
+}
+
+void Radar::SetCurrentIntElev(int Value){
+	CurrentIntElev = Value;
+}
+
+int  Radar::GetCurrentIntAzim(){
+  return CurrentIntAzim;
+}
+
+int  Radar::GetCurrentIntElev(){
+	return CurrentIntElev;
+}
+
+int Radar::GetCurrentPulseMode(){
+	return CurrentPulseMode;
+}
+
+bool Radar::SyncChanged(){
+	return RequestedPulseMode != CurrentPulseMode;
+}
+
+void Radar::ClearDigitalOutputs(){
+	DIOInterface->WriteWord(0x00000000);
+}
+
+//---------------------------------------------------------------------------
+
+__fastcall Radar::SetupInterface(){
+	DIOInterface = new FIFOInterface(FifoA);
+	NCOInterface = new FIFOInterface(FifoE);
+	SynchroInterface = new FIFOInterface(FifoB);
+   //	StaloInterface = new FIFOInterface(FifoA);
+}
+
+void Radar::InitSTALO(){
+  __try{
+	if(!Stalo->Connected){
+		Synchronize(ConnectSTALO);
+		SetStaloFrequency(ThisSite->Stalo_Frequency);
+		if(Stalo->Ready){
+			//Stalo->Reset();
+			//InitModbus
+			StaloModbusSerialPort = ThisSite->Stalo_modbus_serial_port;
+			StaloModbusDAChannel = ThisSite->Stalo_modbus_da_channel;
+
+			CoInitialize(NULL);
+			HRESULT hr = CoCreateInstance(CLSID_ModLib,NULL,
+								CLSCTX_INPROC_SERVER,
+								IID_IModLib,(void**)&ModBudObj);
+			   if(SUCCEEDED (hr)){
+			   ModBudObj->ConfMod(StaloModbusSerialPort,6,1,8,True);
+			   ModBudObj->OpenComPort();
+
+			 }
+			 //End InitModbus
+			//SetStaloFrequency(ThisSite->Stalo_Frequency);
+			SetStaloPower(ThisSite->Stalo_Power);
+			//SetStaloFrequency(ThisSite->Stalo_Frequency);
+			SetStaloOutput(true);
+			SetNCOFrequency(IF);
+		}
+	}
+  }
+  __finally{
+	fInitializeSTALO = false;
+  }
+}
+
+void Radar::InitSynch(){
+	setRequestedSectorMode(smRays);
+	setRequestedOutputMode(false);
+
+	setRequestedPulseMode(3);
+	setRequestedDelaySW(ThisSite->long_pulse_delaySW);
+	setRequestedWidthSW(ThisSite->long_pulse_widthSW);
+	setRequestedPRF_Rate(PRF_Rate_None);
+
+	UpdateSynch();
+}
+
+//---------------------------------------------------------------------------
+void __fastcall Radar::Execute(){
+  ClearDigitalOutputs();
+
+  while(!Terminated){
+ 	if(UpdatePulseModeNeeded)
+	   SetSyncWord();
+
+	if(fInitializeSTALO)
+		InitSTALO();
+
+	if(StaloChanged()){
+	   Sleep(10);
+	   if(SettlingFrequency){
+		   CurrentSTALOFrequency = RequestedSTALOFrequency;
+		   SettlingFrequency = false;
+	   }
+	   if(SettlingOutput){
+		   CurrentSTALOOutput = RequestedSTALOOutput;
+		   SettlingOutput = false;
+	   }
+
+	   if(SettlingPower){
+	   	   SettlingPower = false;
+	   }
+	}else{
+		if(FreqUpdateNeeded){
+			SettlingFrequency = true;
+			FreqUpdateNeeded = false;
+             //control del stalo analogico MODBUS
+			if ((RequestedSTALOFrequency >= 2930000000) && (RequestedSTALOFrequency <= 2970000000)) {
+			   LastRequestedSTALOFrequency = RequestedSTALOFrequency;
+			   Stalo->SetFrequency(RequestedSTALOFrequency);
+			   FrequencyInCodeDouble =(RequestedSTALOFrequency - 2930000000.0)/1000000.0;
+			   FrequencyInCodeInt=(FrequencyInCodeDouble / 0.16) + 2904;
+              ModBudObj->WriteCode(7,StaloModbusDAChannel,3000);
+			if ((FrequencyInCodeInt >= 2904) && (FrequencyInCodeInt <= 3153)){
+			   //StaloInterface->WriteWord(FrequencyInCodeInt);
+			   ModBudObj->WriteCode(7,StaloModbusDAChannel,FrequencyInCodeInt);
+			  }
+
+			/*if ((RequestedSTALOFrequency >= 2930000000) && (RequestedSTALOFrequency <= 2970000000)) {
+			   LastRequestedSTALOFrequency = RequestedSTALOFrequency;
+			   Stalo->SetFrequency(RequestedSTALOFrequency);
+			   FrequencyInCodeDouble =(RequestedSTALOFrequency - 2930000000.0)/1000000.0;
+			   FrequencyInCodeInt=(FrequencyInCodeDouble / 0.367) + 2722;
+
+			if ((FrequencyInCodeInt >= 2722) && (FrequencyInCodeInt <= 2831)){
+			   //StaloInterface->WriteWord(FrequencyInCodeInt);
+			   //ModBudObj->WriteCode(7,StaloModbusDAChannel,FrequencyInCodeInt);
+
+
+			  }  */
+
+		   }
+		   else{
+			  RequestedSTALOFrequency = LastRequestedSTALOFrequency;
+
+			 }
+
+			//StaloInterface->WriteWord(13800);
+
+		}
+		else if(PowerUpdateNeeded){
+			SettlingPower = true;
+			Stalo->SetPower(RequestedSTALOPower);
+			PowerUpdateNeeded = false;
+		}
+		else if(OutputUpdateNeeded){
+			SettlingOutput = true;
+			OutputUpdateNeeded = false;
+			if(RequestedSTALOOutput)
+				Stalo->SetOutputON();
+			else
+				Stalo->SetOutputOff();
+		}
+		else{
+			if(GetTickCount() - fStaloUpdateTime > 5000){
+				Stalo->Update();
+				fStaloUpdateTime = GetTickCount();
+			}
+			else Sleep(50);
+		}
+	}
+  }
+  Stalo->Disconnect();
+  Stalo->~QuickSyn();
+}
+//---------------------------------------------------------------------------
+
+bool Radar::SetStaloFrequency(INT64 freq){
+  bool result = false;
+
+  if(!StaloChanged() && !FreqUpdateNeeded){
+	  RequestedSTALOFrequency = freq;
+	  FreqUpdateNeeded = true;
+	  result = true;
+  }
+
+  return result;
+}
+
+bool Radar::SetStaloPower(double power){
+  bool result = false;
+
+  if(!StaloChanged() && !PowerUpdateNeeded){
+	  RequestedSTALOPower = power;
+	  PowerUpdateNeeded = true;
+	  result = true;
+  }
+
+  return result;
+}
+
+bool Radar::SetStaloOutput(bool output){
+  bool result = false;
+
+  if(!StaloChanged() && !OutputUpdateNeeded){
+	  RequestedSTALOOutput = output;
+	  OutputUpdateNeeded = true;
+	  result = true;
+  }
+
+  return result;
+}
+
+bool Radar::OutputNCOFrequencyDemand(INT64 MeasuredIF){
+	HE_INT32 NCOwordout = 0;
+	NCOwordout = (MeasuredIF / CLOCKSPD) * TWOTO32 + 0.5;
+	NCOInterface->WriteWord(NCOwordout);
+};
+
+INT64 Radar::GetSTALOFrequency(){
+   return CurrentSTALOFrequency;
+}
+
+bool Radar::GetSTALOOutput(){
+   return CurrentSTALOOutput;
+}
+
+INT64 Radar::GetNCOFrequency(){
+   return RequestedNCOFrequency;
+}
+
+void Radar::SetNCOFrequency(INT64 freq){
+  RequestedNCOFrequency = freq;
+  OutputNCOFrequencyDemand(RequestedNCOFrequency);
+}
+
+void Radar::SetAFCChangesInhibited(bool Value){
+   fAFCChangesInhibited = Value;
+}
+
+bool Radar::GetAFCChangesInhibited(){
+   return fAFCChangesInhibited;
+}
+
+bool Radar::StaloChanged(){
+	return SettlingFrequency || SettlingPower || SettlingOutput;
+}
+
+bool Radar::GetGathering(){
+	return fGathering;
+}
+
+void Radar::SetGathering(bool value){
+	fGathering = value;
+	fLastError = "";
+}
+
+String Radar::GetLastError(){
+	return fLastError;
+}
+
+void Radar::SetLastError(String error){
+	fLastError = error;
+	if(error != ""){
+		if(fGathering){
+			fGathering = false;
+			if(FOnGatheringError != NULL){
+			  FOnGatheringError(fLastError);
+			}
+		}
+	}
+}
+
+void Radar::NeedInitSTALO(){
+	fInitializeSTALO = true;
+}
+
+void __fastcall Radar::ConnectSTALO(){
+	Stalo->Connect();
+}

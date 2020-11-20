@@ -1,0 +1,41 @@
+#ifndef   DRX_WSH
+#define   DRX_WSH
+
+#include <System.hpp>
+#include <InvokeRegistry.hpp>
+#include <XSBuiltIns.hpp>
+#include <Types.hpp>
+#include "config.h"
+#include "ObsManager.h"
+
+__interface INTERFACE_UUID("{C558094B-F4B9-4DB6-8845-59322FF6C584}") IDRX_WS : public IInvokable
+{
+public:
+	virtual bool Login(String UserName, String Password) = 0;
+	virtual bool Logout() = 0;
+
+	virtual int Ping(int code) = 0;
+
+	virtual void StartDataFlow(bool RealTime) = 0;
+	virtual void StopDataFlow() = 0;
+	virtual TDRX_Parameters* GetParameters() = 0;
+
+
+	virtual bool GetGathering() = 0;
+	virtual void AcquirePPI(int Speed, int Elevation, TDataFilter* filter) = 0;
+	virtual void AcquireRHI(int Speed, int Azimuth, int Start, int Final, TDataFilter* filter) = 0;
+	virtual void FinalizeObservation() = 0;
+	virtual void CancelObservation() = 0;
+	virtual void ErrorObservation(String error) = 0;
+
+	virtual void Set_Filter(TDataFilter* filter) = 0;
+};
+typedef DelphiInterface<IDRX_WS> _di_IDRX_WS;
+
+#endif // DRX_WSH
+
+extern ObservationManager* theObservationManager;
+extern ProcessingThread*   TheProcessingThread;
+//---------------------------------------------------------------------------
+
+

@@ -1,0 +1,137 @@
+#ifndef __DATATYPES_H_
+#define __DATATYPES_H_
+
+//=============================================================================
+#define LP_MODE 0
+
+const int vdtPower    = 0;
+const int vdtSpeed    = 1;
+const int vdtSpectrum = 2;
+const int vdtSQI      = 3;
+const int vdtCI       = 4;
+
+//=============================================================================
+const int ConnectorA = 16;
+const int ConnectorB = 17;
+const int ConnectorC = 18;
+const int ConnectorD = 19;
+const int ConnectorE = 20;
+const int ConnectorF = 21;
+
+const int  Code_DigitalOutput = ConnectorF;
+
+const int Code_Sync  = 28;
+
+const int Value_Pulse_Length     = 0;
+const int Value_PRF_Mode         = 1;
+const int Value_PRF_Rate         = 2;
+const int Value_Sync_Output      = 4;
+const int Value_Calibration_Mode = 5;
+const int Value_Sector_Mode      = 8;
+
+
+const double TWOTO32  = 4294967296;
+const double CLOCKSPD = 100000000;
+
+//=============================================================================
+
+const int LongPulse  = 0;
+const int ShortPulse = 1;
+const int SinglePRF  = 0;
+const int DualPRF    = 1;
+
+const int SP_Low_54_MODE  = 0;
+const int SP_High_54_MODE = 1;
+const int SP_Low_43_MODE  = 5;
+const int SP_High_43_MODE = 6;
+const int SP_Low_32_MODE  = 10;
+const int SP_High_32_MODE = 11;
+
+const int SP_54_MODE  = 0;
+const int SP_43_MODE  = 5;
+const int SP_32_MODE  = 10;
+const int SP_MODE     = 15;
+const int LP_MODE     = 20;
+
+const int PRF_Rate_54   = 0;
+const int PRF_Rate_43   = 1;
+const int PRF_Rate_32   = 2;
+const int PRF_Rate_None = 3;
+
+// PRF_Rate * 5 + PRF_Change
+
+const int NUMBEROFBUFFERS = 20;
+const int NRAWPULSESOUT   = 1000;
+const int NREAD 		  = 20;
+const int NDUMPS 		  = 100;
+
+const double CONV_FACTOR = (360.0/16384.0);    /*14 bits az/el */
+
+const int RAW_DATA_LENGTH_LP      = 1667;
+const int RAW_DATA_LENGTH_SP      = 1868;
+const int RAW_DATA_LENGTH_SP_DUAL = 1537;
+
+const int BIN_LENGTH_LP = 300;
+const int BIN_LENGTH_SP = 75;
+
+const int LPSize     = RAW_DATA_LENGTH_LP * 2 + 4;
+const int SPSize     = RAW_DATA_LENGTH_SP * 2 + 4;
+const int SPSizeDual = RAW_DATA_LENGTH_SP_DUAL * 2 + 4;
+
+const int NOISEPULSEPOSITION = 1351;
+const int NUMBEROFNOISESAMPLES = 4;
+const int NOISEAVERAGE = 400;
+
+const RAW_HALF_DEGREES = 726;
+
+//=============================================================================
+
+const double SpeedLight = 3e8;
+const double SBand_Frequncy = 2980e6;
+const double SBand_Length = SpeedLight / SBand_Frequncy; /*0.10067*/
+const double PI = 3.14159;
+
+const double _250_MaxSpeed  =  250 * SBand_Length / 4;
+const double _800_MaxSpeed  =  800 * SBand_Length / 4;
+const double _900_MaxSpeed  =  900 * SBand_Length / 4;
+const double _960_MaxSpeed  =  960 * SBand_Length / 4;
+const double _1000_MaxSpeed = 1000 * SBand_Length / 4;
+const double _1200_MaxSpeed = 1200 * SBand_Length / 4;
+
+const double _250_CONV_FACTOR_  = _250_MaxSpeed  / PI;  /*2.0025*/
+const double _800_CONV_FACTOR_  = _800_MaxSpeed  / PI;  /*6.408 */
+const double _900_CONV_FACTOR_  = _900_MaxSpeed  / PI;  /*7.209 */
+const double _960_CONV_FACTOR_  = _960_MaxSpeed  / PI;  /*7.6896*/
+const double _1000_CONV_FACTOR_ = _1000_MaxSpeed / PI;  /*8.01  */
+const double _1200_CONV_FACTOR_ = _1200_MaxSpeed / PI;  /*9.612 */
+
+const double _250_Distance  = SpeedLight / (2 * 250);  /*600000*/
+const double _800_Distance  = SpeedLight / (2 * 800);  /*187500*/
+const double _900_Distance  = SpeedLight / (2 * 900);  /*166666*/
+const double _960_Distance  = SpeedLight / (2 * 960);  /*156250*/
+const double _1000_Distance = SpeedLight / (2 * 1000); /*150000*/
+const double _1200_Distance = SpeedLight / (2 * 1200); /*125000*/
+
+//=============================================================================
+
+typedef struct RawPulseData{
+	unsigned short SPMode;
+	unsigned short PRFChange;
+	unsigned short  PRFRate;
+	int  PulseMode;
+	unsigned short NData;
+	unsigned short ShortAzimuth;
+	unsigned short ShortElevation;
+	float   FloatAzimuth;
+	float   FloatElevation;
+	unsigned int   SequenceNumber;
+	double  I[SPSize] ;
+	double  Q[SPSize];
+} RawPulseData;
+
+
+#endif /* __DATATYPES_H_ */
+
+
+
+

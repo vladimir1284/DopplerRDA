@@ -1,0 +1,13 @@
+# Output products list for <rawFIFO512x14>
+rawFIFO512x14.asy
+rawFIFO512x14.ngc
+rawFIFO512x14.sym
+rawFIFO512x14.v
+rawFIFO512x14.veo
+rawFIFO512x14.vhd
+rawFIFO512x14.vho
+rawFIFO512x14.xco
+rawFIFO512x14_fifo_generator_v4_3_xst_1.ngc_xst.xrpt
+rawFIFO512x14_fifo_generator_v4_3_xst_1_vhdl.prj
+rawFIFO512x14_flist.txt
+rawFIFO512x14_xmdf.tcl

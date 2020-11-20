@@ -1,0 +1,438 @@
+unit Users;
+
+interface
+
+uses
+  Classes;
+
+const  // User levels
+  ul_God        = 9;
+  ul_Author     = 8;
+  ul_Supervisor = 7;
+  ul_Service    = 6;
+  ul_Designer   = 5;
+  ul_Operator   = 4;
+  ul_Guest      = 3;
+  ul_NotLogged  = 2;
+  ul_NotUser    = 1;
+  ul_Failed     = 0;
+
+function  UserLogin ( const Name, Password : string ) : integer;
+function  CreateUser( const Name, Password : string; Level : integer ) : boolean;
+function  ModifyUser( const Name, Password : string; Level : integer ) : boolean;
+function  DeleteUser( const Name : string ) : boolean;
+function  UserLevel ( const Name : string ) : integer;
+function  UserPassword( const Name : string ) : string;
+
+
+function GetController : string;
+function SetController  ( const Name, Password : string ) : boolean;
+function ResetController( const Name, Password : string ) : boolean;
+
+function EnumUsers( const Name, Password : string ) : TStrings;
+function Encode( S : string ) : string;
+function Decode( S : string ) : string;
+
+procedure InitUsers;
+procedure DoneUsers;
+
+//Session management
+function  GenerateSecurityToken( UserName : string ) : string;
+function  GetUserSecurityToken( UserName : string ) : string;
+procedure ResetSecurityToken( UserName : string );
+function  CheckSecurityToken( UserName, Token : string ) : boolean;
+
+implementation
+
+uses
+  Windows,
+  SysUtils,
+  Mutex,
+  RDAReg, Registry;
+
+const
+  UsersMutexName = 'Elbrus_Users_Mutex';
+
+var
+  UsersMutex : TMutex = nil;
+
+const
+  UsersKey = RDARootKey + '\Users\';
+  DefValue = '';
+  LvlValue = 'Level';
+  PwdValue = 'Password';
+  UpdValue = 'Updated';
+  TokenValue = 'Session';
+
+// Private procedures & functions
+
+function Encode( S : string ) : string;
+var
+  I : integer;
+begin
+  SetLength(Result, Length(S));
+  for I := 1 to Length(Result) do
+    Result[I] := succ(S[I]);
+end;
+
+function Decode( S : string ) : string;
+var
+  I : integer;
+begin
+  SetLength(Result, Length(S));
+  for I := 1 to Length(Result) do
+    Result[I] := pred(S[I]);
+end;
+
+// Public procedures & functions
+
+function UserLogin( const Name, Password : string ) : integer;
+begin
+  if UsersMutex.WaitFor(1000)
+    then
+      try
+        with TRDAReg.Create do
+          try
+            if (Name <> '') and OpenKey(UsersKey + Name, false) and ValueExists(PwdValue)
+              then
+                if CompareText(Password, Decode(ReadString(PwdValue))) = 0
+                  then Result := ReadInteger(LvlValue)
+                  else Result := ul_NotLogged
+              else Result := ul_NotUser;
+          finally
+            Free;
+          end
+      finally
+        UsersMutex.Release;
+      end
+    else Result := ul_Failed;
+end;
+
+function UserLevel( const Name : string ) : integer;
+begin
+  if UsersMutex.WaitFor(1000)
+    then
+      try
+        with TRDAReg.Create do
+          try
+            if OpenKey(UsersKey + Name, false) and ValueExists(LvlValue)
+              then Result := ReadInteger(LvlValue)
+              else Result := ul_NotUser;
+          finally
+            Free;
+          end
+      finally
+        UsersMutex.Release;
+      end
+    else Result := ul_Failed;
+end;
+
+function CreateUser( const Name, Password : string; Level : integer ) : boolean;
+begin
+  if UsersMutex.WaitFor(1000)
+    then
+      try
+        with TRDAReg.Create do
+          try
+            if not KeyExists(UsersKey + Name) and
+                   OpenKey(UsersKey + Name, true)
+              then
+                begin
+                  WriteString  (PwdValue, Encode(Password));
+                  WriteInteger (LvlValue, Level);
+                  WriteDateTime(UpdValue, Now);
+                  Result := true;
+                end
+              else Result := false;
+          finally
+            Free;
+          end;
+      finally
+        UsersMutex.Release;
+      end
+    else Result := false;
+end;
+
+function ModifyUser( const Name, Password : string; Level : integer ) : boolean;
+begin
+  if UsersMutex.WaitFor(1000)
+    then
+      try
+        with TRDAReg.Create do
+          try
+            if OpenKey(UsersKey + Name, true)
+              then
+                begin
+                  WriteString  (PwdValue, Encode(Password));
+                  WriteInteger (LvlValue, Level);
+                  WriteDateTime(UpdValue, Now);
+                  Result := true;
+                end
+              else Result := false;
+          finally
+            Free;
+          end;
+      finally
+        UsersMutex.Release;
+      end
+    else Result := false;
+end;
+
+function DeleteUser( const Name : string ) : boolean;
+begin
+  if UsersMutex.WaitFor(1000)
+    then
+      try
+        with TRDAReg.Create do
+          try
+            Result := DeleteKey(UsersKey + Name)
+          finally
+            Free;
+          end;
+      finally
+        UsersMutex.Release;
+      end
+    else Result := false;
+end;
+
+function EnumUsers( const Name, Password : string ) : TStrings;
+var
+  Level : integer;
+  I     : integer;
+begin
+  Level := UserLogin(Name, Password);
+  if (Level > ul_NotUser) and UsersMutex.WaitFor(1000)
+    then
+      try
+        Result := TStringList.Create;
+        with TRDAReg.Create do
+          try
+            if OpenKey(UsersKey, false)
+              then GetKeyNames(Result);
+            for I := Result.Count - 1 downto 0 do
+              if (CompareText(Result[I], Name) <> 0) and
+                 (UserLevel(Result[I]) >= Level)
+                then Result.Delete(I);
+          finally
+            Free;
+          end;
+      finally
+        UsersMutex.Release;
+      end
+    else Result := nil;
+end;
+
+function GetController : string;
+begin
+  UsersMutex.Acquire;
+  try
+    with TRDAReg.Create do
+      try
+        if OpenKey(UsersKey, false) and ValueExists(DefValue)
+          then Result := ReadString(DefValue)
+          else Result := '';
+      finally
+        Free;
+      end;
+  finally
+    UsersMutex.Release;
+  end;
+end;
+
+function GetControllerLevel : integer;
+var
+  ControllerName : string;
+begin
+  ControllerName := GetController;
+  if ControllerName <> ''
+    then Result := UserLevel(ControllerName)
+    else Result := ul_NotUser;
+end;
+
+function SetController( const Name, Password : string ) : boolean;
+var
+  Level : integer;
+begin
+  Level  := UserLogin(Name, Password);
+  Result := Level > GetControllerLevel;
+  if Result
+    then
+      begin
+        UsersMutex.Acquire;
+        try
+          with TRDAReg.Create do
+            try
+              if OpenKey(UsersKey, true)
+                then WriteString(DefValue, Name)
+                else Result := false;
+            finally
+              Free;
+            end;
+        finally
+          UsersMutex.Release;
+        end;
+      end;
+end;
+
+function ResetController( const Name, Password : string ) : boolean;
+var
+  Level           : integer;
+  ControllerName  : string;
+  ControllerLevel : integer;
+begin
+  Level := UserLogin(Name, Password);
+  ControllerName := GetController;
+  ControllerLevel := GetControllerLevel;
+  Result := (Level > ControllerLevel) or
+            (Level = ControllerLevel) and (CompareText(Name, ControllerName) = 0);
+  if Result
+    then
+      begin
+        UsersMutex.Acquire;
+        try
+          with TRDAReg.Create do
+            try
+              if OpenKey(UsersKey, true)
+                then WriteString(DefValue, '')
+                else Result := false;
+            finally
+              Free;
+            end;
+        finally
+          UsersMutex.Release;
+        end;
+      end;
+end;
+
+// Initialization & finalization
+
+procedure InitUsers;
+begin
+  UsersMutex := TMutex.Create( nil, true, UsersMutexName );
+  try
+    with TRDAReg.Create do
+      try
+        if OpenKey(UsersKey, true)
+          then
+            begin
+              WriteString(DefValue, '');
+              if (not KeyExists( 'God' )) and OpenKey('God', true)
+                then
+                  begin
+                    WriteString  (PwdValue, Encode('Vesta'));
+                    WriteInteger (LvlValue, ul_God);
+                    WriteDateTime(UpdValue, Now);
+                  end;
+            end;
+      finally
+        Free;
+      end;
+  finally
+    UsersMutex.Release;
+  end
+end;
+
+procedure DoneUsers;
+begin
+  if Assigned( UsersMutex )
+    then UsersMutex.Free;
+end;
+
+function  GenerateSecurityToken( UserName : string ) : string;
+var
+  Token : string;
+  guid : TGUID;
+begin
+  CreateGUID( guid );
+  Token := GUIDToString( guid );
+  while Pos( '{', Token ) > 0 do
+    Delete( Token, Pos( '{', Token ), 1 );
+  while Pos( '}', Token ) > 0 do
+    Delete( Token, Pos( '}', Token ), 1 );
+  while Pos( '-', Token ) > 0 do
+    Delete( Token, Pos( '-', Token ), 1 );
+
+  Result := '';
+  if UsersMutex.WaitFor(1000)
+    then
+      try
+        with TRDAReg.Create do
+          try
+            if OpenKey(UsersKey + UserName, false)
+              then
+                begin
+                  WriteString  (TokenValue, Encode(Token));
+                  result := token;
+                end;
+          finally
+            Free;
+          end;
+      finally
+        UsersMutex.Release;
+      end
+end;
+
+function  GetUserSecurityToken( UserName : string ) : string;
+begin
+  Result := '';
+  if UsersMutex.WaitFor(1000)
+    then
+      try
+        with TRDAReg.Create do
+          try
+            if OpenKey(UsersKey + UserName, false) and ValueExists(TokenValue)
+              then Result := ReadString(TokenValue);
+          finally
+            Free;
+          end
+      finally
+        UsersMutex.Release;
+      end
+end;
+
+procedure ResetSecurityToken( UserName : string );
+begin
+  if UsersMutex.WaitFor(1000)
+    then
+      try
+        with TRDAReg.Create do
+          try
+            if OpenKey(UsersKey + UserName, false)
+              then WriteString  (TokenValue, '');
+          finally
+            Free;
+          end;
+      finally
+        UsersMutex.Release;
+      end
+end;
+
+function CheckSecurityToken( UserName, Token : string ) : boolean;
+var
+  UserToken : string;
+begin
+  UserToken := GetUserSecurityToken( UserName );
+  UserToken := Decode( UserToken );
+  result := UserToken = Token
+end;
+
+function  UserPassword( const Name : string ) : string;
+begin
+  result := '';
+  if UsersMutex.WaitFor(1000)
+    then
+      try
+        with TRDAReg.Create do
+          try
+            if OpenKey(UsersKey + Name, false) and ValueExists(PwdValue)
+              then Result := Decode( ReadString(PwdValue) );
+          finally
+            Free;
+          end
+      finally
+        UsersMutex.Release;
+      end;
+end;
+
+end.
+

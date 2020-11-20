@@ -1,0 +1,31 @@
+//---------------------------------------------------------------------------
+
+
+#pragma hdrstop
+
+#include "config.h"
+
+//---------------------------------------------------------------------------
+
+TFloatArray __fastcall Settings::getConv_table(){
+	TFloatArray result;
+
+	TStrings* table = new TStringList();
+	table->Delimiter = ';';
+	table->DelimitedText = fConv_table;
+
+	result.Length = table->Count;
+	for(int i=0; i<table->Count-1; i++){
+		Conv_table[i] = StrToFloat(table->Strings[i]);
+	}
+	table->Free();
+
+	return result;
+}
+
+
+#pragma package(smart_init)
+
+
+
+

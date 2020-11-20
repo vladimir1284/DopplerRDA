@@ -1,0 +1,88 @@
+//---------------------------------------------------------------------------
+
+#ifndef configH
+#define configH
+
+#include <System.hpp>
+#include <InvokeRegistry.hpp>
+#include <XSBuiltIns.hpp>
+#include <Types.hpp>
+
+#include <vcl.h>
+//---------------------------------------------------------------------------
+
+typedef DynamicArray<int> TIntegerArray;
+
+class Settings : public TRemotable
+{
+	private:
+		//stalo
+		int fScan_step;  //Hz
+		int fScan_delay; //ms
+		int fScan_width; //Hz
+		int fStaloPort;
+
+		//afc
+		double fPower_factor_tx;
+		int fStart_sample_lp;
+		int fStop_sample_lp;
+		int fStart_sample_sp;
+		int fStop_sample_sp;
+
+		//iq
+		double fThresholdSQI;
+		double fC1;
+		double fC2;
+		int fSP_TX_PulsePosition;
+		int fLP_TX_PulsePosition;
+
+		//rx
+		double fNoise_power;
+		int fNoise_source;
+
+		int fPower_shot;
+		int fSensibility;
+		int fDinamic_range;
+		double fRadar_constant_lp;
+		double fRadar_constant_sp;
+		double fMet_pot_lp;
+		double fMet_pot_sp;
+
+		TIntegerArray Conv_table;
+__published:
+  __property int    Scan_step  = { read= fScan_step , write= fScan_step };
+  __property int    Scan_delay = { read= fScan_delay, write= fScan_delay};
+  __property int    Scan_width = { read= fScan_width, write= fScan_width};
+  __property int    StaloPort  = { read= fStaloPort , write= fStaloPort };
+
+		//afc
+  __property double Power_factor_tx = { read= fPower_factor_tx, write= fPower_factor_tx};
+  __property int    Start_sample_lp = { read= fStart_sample_lp, write= fStart_sample_lp};
+  __property int    Stop_sample_lp  = { read= fStop_sample_lp , write= fStop_sample_lp };
+  __property int    Start_sample_sp = { read= fStart_sample_sp, write= fStart_sample_sp};
+  __property int    Stop_sample_sp  = { read= fStop_sample_sp , write= fStop_sample_sp };
+
+		//iq
+  __property double ThresholdSQI        = { read= fThresholdSQI       , write= fThresholdSQI       };
+  __property double C1                  = { read= fC1                 , write= fC1                 };
+  __property double C2                  = { read= fC2                 , write= fC2                 };
+  __property int    SP_TX_PulsePosition = { read= fSP_TX_PulsePosition, write= fSP_TX_PulsePosition};
+  __property int    LP_TX_PulsePosition = { read= fLP_TX_PulsePosition, write= fLP_TX_PulsePosition};
+
+		//rx
+  __property double Noise_power  = { read= fNoise_power , write= fNoise_power };
+  __property int    Noise_source = { read= fNoise_source, write= fNoise_source};
+
+  __property int    Power_shot        = { read= fPower_shot       , write= fPower_shot       };
+  __property int    Sensibility       = { read= fSensibility      , write= fSensibility      };
+  __property int    Dinamic_range     = { read= fDinamic_range    , write= fDinamic_range    };
+  __property double Radar_constant_lp = { read= fRadar_constant_lp, write= fRadar_constant_lp};
+  __property double Radar_constant_sp = { read= fRadar_constant_sp, write= fRadar_constant_sp};
+  __property double Met_pot_lp        = { read= fMet_pot_lp       , write= fMet_pot_lp       };
+  __property double Met_pot_sp        = { read= fMet_pot_sp       , write= fMet_pot_sp       };
+
+  __property TIntegerArray Conv_table = { read= fConv_table, write= fConv_table};
+
+};
+
+#endif

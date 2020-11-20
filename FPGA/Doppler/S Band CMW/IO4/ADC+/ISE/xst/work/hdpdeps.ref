@@ -1,0 +1,166 @@
+V3 129
+FL "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/ISE/rawfifo255x14.vhd" 2008/07/31.13:32:40 K.31
+FL "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/Src/led.vhd" 2007/11/12.16:43:32 K.31
+FL "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/ADC+/Src/USER_AP_ADC.vhd" 2009/05/19.14:38:52 K.31
+FL "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/common/HE_ADC.vhd" 2007/11/12.16:43:32 K.31
+FL "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/common/HE_DAC.vhd" 2007/11/12.16:43:32 K.31
+FL "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/common/HE_RWCLK.vhd" 2007/11/12.16:43:32 K.31
+FL "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/common/HE_SCLK.vhd" 2007/11/12.16:43:32 K.31
+FL "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/common/HE_USER.vhd" 2007/11/12.16:43:32 K.31
+FL "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/Common/HE_WR_6F.vhd" 2007/11/12.16:43:32 K.31
+FL "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/common/TOP.vhd" 2007/11/12.16:43:32 K.31
+FL "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/common/V2ES_RWC.vhd" 2007/11/12.16:43:32 K.31
+FL "C:/Proyecto Cyclos_Cuba/FPGA/Cyclops_Cuba/FPGA/IO4/Common/V2_RD_6F.vhd" 2007/11/12.16:43:32 K.31
+FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/rawfifo255x14.vhd" 2008/07/31.12:32:40 K.31
+FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/Src/led.vhd" 2007/11/12.15:43:32 K.31
+FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/Src/USER_AP_ADC.vhd" 2010/01/19.08:55:15 K.31
+FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/HE_ADC.vhd" 2007/11/12.15:43:32 K.31
+FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/HE_DAC.vhd" 2007/11/12.15:43:32 K.31
+FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/HE_RWCLK.vhd" 2007/11/12.15:43:32 K.31
+FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/HE_SCLK.vhd" 2007/11/12.15:43:32 K.31
+FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/HE_USER.vhd" 2007/11/12.15:43:32 K.31
+FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/Common/HE_WR_6F.vhd" 2007/11/12.15:43:32 K.31
+FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/TOP.vhd" 2007/11/12.15:43:32 K.31
+FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/V2ES_RWC.vhd" 2007/11/12.15:43:32 K.31
+FL "C:/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/Common/V2_RD_6F.vhd" 2007/11/12.15:43:32 K.31
+FL C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/Src/led.vhd 2007/11/12.16:43:32 K.31
+FL C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/ADC+/Src/USER_AP_ADC.vhd 2008/07/02.05:27:11 K.31
+FL C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/common/HE_ADC.vhd 2007/11/12.16:43:32 K.31
+FL C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/common/HE_DAC.vhd 2007/11/12.16:43:32 K.31
+FL C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/common/HE_RWCLK.vhd 2007/11/12.16:43:32 K.31
+FL C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/common/HE_SCLK.vhd 2007/11/12.16:43:32 K.31
+FL C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/common/HE_USER.vhd 2007/11/12.16:43:32 K.31
+FL C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/Common/HE_WR_6F.vhd 2007/11/12.16:43:32 K.31
+FL C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/common/TOP.vhd 2007/11/12.16:43:32 K.31
+FL C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/common/V2ES_RWC.vhd 2007/11/12.16:43:32 K.31
+FL C:/Robert/Programacion/FPGA/Copy_Met_Office/FPGA/IO4/Common/V2_RD_6F.vhd 2007/11/12.16:43:32 K.31
+FL "C:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/ISE/rawfifo255x14.vhd" 2008/07/31.12:32:40 K.31
+FL "C:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/Src/led.vhd" 2007/11/12.15:43:32 K.31
+FL "C:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/ADC+/Src/USER_AP_ADC.vhd" 2010/01/19.08:55:15 K.31
+FL "C:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/HE_ADC.vhd" 2007/11/12.15:43:32 K.31
+FL "C:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/HE_DAC.vhd" 2007/11/12.15:43:32 K.31
+FL "C:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/HE_RWCLK.vhd" 2007/11/12.15:43:32 K.31
+FL "C:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/HE_SCLK.vhd" 2007/11/12.15:43:32 K.31
+FL "C:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/HE_USER.vhd" 2007/11/12.15:43:32 K.31
+FL "C:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/Common/HE_WR_6F.vhd" 2007/11/12.15:43:32 K.31
+FL "C:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/TOP.vhd" 2007/11/12.15:43:32 K.31
+FL "C:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/common/V2ES_RWC.vhd" 2007/11/12.15:43:32 K.31
+FL "C:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/IO4/Common/V2_RD_6F.vhd" 2007/11/12.15:43:32 K.31
+FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/rawfifo255x14.vhd" 2008/07/31.13:32:40 K.31
+EN work/rawfifo255x14 1334941619 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/rawfifo255x14.vhd" \
+      PB ieee/std_logic_1164 1200023565
+AR work/rawfifo255x14/rawfifo255x14_a 1334941620 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/rawfifo255x14.vhd" \
+      EN work/rawfifo255x14 1334941619
+FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/rawfifo511x14.vhd" 2012/04/23.11:31:12 K.31
+EN work/rawFIFO511x14 1412693097 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/rawfifo511x14.vhd" \
+      PB ieee/std_logic_1164 1200023565
+AR work/rawFIFO511x14/rawFIFO511x14_a 1412693098 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/ISE/rawfifo511x14.vhd" \
+      EN work/rawFIFO511x14 1412693097
+FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/Src/led.vhd" 2007/11/12.16:43:32 K.31
+EN work/LED_CNTR 1412693099 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/Src/led.vhd" \
+      PB ieee/std_logic_1164 1200023565 PH ieee/NUMERIC_STD 1200023568
+AR work/LED_CNTR/RTL 1412693100 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/Src/led.vhd" \
+      EN work/LED_CNTR 1412693099
+FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/Src/USER_AP_ADC.vhd" 2014/10/07.10:40:16 K.31
+PH work/CONFIG 1412693123 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/Src/USER_AP_ADC.vhd"
+EN work/USER_AP 1412693124 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/Src/USER_AP_ADC.vhd" \
+      PB ieee/std_logic_1164 1200023565 PH ieee/NUMERIC_STD 1200023568 \
+      PH work/CONFIG 1412693123
+AR work/USER_AP/ADC 1412693125 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/ADC+/Src/USER_AP_ADC.vhd" \
+      EN work/USER_AP 1412693124 CP myddc CP iq_out_fifo CP rawFIFO511x14 CP BUFG \
+      CP LED_CNTR CP FDC
+FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/common/HE_ADC.vhd" 2007/11/12.16:43:32 K.31
+EN work/HE_ADC 1412693119 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/common/HE_ADC.vhd" \
+      PB ieee/std_logic_1164 1200023565
+AR work/HE_ADC/RTL 1412693120 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/common/HE_ADC.vhd" \
+      EN work/HE_ADC 1412693119 CP FDC
+FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/common/HE_DAC.vhd" 2007/11/12.16:43:32 K.31
+EN work/HE_DAC 1412693121 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/common/HE_DAC.vhd" \
+      PB ieee/std_logic_1164 1200023565
+AR work/HE_DAC/RTL 1412693122 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/common/HE_DAC.vhd" \
+      EN work/HE_DAC 1412693121 CP FD
+FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/common/HE_RWCLK.vhd" 2007/11/12.16:43:32 K.31
+EN work/HE_RWCLK 1412693101 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/common/HE_RWCLK.vhd" \
+      PB ieee/std_logic_1164 1200023565
+AR work/HE_RWCLK/RTL 1412693102 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/common/HE_RWCLK.vhd" \
+      EN work/HE_RWCLK 1412693101 CP FDP CP CLKDLLHF CP CLKDLL CP BUFG
+FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/common/HE_SCLK.vhd" 2007/11/12.16:43:32 K.31
+EN work/HE_SCLK 1412693117 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/common/HE_SCLK.vhd" \
+      PB ieee/std_logic_1164 1200023565
+AR work/HE_SCLK/RTL 1412693118 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/common/HE_SCLK.vhd" \
+      EN work/HE_SCLK 1412693117 CP BUFG
+FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/common/HE_USER.vhd" 2007/11/12.16:43:32 K.31
+EN work/HE_USER 1412693115 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/common/HE_USER.vhd" \
+      PB ieee/std_logic_1164 1200023565 PB ieee/std_logic_arith 1200023566 \
+      PB ieee/STD_LOGIC_UNSIGNED 1200023567
+AR work/HE_USER/RTL 1412693116 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/common/HE_USER.vhd" \
+      EN work/HE_USER 1412693115 CP FD
+FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/Common/HE_WR_6F.vhd" 2007/11/12.16:43:32 K.31
+EN work/HE_WR_6F 1412693113 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/Common/HE_WR_6F.vhd" \
+      PB ieee/std_logic_1164 1200023565
+AR work/HE_WR_6F/RTL 1412693114 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/Common/HE_WR_6F.vhd" \
+      EN work/HE_WR_6F 1412693113 CP FD CP FDC
+FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/common/TOP.vhd" 2007/11/12.16:43:32 K.31
+EN work/TOP 1412693126 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/common/TOP.vhd" \
+      PB ieee/std_logic_1164 1200023565 PH work/CONFIG 1412693123
+AR work/TOP/RTL 1412693127 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/common/TOP.vhd" \
+      EN work/TOP 1412693126 CP iobuf CP IBUF CP IBUFG CP OBUF_F_24 CP HE_RWCLK \
+      CP ES_RD_LF CP ES_RD_HF CP ES_WR_LF CP ES_WR_HF CP HE_RD_6F CP OBUF_F_8 \
+      CP HE_WR_6F CP HE_USER CP OBUFTDS CP HE_SCLK CP HE_ADC CP HE_DAC CP OBUF_F_12 \
+      CP USER_AP
+FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/common/V2ES_RWC.vhd" 2007/11/12.16:43:32 K.31
+EN work/ES_RD_LF 1412693103 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/common/V2ES_RWC.vhd" \
+      PB ieee/std_logic_1164 1200023565
+AR work/ES_RD_LF/RTL 1412693104 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/common/V2ES_RWC.vhd" \
+      EN work/ES_RD_LF 1412693103 CP CLKDLL CP BUFG
+EN work/ES_RD_HF 1412693105 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/common/V2ES_RWC.vhd" \
+      PB ieee/std_logic_1164 1200023565
+AR work/ES_RD_HF/RTL 1412693106 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/common/V2ES_RWC.vhd" \
+      EN work/ES_RD_HF 1412693105 CP CLKDLLHF CP BUFG
+EN work/ES_WR_LF 1412693107 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/common/V2ES_RWC.vhd" \
+      PB ieee/std_logic_1164 1200023565
+AR work/ES_WR_LF/RTL 1412693108 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/common/V2ES_RWC.vhd" \
+      EN work/ES_WR_LF 1412693107 CP CLKDLL CP BUFG
+EN work/ES_WR_HF 1412693109 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/common/V2ES_RWC.vhd" \
+      PB ieee/std_logic_1164 1200023565
+AR work/ES_WR_HF/RTL 1412693110 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/common/V2ES_RWC.vhd" \
+      EN work/ES_WR_HF 1412693109 CP CLKDLLHF CP BUFG
+FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/Common/V2_RD_6F.vhd" 2007/11/12.16:43:32 K.31
+EN work/HE_RD_6F 1412693111 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/Common/V2_RD_6F.vhd" \
+      PB ieee/std_logic_1164 1200023565
+AR work/HE_RD_6F/RTL 1412693112 \
+      FL "D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/IO4/Common/V2_RD_6F.vhd" \
+      EN work/HE_RD_6F 1412693111 CP FD CP FDCE CP FDC CP lut4 CP lut3 CP lut2 \
+      CP lut4_l CP MUXCY_L CP FDPE

@@ -1,0 +1,564 @@
+//---------------------------------------------------------------------------
+#include <vcl.h>
+#pragma hdrstop
+
+#include "Site.h"
+#include "ShellChirimbolo.h"
+#include "DataParameters.h"
+#include "IntegratedData.h"
+#include "AFCprocessor.h"
+#include "ProcessingThread.h"
+#include "FFTReal.h"
+
+//---------------------------------------------------------------------------
+
+#pragma package(smart_init)
+#pragma link "perfgrap"
+#pragma link "Chart"
+#pragma link "TeEngine"
+#pragma link "TeeProcs"
+#pragma link "Series"
+#pragma resource "*.dfm"
+TForm1 *Form1;
+
+//---------------------------------------------------------------------------
+__fastcall TForm1::TForm1(TComponent* Owner): TForm(Owner)
+{
+}
+
+void __fastcall TForm1::FormCreate(TObject *Sender)
+{
+	rgPLPC->ItemIndex = 0;
+	rgRate->ItemIndex = 0;
+
+	acqSamples   = new TStringList();
+	acqSamplesIQ = new TStringList();
+
+	TheProcessingThread->OnNewSectorData  = NULL;
+	TheProcessingThread->OnNewIQData      = NULL;
+	TheACFProcessingThread->OnNewData     = NULL;
+}
+
+void __fastcall TForm1::FormDestroy(TObject *Sender)
+{
+  ThisSite->TheRadar->ClearDigitalOutputs();
+  ThisSite->TheRadar->Stalo->Disconnect();
+
+  acqSamples->Free();
+  acqSamplesIQ->Free();
+}
+
+void __fastcall TForm1::Button1Click(TObject *Sender)
+{
+  SetSync();
+}
+
+void TForm1::SetSync()
+{
+	if(!ThisSite->TheRadar->SyncChanging()){
+		ThisSite->TheRadar->setRequestedOutputMode(false);
+		ThisSite->TheRadar->UpdateSynch();
+		Sleep(2000);
+		while(ThisSite->TheRadar->SyncChanging()) Sleep(500);
+
+		ThisSite->TheRadar->setRequestedPulseMode(rgPLPC->ItemIndex);
+		ThisSite->TheRadar->setRequestedPRF_Rate(rgRate->ItemIndex);
+		ThisSite->TheRadar->setRequestedFrecuency(StrToInt(FrecuencyHV ->Text));
+
+		int x;
+
+		ThisSite->TheRadar->setRequestedSectorMode(smRays);
+		ThisSite->TheRadar->setRequestedOutputMode(false);
+
+		ThisSite->TheRadar->UpdateSynch();
+		Sleep(4000);
+
+		while(ThisSite->TheRadar->SyncChanging()) Sleep(500);
+
+		ThisSite->TheRadar->setRequestedOutputMode(true);
+		ThisSite->TheRadar->UpdateSynch();
+
+		while(ThisSite->TheRadar->SyncChanging()) Sleep(500);
+	}
+}
+
+void __fastcall TForm1::PageControl1Change(TObject *Sender)
+{
+	try {
+	  AFC_DisplayPause = false;
+	  IQ_DisplayPause = false;
+	  StartTime = GetTickCount();
+
+	  if(PageControl1->ActivePageIndex == 1){
+	  		TheACFProcessingThread->OnNewData = AFC_NewData;
+	  }
+	  else{
+			TheACFProcessingThread->OnNewData = NULL;
+	  }
+
+	  if(PageControl1->ActivePageIndex == 2){
+			TheProcessingThread->OnNewSectorData = Sector_NewData;
+			TheProcessingThread->OnNewIQData     = IQ_NewData;
+	  }
+	  else{
+			TheProcessingThread->OnNewSectorData = NULL;
+			TheProcessingThread->OnNewIQData     = NULL;
+	  }
+
+	  Timer1->Enabled = PageControl1->ActivePageIndex == 3;
+	  if(PageControl1->ActivePageIndex == 3)
+		UpdateStalo();
+
+	  if(PageControl1->ActivePageIndex == 4)
+	  	Button12Click(NULL);
+
+	} catch (...) {
+		txPow->Text = "Error";
+		txFrequency->Text = "Error";
+	}
+}
+
+String TForm1::ModeToText(int mode){
+	switch (mode) {
+		case LP_MODE:    return IntToStr(LP_PRF);
+		case SP_MODE:    return IntToStr(SP_Single_PRF);
+		case SP_54_MODE: return IntToStr(SP_Dual_54_Low_PRF) + "/" + IntToStr(SP_Dual_54_High_PRF);
+		case SP_43_MODE: return IntToStr(SP_Dual_43_Low_PRF) + "/" + IntToStr(SP_Dual_43_High_PRF);
+		case SP_32_MODE: return IntToStr(SP_Dual_32_Low_PRF) + "/" + IntToStr(SP_Dual_32_High_PRF);
+	}
+
+	return "";
+}
+
+void __fastcall TForm1::Button2Click(TObject *Sender)
+{
+	ThisSite->TheRadar->Stalo->Reset();
+	UpdateStalo();
+}
+
+void __fastcall TForm1::Button3Click(TObject *Sender)
+{
+	ThisSite->TheRadar->SetStaloFrequency(StrToFloat(txFreq->Text));
+}
+
+void __fastcall TForm1::Button4Click(TObject *Sender)
+{
+	ThisSite->TheRadar->Stalo->SetOutputON();
+}
+
+void __fastcall TForm1::Button5Click(TObject *Sender)
+{
+	ThisSite->TheRadar->Stalo->SetOutputOff();
+}
+
+void __fastcall TForm1::Button6Click(TObject *Sender)
+{
+	ThisSite->TheRadar->Stalo->SetPower(StrToFloat(txPower->Text));
+}
+
+void __fastcall TForm1::Button10Click(TObject *Sender)
+{
+	UpdateStalo();
+}
+
+void __fastcall TForm1::StaloShow(TObject *Sender)
+{
+	UpdateStalo();
+}
+
+void TForm1::UpdateStalo(){
+	try {
+		txTemp->Text = FloatToStr(ThisSite->TheRadar->Stalo->Temperature);
+		txPow->Text = FloatToStr(ThisSite->TheRadar->Stalo->Power);
+		txFrequency->Text = FloatToStr(ThisSite->TheRadar->GetSTALOFrequency());
+	} catch (...) {
+		txPow->Text = "Error";
+		txFrequency->Text = "Error";
+	}
+}
+
+void __fastcall TForm1::AFC_NewData(System::TObject* Sender, short Mode, __int64 IF, __int64 Tx, double power, HE_PINT32BUFFER data, FFTReal* fft){
+	if((TX_Samples > 0) && (txTXFileName->Text != "")){
+    	//Mode, IF, Tx, Power
+		String Sample = ModeToText(Mode) + "," + IntToStr(IF) + "," + IntToStr(Tx) + "," + FormatFloat("0.00", power);
+		Sample = Sample + "," + IntToStr(SAMPLES_PER_IP_CHAN);
+		for(int i=0; i<SAMPLES_PER_IP_CHAN; i++)
+			Sample = Sample + "," + IntToStr((int)data[i]);
+
+		acqSamples->Add(Sample);
+		pbTX_Samples->StepIt();
+		TX_Samples--;
+
+		if(TX_Samples == 0){
+			pbTX_Samples->Position = 0;
+			acqSamples->SaveToFile(txTXFileName->Text);
+		}
+	}
+
+	if(!AFC_DisplayPause && (GetTickCount() - StartTime > 300)){
+		TxFreqLabel->Caption  = FormatFloat("0,000", Tx);
+		AverageValue->Caption = FormatFloat("0,000", IF);
+		PowLabel->Caption     = FormatFloat("0.00", power);
+
+		if(afcCharts->ActivePageIndex == 0){
+			txChart->Series[0]->Clear();
+			for(int i=0; i<SAMPLES_PER_IP_CHAN; i++){
+				txChart->Series[0]->AddY(data[i], "", clRed);
+			}
+		}
+		else if(afcCharts->ActivePageIndex == 1){
+			if(fft->Done){
+				fftChart->Series[0]->Clear();
+				int minIndex = 0.2 * fft->get_length();
+				int maxIndex = 0.4 * fft->get_length();
+
+				int max = fft->get_length() / 2;
+				for(int i=minIndex; i<maxIndex; i++){
+					int freq = i * 100e3 / fft->get_length();
+					fftChart->Series[0]->AddXY(freq, fft->AbsOut[i], "", clBlue);
+				}
+			}
+		}
+		StartTime = GetTickCount();
+	}
+}
+
+void __fastcall TForm1::btnPauseClick(TObject *Sender)
+{
+	AFC_DisplayPause = !AFC_DisplayPause;
+	if(AFC_DisplayPause){
+		btnPause->Caption = "Resume";
+	}
+	else{
+		btnPause->Caption = "Pause";
+	}
+}
+
+void __fastcall TForm1::IQ_NewData(System::TObject* Sender, RawPulseData RawPulseDataIn, RawPulseData PulseDataIn){
+	if((IQ_Samples > 0) && (txIQFileName->Text != "")){
+		//az, El, Mode, NData, RawIs, RawQs, FilteredIs, FilteredQs, Sequense Number
+		String Sample = IntToStr(RawPulseDataIn.Azimuth) + "," +
+						IntToStr(RawPulseDataIn.Elevation) + "," +
+						ModeToText(RawPulseDataIn.PulseMode) + "," +
+						IntToStr(RawPulseDataIn.NData) + ",";
+
+
+		for(int i=0; i<RawPulseDataIn.NData; i++){
+			Sample += IntToStr(RawPulseDataIn.I[i]) + ",";
+		}
+		for(int i=0; i<RawPulseDataIn.NData; i++){
+			Sample += IntToStr(RawPulseDataIn.Q[i]) + ",";
+		}
+
+		for(int i=0; i<PulseDataIn.NData; i++){
+			Sample += IntToStr(PulseDataIn.I[i]) + ",";
+		}
+		for(int i=0; i<PulseDataIn.NData; i++){
+			Sample += IntToStr(PulseDataIn.Q[i]) + ",";
+		}
+
+		Sample += IntToStr((int)RawPulseDataIn.SequenceNumber);
+
+		acqSamplesIQ->Add(Sample);
+		pbIQ_Samples->StepIt();
+
+		IQ_Samples--;
+		if(IQ_Samples == 0){
+			IQ_DisplayPause = false;
+			pbIQ_Samples->Position = 0;
+			acqSamplesIQ->SaveToFile(txIQFileName->Text);
+		}
+	}
+}
+
+void __fastcall TForm1::Sector_NewData(System::TObject* Sender, short Az, short El, short rays, short mode, short ndata, float *Power, float *dBT, float *dBZ, float *V, float *W, float *SQI, float *LOG, float *SIG, float *CCOR) {
+	txAzimut->Text    = IntToStr(Az);
+	txElevation->Text = IntToStr(El);
+
+	if(!IQ_DisplayPause && (GetTickCount() - StartTime > 500)){
+		txNData->Text = IntToStr(ndata);
+		txMode->Text = ModeToText(mode);
+		txRays->Text = rays;
+
+		switch (IQ_Charts->ActivePageIndex) {
+			case 0:
+					chartPower->Series[0]->Clear();
+					for(int i=0; i<ndata; i++){
+						if(Power[i] != Sample_Excluded)
+							chartPower->Series[0]->AddY(Power[i], "", clRed);
+						else
+							chartPower->Series[0]->AddY(0, "", clRed);
+					}
+					break;
+			case 1:
+					chartT->Series[0]->Clear();
+					for(int i=0; i<ndata; i++){
+						if(dBT[i] != Sample_Excluded)
+							chartT->Series[0]->AddY(dBT[i], "", clRed);
+						else
+							chartT->Series[0]->AddY(0, "", clRed);
+					}
+					break;
+			case 2:
+					chartZ->Series[0]->Clear();
+					for(int i=0; i<ndata; i++){
+						if(dBZ[i] != Sample_Excluded)
+							chartZ->Series[0]->AddY(dBZ[i], "", clRed);
+						else
+							chartZ->Series[0]->AddY(0, "", clRed);
+					}
+					break;
+			case 3:
+					chartSpeed->Series[0]->Clear();
+					for(int i=0; i<ndata; i++){
+						if(V[i] != Sample_Excluded)
+							chartSpeed->Series[0]->AddY(V[i], "", clRed);
+						else
+							chartSpeed->Series[0]->AddY(0, "", clRed);
+					}
+					break;
+			case 4:
+					chartW->Series[0]->Clear();
+					for(int i=0; i<ndata; i++){
+						if(W[i] != Sample_Excluded)
+							chartW->Series[0]->AddY(W[i], "", clRed);
+						else
+							chartW->Series[0]->AddY(0, "", clRed);
+					}
+					break;
+			case 5:
+					chartSQI->Series[0]->Clear();
+					for(int i=0; i<ndata; i++){
+						if(SQI[i] != Sample_Excluded)
+							chartSQI->Series[0]->AddY(SQI[i], "", clRed);
+						else
+							chartSQI->Series[0]->AddY(0, "", clRed);
+					}
+					break;
+			case 6:
+					chartLOG->Series[0]->Clear();
+					for(int i=0; i<ndata; i++){
+						if(LOG[i] != Sample_Excluded)
+							chartLOG->Series[0]->AddY(LOG[i], "", clRed);
+						else
+							chartLOG->Series[0]->AddY(0, "", clRed);
+					}
+					break;
+			case 7:
+					chartSIG->Series[0]->Clear();
+					for(int i=0; i<ndata; i++){
+						if(SIG[i] != Sample_Excluded)
+							chartSIG->Series[0]->AddY(SIG[i], "", clRed);
+						else
+							chartSIG->Series[0]->AddY(0, "", clRed);
+					}
+					break;
+			case 8:
+					chartCCOR->Series[0]->Clear();
+					for(int i=0; i<ndata; i++){
+						if(CCOR[i] != Sample_Excluded)
+							chartCCOR->Series[0]->AddY(CCOR[i], "", clRed);
+						else
+							chartCCOR->Series[0]->AddY(0, "", clRed);
+					}
+					break;
+		}
+		StartTime = GetTickCount();
+	}
+}
+
+void __fastcall TForm1::btnIQPauseClick(TObject *Sender)
+{
+	IQ_DisplayPause = !IQ_DisplayPause;
+	if(IQ_DisplayPause){
+		btnIQPause->Caption = "Resume";
+	}
+	else{
+		btnIQPause->Caption = "Pause";
+	}
+}
+//---------------------------------------------------------------------------
+
+
+
+void __fastcall TForm1::cbFilterClick(TObject *Sender)
+{
+  TDataFilter* FilterInfo = new TDataFilter;
+
+  FilterInfo->SQI  = ckSQI->Checked;
+  FilterInfo->LOG  = ckLOG->Checked;
+  FilterInfo->SIG  = ckSIG->Checked;
+  FilterInfo->CCOR = ckCCOR->Checked;
+
+  FilterInfo->MaxAngle    = StrToFloat(txMaxAngle->Text);
+  FilterInfo->MaxHeigh    = StrToInt(txMaxHeigh->Text);
+  FilterInfo->MaxDistance = StrToInt(txMaxDistance->Text);
+
+  FilterInfo->Speckles    = ckSpeckle->Checked;
+  FilterInfo->SpeckleSize = StrToInt(txSpeckleDistance->Text);
+
+  if(cbFilter->Checked){
+	  FilterInfo->B0 = StrToFloat(txB0->Text);
+	  FilterInfo->B1 = StrToFloat(txB1->Text);
+	  FilterInfo->B2 = StrToFloat(txB2->Text);
+	  FilterInfo->B3 = StrToFloat(txB3->Text);
+	  FilterInfo->B4 = StrToFloat(txB4->Text);
+	  FilterInfo->C1 = StrToFloat(txC1->Text);
+	  FilterInfo->C2 = StrToFloat(txC2->Text);
+	  FilterInfo->C3 = StrToFloat(txC3->Text);
+	  FilterInfo->C4 = StrToFloat(txC4->Text);
+  }
+
+  TheProcessingThread->SetFilter(FilterInfo, cbFilter->Checked);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button8Click(TObject *Sender)
+{
+    acqSamples->Clear();
+	pbTX_Samples->Max = StrToInt(txSamplesTX->Text);
+	pbTX_Samples->Position = 0;
+	TX_Samples = StrToInt(txSamplesTX->Text);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button7Click(TObject *Sender)
+{
+	IQ_DisplayPause = true;
+	acqSamplesIQ->Clear();
+	pbIQ_Samples->Max = StrToInt(txSamplesIQ->Text);
+	pbIQ_Samples->Position = 0;
+	IQ_Samples = StrToInt(txSamplesIQ->Text);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button9Click(TObject *Sender)
+{
+	if(Saving->Execute()){
+		txTXFileName->Text = Saving->FileName;
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button11Click(TObject *Sender)
+{
+	if(Saving->Execute()){
+		txIQFileName->Text = Saving->FileName;
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::CheckBox1Click(TObject *Sender)
+{
+	Panel7->Enabled = CheckBox1->Checked;
+	ThisSite->TheRadar->AFCChangesInhibited = CheckBox1->Checked;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button12Click(TObject *Sender)
+{
+	ThisSite->LoadData();
+	txB0->Text = FormatFloat("0.00", ThisSite->FactorB0);
+	txB1->Text = FormatFloat("0.00", ThisSite->FactorB1);
+	txB2->Text = FormatFloat("0.00", ThisSite->FactorB2);
+	txB3->Text = FormatFloat("0.00", ThisSite->FactorB3);
+	txB4->Text = FormatFloat("0.00", ThisSite->FactorB4);
+	txC1->Text = FormatFloat("0.00", ThisSite->FactorC1);
+	txC2->Text = FormatFloat("0.00", ThisSite->FactorC2);
+	txC3->Text = FormatFloat("0.00", ThisSite->FactorC3);
+	txC4->Text = FormatFloat("0.00", ThisSite->FactorC4);
+
+	txMaxAngle->Text    = FormatFloat("0.00", ThisSite->MaxAngle);
+	txMaxHeigh->Text    = IntToStr(ThisSite->MaxHeigh);
+	txMaxDistance->Text = IntToStr(ThisSite->MaxDistance);
+
+	ckSQI->Checked  = ThisSite->SQI_Flag;
+	ckLOG->Checked  = ThisSite->LOG_Flag;
+	ckSIG->Checked  = ThisSite->SIG_Flag;
+	ckCCOR->Checked = ThisSite->CCOR_Flag;
+
+	ckSpeckle->Checked = ThisSite->Speckles;
+	txSpeckleDistance->Text = IntToStr(ThisSite->SpeckleDistance);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button13Click(TObject *Sender)
+{
+	ThisSite->FactorB0 = StrToFloat(txB0->Text);
+	ThisSite->FactorB1 = StrToFloat(txB1->Text);
+	ThisSite->FactorB2 = StrToFloat(txB2->Text);
+	ThisSite->FactorB3 = StrToFloat(txB3->Text);
+	ThisSite->FactorB4 = StrToFloat(txB4->Text);
+	ThisSite->FactorC1 = StrToFloat(txC1->Text);
+	ThisSite->FactorC2 = StrToFloat(txC2->Text);
+	ThisSite->FactorC3 = StrToFloat(txC3->Text);
+	ThisSite->FactorC4 = StrToFloat(txC4->Text);
+
+	ThisSite->MaxAngle    = StrToFloat(txMaxAngle->Text);
+	ThisSite->MaxHeigh    = StrToInt(txMaxHeigh->Text);
+	ThisSite->MaxDistance = StrToInt(txMaxDistance->Text);
+
+	ThisSite->SQI_Flag  = ckSQI->Checked;
+	ThisSite->LOG_Flag  = ckLOG->Checked;
+	ThisSite->SIG_Flag  = ckSIG->Checked;
+	ThisSite->CCOR_Flag = ckCCOR->Checked;
+
+	ThisSite->Speckles  = ckSpeckle->Checked;
+	ThisSite->SpeckleDistance = StrToInt(txSpeckleDistance->Text);
+
+	ThisSite->SaveData();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Timer1Timer(TObject *Sender)
+{
+	UpdateStalo();
+}
+//---------------------------------------------------------------------------
+
+
+
+
+
+
+
+void __fastcall TForm1::ScrDelayTxMAChange(TObject *Sender)
+{
+
+  EdDelayTxMA->Text = IntToStr(ScrDelayTxMA->Position);       //By Robert
+
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::ScrWidthTxMAChange(TObject *Sender)
+{
+  EdWidthTxMA ->Text = IntToStr(ScrWidthTxMA->Position);        // By Robert
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::ScrDElayRFGChange(TObject *Sender)
+{
+	EdDelayRFG->Text = IntToStr(ScrDelayRFG->Position);       //By Robert
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::ScrDelaySWChange(TObject *Sender)
+{
+	EdDelaySW>Text = IntToStr(ScrDelaySW->Position);       //By Robert
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::ScrWidthRFGChange(TObject *Sender)
+{
+	EdWidthRFG ->Text = IntToStr(ScrWidthRFG->Position);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::ScrWidthSWChange(TObject *Sender)
+{
+	EdWidthSW ->Text = IntToStr(ScrWidthSW->Position);
+}
+//---------------------------------------------------------------------------
+
+

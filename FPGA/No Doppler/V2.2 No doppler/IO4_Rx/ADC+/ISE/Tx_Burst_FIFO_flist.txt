@@ -1,0 +1,9 @@
+# Output products list for <Tx_Burst_FIFO>
+Tx_Burst_FIFO.ngc
+Tx_Burst_FIFO.v
+Tx_Burst_FIFO.veo
+Tx_Burst_FIFO.vhd
+Tx_Burst_FIFO.vho
+Tx_Burst_FIFO.xco
+Tx_Burst_FIFO_flist.txt
+Tx_Burst_FIFO_xmdf.tcl

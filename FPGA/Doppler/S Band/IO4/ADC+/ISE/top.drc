@@ -1,0 +1,8 @@
+WARNING:PhysDesignRules:812 - Dangling pin <DOB5> on
+   block:<iUSER_AP/myDDCi/B757.B>:<RAMB16_RAMB16B>.
+WARNING:PhysDesignRules:812 - Dangling pin <DOB6> on
+   block:<iUSER_AP/myDDCi/B757.B>:<RAMB16_RAMB16B>.
+WARNING:PhysDesignRules:812 - Dangling pin <DOB7> on
+   block:<iUSER_AP/myDDCi/B757.B>:<RAMB16_RAMB16B>.
+DRC detected 0 errors and 3 warnings.  Please see the previously displayed
+individual error or warning messages for more details.

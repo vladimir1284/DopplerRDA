@@ -1,0 +1,106 @@
+unit Statistics;
+
+interface
+
+function CountInstances : integer;
+function CountReferences : integer;
+
+procedure RegisterInstance;
+procedure RemoveInstance;
+procedure RegisterReference;
+procedure RemoveReference;
+
+implementation
+
+uses
+  Windows,
+  RDAReg,
+  SysUtils;
+
+const
+  StatKey   = RDARootKey + '\Statistics';
+  InstValue = 'Instances';
+  ObjValue  = 'Objects';
+
+function CountInstances : integer;
+begin
+  Result := 0;
+  with TRDAReg.Create do
+    try
+      if OpenKey(StatKey, true) and ValueExists(InstValue)
+        then Result := ReadInteger(InstValue);
+    finally
+      Free;
+    end;
+end;
+
+function CountReferences : integer;
+begin
+  Result := 0;
+  with TRDAReg.Create do
+    try
+      if OpenKey(StatKey, true) and ValueExists(ObjValue)
+        then Result := ReadInteger(ObjValue);
+    finally
+      Free;
+    end;
+end;
+
+procedure RegisterInstance;
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(StatKey, true)
+        then
+          if ValueExists(InstValue)
+            then WriteInteger(InstValue, succ(ReadInteger(InstValue)))
+            else WriteInteger(InstValue, 1);
+    finally
+      Free;
+    end;
+end;
+
+procedure RemoveInstance;
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(StatKey, true)
+        then
+          if ValueExists(InstValue)
+            then WriteInteger(InstValue, pred(ReadInteger(InstValue)))
+            else WriteInteger(InstValue, 0);
+    finally
+      Free;
+    end;
+end;
+
+procedure RegisterReference;
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(StatKey, true)
+        then
+          if ValueExists(ObjValue)
+            then WriteInteger(ObjValue, succ(ReadInteger(ObjValue)))
+            else WriteInteger(ObjValue, 1);
+    finally
+      Free;
+    end;
+end;
+
+procedure RemoveReference;
+begin
+  with TRDAReg.Create do
+    try
+      if OpenKey(StatKey, true)
+        then
+          if ValueExists(ObjValue)
+            then WriteInteger(ObjValue, pred(ReadInteger(ObjValue)))
+            else WriteInteger(ObjValue, 0);
+    finally
+      Free;
+    end;
+end;
+
+end.
+

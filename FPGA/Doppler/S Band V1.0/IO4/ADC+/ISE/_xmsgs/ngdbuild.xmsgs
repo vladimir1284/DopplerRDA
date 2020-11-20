@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IMPORTANT: This is an internal file that has been generated
+     by the Xilinx ISE software.  Any direct editing or
+     changes made to this file may result in unpredictable
+     behavior or data corruption.  It is strongly advised that
+     users do not edit the contents of this file. -->
+<messages>
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iADC/i14</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iRD/iSEL5</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iRD/iSEL4</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iRD/iSEL2</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iRD/iSEL1</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iWR/iAF5</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iWR/iAF4</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iWR/iAF3</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iWR/iAF0</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iWR/iFF5</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iWR/iFF4</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iWR/iFF3</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iWR/iFF2</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iWR/iFF1</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iWR/iFF0</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iUSER_AP/iRawFifo511x14/BU163</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iUSER_AP/iRawFifo511x14/BU378</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iUSER_AP/iq_out_fifoI/BU105</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iUSER_AP/iq_out_fifoI/BU230</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iUSER_AP/myDDCi/BU845</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iUSER_AP/myDDCi/BU1014</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="440" delta="unknown" >FF primitive &apos;<arg fmt="%s" index="1">iUSER_AP/myDDCi/BU9766</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="unknown" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">iUSER_AP/iDDS_10/BU2/ce</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="unknown" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">iUSER_AP/iDDS_10/BU2/U0/acc_phase_adjusted&lt;11&gt;</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="unknown" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">iUSER_AP/iDDS_10/BU2/U0/acc_phase_adjusted&lt;10&gt;</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="unknown" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">iUSER_AP/iDDS_10/BU2/U0/acc_phase_adjusted&lt;9&gt;</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="unknown" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">iUSER_AP/iDDS_10/BU2/U0/acc_phase_adjusted&lt;8&gt;</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="unknown" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">iUSER_AP/iDDS_10/BU2/U0/acc_phase_adjusted&lt;7&gt;</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="unknown" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">iUSER_AP/iDDS_10/BU2/U0/acc_phase_adjusted&lt;6&gt;</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="unknown" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">iUSER_AP/iDDS_10/BU2/U0/acc_phase_adjusted&lt;5&gt;</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="unknown" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">iUSER_AP/iDDS_10/BU2/U0/acc_phase_adjusted&lt;4&gt;</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="unknown" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">iUSER_AP/iDDS_10/BU2/U0/acc_phase_adjusted&lt;3&gt;</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="unknown" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">iUSER_AP/iDDS_10/BU2/U0/acc_phase_adjusted&lt;2&gt;</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="unknown" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">iUSER_AP/iDDS_10/BU2/U0/acc_phase_adjusted&lt;1&gt;</arg>&apos; has no driver
+</msg>
+
+<msg type="warning" file="NgdBuild" num="452" delta="unknown" ><arg fmt="%s" index="1">logical</arg> net &apos;<arg fmt="%s" index="2">iUSER_AP/iDDS_10/BU2/U0/acc_phase_adjusted&lt;0&gt;</arg>&apos; has no driver
+</msg>
+
+</messages>
+

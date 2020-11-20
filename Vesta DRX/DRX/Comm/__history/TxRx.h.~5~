@@ -1,0 +1,46 @@
+#ifndef   TxRxH
+#define   TxRxH
+
+#include <System.hpp>
+#include <InvokeRegistry.hpp>
+#include <XSBuiltIns.hpp>
+#include <Types.hpp>
+
+
+
+__interface INTERFACE_UUID("{D3657E24-6783-4283-9F27-5A5D10EAE4CF}") ITxRxWS : public IInvokable
+{
+public:
+	//pulse mode
+	virtual bool Get_Pulso_Largo() = 0;
+	virtual bool Get_Pulso_Corto() = 0;
+	//output mode
+	virtual void Get_Output_On() = 0;
+	virtual void Get_Output_Off() = 0;
+	//sector mode
+	virtual void Get_Sector_Mode(int count) = 0;
+	//PRF
+	virtual void Get_Single_PRF() = 0;
+	virtual void Get_Dual_PRF(int rate) = 0;
+
+	//pulse mode
+	virtual void Set_Pulso_Largo() = 0;
+	virtual void Set_Pulso_Corto() = 0;
+	//output mode
+	virtual void Set_Output_On() = 0;
+	virtual void Set_Output_Off() = 0;
+	//sector mode
+	virtual void Set_Sector_Mode(int count) = 0;
+	//PRF
+	virtual void Set_Single_PRF() = 0;
+	virtual void Set_Dual_PRF(int rate) = 0;
+
+
+};
+typedef DelphiInterface<ITxRxWS> _di_ITxRxWS;
+
+
+#endif // TxRxWSH
+//---------------------------------------------------------------------------
+
+

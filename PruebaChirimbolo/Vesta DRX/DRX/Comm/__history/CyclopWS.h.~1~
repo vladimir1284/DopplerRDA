@@ -1,0 +1,21 @@
+#ifndef   CyclopWSH
+#define   CyclopWSH
+
+#include <System.hpp>
+#include <InvokeRegistry.hpp>
+#include <XSBuiltIns.hpp>
+#include <Types.hpp>
+
+
+
+__interface INTERFACE_UUID("{345F025F-92FE-42FA-BFE8-DD06BE8F178D}") ICyclopWS : public IInvokable
+{
+public:
+};
+typedef DelphiInterface<ICyclopWS> _di_ICyclopWS;
+
+
+#endif // CyclopWSH
+//---------------------------------------------------------------------------
+
+

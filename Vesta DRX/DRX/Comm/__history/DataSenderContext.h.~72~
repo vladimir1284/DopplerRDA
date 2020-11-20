@@ -1,0 +1,32 @@
+//---------------------------------------------------------------------------
+
+#ifndef DataSenderContextH
+#define DataSenderContextH
+//---------------------------------------------------------------------------
+#include "DataParameters.h"
+
+
+#include <Classes.hpp>
+#include <IdCmdTCPServer.hpp>
+#include <IdContext.hpp>
+#include <SyncObjs.hpp>
+#include <Contnrs.hpp>
+
+//---------------------------------------------------------------------------
+
+class TDataSenderContext : public TIdContext
+{
+protected:
+	void __fastcall BeforeRun(void);
+	bool __fastcall Run(void);
+	void __fastcall AfterRun(void);
+public:
+	__fastcall TDataSenderContext(Idtcpconnection::TIdTCPConnection* AConnection, Idyarn::TIdYarn* AYarn, Classes::TThreadList* AList);
+	__fastcall ~TDataSenderContext(void);
+};
+//---------------------------------------------------------------------------
+
+extern PackageManager* thePackageManager;
+
+//---------------------------------------------------------------------------
+#endif

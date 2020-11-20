@@ -1,0 +1,72 @@
+//---------------------------------------------------------------------------
+#include "Service_DRX.h"
+
+#include "Site.h"
+#include "CommModule.h"
+
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+
+TDRX_srv *DRX_srv;
+//---------------------------------------------------------------------------
+__fastcall TDRX_srv::TDRX_srv(TComponent* Owner): Svcmgr::TService(Owner)
+{
+}
+
+TServiceController __fastcall TDRX_srv::GetServiceController(void)
+{
+	return (TServiceController) ServiceController;
+}
+
+void __stdcall ServiceController(unsigned CtrlCode)
+{
+	DRX_srv->Controller(CtrlCode);
+}
+//---------------------------------------------------------------------------
+void __fastcall TDRX_srv::ServiceStart(Svcmgr::TService *Sender, bool &Started)
+{
+
+
+
+	//communications
+	// Create the WebBrokerBridge
+	FWebBrokerBridge = new TIdHTTPWebBrokerBridge(this);
+
+	FWebBrokerBridge->RegisterWebModuleClass(__classid(TCommunicationModule));
+	FWebBrokerBridge->DefaultPort = ThisSite->settings->WS_Port;
+
+	// In order to prevent the opening and closing
+	// of a socket for each command set the following options:
+	// - KeepAlive: Leave connection open for next command.
+	// - AutoStartSession: In case no connection is open start a new session
+	// with a new connection.
+	FWebBrokerBridge->KeepAlive = true;
+	FWebBrokerBridge->AutoStartSession = true;
+
+	// Register a handler to the OnConnect event
+	FWebBrokerBridge->OnConnect = ConnectionEvent;
+	FWebBrokerBridge->Active = true;
+
+	//TheACFProcessingThread->OnNewData    = AFC_NewData;
+	//TheProcessingThread->OnNewSectorData = Sector_NewData;
+}
+
+void __fastcall TDRX_srv::ConnectionEvent(TIdContext *AThread ){
+  AThread->Connection->Socket->UseNagle = false;
+}
+
+//---------------------------------------------------------------------------
+
+
+void __fastcall TDRX_srv::ServiceStop(TService *Sender, bool &Stopped)
+{
+/*
+  TheACFProcessingThread->OnNewData    = NULL;
+  TheProcessingThread->OnNewSectorData = NULL;
+  ThisSite->TheRadar->ClearDigitalOutputs();
+  ThisSite->TheRadar->Stalo->Disconnect();
+  */
+}
+//---------------------------------------------------------------------------
+

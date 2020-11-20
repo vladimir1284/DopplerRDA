@@ -1,0 +1,32 @@
+#ifndef   AFC_WSH
+#define   AFC_WSH
+
+#include <System.hpp>
+#include <InvokeRegistry.hpp>
+#include <XSBuiltIns.hpp>
+#include <Types.hpp>
+
+
+
+__interface INTERFACE_UUID("{8B7BC37C-A748-4E1D-80AF-76B827F67C68}") IAFC_WS : public IInvokable
+{
+public:
+	//stalo
+	virtual void Set_STALO_Output(bool state) = 0;
+	virtual bool Get_STALO_Output() = 0;
+
+	virtual UINT64 Get_Frequency() = 0;
+	virtual void Set_Frequency(UINT64 value) = 0;
+
+	virtual double Get_Power() = 0;
+	virtual void Set_Power(double value) = 0;
+
+	virtual double Get_Temperature() = 0;
+};
+typedef DelphiInterface<IAFC_WS> _di_IAFC_WS;
+
+
+#endif // AFC_WSH
+//---------------------------------------------------------------------------
+
+

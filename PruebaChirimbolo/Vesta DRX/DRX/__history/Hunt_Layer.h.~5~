@@ -1,0 +1,30 @@
+//---------------------------------------------------------------------------
+#include "FIFOinterface.h"
+
+#ifndef Hunt_LayerH
+#define Hunt_LayerH
+//---------------------------------------------------------------------------
+
+class THuntLayer
+{
+ private:
+	FIFOInterface *IO_Interface;
+	FIFOInterface *NCOInterface;
+	FIFOInterface *AntennaInterface;
+	FIFOInterface *SyncInterface;
+
+
+ protected:
+
+ public:
+	THuntLayer();
+	~THuntLayer();
+
+	void HuntError(HE_DWORD ErrorCode);
+	void Set_Digital_Output_Bit(int Bits);
+	void Clear_Digital_Output_Bit(int Bits);
+};
+
+
+
+#endif

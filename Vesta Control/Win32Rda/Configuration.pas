@@ -1,0 +1,846 @@
+unit Configuration;
+
+{$WARN SYMBOL_PLATFORM OFF}
+
+interface
+
+uses
+  Windows, ActiveX, ComObj, RDAObj, Rda_TLB, Constants;
+
+type
+  TConfiguration =
+    class(TRDAObject, IConfiguration, IConfigurationControl)
+      protected   // IConfiguration
+        function  IConfiguration.AIGains = Get_AIGains;
+        function  IConfiguration.AIFactors = Get_AIFactors;
+        procedure IConfiguration.Save = SaveConfig;
+
+        function  Get_AIFactors(out Factors: PSafeArray): HResult; safecall;
+        function  Get_AIGains(out Gains: PSafeArray): HResult; safecall;
+        function  Get_Radar_ID: Integer; safecall;
+        function  Get_Obs_Directory: WideString; safecall;
+        function  Get_Beam_Ch1: Single; safecall;
+        function  Get_Beam_Ch2: Single; safecall;
+        function  Get_Speed_Accuracy: Integer; safecall;
+        function  Get_Angle_Accuracy: Integer; safecall;
+        function  Get_Pack_Method: Integer; safecall;
+        function  Get_Timeout_TxRx: Integer; safecall;
+        function  Get_Save_Variance: WordBool; safecall;
+        function  Get_RadarTemperature: Double; safecall;
+        function  Get_RadarPressure: Double; safecall;
+        function  Get_AngleCodeRate : integer; safecall;
+        function  Get_AngleClockwiseRotationX : WordBool; safecall;
+        function  Get_AngleClockwiseRotationY : WordBool; safecall;
+        function  Get_AngleClockwiseRotationZ : WordBool; safecall;
+
+        //Radar Description
+        function Get_RadarName(RadarId: Integer): WideString; safecall;
+        function Get_RadarOwner(RadarId: Integer): WideString; safecall;
+        function Get_RadarRange(RadarId: Integer): Integer; safecall;
+        function Get_RadarLatitude(RadarId: Integer): Single; safecall;
+        function Get_RadarLongitude(RadarId: Integer): Single; safecall;
+        function Get_RadarAltitude(RadarId: Integer): Single; safecall;
+        function Get_RadarBrand(RadarId: Integer): RadarBrands; safecall;
+        //Email
+        function Get_SendMsgOnError: WordBool; safecall;
+        function Get_TargetAddress: WideString; safecall;
+        function Get_SMTPServer: WideString; safecall;
+        function Get_SMTPUser: WideString; safecall;
+        function Get_SMTPPassword: WideString; safecall;
+        function Get_SMTPPort: Integer; safecall;
+        function Get_SMTPFromAddress: WideString; safecall;
+
+        function Get_CheckPPIParam: WordBool; safecall;
+
+        function  Get_Timeout_Radar: Integer; safecall;
+        function  Get_WarmTime_Radar: Integer; safecall;
+        function  Get_RestTime_Radar: Integer; safecall;
+        function  Get_Automatic_Obs: WordBool; safecall;
+        function  Get_Auto_Power_Off: WordBool; safecall;
+        function  Get_ContinuosRegime: WordBool; safecall;
+        procedure Set_ContinuosRegime(Value: WordBool); safecall;
+        procedure Set_Auto_Power_Off(Value: WordBool); safecall;
+        procedure Set_Automatic_Obs(Value: WordBool); safecall;
+        procedure Set_Timeout_Radar(Value: Integer); safecall;
+        procedure Set_WarmTime_Radar(Value: Integer); safecall;
+        procedure Set_RestTime_Radar(Value: Integer); safecall;
+
+        //Speckle
+        function  Get_Speckle_Remove: WordBool; safecall;
+        function  Get_SpeckleUmbral: Integer; safecall;
+        function  Get_RT_Speckle_Remove: WordBool; safecall;
+        function  Get_RT_SpeckleUmbral: Integer; safecall;
+        procedure Set_RT_SpeckleUmbral(Value: Integer); safecall;
+        procedure Set_RT_Speckle_Remove(Value: WordBool); safecall;
+
+        //wired settings
+        function Get_WSPort: Integer; safecall;
+        function Get_StreamPort: Integer; safecall;
+
+        //filter
+        function Filter(Index: Integer; out Name: WideString; out B0: Double; out B1: Double;
+                        out B2: Double; out B3: Double; out B4: Double; out C1: Double; out C2: Double;
+                        out C3: Double; out C4: Double): HResult; safecall;
+        function Get_FilterCount: Integer; safecall;
+        function Get_DefaultFilter: Integer; safecall;
+        function Get_FilterAngle: Double; safecall;
+        function Get_FilterHeigh: Integer; safecall;
+        function Get_FilterDistance: Integer; safecall;
+        function Get_FilterSQI: WordBool; safecall;
+        function Get_FilterCI: WordBool; safecall;
+        function Get_FilterSIG: WordBool; safecall;
+        function Get_FilterLOG: WordBool; safecall;
+        function Get_FilterCCOR: WordBool; safecall;
+
+        procedure SaveConfig; safecall;
+      protected   // IConfigurationControl
+        function  IConfigurationControl.AIGains = Set_AIGains;
+        function  IConfigurationControl.AIFactors = Set_AIFactors;
+        procedure IConfigurationControl.Save = SaveConfigControl;
+
+        procedure Set_Radar_ID(Value: Integer); safecall;
+        procedure Set_Obs_Directory(const Value: WideString); safecall;
+        procedure Set_Beam_Ch1(Value: Single); safecall;
+        procedure Set_Beam_Ch2(Value: Single); safecall;
+        procedure Set_Speed_Accuracy(Value: Integer); safecall;
+        procedure Set_Angle_Accuracy(Value: Integer); safecall;
+        procedure Set_Pack_Method(Value: Integer); safecall;
+        procedure Set_Timeout_TxRx(Value: Integer); safecall;
+        procedure Set_Save_Variance(Value: WordBool); safecall;
+        procedure Set_AngleCodeRate(Value: integer); safecall;
+        procedure Set_AngleClockwiseRotationX(Value: WordBool); safecall;
+        procedure Set_AngleClockwiseRotationY(Value: WordBool); safecall;
+        procedure Set_AngleClockwiseRotationZ(Value: WordBool); safecall;
+        function  Set_AIGains(var Gains: PSafeArray): HResult; safecall;
+        function  Set_AIFactors(var Factors: PSafeArray): HResult; safecall;
+        procedure Set_RadarTemperature(Value: Double); safecall;
+        procedure Set_RadarPressure(Value: Double); safecall;
+        //Speckle
+        procedure Set_Speckle_Remove(Value: WordBool); safecall;
+        procedure Set_SpeckleUmbral(Value: Integer); safecall;
+        //Email
+        procedure Set_SMTPPort(Value: Integer); safecall;
+        procedure Set_SMTPUser(const Value: WideString); safecall;
+        procedure Set_SMTPPassword(const Value: WideString); safecall;
+        procedure Set_SendMsgOnError(Value: WordBool); safecall;
+        procedure Set_TargetAddress(const Value: WideString); safecall;
+        procedure Set_SMTPServer(const Value: WideString); safecall;
+        procedure Set_SMTPFromAddress(const Value: WideString); safecall;
+        function  TestSMTPConfig: WordBool; safecall;
+        function  SendTestEMail: WordBool; safecall;
+        procedure Set_CheckPPIParam(Value: WordBool); safecall;
+
+        //filter
+        function SetFilter(Index: Integer; const Name: WideString; B0: Double; B1: Double; B2: Double;
+                           B3: Double; B4: Double; C1: Double; C2: Double; C3: Double; C4: Double): HResult; safecall;
+
+        procedure Set_FilterCount(Value: Integer); safecall;
+        procedure Set_DefaultFilter(Value: Integer); safecall;
+        procedure Set_FilterAngle(Value: Double); safecall;
+        procedure Set_FilterHeigh(Value: Integer); safecall;
+        procedure Set_FilterDistance(Value: Integer); safecall;
+        procedure Set_FilterSQI(Value: WordBool); safecall;
+        procedure Set_FilterCI(Value: WordBool); safecall;
+        procedure Set_FilterSIG(Value: WordBool); safecall;
+        procedure Set_FilterLOG(Value: WordBool); safecall;
+        procedure Set_FilterCCOR(Value: WordBool); safecall;
+
+        procedure SaveConfigControl; safecall;
+      end;
+
+const
+  Class_Configuration: TGUID = '{3AA999B2-C049-4EC5-8DE6-C5CD0A8E0CF3}';
+
+implementation
+
+uses
+  ComServ,
+  Config, ElbrusTypes, Advantech, Elbrus, Description, Radars, 
+  EventLog, ManagerDRX;
+
+{ TConfiguration }
+
+function TConfiguration.Get_Angle_Accuracy: Integer;
+begin
+  Result := theConfiguration.AngleAcc;
+end;
+
+function TConfiguration.Get_Automatic_Obs: WordBool;
+begin
+  Result := theConfiguration.AutoObs;
+end;
+
+function TConfiguration.Get_Auto_Power_Off: WordBool;
+begin
+  Result := theConfiguration.AutoPowerOff;
+end;
+
+function TConfiguration.Get_Beam_Ch1: Single;
+begin
+  Result := theConfiguration.Ch1Beam;
+end;
+
+function TConfiguration.Get_Beam_Ch2: Single;
+begin
+  Result := theConfiguration.Ch2Beam;
+end;
+
+function TConfiguration.Get_Obs_Directory: WideString;
+begin
+  Result := theConfiguration.ObsDir;
+end;
+
+function TConfiguration.Get_Pack_Method: Integer;
+begin
+  Result := theConfiguration.PackMethod;
+end;
+
+function TConfiguration.Get_Radar_ID: Integer;
+begin
+  Result := theConfiguration.RadarID;
+end;
+
+function TConfiguration.Get_Speed_Accuracy: Integer;
+begin
+  Result := theConfiguration.SpeedAcc;
+end;
+
+function TConfiguration.Get_Timeout_TxRx: Integer;
+begin
+  Result := theConfiguration.TxRxTimeout;
+end;
+
+function TConfiguration.Get_Timeout_Radar: Integer;
+begin
+  Result := theConfiguration.RadarTimeout;
+end;
+
+function TConfiguration.Get_Speckle_Remove: WordBool;
+begin
+  Result := theConfiguration.SpeckleRemove;
+end;
+
+function TConfiguration.Get_Save_Variance: WordBool;
+begin
+  Result := theConfiguration.SaveVariance;
+end;
+
+function TConfiguration.Get_AngleClockwiseRotationX: WordBool;
+begin
+  Result := theConfiguration.AngleClockwiseRotationX;
+end;
+
+function TConfiguration.Get_AngleClockwiseRotationY: WordBool;
+begin
+  Result := theConfiguration.AngleClockwiseRotationY;
+end;
+
+function TConfiguration.Get_AngleClockwiseRotationZ: WordBool;
+begin
+  Result := theConfiguration.AngleClockwiseRotationZ;
+end;
+
+function TConfiguration.Get_AngleCodeRate: integer;
+begin
+  Result := theConfiguration.AngleCodeRate;
+end;
+
+procedure TConfiguration.Set_Angle_Accuracy(Value: Integer);
+begin
+  if InControl
+    then theConfiguration.AngleAcc := Value;
+end;
+
+procedure TConfiguration.Set_Automatic_Obs(Value: WordBool);
+begin
+  if InControl
+    then theConfiguration.AutoObs := Value;
+end;
+
+procedure TConfiguration.Set_Auto_Power_Off(Value: WordBool);
+begin
+  if InControl
+    then theConfiguration.AutoPowerOff := Value;
+end;
+
+procedure TConfiguration.Set_Beam_Ch1(Value: Single);
+begin
+  if InControl
+    then theConfiguration.Ch1Beam := Value;
+end;
+
+procedure TConfiguration.Set_Beam_Ch2(Value: Single);
+begin
+  if InControl
+    then theConfiguration.Ch2Beam := Value;
+end;
+
+procedure TConfiguration.Set_Obs_Directory(const Value: WideString);
+begin
+  if InControl
+    then theConfiguration.ObsDir := Value;
+end;
+
+procedure TConfiguration.Set_Pack_Method(Value: Integer);
+begin
+  if InControl
+    then theConfiguration.PackMethod := Value;
+end;
+
+procedure TConfiguration.Set_Radar_ID(Value: Integer);
+begin
+  if InControl
+    then theConfiguration.RadarID := Value;
+end;
+
+procedure TConfiguration.Set_Speed_Accuracy(Value: Integer);
+begin
+  if InControl
+    then theConfiguration.SpeedAcc := Value;
+end;
+
+procedure TConfiguration.Set_Timeout_TxRx(Value: Integer);
+begin
+  if InControl
+    then theConfiguration.TxRxTimeout := Value;
+end;
+
+procedure TConfiguration.Set_Timeout_Radar(Value: Integer);
+begin
+  if InControl
+    then theConfiguration.RadarTimeout := Value;
+end;
+
+procedure TConfiguration.Set_Speckle_Remove(Value: WordBool);
+begin
+  if InControl
+    then theConfiguration.SpeckleRemove := Value;
+end;
+
+procedure TConfiguration.Set_Save_Variance(Value: WordBool);
+begin
+  if InControl
+    then theConfiguration.SaveVariance := Value;
+end;
+
+procedure TConfiguration.Set_AngleClockwiseRotationX(Value: WordBool);
+begin
+  if InControl
+    then
+      try
+        AntennaThread.Suspend;
+        Sleep( 10 );
+        theConfiguration.AngleClockwiseRotationX := Value;
+      finally
+        AntennaThread.Resume;
+      end;
+end;
+
+procedure TConfiguration.Set_AngleClockwiseRotationY(Value: WordBool);
+begin
+  if InControl
+    then
+      try
+        AntennaThread.Suspend;
+        Sleep( 10 );
+        theConfiguration.AngleClockwiseRotationY := Value;
+      finally
+        AntennaThread.Resume;
+      end;
+end;
+
+procedure TConfiguration.Set_AngleClockwiseRotationZ(Value: WordBool);
+begin
+  if InControl
+    then
+      try
+        AntennaThread.Suspend;
+        Sleep( 10 );
+        theConfiguration.AngleClockwiseRotationZ := Value;
+      finally
+        AntennaThread.Resume;
+      end;
+end;
+
+procedure TConfiguration.Set_AngleCodeRate(Value: integer);
+begin
+  if InControl
+    then
+      try
+        AntennaThread.Suspend;
+        Sleep( 10 );
+        theConfiguration.AngleCodeRate := Value;
+      finally
+        AntennaThread.Resume;
+      end;
+end;
+
+function  TConfiguration.Get_AIGains(out Gains: PSafeArray): HResult; safecall;
+var
+  SAB : TSafeArrayBound;
+  i   : integer;
+begin
+  try
+    SAB.cElements := High(AIRange) + 1;
+    SAB.lLbound   := 0;
+    Gains := SafeArrayCreate( VT_UI2, 1, SAB );
+    for i := Low(AIRange) to High(AIRange) do
+      PWords(Gains.pvData)[I] := theConfiguration.AIGains[i];
+    Result := S_OK
+  except
+    Result := E_FAIL;
+  end;
+end;
+
+function  TConfiguration.Set_AIGains(var Gains: PSafeArray): HResult; safecall;
+var
+  i : integer;
+begin
+  try
+    for i := Low(AIRange) to High(AIRange) do
+      theConfiguration.AIGains[i] := PWords(Gains.pvData)^[I];
+    Result := S_OK;
+    Set_Analog_Input_Gains( theConfiguration.AI_Gains );
+  except
+    Result := E_FAIL;
+  end;
+end;
+
+function TConfiguration.Get_WarmTime_Radar: Integer;
+begin
+  Result := theConfiguration.RadarWarmTime;
+end;
+
+procedure TConfiguration.Set_WarmTime_Radar(Value: Integer);
+begin
+  if InControl
+    then theConfiguration.RadarWarmTime := Value;
+end;
+
+function TConfiguration.Get_RestTime_Radar: Integer;
+begin
+  Result := theConfiguration.RadarRestTime;
+end;
+
+procedure TConfiguration.Set_RestTime_Radar(Value: Integer);
+begin
+  if InControl
+    then theConfiguration.RadarRestTime := Value;
+end;
+
+function TConfiguration.Get_SpeckleUmbral: Integer;
+begin
+  Result := theConfiguration.SpeckleUmbral;
+end;
+
+procedure TConfiguration.Set_SpeckleUmbral(Value: Integer);
+begin
+  if InControl
+    then theConfiguration.SpeckleUmbral := Value;
+end;
+
+function TConfiguration.Get_RadarName(RadarId: Integer): WideString;
+begin
+  result := Radars.Find( TRadar( RadarId ) ).Name;
+end;
+
+function TConfiguration.Get_RadarOwner(RadarId: Integer): WideString;
+begin
+  result := Radars.Find( TRadar( RadarID ) ).Owner;
+end;
+
+function TConfiguration.Get_RadarRange(RadarId: Integer): Integer;
+begin
+  result := Radars.Find( TRadar( RadarID ) ).Range;
+end;
+
+function TConfiguration.Get_RadarAltitude(RadarId: Integer): Single;
+begin
+  result := Radars.Find( TRadar( RadarID ) ).Location.Altitude;
+end;
+
+function TConfiguration.Get_RadarLatitude(RadarId: Integer): Single;
+begin
+  result := Radars.Find( TRadar( RadarID ) ).Location.Latitude;
+end;
+
+function TConfiguration.Get_RadarLongitude(RadarId: Integer): Single;
+begin
+  result := Radars.Find( TRadar( RadarID ) ).Location.Longitude;
+end;
+
+function TConfiguration.Get_SendMsgOnError: WordBool;
+begin
+  Result := theConfiguration.SendMsgOnError;
+end;
+
+function TConfiguration.Get_SMTPPassword: WideString;
+begin
+  Result := theConfiguration.SMTPPassword;
+end;
+
+function TConfiguration.Get_SMTPPort: Integer;
+begin
+  Result := theConfiguration.SMTPPort;
+end;
+
+function TConfiguration.Get_SMTPServer: WideString;
+begin
+  Result := theConfiguration.SMTPServer;
+end;
+
+function TConfiguration.Get_SMTPUser: WideString;
+begin
+  Result := theConfiguration.SMTPUser;
+end;
+
+function TConfiguration.Get_TargetAddress: WideString;
+begin
+  Result := theConfiguration.TargetAddress;
+end;
+
+procedure TConfiguration.Set_SendMsgOnError(Value: WordBool);
+begin
+  if InControl
+    then theConfiguration.SendMsgOnError := Value;
+end;
+
+procedure TConfiguration.Set_SMTPPassword(const Value: WideString);
+begin
+  if InControl
+    then theConfiguration.SMTPPassword := Value;
+end;
+
+procedure TConfiguration.Set_SMTPPort(Value: Integer);
+begin
+  if InControl
+    then theConfiguration.SMTPPort := Value;
+end;
+
+procedure TConfiguration.Set_SMTPServer(const Value: WideString);
+begin
+  if InControl
+    then theConfiguration.SMTPServer := Value;
+end;
+
+procedure TConfiguration.Set_SMTPUser(const Value: WideString);
+begin
+  if InControl
+    then theConfiguration.SMTPUser := Value;
+end;
+
+procedure TConfiguration.Set_TargetAddress(const Value: WideString);
+begin
+  if InControl
+    then theConfiguration.TargetAddress := Value;
+end;
+
+function TConfiguration.TestSMTPConfig: WordBool;
+begin
+  result := LogMessages.TestEmailServerConfig;
+end;
+
+function TConfiguration.Get_SMTPFromAddress: WideString;
+begin
+  Result := theConfiguration.SMTPFromAddress;
+end;
+
+procedure TConfiguration.Set_SMTPFromAddress(const Value: WideString);
+begin
+  if InControl
+    then theConfiguration.SMTPFromAddress := Value;
+end;
+
+function TConfiguration.SendTestEMail: WordBool;
+begin
+  result := LogMessages.SendTestEmail;
+end;
+
+function TConfiguration.Get_ContinuosRegime: WordBool;
+begin
+  result := theConfiguration.ContinuosRegime;
+end;
+
+procedure TConfiguration.Set_ContinuosRegime(Value: WordBool);
+begin
+  if InControl
+    then theConfiguration.ContinuosRegime := Value;
+end;
+
+function TConfiguration.Get_RadarPressure: Double;
+begin
+  result := theConfiguration.Pressure;
+end;
+
+function TConfiguration.Get_RadarTemperature: Double;
+begin
+  result := theConfiguration.Temperature;
+end;
+
+procedure TConfiguration.Set_RadarPressure(Value: Double);
+begin
+  if InControl
+    then theConfiguration.Pressure := Value;
+end;
+
+procedure TConfiguration.Set_RadarTemperature(Value: Double);
+begin
+  if InControl
+    then theConfiguration.Temperature := Value;
+end;
+
+function TConfiguration.Get_CheckPPIParam: WordBool;
+begin
+  Result := theConfiguration.CheckPPIParam;
+end;
+
+procedure TConfiguration.Set_CheckPPIParam(Value: WordBool);
+begin
+  if InControl
+    then theConfiguration.CheckPPIParam := Value;
+end;
+
+procedure TConfiguration.SaveConfig;
+begin
+  theConfiguration.SaveOprConfig;
+end;
+
+procedure TConfiguration.SaveConfigControl;
+begin
+  theConfiguration.SaveConfig;
+end;
+
+function TConfiguration.Get_RT_Speckle_Remove: WordBool;
+begin
+  Result := theConfiguration.RTSpeckleRemove;
+end;
+
+function TConfiguration.Get_RT_SpeckleUmbral: Integer;
+begin
+  Result := theConfiguration.RTSpeckleUmbral;
+end;
+
+procedure TConfiguration.Set_RT_Speckle_Remove(Value: WordBool);
+begin
+  if InControl
+    then theConfiguration.RTSpeckleRemove := Value;
+end;
+
+procedure TConfiguration.Set_RT_SpeckleUmbral(Value: Integer);
+begin
+  if InControl
+    then theConfiguration.RTSpeckleUmbral := Value;
+end;
+
+function TConfiguration.Get_RadarBrand(RadarId: Integer): RadarBrands;
+begin
+  case Radars.Find( TRadar( RadarID ) ).Brand of
+    rbUnknown : result := Rda_TLB.rbUnknown;
+    rbMRL5 : result := Rda_TLB.rbMRL5;
+    rbMRL5M : result := Rda_TLB.rbMRL5M;
+    rbRC32B : result := Rda_TLB.rbRC32B;
+    rbResearch : result := Rda_TLB.rbResearch;
+  else result := Rda_TLB.rbUnknown;
+  end;
+end;
+
+function TConfiguration.Get_StreamPort: Integer;
+begin
+  Result := theConfiguration.Stream_Port;
+end;
+
+function TConfiguration.Get_WSPort: Integer;
+begin
+  Result := theConfiguration.WS_Port;
+end;
+
+function TConfiguration.Get_AIFactors(out Factors: PSafeArray): HResult;
+var
+  SAB : TSafeArrayBound;
+  i   : integer;
+begin
+  try
+    SAB.cElements := High(AIRange) + 1;
+    SAB.lLbound   := 0;
+    Factors := SafeArrayCreate( VT_R8, 1, SAB );
+    for i := Low(AIRange) to High(AIRange) do
+      PSingles(Factors.pvData)[I] := theConfiguration.AIFactors[i];
+    Result := S_OK
+  except
+    Result := E_FAIL;
+  end;
+end;
+
+function TConfiguration.Set_AIFactors(var Factors: PSafeArray): HResult;
+var
+  i : integer;
+begin
+  try
+    for i := Low(AIRange) to High(AIRange) do
+      theConfiguration.AIFactors[i] := PSingles(Factors.pvData)^[I];
+    Result := S_OK;
+  except
+    Result := E_FAIL;
+  end;
+end;
+
+function TConfiguration.Filter(Index: Integer; out Name: WideString; out B0, B1, B2, B3, B4, C1, C2, C3, C4: Double): HResult;
+var
+  data : FilterInfo;
+begin
+  if Index < theConfiguration.Filters
+    then
+      begin
+        Name := theConfiguration.FilterName[Index];
+        data := theConfiguration.GetFilter(Index);
+        B0 := data.B0;
+        B1 := data.B1;
+        B2 := data.B2;
+        B3 := data.B3;
+        B4 := data.B4;
+        C1 := data.C1;
+        C2 := data.C2;
+        C3 := data.C3;
+        C4 := data.C4;
+        Result := S_OK;
+      end
+    else Result := E_INVALIDARG;
+end;
+
+function TConfiguration.Get_FilterCount: Integer;
+begin
+  Result := theConfiguration.Filters;
+end;
+
+procedure TConfiguration.Set_FilterCount(Value: Integer);
+begin
+  if InControl
+    then theConfiguration.Filters := Value;
+end;
+
+function TConfiguration.SetFilter(Index: Integer; const Name: WideString; B0, B1, B2, B3, B4, C1, C2, C3, C4: Double): HResult;
+begin
+  if InControl
+    then theConfiguration.SetFilter(Index, Name, B0, B1, B2, B3, B4, C1, C2, C3, C4);
+end;
+
+function TConfiguration.Get_DefaultFilter: Integer;
+begin
+  Result := theConfiguration.DefaultFilter;
+end;
+
+procedure TConfiguration.Set_DefaultFilter(Value: Integer);
+begin
+  if InControl
+    then
+      begin
+        theConfiguration.DefaultFilter := Value;
+        if DRX1.Ready
+          then
+            try
+              DRX1.SetDefaultFilter;
+            except
+              DRX1.Validate;
+            end;
+        if DRX2.Ready
+          then
+            try
+              DRX2.SetDefaultFilter;
+            except
+              DRX1.Validate;
+            end;
+      end;
+end;
+
+function TConfiguration.Get_FilterAngle: Double;
+begin
+  Result := theConfiguration.FilterMaxAngle;
+end;
+
+function TConfiguration.Get_FilterCCOR: WordBool;
+begin
+  Result := theConfiguration.FilterCCOR;
+end;
+
+function TConfiguration.Get_FilterCI: WordBool;
+begin
+  Result := theConfiguration.FilterCI;
+end;
+
+function TConfiguration.Get_FilterDistance: Integer;
+begin
+  Result := theConfiguration.FilterMaxDistance;
+end;
+
+function TConfiguration.Get_FilterHeigh: Integer;
+begin
+  Result := theConfiguration.FilterMaxHeigh;
+end;
+
+function TConfiguration.Get_FilterLOG: WordBool;
+begin
+  Result := theConfiguration.FilterLOG;
+end;
+
+function TConfiguration.Get_FilterSIG: WordBool;
+begin
+  Result := theConfiguration.FilterSIG;
+end;
+
+function TConfiguration.Get_FilterSQI: WordBool;
+begin
+  Result := theConfiguration.FilterSQI;
+end;
+
+procedure TConfiguration.Set_FilterAngle(Value: Double);
+begin
+  if InControl
+    then theConfiguration.FilterMaxAngle := Value;
+end;
+
+procedure TConfiguration.Set_FilterCCOR(Value: WordBool);
+begin
+  if InControl
+    then theConfiguration.FilterCCOR := Value;
+end;
+
+procedure TConfiguration.Set_FilterCI(Value: WordBool);
+begin
+  if InControl
+    then theConfiguration.FilterCI := Value;
+end;
+
+procedure TConfiguration.Set_FilterDistance(Value: Integer);
+begin
+  if InControl
+    then theConfiguration.FilterMaxDistance := Value;
+end;
+
+procedure TConfiguration.Set_FilterHeigh(Value: Integer);
+begin
+  if InControl
+    then theConfiguration.FilterMaxHeigh := Value;
+end;
+
+procedure TConfiguration.Set_FilterLOG(Value: WordBool);
+begin
+  if InControl
+    then theConfiguration.FilterLOG := Value;
+end;
+
+procedure TConfiguration.Set_FilterSIG(Value: WordBool);
+begin
+  if InControl
+    then theConfiguration.FilterSIG := Value;
+end;
+
+procedure TConfiguration.Set_FilterSQI(Value: WordBool);
+begin
+  if InControl
+    then theConfiguration.FilterSQI := Value;
+end;
+
+initialization
+  TComObjectFactory.Create(ComServer, TConfiguration, Class_Configuration,
+    'Configuration', '', ciMultiInstance, tmApartment);
+end.

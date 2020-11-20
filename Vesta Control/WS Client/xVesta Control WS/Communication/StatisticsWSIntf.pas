@@ -1,0 +1,86 @@
+unit StatisticsWSIntf;
+
+interface
+
+uses InvokeRegistry, Types, XSBuiltIns;
+
+type
+
+  IStatisticsWS = interface(IInvokable)
+  ['{CAA9269D-4FC3-448A-AB10-DC01A27741FE}']
+    //IStatistics
+    function Get_SwitchedOnRDA: Integer; safecall;
+    function Get_SwitchedOnRadar: Integer; safecall;
+    function Get_SwitchedOnAcc: Integer; safecall;
+    function Get_SwitchedOnMotorAz: Integer; safecall;
+    function Get_SwitchedOnMotorEl: Integer; safecall;
+    function Get_SwitchedOnTxCaldeo: Integer; safecall;
+    function Get_SwitchedOnTxAnodo: Integer; safecall;
+    function Get_SwitchedOnRx: Integer; safecall;
+    function Get_MagnetronCaldeo: Integer; safecall;
+    function Get_MagnetronAnodo: Integer; safecall;
+    function Get_TiratronPrincipal: Integer; safecall;
+    function Get_TiratronAuxiliar: Integer; safecall;
+    function Get_SwitchedOnTxCaldeo2: Integer; safecall;
+    function Get_SwitchedOnTxAnodo2: Integer; safecall;
+    function Get_SwitchedOnRx2: Integer; safecall;
+    function Get_MagnetronCaldeo2: Integer; safecall;
+    function Get_MagnetronAnodo2: Integer; safecall;
+    function Get_TiratronPrincipal2: Integer; safecall;
+    function Get_TiratronAuxiliar2: Integer; safecall;
+    function Get_TiratronPrincipalAnodo2: Integer; safecall;
+    function Get_TiratronPrincipalAnodo1: Integer; safecall;
+    //IStatisticsControl
+    procedure Set_SwitchedOnRDA(value: Integer); safecall;
+    procedure Set_SwitchedOnRadar(value: Integer); safecall;
+    procedure Set_SwitchedOnAcc(value: Integer); safecall;
+    procedure Set_SwitchedOnMotorAz(value: Integer); safecall;
+    procedure Set_SwitchedOnMotorEl(value: Integer); safecall;
+    procedure Set_SwitchedOnTxCaldeo(value: Integer); safecall;
+    procedure Set_SwitchedOnTxAnodo(value: Integer); safecall;
+    procedure Set_SwitchedOnRx(value: Integer); safecall;
+    procedure Set_MagnetronCaldeo(value: Integer); safecall;
+    procedure Set_MagnetronAnodo(value: Integer); safecall;
+    procedure Set_TiratronPrincipal(value: Integer); safecall;
+    procedure Set_TiratronAuxiliar(value: Integer); safecall;
+    procedure Set_SwitchedOnTxCaldeo2(value: Integer); safecall;
+    procedure Set_SwitchedOnTxAnodo2(value: Integer); safecall;
+    procedure Set_SwitchedOnRx2(value: Integer); safecall;
+    procedure Set_MagnetronCaldeo2(value: Integer); safecall;
+    procedure Set_MagnetronAnodo2(value: Integer); safecall;
+    procedure Set_TiratronAuxiliar2(value: Integer); safecall;
+    procedure Set_TiratronPrincipal2(value: Integer); safecall;
+    procedure Set_TiratronPrincipalAnodo1(value: Integer); safecall;
+    procedure Set_TiratronPrincipalAnodo2(value: Integer); safecall;
+
+    property SwitchedOnRDA: Integer           read Get_SwitchedOnRDA           write Set_SwitchedOnRDA;
+    property SwitchedOnRadar: Integer         read Get_SwitchedOnRadar         write Set_SwitchedOnRadar;
+    property SwitchedOnAcc: Integer           read Get_SwitchedOnAcc           write Set_SwitchedOnAcc;
+    property SwitchedOnMotorAz: Integer       read Get_SwitchedOnMotorAz       write Set_SwitchedOnMotorAz;
+    property SwitchedOnMotorEl: Integer       read Get_SwitchedOnMotorEl       write Set_SwitchedOnMotorEl;
+    property SwitchedOnTxCaldeo: Integer      read Get_SwitchedOnTxCaldeo      write Set_SwitchedOnTxCaldeo;
+    property SwitchedOnTxAnodo: Integer       read Get_SwitchedOnTxAnodo       write Set_SwitchedOnTxAnodo;
+    property SwitchedOnRx: Integer            read Get_SwitchedOnRx            write Set_SwitchedOnRx;
+    property MagnetronCaldeo: Integer         read Get_MagnetronCaldeo         write Set_MagnetronCaldeo;
+    property MagnetronAnodo: Integer          read Get_MagnetronAnodo          write Set_MagnetronAnodo;
+    property TiratronPrincipal: Integer       read Get_TiratronPrincipal       write Set_TiratronPrincipal;
+    property TiratronAuxiliar: Integer        read Get_TiratronAuxiliar        write Set_TiratronAuxiliar;
+    property SwitchedOnTxCaldeo2: Integer     read Get_SwitchedOnTxCaldeo2     write Set_SwitchedOnTxCaldeo2;
+    property SwitchedOnTxAnodo2: Integer      read Get_SwitchedOnTxAnodo2      write Set_SwitchedOnTxAnodo2;
+    property SwitchedOnRx2: Integer           read Get_SwitchedOnRx2           write Set_SwitchedOnRx2;
+    property MagnetronCaldeo2: Integer        read Get_MagnetronCaldeo2        write Set_MagnetronCaldeo2;
+    property MagnetronAnodo2: Integer         read Get_MagnetronAnodo2         write Set_MagnetronAnodo2;
+    property TiratronPrincipal2: Integer      read Get_TiratronPrincipal2      write Set_TiratronAuxiliar2;
+    property TiratronAuxiliar2: Integer       read Get_TiratronAuxiliar2       write Set_TiratronPrincipal2;
+    property TiratronPrincipalAnodo2: Integer read Get_TiratronPrincipalAnodo2 write Set_TiratronPrincipalAnodo2;
+    property TiratronPrincipalAnodo1: Integer read Get_TiratronPrincipalAnodo1 write Set_TiratronPrincipalAnodo1;
+  end;
+
+
+implementation
+
+initialization
+  InvRegistry.RegisterInterface(TypeInfo(IStatisticsWS));
+
+end.
+ 

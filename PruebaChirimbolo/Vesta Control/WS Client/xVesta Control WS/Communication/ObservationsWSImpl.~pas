@@ -1,0 +1,254 @@
+unit ObservationsWSImpl;
+
+interface
+
+uses
+  InvokeRegistry, Types, XSBuiltIns, ObservationsWSIntf, CommunicationObj;
+
+type
+
+  TObservationsWS = class(TCommObj, IObservationsWS)
+    public
+      // IObservations
+        function  Get_Plantillas: Integer; safecall;
+        procedure Ejecutar(const Name: string); safecall;
+        function  Plantilla(Index: integer): TTemplateInfo; safecall;
+        function  Buscar(const Name: string): TTemplateInfo; safecall;
+        procedure ChequearRadar; safecall;
+      // IObservation
+        function  Get_InProgress: boolean; safecall;
+        function  Get_Name: string; safecall;
+        function  Get_Client: string; safecall;
+        function  Get_StartTime: TDateTime; safecall;
+        function  Get_LastTime: TDateTime; safecall;
+        function  Get_Progress: Integer; safecall;
+        function  Get_Message: string; safecall;
+        function  Get_SubMsg: string; safecall;
+        function  Get_Result: Integer; safecall;
+        procedure Cancel; safecall;
+      //IObservationsControl
+        procedure Borrar(const Name: WideString); safecall;
+        function  Nueva: TTemplateInfo; safecall;
+        function  Control(const Name: WideString): TTemplateInfo; safecall;
+        function  Clonar(const TemplateName: WideString): TTemplateInfo; safecall;
+        procedure Save(Template: TTemplateInfo); safecall;
+        procedure Automatica(TemplateName : string; Value: boolean); safecall;
+
+        function CheckCredentials : boolean; override;        
+  end;
+
+implementation
+
+uses
+  Users, Elbrus, Operator, Layout, SysUtils, LayoutManager;
+
+{ TObservationsWS }
+
+procedure TObservationsWS.Automatica(TemplateName: string; Value: boolean);
+var
+  LayoutManager : TLayoutManager;
+  TemplateInfo : TTemplateInfo;
+begin
+  if InControl
+    then
+      begin
+        LayoutManager := TLayoutManager.Create;
+        try
+          TemplateInfo := LayoutManager.LoadTemplate(TemplateName);
+          TemplateInfo.Automatic := Value;
+          LayoutManager.SaveTemplate(TemplateInfo);
+        finally
+          LayoutManager.Free;
+        end;
+      end;
+end;
+
+procedure TObservationsWS.Borrar(const Name: WideString);
+var
+  LayoutManager : TLayoutManager;
+begin
+  LayoutManager := TLayoutManager.Create;
+  try
+    LayoutManager.KillTemplate(Name)
+  finally
+    LayoutManager.Free;
+  end;
+end;
+
+function TObservationsWS.Buscar(const Name: string): TTemplateInfo;
+var
+  LayoutManager : TLayoutManager;
+begin
+  LayoutManager := TLayoutManager.Create;
+  try
+    if LayoutManager.TemplateExists(Name)
+      then Result := LayoutManager.LoadTemplate(Name)
+      else Result := nil;
+  finally
+    LayoutManager.Free;
+  end;
+end;
+
+procedure TObservationsWS.Cancel;
+begin
+  if InControl
+    then theOperator.Cancel;
+end;
+
+function TObservationsWS.CheckCredentials: boolean;
+begin
+  result := CheckAuthHeader >= ul_Operator;
+end;
+
+procedure TObservationsWS.ChequearRadar;
+begin
+  if InControl
+    then theOperator.CheckRadar;
+end;
+
+function TObservationsWS.Clonar(const TemplateName: WideString): TTemplateInfo; safecall;
+var
+  Name  : string;
+  Index : integer;
+  LayoutManager : TLayoutManager;
+  Source : TTemplateInfo;
+begin
+  if InControl
+    then
+      begin
+        LayoutManager := TLayoutManager.Create;
+        try
+          Index := 0;
+          repeat
+            inc(Index);
+            Name := TemplateName + IntToStr(Index);
+          until not LayoutManager.TemplateExists(Name);
+
+          Source := LayoutManager.LoadTemplate(TemplateName);
+          Result := LayoutManager.CloneTemplate(Name, Source);
+        finally
+          LayoutManager.Free;
+        end;
+      end
+    else Result := nil;
+end;
+
+function TObservationsWS.Control(const Name: WideString): TTemplateInfo;
+begin
+  result := Buscar(Name);
+end;
+
+procedure TObservationsWS.Ejecutar(const Name: string);
+begin
+  if InControl
+    then theOperator.Execute(Name, UserName, Now);
+end;
+
+function TObservationsWS.Get_Client: string;
+begin
+  Result := Snapshot.ObsClient;
+end;
+
+function TObservationsWS.Get_InProgress: boolean;
+begin
+  Result := Snapshot.ObsInProgress;
+end;
+
+function TObservationsWS.Get_LastTime: TDateTime;
+begin
+  Result := Snapshot.ObsLastTime;
+end;
+
+function TObservationsWS.Get_Message: string;
+begin
+  Result := Snapshot.ObsMessage;
+end;
+
+function TObservationsWS.Get_Name: string;
+begin
+  Result := Snapshot.ObsName;
+end;
+
+function TObservationsWS.Get_Plantillas: Integer;
+begin
+  with EnumTemplates do
+    try
+      Result := Count;
+    finally
+      Free;
+    end;
+end;
+
+function TObservationsWS.Get_Progress: Integer;
+begin
+  Result := Snapshot.ObsProgress;
+end;
+
+function TObservationsWS.Get_Result: Integer;
+begin
+  Result := Snapshot.ObsResult;
+end;
+
+function TObservationsWS.Get_StartTime: TDateTime;
+begin
+  Result := Snapshot.ObsStartTime;
+end;
+
+function TObservationsWS.Get_SubMsg: string;
+begin
+  Result := Snapshot.ObsSubMsg;
+end;
+
+function TObservationsWS.Nueva: TTemplateInfo;
+var
+  Name  : string;
+  Index : integer;
+  LayoutManager : TLayoutManager;
+begin
+  if InControl
+    then
+      begin
+        LayoutManager := TLayoutManager.Create;
+        try
+          Index := 0;
+          repeat
+            inc(Index);
+            Name := 'NuevaPlantilla' + IntToStr(Index);
+          until not LayoutManager.TemplateExists(Name);
+
+          Result := LayoutManager.InitTemplate(Name);
+        finally
+          LayoutManager.Free;
+        end;
+      end
+    else Result := nil;
+end;
+
+function TObservationsWS.Plantilla(Index: integer): TTemplateInfo;
+begin
+  with EnumTemplates do
+    try
+      if Index < Count
+        then result := Buscar(Strings[Index])
+        else result := nil;
+    finally
+      Free;
+    end;
+end;
+
+procedure TObservationsWS.Save(Template: TTemplateInfo);
+var
+  LayoutManager : TLayoutManager;
+begin
+  LayoutManager := TLayoutManager.Create;
+  try
+    LayoutManager.SaveTemplate(Template);
+  finally
+    LayoutManager.Free;
+  end;
+end;
+
+initialization
+  InvRegistry.RegisterInvokableClass(TObservationsWS);
+
+end.

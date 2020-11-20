@@ -1,0 +1,23 @@
+# Xilinx CORE Generator 6.3i
+SELECT Asynchronous_FIFO family Xilinx,_Inc. 5.1
+CSET almost_empty_flag=false
+CSET almost_full_flag=false
+CSET component_name=rawFIFO511x14
+CSET create_rpm=false
+CSET fifo_depth=511
+CSET input_data_width=14
+CSET memory_type=block
+CSET read_acknowledge=false
+CSET read_acknowledge_sense=active_high
+CSET read_count=false
+CSET read_count_width=2
+CSET read_error=false
+CSET read_error_sense=active_high
+CSET write_acknowledge=false
+CSET write_acknowledge_sense=active_high
+CSET write_count=false
+CSET write_count_width=2
+CSET write_error=false
+CSET write_error_sense=active_high
+GENERATE
+

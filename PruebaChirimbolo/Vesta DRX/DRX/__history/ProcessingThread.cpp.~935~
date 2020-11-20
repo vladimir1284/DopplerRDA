@@ -1,0 +1,529 @@
+#include <math.h>
+#include "AFCProcessor.h"
+#include "ProcessingThread.h"
+#include "DataParameters.h"
+#include "IntegratedData.h"
+
+#include "RawIQRead.h"
+#include "ShellChirimbolo.h"
+#include "Site.h"
+
+#pragma package(smart_init)
+//---------------------------------------------------------------------------
+
+__fastcall ProcessingThread::ProcessingThread(bool CreateSuspended): TThread(CreateSuspended)
+{
+  TheRawIQ = new RawIQRead(true);
+
+  InitHalfSector();
+
+  this->Priority = tpHighest;
+  PulseDataIn    = new RawPulseData[DATABUFFERS];
+  RawPulseDataIn = new RawPulseData[DATABUFFERS];
+  CurrentSector  = 0;
+  FirstSector    = true;
+  count          = 0;
+  FilterData     = new TDataFilter();
+  Filtering      = false;
+  NoisePower     = ThisSite->settings->NoisePower;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall ProcessingThread::Execute()
+{
+  TheRawIQ->Resume();
+
+  unsigned int SequenceNumber = 0;
+  int SectorRayCount = 0;
+  int Rays = 0;
+
+  double Lag0ValMag;
+  double Lag1ValMag;
+  double Lag2ValMag;
+
+  double P0;
+  double P1;
+  double P2;
+
+  int lag0, lag1, lag2, lag3, lag4;
+
+  EnoughRays  = false;
+  FilterStart = 0;
+
+  while(!Terminated){
+	  try {
+		  TheRawIQ->GetPulseData(&RawPulseDataIn[count]);
+
+		  for(int i=0; i<RawPulseDataIn[count].NData; i++){
+			raw_i[i] = RawPulseDataIn[count].I[i];
+			raw_q[i] = RawPulseDataIn[count].Q[i];
+		  }
+
+		  lag0 = count;
+		  lag1 = (count + DATABUFFERS - 1) % DATABUFFERS;
+		  lag2 = (count + DATABUFFERS - 2) % DATABUFFERS;
+
+		  SectorRayCount++;
+		  //sectors spliter
+		  if((SectorRayCount > 1) && (RawPulseDataIn[lag1].PRFChange != RawPulseDataIn[lag0].PRFChange)){
+			if(!FirstSector){
+				if(SectorRayCount > 2){
+					HalfSector[CurrentSector].NData    = RawPulseDataIn[lag1].NData;
+					HalfSector[CurrentSector].DataMode = RawPulseDataIn[lag1].PulseMode;
+					HalfSector[CurrentSector].RayCount = SectorRayCount-1;
+					CurrentSector = (CurrentSector+1) % 2;
+					SectorRayCount = 1;
+					if(CurrentSector == 0){
+						IntegrateData();
+						InitHalfSector();
+					}
+				}
+				else{
+					throw new Exception("Pocos rayos en el sector... " + IntToStr(SectorRayCount-1) + " rayo(s)");
+				}
+			}
+
+			if(FirstSector && RawPulseDataIn[lag1].PRFChange == 1){
+				FirstSector = false;
+				SectorRayCount = 1;
+			}
+		  }
+
+		  if(!FirstSector){
+			  PhaseCorrect(&RawPulseDataIn[count]);
+
+			  //Interference Filter
+			  if(SectorRayCount > 2){
+				  for(int i = 0; i < PulseDataIn[lag0].NData; i++){
+					  Lag0ValMag = (RawPulseDataIn[lag0].I[i] * RawPulseDataIn[lag0].I[i] + RawPulseDataIn[lag0].Q[i] * RawPulseDataIn[lag0].Q[i]);
+					  Lag1ValMag = (RawPulseDataIn[lag1].I[i] * RawPulseDataIn[lag1].I[i] + RawPulseDataIn[lag1].Q[i] * RawPulseDataIn[lag1].Q[i]);
+					  Lag2ValMag = (RawPulseDataIn[lag2].I[i] * RawPulseDataIn[lag2].I[i] + RawPulseDataIn[lag2].Q[i] * RawPulseDataIn[lag2].Q[i]);
+
+					  P0 = 10.0 * log10(Lag0ValMag);
+					  P1 = 10.0 * log10(Lag1ValMag);
+					  P2 = 10.0 * log10(Lag2ValMag);
+
+					  //filter
+					  double LinAvg = (P2 + P1) / 2;
+					  if((fabs(P1-P2) < ThisSite->settings->C1) && (P0-LinAvg > ThisSite->settings->C2)){
+						RawPulseDataIn[lag0].I[i] = RawPulseDataIn[lag1].I[i];
+						RawPulseDataIn[lag0].Q[i] = RawPulseDataIn[lag1].Q[i];
+					  }
+				  }
+			  }
+
+			  //IIR Clutter Filter for PPP-Mode
+			  double Elevation = RawPulseDataIn[lag0].Elevation * CONV_FACTOR;
+			  if(Filtering && (Elevation <= FilterData->MaxAngle)){
+				if(EnoughRays){
+					lag3 = (count + DATABUFFERS - 3) % DATABUFFERS;
+					lag4 = (count + DATABUFFERS - 4) % DATABUFFERS;
+
+					PulseDataIn[lag0].SPMode         = RawPulseDataIn[lag0].SPMode;
+					PulseDataIn[lag0].PRFChange      = RawPulseDataIn[lag0].PRFChange;
+					PulseDataIn[lag0].PRFRate        = RawPulseDataIn[lag0].PRFRate;
+					PulseDataIn[lag0].PulseMode      = RawPulseDataIn[lag0].PulseMode;
+					PulseDataIn[lag0].NData          = RawPulseDataIn[lag0].NData;
+					PulseDataIn[lag0].Azimuth        = RawPulseDataIn[lag0].Azimuth;
+					PulseDataIn[lag0].Elevation      = RawPulseDataIn[lag0].Elevation;
+					PulseDataIn[lag0].SequenceNumber = RawPulseDataIn[lag0].SequenceNumber;
+
+					int    CellSize      = (RawPulseDataIn[lag0].PulseMode == LP_MODE) ? BIN_LENGTH_LP : BIN_LENGTH_SP;
+					double Elevation_Sin = Sin(Elevation);
+
+					for(int i=0; i < RawPulseDataIn[lag0].NData; i++){
+						int    CellPosition = i*CellSize;
+						double CellHeigh    = CellPosition * Elevation_Sin;
+						if((CellPosition <= FilterData->MaxDistance) && (CellHeigh <= FilterData->MaxHeigh)){
+							PulseDataIn[lag0].I[i] = FilterData->B0 * RawPulseDataIn[lag0].I[i] +
+													 FilterData->B1 * RawPulseDataIn[lag1].I[i] +
+													 FilterData->B2 * RawPulseDataIn[lag2].I[i] +
+													 FilterData->B3 * RawPulseDataIn[lag3].I[i] +
+													 FilterData->B4 * RawPulseDataIn[lag4].I[i] -
+													 FilterData->C1 * PulseDataIn[lag1].I[i]    -
+													 FilterData->C2 * PulseDataIn[lag2].I[i]    -
+													 FilterData->C3 * PulseDataIn[lag3].I[i]    -
+													 FilterData->C4 * PulseDataIn[lag4].I[i];
+
+							PulseDataIn[lag0].Q[i] = FilterData->B0 * RawPulseDataIn[lag0].Q[i] +
+													 FilterData->B1 * RawPulseDataIn[lag1].Q[i] +
+													 FilterData->B2 * RawPulseDataIn[lag2].Q[i] +
+													 FilterData->B3 * RawPulseDataIn[lag3].Q[i] +
+													 FilterData->B4 * RawPulseDataIn[lag4].Q[i] -
+													 FilterData->C1 * PulseDataIn[lag1].Q[i]    -
+													 FilterData->C2 * PulseDataIn[lag2].Q[i]    -
+													 FilterData->C3 * PulseDataIn[lag3].Q[i]    -
+													 FilterData->C4 * PulseDataIn[lag4].Q[i];
+						}
+						else{
+							PulseDataIn[lag0].I[i] = RawPulseDataIn[lag0].I[i];
+							PulseDataIn[lag0].Q[i] = RawPulseDataIn[lag0].Q[i];
+						}
+					}
+				}
+				else{
+					memcpy(&PulseDataIn[lag0], &RawPulseDataIn[lag0], sizeof(RawPulseData));
+					FilterStart++;
+					if(FilterStart == DATABUFFERS-1){
+						EnoughRays = true;
+					}
+				}
+			  }
+			  else{
+				  memcpy(&PulseDataIn[lag0], &RawPulseDataIn[lag0], sizeof(RawPulseData));
+			  }
+
+			  //Sector processing
+			  HalfSector[CurrentSector].Azimuth   += PulseDataIn[lag0].Azimuth;
+			  HalfSector[CurrentSector].Elevation += PulseDataIn[lag0].Elevation;
+
+			  for(int i = 0; i < PulseDataIn[lag0].NData; i++){
+				  HalfSector[CurrentSector].raw_mag[i] += raw_i[i] * raw_i[i] + raw_q[i] * raw_q[i];
+				  HalfSector[CurrentSector].T0[i]  += RawPulseDataIn[lag0].I[i] * RawPulseDataIn[lag0].I[i] + RawPulseDataIn[lag0].Q[i] * RawPulseDataIn[lag0].Q[i];
+				  Lag0ValMag = PulseDataIn[lag0].I[i] * PulseDataIn[lag0].I[i] + PulseDataIn[lag0].Q[i] * PulseDataIn[lag0].Q[i];
+				  HalfSector[CurrentSector].R0[i]  += Lag0ValMag;
+
+				  if(SectorRayCount > 1){
+					  //Lag1ValMag = PulseDataIn[lag1].I[i] * PulseDataIn[lag1].I[i] + PulseDataIn[lag1].Q[i] * PulseDataIn[lag1].Q[i];
+					  HalfSector[CurrentSector].R1[2*i]   += (PulseDataIn[lag0].I[i] * PulseDataIn[lag1].I[i] + PulseDataIn[lag0].Q[i] * PulseDataIn[lag1].Q[i]);
+					  HalfSector[CurrentSector].R1[2*i+1] += (PulseDataIn[lag0].Q[i] * PulseDataIn[lag1].I[i] - PulseDataIn[lag1].Q[i] * PulseDataIn[lag0].I[i]);
+				  }
+
+				  if(SectorRayCount > 2){
+					  Lag2ValMag = PulseDataIn[lag2].I[i] * PulseDataIn[lag2].I[i] + PulseDataIn[lag2].Q[i] * PulseDataIn[lag2].Q[i];
+					  HalfSector[CurrentSector].R2[2*i]   += (PulseDataIn[lag0].I[i] * PulseDataIn[lag2].I[i] + PulseDataIn[lag0].Q[i] * PulseDataIn[lag2].Q[i]);
+					  HalfSector[CurrentSector].R2[2*i+1] += (PulseDataIn[lag0].Q[i] * PulseDataIn[lag2].I[i] - PulseDataIn[lag2].Q[i] * PulseDataIn[lag0].I[i]);
+
+					  if(Lag0ValMag > Lag2ValMag)
+						HalfSector[CurrentSector].CI[i] += (Lag2ValMag != 0) ? (Lag0ValMag / Lag2ValMag) : 0;
+					  else
+						HalfSector[CurrentSector].CI[i] += (Lag0ValMag != 0) ? (Lag2ValMag / Lag0ValMag) : 0;
+				  }
+			  }
+		  }
+
+		  count++;
+		  count %= DATABUFFERS;
+	  } catch (Exception &error) {
+		CurrentSector = 0;
+		SectorRayCount = 0;
+		FirstSector = true;
+		InitHalfSector();
+		ThisSite->TheRadar->LastError = error.Message;
+	  }
+	}
+	TheRawIQ->Terminate();
+}
+//---------------------------------------------------------------------------
+
+double ProcessingThread::GetVConvFactor(int mode){
+  switch (mode) {
+	case LP_MODE:         return _250_CONV_FACTOR_;
+	case SP_MODE:         return _1000_CONV_FACTOR_;
+	case SP_Low_54_MODE:  return _960_CONV_FACTOR_;
+	case SP_Low_43_MODE:  return _900_CONV_FACTOR_;
+	case SP_Low_32_MODE:  return _800_CONV_FACTOR_;
+	case SP_High_54_MODE: return _1200_CONV_FACTOR_;
+	case SP_High_43_MODE: return _1200_CONV_FACTOR_;
+	case SP_High_32_MODE: return _1200_CONV_FACTOR_;
+  }
+
+  return 0;
+}
+
+double ProcessingThread::GetMaxUnfoldedSpeed(int mode){
+  switch (mode) {
+	case LP_MODE:         return _250_MaxSpeed;
+	case SP_MODE:         return _1000_MaxSpeed;
+	case SP_Low_54_MODE:  return _1200_MaxSpeed;
+	case SP_Low_43_MODE:  return _1200_MaxSpeed;
+	case SP_Low_32_MODE:  return _1200_MaxSpeed;
+	case SP_High_54_MODE: return _1200_MaxSpeed;
+	case SP_High_43_MODE: return _1200_MaxSpeed;
+	case SP_High_32_MODE: return _1200_MaxSpeed;
+  }
+
+  return 0;
+}
+
+void __fastcall ProcessingThread::IntegrateData()
+{
+	double Lag0Mag;
+	double Lag1Mag;
+	double Lag2Mag;
+
+	if(HalfSector[0].DataMode % 5 == 0){
+		LowFreqIndex = 0;
+		HighFreqIndex = 1;
+	}
+	else{
+		LowFreqIndex = 1;
+		HighFreqIndex = 0;
+	}
+
+	int    NData            = (HalfSector[LowFreqIndex].NData < HalfSector[HighFreqIndex].NData) ? HalfSector[LowFreqIndex].NData : HalfSector[HighFreqIndex].NData;
+	int    TotalRays        = HalfSector[LowFreqIndex].RayCount + HalfSector[HighFreqIndex].RayCount;
+	int    mode             = HalfSector[LowFreqIndex].DataMode;
+	double MaxUnfoldedSpeed = GetMaxUnfoldedSpeed(mode);
+	int    Sensibility      = (mode == LP_MODE) ? ThisSite->settings->Sensibility_LP : ThisSite->settings->Sensibility_SP;
+	int    SensibilityIndex = abs(Sensibility - ThisSite->settings->Sensibility_Table);
+
+	//power
+	for(int i=0; i < NData; i++){
+		HalfSector[0].T0[i]      = (HalfSector[LowFreqIndex].T0[i] + HalfSector[HighFreqIndex].T0[i]) / TotalRays;
+		HalfSector[0].R0[i]      = (HalfSector[LowFreqIndex].R0[i] + HalfSector[HighFreqIndex].R0[i]) / TotalRays;
+		HalfSector[0].raw_mag[i] = (HalfSector[LowFreqIndex].raw_mag[i] + HalfSector[HighFreqIndex].raw_mag[i]) / TotalRays;
+	}
+
+	//mide el nivel de ruido
+	double Noise = 0;
+	int    NoiseSamples = 0;
+
+	for(int i=NData-50; i < NData; i++){
+		float power = 10.0 * log10(HalfSector[0].T0[i]);
+
+		int j = 0;
+		while ((j < SensibilityIndex) && (power > ThisSite->Conv_table[j]))
+		  j++;
+
+		if (j < SensibilityIndex) {
+			Noise += HalfSector[0].T0[i];
+			NoiseSamples++;
+		}
+	}
+	if(NoiseSamples > 0){
+		NoisePower = Noise / NoiseSamples;
+	}
+	//==========================================
+
+	for(int i=0; i < NData; i++){
+		CCOR[i] = 10.0 * log10(HalfSector[0].R0[i] / HalfSector[0].T0[i]);
+		LOG[i]  = (NoisePower > 0) ? 10.0 * log10((HalfSector[0].T0[i] - NoisePower)/NoisePower) : 0;
+		SIG[i]  = LOG[i] + CCOR[i];
+
+		raw_power[i] = (NoisePower > 0) ? 10.0 * log10((HalfSector[0].raw_mag[i] - NoisePower)/NoisePower) : 0;
+		dBZ[i]  = (NoisePower > 0) ? 10.0 * log10((HalfSector[0].R0[i] - NoisePower)/NoisePower) : 0;
+		dBT[i]  = LOG[i];
+	}
+
+	ConvertToDB(dBZ, NData, mode);
+	ConvertToDB(dBT, NData, mode);
+
+	//Velocity
+	if((mode == LP_MODE) || (mode == SP_MODE)){
+		double VConvFactor = GetVConvFactor(mode);
+		for(int i=0; i < NData; i++){
+			HalfSector[0].R1[i] = (HalfSector[LowFreqIndex].R1[2*i]   + HalfSector[HighFreqIndex].R1[2*i])   / (TotalRays-2);
+			HalfSector[1].R1[i] = (HalfSector[LowFreqIndex].R1[2*i+1] + HalfSector[HighFreqIndex].R1[2*i+1]) / (TotalRays-2);
+			if(!((HalfSector[1].R1[i] == 0) && (HalfSector[0].R1[i] == 0)))
+				V[i] = atan2(HalfSector[1].R1[i], HalfSector[0].R1[i]) * VConvFactor;
+			else
+				V[i] = 0;
+
+			if((fabs(V[i]) > MaxUnfoldedSpeed))
+				V[i] = 0;
+		}
+	}
+	else{
+		double LowFreqDoppler, HighFreqDoppler, L1I, L1Q;
+		double LowVConvFactor  = GetVConvFactor(HalfSector[LowFreqIndex].DataMode);
+		double HighVConvFactor = GetVConvFactor(HalfSector[HighFreqIndex].DataMode);
+		for(int i=0; i < NData; i++){
+			L1I = (HalfSector[LowFreqIndex].R1[2*i]   + HalfSector[HighFreqIndex].R1[2*i])   / (TotalRays-2);
+			L1Q = (HalfSector[LowFreqIndex].R1[2*i+1] + HalfSector[HighFreqIndex].R1[2*i+1]) / (TotalRays-2);
+
+			HalfSector[LowFreqIndex].R1[2*i]    /= HalfSector[LowFreqIndex].RayCount-1;
+			HalfSector[LowFreqIndex].R1[2*i+1]  /= HalfSector[LowFreqIndex].RayCount-1;
+			HalfSector[HighFreqIndex].R1[2*i]   /= HalfSector[HighFreqIndex].RayCount-1;
+			HalfSector[HighFreqIndex].R1[2*i+1] /= HalfSector[HighFreqIndex].RayCount-1;
+
+			if((HalfSector[LowFreqIndex].R1[2*i+1] != 0) && (HalfSector[LowFreqIndex].R1[2*i]) != 0)
+				LowFreqDoppler = atan2(HalfSector[LowFreqIndex].R1[2*i+1], HalfSector[LowFreqIndex].R1[2*i]) * LowVConvFactor;
+			else
+				LowFreqDoppler = 0;
+
+			if((HalfSector[HighFreqIndex].R1[2*i+1] != 0) && (HalfSector[HighFreqIndex].R1[2*i] != 0))
+				HighFreqDoppler = atan2(HalfSector[HighFreqIndex].R1[2*i+1], HalfSector[HighFreqIndex].R1[2*i]) * HighVConvFactor;
+			else
+				HighFreqDoppler = 0;
+
+			if(HighFreqDoppler - LowFreqDoppler != 0)
+				V[i] = (LowFreqDoppler * HighFreqDoppler) / (HighFreqDoppler - LowFreqDoppler);
+
+			HalfSector[0].R1[i] = L1I;
+			HalfSector[1].R1[i] = L1Q;
+		}
+	}
+
+	//width, Ci, SQI
+	for(int i=0; i < NData; i++){
+		HalfSector[0].R2[i] = (HalfSector[LowFreqIndex].R2[2*i]   + HalfSector[HighFreqIndex].R2[2*i])   / (TotalRays-4);
+		HalfSector[1].R2[i] = (HalfSector[LowFreqIndex].R2[2*i+1] + HalfSector[HighFreqIndex].R2[2*i+1]) / (TotalRays-4);
+
+		CI[i]   = (HalfSector[LowFreqIndex].CI[i] + HalfSector[HighFreqIndex].CI[i]) / (TotalRays-4);
+		CI[i]   = 10.0 * log10(CI[i]);
+
+		Lag1Mag = (HalfSector[0].R1[i] * HalfSector[0].R1[i]) + (HalfSector[1].R1[i] * HalfSector[1].R1[i]);
+		Lag1Mag = sqrt(Lag1Mag);
+
+		SQI[i]  = Lag1Mag / HalfSector[0].R0[i];
+
+		//fast method
+		//W[i] = (SQI[i] > 0) ? -2 * log(SQI[i]) : 0;
+
+		//accuracy method
+		Lag2Mag = (HalfSector[0].R2[i] * HalfSector[0].R2[i]) + (HalfSector[1].R2[i] * HalfSector[1].R2[i]);
+		Lag2Mag = sqrt(Lag2Mag);
+		if((Lag1Mag > 0) && (Lag2Mag > 0)){
+			W[i] = 2/3 * log(Lag1Mag/Lag2Mag);
+			W[i] = MaxUnfoldedSpeed * sqrt(W[i]) / PI;
+		}
+		else{
+			W[i] = 0;
+		}
+	}
+
+	//Thresholding
+	for(int i=0; i < NData; i++){
+		if(FilterData->SQI && (SQI[i] <= ThisSite->settings->ThresholdSQI)){
+			V[i] = 0;
+			W[i] = 0;
+		}
+		if(FilterData->LOG && (LOG[i] <= ThisSite->settings->ThresholdLOG)){
+			dBZ[i] = 0;
+			dBT[i] = 0;
+		}
+		if(FilterData->CCOR && (CCOR[i] <= ThisSite->settings->ThresholdCCOR)){
+			dBZ[i] = 0;
+			V[i]   = 0;
+			W[i]   = 0;
+		}
+		if(FilterData->SIG && (SIG[i] <= ThisSite->settings->ThresholdSIG)){
+			W[i] = 0;
+		}
+		if(FilterData->CI && (CI[i] <= ThisSite->settings->ThresholdCI)){
+			dBZ[i] = 0;
+			dBT[i] = 0;
+		}
+	}
+
+	HalfSector[0].Elevation = floor((HalfSector[LowFreqIndex].Elevation + HalfSector[HighFreqIndex].Elevation) / TotalRays);
+	HalfSector[0].Azimuth   = floor((HalfSector[LowFreqIndex].Azimuth   + HalfSector[HighFreqIndex].Azimuth)   / TotalRays);
+
+	if(FOnNewSectorData != NULL){
+	  FOnNewSectorData(this, HalfSector[0].Azimuth, HalfSector[0].Elevation, TotalRays, mode, NData, raw_power, dBT, dBZ, V, W);
+	}
+
+	//clear data
+	memset(V,         0, sizeof(float) * NData);
+	memset(W,         0, sizeof(float) * NData);
+	memset(SQI,       0, sizeof(float) * NData);
+	memset(CCOR,      0, sizeof(float) * NData);
+	memset(SIG,       0, sizeof(float) * NData);
+	memset(LOG,       0, sizeof(float) * NData);
+	memset(dBZ,       0, sizeof(float) * NData);
+	memset(dBT,       0, sizeof(float) * NData);
+	memset(raw_power, 0, sizeof(float) * NData);
+}
+
+void ProcessingThread::InitHalfSector()
+{
+  for(int Sector=0; Sector<2; Sector++){
+	  HalfSector[Sector].RayCount  = 0;
+	  HalfSector[Sector].Azimuth   = 0;
+	  HalfSector[Sector].Elevation = 0;
+
+	  memset(HalfSector[Sector].raw_mag, 0, NDATA * sizeof(double));
+	  memset(HalfSector[Sector].T0,      0, NDATA * sizeof(double));
+	  memset(HalfSector[Sector].R0,      0, NDATA * sizeof(double));
+	  memset(HalfSector[Sector].R1,      0, 2 * NDATA * sizeof(double));
+	  memset(HalfSector[Sector].R2,      0, 2 * NDATA * sizeof(double));
+	  memset(HalfSector[Sector].CI,      0, NDATA * sizeof(double));
+  }
+}
+
+void __fastcall ProcessingThread::PhaseCorrect(RawPulseData * TheRawPulse)
+{
+  int TX_Offset;
+  double TxI, TxQ, TxNorm;
+
+  TX_Offset = (TheRawPulse->SPMode) ? ThisSite->settings->SP_TX_PulsePosition : ThisSite->settings->LP_TX_PulsePosition;
+
+  TxI = TheRawPulse->I[TX_Offset];
+  TxQ = TheRawPulse->Q[TX_Offset];
+
+  if(TxI == 0 && TxQ == 0){
+	TxNorm = 1;
+  }
+  else{
+	TxNorm = (TxI * TxI + TxQ * TxQ);
+	TxNorm = 1.0 / TxNorm;
+	TxNorm = sqrt(TxNorm);
+  }
+
+  /*Puts phase corrected data into bottom of I and Q arrays*/
+  int Index = 0;
+  for(int i = TX_Offset; i < TheRawPulse->NData; i++){
+	TheRawPulse->I[Index] = (TheRawPulse->I[i] * TxI + TheRawPulse->Q[i] * TxQ) * TxNorm;
+	TheRawPulse->Q[Index] = (TheRawPulse->Q[i] * TxI - TheRawPulse->I[i] * TxQ) * TxNorm;
+	Index++;
+  }
+
+  TheRawPulse->NData -= TX_Offset;
+}
+
+void ProcessingThread::ConvertToDB(float *Power, int NData, int mode){
+	if(ThisSite->settings->Dinamic_range == 0){
+		for(int i=0; i < NData; i++)
+			Power[i] = 0;
+	}
+	else{
+		int Sensibility = (mode == LP_MODE) ? ThisSite->settings->Sensibility_LP : ThisSite->settings->Sensibility_SP;
+		int Start = Sensibility - ThisSite->settings->Sensibility_Table;
+		for(int i=0; i < NData; i++){
+			int j = 0;
+			while ((j < ThisSite->settings->Dinamic_range) && (Power[i] > ThisSite->Conv_table[j]))
+			  j++;
+
+			if (j < ThisSite->settings->Dinamic_range) {
+				Power[i] = (j <= Start) ? 0 : j;
+			}
+			else{
+				Power[i] = ThisSite->settings->Dinamic_range;
+			}
+		}
+	}
+}
+
+void ProcessingThread::SetFilter(TDataFilter* FilterInfo, bool Status){
+	Filtering = false;
+	ResetFilter();
+	if(FilterInfo != NULL){
+		FilterData->B0 = FilterInfo->B0;
+		FilterData->B1 = FilterInfo->B1;
+		FilterData->B2 = FilterInfo->B2;
+		FilterData->B3 = FilterInfo->B3;
+		FilterData->B4 = FilterInfo->B4;
+		FilterData->C1 = FilterInfo->C1;
+		FilterData->C2 = FilterInfo->C2;
+		FilterData->C3 = FilterInfo->C3;
+		FilterData->C4 = FilterInfo->C4;
+
+		FilterData->MaxAngle    = FilterInfo->MaxAngle;
+		FilterData->MaxHeigh    = FilterInfo->MaxHeigh;
+		FilterData->MaxDistance = FilterInfo->MaxDistance;
+
+		FilterData->SQI  = FilterInfo->SQI;
+		FilterData->CI   = FilterInfo->CI;
+		FilterData->SIG  = FilterInfo->SIG;
+		FilterData->LOG  = FilterInfo->LOG;
+		FilterData->CCOR = FilterInfo->CCOR;
+
+		Filtering = Status;
+	}
+}
+
+void ProcessingThread::ResetFilter(){
+	FilterStart = 0;
+	EnoughRays  = false;
+}

@@ -1,0 +1,325 @@
+unit Area;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  ExtCtrls;
+
+  type
+    TAreaStyle = (asRectangle, asLine, asPoint);
+
+    TArea = class(TCustomControl)
+      public
+        constructor Create( anOwner : TComponent );  override;
+      protected
+        procedure Paint;  override;
+      private
+        fArea  : TRect;
+        fMaxs  : TRect;
+        fColor : TColor;
+        fStyle : TAreaStyle;
+        procedure SetEast(  I : integer );
+        procedure SetWest(  I : integer );
+        procedure SetNorth( I : integer );
+        procedure SetSouth( I : integer );
+        procedure SetColor( aColor : TColor );
+        procedure SetMaxEast(  I : integer );
+        procedure SetMaxWest(  I : integer );
+        procedure SetMaxNorth( I : integer );
+        procedure SetMaxSouth( I : integer );
+        procedure SetStyle( aStyle : TAreaStyle );
+      published
+        property West      : integer    read fArea.Left   write SetWest;
+        property East      : integer    read fArea.Right  write SetEast;
+        property North     : integer    read fArea.Top    write SetNorth;
+        property South     : integer    read fArea.Bottom write SetSouth;
+        property AreaColor : TColor     read fColor       write SetColor;
+        property MaxWest   : integer    read fMaxs.Left   write SetMaxWest;
+        property MaxEast   : integer    read fMaxs.Right  write SetMaxEast;
+        property MaxNorth  : integer    read fMaxs.Top    write SetMaxNorth;
+        property MaxSouth  : integer    read fMaxs.Bottom write SetMaxSouth;
+        property Style     : TAreaStyle read fStyle       write SetStyle;
+        property Align;
+        property Color;
+        property Visible;
+        property ParentColor;
+      private
+        fOnChange : TNotifyEvent;
+      published
+        property OnChange : TNotifyEvent read fOnChange write fOnChange;
+      private
+        fDragNorthWest : boolean;
+        fDragSouthEast : boolean;
+      protected
+        procedure MouseDown( Button : TMouseButton;
+                             Shift : TShiftState;
+                             X, Y : Integer );  override;
+        procedure MouseMove( Shift : TShiftState;
+                             X, Y: Integer );   override;
+        procedure MouseUp(   Button : TMouseButton;
+                             Shift : TShiftState;
+                             X, Y : Integer );  override;
+      private
+        function Area2Canvas               : TRect;
+        function Canvas2Area( P : TPoint ) : TPoint;
+    end;
+
+
+  procedure Register;
+
+
+implementation
+
+
+// TArea methods
+
+  constructor TArea.Create( anOwner : TComponent );
+  begin
+    inherited;
+    MaxWest  := 0;
+    MaxEast  := 100;
+    MaxSouth := 0;
+    MaxNorth := 100;
+    West  := 10;
+    East  := 90;
+    South := 10;
+    North := 90;
+  end;
+
+  procedure TArea.Paint;
+  begin
+    with Canvas do
+      with Area2Canvas do
+        begin
+          Pen.Style   := psSolid;
+          Pen.Width   := 3;
+          Pen.Color   := clBlack;
+          Brush.Style := bsSolid;
+          Brush.Color := Color;
+          Rectangle( 0, 0, Width, Height );
+          if Style = asPoint
+            then
+              begin
+                Right  := Left + 1;
+                Bottom := Top  + 1;
+              end;
+          Pen.Style   := psSolid;
+          Pen.Color   := AreaColor;
+          Brush.Color := AreaColor;
+          case Style of
+            asRectangle : Rectangle( Left, Top, Right, Bottom );
+            asLine :
+              begin
+                MoveTo( Left, Top );
+                LineTo( Right, Bottom );
+              end;
+            asPoint : Ellipse( Left - 3, Top - 3, Left + 3, Top + 3 );
+          end;
+          Pen.Style := psSolid;
+          Pen.Width := 1;
+          Pen.Color := clGreen;
+          MoveTo( Right - 1, 0  );  LineTo( Right - 1, Height );
+          MoveTo( 0, Bottom - 1 );  LineTo( Width, Bottom - 1 );
+          Pen.Color := clLime;
+          MoveTo( Left,      0  );  LineTo( Left,      Height );
+          MoveTo( 0, Top        );  LineTo( Width, Top        );
+        end;
+  end;
+
+  procedure TArea.SetWest( I : integer );
+  begin
+    if I < MaxWest then I := MaxWest;
+    if I > MaxEast then I := MaxEast;
+    if West <> I
+      then
+        begin
+          fArea.Left := I;
+          Repaint;
+          if assigned(OnChange)
+            then OnChange( Self );
+        end;
+  end;
+
+  procedure TArea.SetEast( I : integer );
+  begin
+    if I < MaxWest then I := MaxWest;
+    if I > MaxEast then I := MaxEast;
+    if East <> I
+      then
+        begin
+          fArea.Right := I;
+          Repaint;
+          if assigned(OnChange)
+            then OnChange( Self );
+        end;
+  end;
+
+  procedure TArea.SetNorth( I : integer );
+  begin
+    if I > MaxNorth then I := MaxNorth;
+    if I < MaxSouth then I := MaxSouth;
+    if North <> I
+      then
+        begin
+          fArea.Top := I;
+          Repaint;
+          if assigned(OnChange)
+            then OnChange( Self );
+        end;
+  end;
+
+  procedure TArea.SetSouth( I : integer );
+  begin
+    if I > MaxNorth then I := MaxNorth;
+    if I < MaxSouth then I := MaxSouth;
+    if South <> I
+      then
+        begin
+          fArea.Bottom := I;
+          Repaint;
+          if assigned(OnChange)
+            then OnChange( Self );
+        end;
+  end;
+
+  procedure TArea.SetMaxEast( I : integer );
+  begin
+    if MaxEast <> I
+      then
+        begin
+          fMaxs.Right := I;
+          if West > MaxEast then fArea.Left  := MaxEast;
+          if East > MaxEast then fArea.Right := MaxEast;
+          Repaint;
+        end;
+  end;
+
+  procedure TArea.SetMaxWest( I : integer );
+  begin
+    if MaxWest <> I
+      then
+        begin
+          fMaxs.Left := I;
+          if East < MaxEast then fArea.Right := MaxWest;
+          if West < MaxEast then fArea.Left  := MaxWest;
+          Repaint;
+        end;
+  end;
+
+  procedure TArea.SetMaxNorth( I : integer );
+  begin
+    if MaxNorth <> I
+      then
+        begin
+          fMaxs.Top := I;
+          if South > MaxNorth then fArea.Bottom := MaxNorth;
+          if North > MaxNorth then fArea.Top    := MaxNorth;
+          Repaint;
+        end;
+  end;
+
+  procedure TArea.SetMaxSouth( I : integer );
+  begin
+    if MaxSouth <> I
+      then
+        begin
+          fMaxs.Bottom := I;
+          if North < MaxSouth then fArea.Top    := MaxNorth;
+          if South < MaxSouth then fArea.Bottom := MaxNorth;
+          Repaint;
+        end;
+  end;
+
+  procedure TArea.SetStyle( aStyle : TAreaStyle );
+  begin
+    if fStyle <> aStyle
+      then
+        begin
+          fStyle := aStyle;
+          Repaint;
+        end;
+  end;
+
+  procedure TArea.SetColor( aColor : TColor );
+  begin
+    if fColor <> aColor
+      then
+        begin
+          fColor := aColor;
+          Repaint;
+        end;
+  end;
+
+  procedure TArea.MouseDown( Button : TMouseButton; Shift : TShiftState; X, Y : integer );
+  begin
+    SetCapture( Handle );
+    with Canvas2Area( Point(X, Y) ) do
+      case Button of
+        mbLeft:
+          begin
+            West  := X;
+            North := Y;
+            fDragNorthWest := true;
+          end;
+        mbRight:
+          begin
+            East  := X;
+            South := Y;
+            fDragSouthEast := true;
+          end;
+      end;
+  end;
+
+  procedure TArea.MouseMove( Shift : TShiftState; X, Y : Integer );
+  begin
+    with Canvas2Area( Point(X, Y) ) do
+      begin
+        if fDragNorthWest
+          then
+            begin
+              West  := X;
+              North := Y;
+            end;
+        if fDragSouthEast
+          then
+            begin
+              East  := X;
+              South := Y;
+            end;
+      end;
+  end;
+
+  procedure TArea.MouseUp( Button : TMouseButton; Shift : TShiftState; X, Y : integer );
+  begin
+    fDragNorthWest := false;
+    fDragSouthEast := false;
+    ReleaseCapture;
+  end;
+
+  function TArea.Area2Canvas : TRect;
+  begin
+    Result.Left   := round((West  - MaxWest)  * Width  / (MaxEast  - MaxWest));
+    Result.Right  := round((East  - MaxWest)  * Width  / (MaxEast  - MaxWest));
+    Result.Top    := round((North - MaxNorth) * Height / (MaxSouth - MaxNorth));
+    Result.Bottom := round((South - MaxNorth) * Height / (MaxSouth - MaxNorth));
+  end;
+
+  function TArea.Canvas2Area( P : TPoint ) : TPoint;
+  begin
+    Result.X := MaxWest  + round(P.X * (MaxEast  - MaxWest)  / Width);
+    Result.Y := MaxNorth + round(P.Y * (MaxSouth - MaxNorth) / Height);
+  end;
+
+
+{ Public procedures & functions }
+
+  procedure Register;
+  begin
+    RegisterComponents('Vesta', [TArea]);
+  end;
+
+
+end.
+
+

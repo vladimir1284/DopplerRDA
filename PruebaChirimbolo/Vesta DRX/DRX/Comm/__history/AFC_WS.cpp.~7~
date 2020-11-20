@@ -1,0 +1,100 @@
+#include <stdio.h>
+#include <vcl.h>
+#pragma hdrstop
+
+#if !defined(__AFC_WS_h__)
+#include "AFC_WS.h"
+#include "Site.h"
+#endif
+
+// ************************************************************************ //
+//  TAFC_WSImpl implements interface IAFC_WS
+// ************************************************************************ //
+class TAFC_WSImpl : public TInvokableClass, public IAFC_WS
+{
+public:
+	void   Set_STALO_Output(bool state);
+	bool   Get_STALO_Output();
+	UINT64 Get_Frequency();
+	void   Set_Frequency(UINT64 value);
+	double Get_Power();
+	void   Set_Power(double value);
+	double Get_Temperature();
+
+	void   Set_AFCChangesInhibited(bool value);
+	bool   Get_Settling();
+	UINT64 Get_NCOFrequency();
+	void   Set_NCOFrequency(UINT64 value);
+public:
+  HRESULT STDMETHODCALLTYPE QueryInterface(const GUID& IID, void **Obj)
+						{ return GetInterface(IID, Obj) ? S_OK : E_NOINTERFACE; }
+  ULONG STDMETHODCALLTYPE AddRef() { return TInvokableClass::_AddRef();  }
+  ULONG STDMETHODCALLTYPE Release() { return TInvokableClass::_Release();  }
+};
+
+void Set_AFCChangesInhibited(bool value){
+	ThisSite->TheRadar->SetAFCChangesInhibited(value);
+}
+
+bool Get_Settling(){
+	return ThisSite->TheRadar->StaloChanged();
+}
+
+UINT64 Get_NCOFrequency(){
+	return ThisSite->TheRadar->GetNCOFrequency();
+}
+
+void Set_NCOFrequency(UINT64 value){
+}
+
+void   TAFC_WSImpl::Set_STALO_Output(bool state){
+	if(state)
+		ThisSite->TheRadar->Stalo->SetOutputON();
+	else
+		ThisSite->TheRadar->Stalo->SetOutputOff();
+}
+
+bool   TAFC_WSImpl::Get_STALO_Output(){
+	ThisSite->TheRadar->Stalo->GetStatus();
+	return ThisSite->TheRadar->Stalo->GetRF_Output();
+}
+
+UINT64 TAFC_WSImpl::Get_Frequency(){
+	return ThisSite->TheRadar->Stalo->GetFrequency();
+}
+
+void   TAFC_WSImpl::Set_Frequency(UINT64 value){
+	ThisSite->TheRadar->Stalo->SetFrequency(value);
+}
+
+double TAFC_WSImpl::Get_Power(){
+	return ThisSite->TheRadar->Stalo->GetPower();
+}
+
+void   TAFC_WSImpl::Set_Power(double value){
+	ThisSite->TheRadar->Stalo->SetPower(value);
+}
+
+double TAFC_WSImpl::Get_Temperature(){
+	return ThisSite->TheRadar->Stalo->GetTemperature();
+}
+
+static void __fastcall AFC_WSFactory(System::TObject* &obj)
+{
+  static _di_IAFC_WS iInstance;
+  static TAFC_WSImpl *instance = 0;
+  if (!instance)
+  {
+    instance = new TAFC_WSImpl();
+    instance->GetInterface(iInstance);
+  }
+  obj = instance;
+}
+
+static void RegTypes()
+{
+  InvRegistry()->RegisterInterface(__delphirtti(IAFC_WS));
+  InvRegistry()->RegisterInvokableClass(__classid(TAFC_WSImpl), AFC_WSFactory);
+}
+#pragma startup RegTypes 32
+

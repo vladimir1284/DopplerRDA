@@ -1,0 +1,120 @@
+//---------------------------------------------------------------------------
+#ifndef RadarH
+#define RadarH
+
+#include <syncobjs.hpp>
+//---------------------------------------------------------------------------
+#include <Classes.hpp>
+//---------------------------------------------------------------------------
+#include <vcl.h>
+
+#include "QuickSyn.h"
+#include "FIFOinterface.h"
+
+//---------------------------------------------------------------------------
+class Radar : public TThread
+{
+	public:
+		QuickSyn* Stalo;
+
+		void SetSyncWord();
+
+		//DIO
+		void ClearDigitalOutputs();
+
+		//Synchro
+		void   setPulseMode(int value);
+		void   setRequestedPulseMode(int value);
+		void   setRequestedPRF_Mode(int value);
+		void   setRequestedPRF_Rate(int value);
+		void   setRequestedSectorMode(int value);
+		void   setRequestedOutputMode(bool value);
+		void   setRequestedSectorMarkDirection(bool value);
+
+		int    getPulseMode();
+		int    getPRF_Mode();
+		int    getPRF_Rate();
+		int    getSectorMode();
+		bool   getOutputMode();
+		bool   getSectorDirection();
+
+	public:
+		__fastcall Radar(bool CreateSuspended);
+
+		int  GetCurrentPulseMode();
+		int  GetCurrentPRF_Rate();
+
+		void SetStaloFrequency(INT64 freq);
+		void SetNCOFrequency(INT64 freq);
+
+		INT64 GetSTALOFrequency();
+		INT64 GetNCOFrequency();
+
+		bool StaloChanged();
+		bool SyncChanged();
+	protected:
+		void __fastcall Execute();
+
+	private:
+		FIFOInterface *NCOInterface;
+		FIFOInterface *DIOInterface;
+
+		int    RequestedPulseMode;
+		int    RequestedPRF_Mode;
+		int    RequestedPRF_Rate;
+		int    RequestedSectorMode;
+		bool   RequestedOutputMode;
+		bool   RequestedSectorMarkDirection;
+
+		bool   CurrentSectorMarkDirection;
+		int    CurrentPulseMode;
+		int    CurrentPRF_Mode;
+		int    CurrentPRF_Rate;
+		int    CurrentSectorMode;
+		bool   CurrentOutputMode;
+
+		int    CurrentIntAzim;
+		int    CurrentIntElev;
+		INT64  TxFrequency;
+		bool   fAFCChangesInhibited;
+		INT64  RequestedNCOFrequency;
+		INT64  RequestedSTALOFrequency;
+		INT64  CurrentSTALOFrequency;
+		bool   FreqUpdateNeeded;
+		bool   UpdatePulseModeNeeded;
+		bool   DelayPulse;
+		int    UpdatePulseMode;
+		bool   ModeUpdateNeeded;
+		bool   Settling;
+		bool   fGathering;
+		String fLastError;
+
+		//Antenna
+		void SetCurrentIntAzim(int Value);
+		void SetCurrentIntElev(int Value);
+
+		int  GetCurrentIntAzim();
+		int  GetCurrentIntElev();
+		bool GetAFCChangesInhibited();
+		void SetAFCChangesInhibited(bool value);
+		bool GetGathering();
+		void SetGathering(bool value);
+		String GetLastError();
+		void   SetLastError(String error);
+
+private:
+		void OutputStaloFrequencyDemand();
+		bool OutputNCOFrequencyDemand(INT64 MeasuredIF);
+
+		__fastcall SetupInterface();
+public:
+		__property int  CurrentAzimut    = { read= GetCurrentIntAzim, write = SetCurrentIntAzim};
+		__property int  CurrentElevation = { read= GetCurrentIntElev, write = SetCurrentIntElev};
+		__property bool AFCChangesInhibited = { read= GetAFCChangesInhibited, write = SetAFCChangesInhibited};
+		__property bool Gathering = { read= GetGathering, write = SetGathering};
+		__property String LastError = { read= GetLastError, write = SetLastError};
+
+
+};
+//---------------------------------------------------------------------------
+#endif

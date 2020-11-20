@@ -1,0 +1,320 @@
+#include <stdio.h>
+#include <vcl.h>
+#pragma hdrstop
+
+#if !defined(__DRX_AFC_WS_h__)
+#include "DRX_AFC_WS.h"
+#include "Site.h"
+#include "AFCprocessor.h"
+#include "PackageManager.h"
+#endif
+
+// ************************************************************************ //
+//  TDRX_AFC_WSImpl implements interface IDRX_AFC_WS
+// ************************************************************************ //
+class TDRX_AFC_WSImpl : public TInvokableClass, public IDRX_AFC_WS
+{
+public:
+	bool Tuned();
+
+	void Stalo_Init();
+	void Set_Stalo_Output(bool state);
+	bool Get_Stalo_Output();
+	bool Get_Stalo_Ready();
+
+	INT64 Get_Stalo_Frequency();
+	INT64 Get_RealStalo_Frequency();
+	void  Set_Stalo_Frequency(INT64 value);
+
+	double Get_Stalo_Power();
+	void   Set_Stalo_Power(double value);
+
+	double Get_Stalo_Temperature();
+	bool   Get_Stalo_ExtRef();
+	bool   Get_Stalo_Ref_Unlocked();
+	bool   Get_Stalo_RF_Unlocked();
+	bool   Get_Stalo_RF_Output();
+	bool   Get_Stalo_VoltageError();
+	bool   Get_Stalo_Ref_Output();
+	bool   Get_Stalo_Blanking();
+	bool   Get_Stalo_LockRecovery();
+
+	void   Set_AFCChangesInhibited(bool value);
+	bool   Get_AFCChangesInhibited();
+	bool   Get_Settling();
+
+	INT64  Get_NCOFrequency();
+	void   Set_NCOFrequency(INT64 value);
+
+	double Get_Tx_Pulse_Power();
+	INT64  Get_IF_Frequency();
+	INT64  Get_Tx_Frequency();
+
+	int Get_Tx_Pulse_SP();
+	int Get_Tx_Pulse_LP();
+	int Get_Start_Sample_SP();
+	int Get_Final_Sample_SP();
+	int Get_Start_Sample_LP();
+	int Get_Final_Sample_LP();
+	int Get_Stalo_Delay();
+	int Get_Stalo_Step();
+	int Get_Stalo_Width();
+	double Get_Tx_Factor();
+	double Get_Valid_Tx_Power();
+	double Get_Loop_Gain();
+
+	void Set_Tx_Pulse_SP(int value);
+	void Set_Tx_Pulse_LP(int value);
+	void Set_Start_Sample_SP(int value);
+	void Set_Final_Sample_SP(int value);
+	void Set_Start_Sample_LP(int value);
+	void Set_Final_Sample_LP(int value);
+	void Set_Stalo_Delay(int value);
+	void Set_Stalo_Step(int value);
+	void Set_Stalo_Width(int value);
+	void Set_Tx_Factor(double value);
+	void Set_Valid_Tx_Power(double value);
+	void Set_Loop_Gain(double value);
+
+	void Save_Calibration();
+public:
+  HRESULT STDMETHODCALLTYPE QueryInterface(const GUID& IID, void **Obj)
+						{ return GetInterface(IID, Obj) ? S_OK : E_NOINTERFACE; }
+  ULONG STDMETHODCALLTYPE AddRef() { return TInvokableClass::_AddRef();  }
+  ULONG STDMETHODCALLTYPE Release() { return TInvokableClass::_Release();  }
+};
+
+void TDRX_AFC_WSImpl::Set_AFCChangesInhibited(bool value){
+	ThisSite->TheRadar->AFCChangesInhibited = value;
+}
+
+bool TDRX_AFC_WSImpl::Get_Settling(){
+	return ThisSite->TheRadar->StaloChanged();
+}
+
+INT64 TDRX_AFC_WSImpl::Get_NCOFrequency(){
+	return ThisSite->TheRadar->GetNCOFrequency();
+}
+
+void TDRX_AFC_WSImpl::Set_NCOFrequency(INT64 value){
+	ThisSite->TheRadar->SetNCOFrequency(value);
+}
+
+void   TDRX_AFC_WSImpl::Set_Stalo_Output(bool state){
+	ThisSite->TheRadar->SetStaloOutput(state);
+}
+
+bool   TDRX_AFC_WSImpl::Get_Stalo_Output(){
+	return ThisSite->TheRadar->GetSTALOOutput();
+}
+
+bool   TDRX_AFC_WSImpl::Get_Stalo_Ready(){
+	return ThisSite->TheRadar->Stalo->Ready;
+}
+
+INT64 TDRX_AFC_WSImpl::Get_Stalo_Frequency(){
+	return ThisSite->TheRadar->GetSTALOFrequency();
+}
+
+INT64 TDRX_AFC_WSImpl::Get_RealStalo_Frequency(){
+	return ThisSite->TheRadar->Stalo->Frequency;
+}
+
+void   TDRX_AFC_WSImpl::Set_Stalo_Frequency(INT64 value){
+	ThisSite->TheRadar->SetStaloFrequency(value);
+	if(ThisSite->TheRadar->AFCChangesInhibited){
+    	Sleep(100);
+		while (ThisSite->TheRadar->StaloChanged()) Sleep(10);
+		ThisSite->TheRadar->SetNCOFrequency(TheACFProcessingThread->GetIFFrequencyEstimate());
+	}
+}
+
+double TDRX_AFC_WSImpl::Get_Stalo_Power(){
+	return ThisSite->TheRadar->Stalo->Power;
+}
+
+void   TDRX_AFC_WSImpl::Set_Stalo_Power(double value){
+	ThisSite->TheRadar->SetStaloPower(value);
+}
+
+double TDRX_AFC_WSImpl::Get_Stalo_Temperature(){
+	return ThisSite->TheRadar->Stalo->Temperature;
+}
+
+double TDRX_AFC_WSImpl::Get_Tx_Pulse_Power(){
+  return TheACFProcessingThread->GetTxPulsePowerEstimate();
+}
+
+INT64 TDRX_AFC_WSImpl::Get_IF_Frequency(){
+  return TheACFProcessingThread->GetIFFrequencyEstimate();
+}
+
+INT64 TDRX_AFC_WSImpl::Get_Tx_Frequency(){
+  return TheACFProcessingThread->GetTxFrequencyEstimate();
+}
+
+bool TDRX_AFC_WSImpl::Get_Stalo_ExtRef(){
+	return ThisSite->TheRadar->Stalo->GetExtRef();
+}
+
+bool TDRX_AFC_WSImpl::Get_Stalo_Ref_Unlocked(){
+	return ThisSite->TheRadar->Stalo->GetExtRef();
+}
+
+bool TDRX_AFC_WSImpl::Get_Stalo_RF_Unlocked(){
+	return ThisSite->TheRadar->Stalo->GetRF_Unlocked();
+}
+
+bool TDRX_AFC_WSImpl::Get_Stalo_RF_Output(){
+	return ThisSite->TheRadar->Stalo->GetRF_Output();
+}
+
+bool TDRX_AFC_WSImpl::Get_Stalo_VoltageError(){
+	return ThisSite->TheRadar->Stalo->GetVoltageErr();
+}
+
+bool TDRX_AFC_WSImpl::Get_Stalo_Ref_Output(){
+	return ThisSite->TheRadar->Stalo->GetRefOutput();
+}
+
+bool TDRX_AFC_WSImpl::Get_Stalo_Blanking(){
+	return ThisSite->TheRadar->Stalo->GetBlanking();
+}
+
+bool TDRX_AFC_WSImpl::Get_Stalo_LockRecovery(){
+	return ThisSite->TheRadar->Stalo->GetLockRecovery();
+}
+
+void TDRX_AFC_WSImpl::Stalo_Init(){
+	ThisSite->TheRadar->NeedInitSTALO();
+}
+
+bool TDRX_AFC_WSImpl::Get_AFCChangesInhibited(){
+	return ThisSite->TheRadar->AFCChangesInhibited;
+}
+
+int TDRX_AFC_WSImpl::Get_Tx_Pulse_SP(){
+	return ThisSite->SP_TX_PulsePosition;
+}
+
+int TDRX_AFC_WSImpl::Get_Tx_Pulse_LP(){
+	return ThisSite->LP_TX_PulsePosition;
+}
+
+int TDRX_AFC_WSImpl::Get_Start_Sample_SP(){
+	return ThisSite->Start_sample_sp;
+}
+
+int TDRX_AFC_WSImpl::Get_Final_Sample_SP(){
+	return ThisSite->Stop_sample_sp;
+}
+
+int TDRX_AFC_WSImpl::Get_Start_Sample_LP(){
+	return ThisSite->Start_sample_lp;
+}
+
+int TDRX_AFC_WSImpl::Get_Final_Sample_LP(){
+	return ThisSite->Stop_sample_lp;
+}
+
+double TDRX_AFC_WSImpl::Get_Tx_Factor(){
+	return ThisSite->Power_factor_tx;
+}
+
+int TDRX_AFC_WSImpl::Get_Stalo_Delay(){
+	return ThisSite->Scan_delay;
+}
+
+int TDRX_AFC_WSImpl::Get_Stalo_Step(){
+	return ThisSite->Scan_step;
+}
+
+int TDRX_AFC_WSImpl::Get_Stalo_Width(){
+	return ThisSite->Scan_width;
+}
+
+double TDRX_AFC_WSImpl::Get_Valid_Tx_Power(){
+	return ThisSite->Valid_power_tx;
+}
+
+void TDRX_AFC_WSImpl::Set_Tx_Pulse_SP(int value){
+	ThisSite->SP_TX_PulsePosition = value;
+}
+
+void TDRX_AFC_WSImpl::Set_Tx_Pulse_LP(int value){
+	ThisSite->LP_TX_PulsePosition = value;
+}
+
+void TDRX_AFC_WSImpl::Set_Start_Sample_SP(int value){
+	ThisSite->Start_sample_sp = value;
+}
+
+void TDRX_AFC_WSImpl::Set_Final_Sample_SP(int value){
+	ThisSite->Stop_sample_sp = value;
+}
+
+void TDRX_AFC_WSImpl::Set_Start_Sample_LP(int value){
+	ThisSite->Start_sample_lp = value;
+}
+
+void TDRX_AFC_WSImpl::Set_Final_Sample_LP(int value){
+	ThisSite->Stop_sample_lp = value;
+}
+
+void TDRX_AFC_WSImpl::Set_Tx_Factor(double value){
+	ThisSite->Power_factor_tx = value;
+}
+
+void TDRX_AFC_WSImpl::Set_Stalo_Delay(int value){
+	ThisSite->Scan_delay = value;
+}
+
+void TDRX_AFC_WSImpl::Set_Stalo_Step(int value){
+	ThisSite->Scan_step = value;
+}
+
+void TDRX_AFC_WSImpl::Set_Stalo_Width(int value){
+	ThisSite->Scan_width = value;
+}
+
+void TDRX_AFC_WSImpl::Set_Valid_Tx_Power(double value){
+	ThisSite->Valid_power_tx = value;
+}
+
+void TDRX_AFC_WSImpl::Save_Calibration(){
+	ThisSite->SaveData();
+	ThisSite->LoadData();
+}
+
+double TDRX_AFC_WSImpl::Get_Loop_Gain(){
+	return ThisSite->LoopGain;
+}
+
+void TDRX_AFC_WSImpl::Set_Loop_Gain(double value){
+	ThisSite->LoopGain = value;
+}
+
+bool TDRX_AFC_WSImpl::Tuned(){
+	return TheACFProcessingThread->GetDataReady();
+}
+
+static void __fastcall DRX_AFC_WSFactory(System::TObject* &obj)
+{
+  static _di_IDRX_AFC_WS iInstance;
+  static TDRX_AFC_WSImpl *instance = 0;
+  if (!instance)
+  {
+	instance = new TDRX_AFC_WSImpl();
+	instance->GetInterface(iInstance);
+  }
+  obj = instance;
+}
+
+static void RegTypes()
+{
+  InvRegistry()->RegisterInterface(__delphirtti(IDRX_AFC_WS));
+  InvRegistry()->RegisterInvokableClass(__classid(TDRX_AFC_WSImpl), DRX_AFC_WSFactory);
+}
+
+#pragma startup RegTypes 32
+

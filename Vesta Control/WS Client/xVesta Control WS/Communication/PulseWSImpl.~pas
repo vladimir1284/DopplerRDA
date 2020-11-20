@@ -1,0 +1,149 @@
+{ Invokable implementation File for TPulseWS which implements IPulseWS }
+
+unit PulseWSImpl;
+
+interface
+
+uses InvokeRegistry, Types, XSBuiltIns, PulseWSIntf, Rda_TLB, CommunicationObj;
+
+type
+
+  { TPulseWS }
+  TPulseWS = class(TCommObj, IPulseWS)
+  public
+  // IPulse
+    function  Get_N1CH1: Integer; safecall;
+    function  Get_N2: Integer; safecall;
+    function  Get_N3: Integer; safecall;
+    function  Get_N4: Integer; safecall;
+    function  Get_N5: Integer; safecall;
+    function  Get_N6: Integer; safecall;
+    function  Get_N1CH2: Integer; safecall;
+    function  Get_Frecuencia: Integer; safecall;
+    function  Get_TxRxPulso: TxPulseEnum; safecall;
+  // IPulseControl
+    procedure Set_N1CH1(Value: Integer); safecall;
+    procedure Set_N2(Value: Integer); safecall;
+    procedure Set_N3(Value: Integer); safecall;
+    procedure Set_N4(Value: Integer); safecall;
+    procedure Set_N5(Value: Integer); safecall;
+    procedure Set_N6(Value: Integer); safecall;
+    procedure Set_N1CH2(Value: Integer); safecall;
+    procedure Set_Frecuencia(Value: Integer); safecall;
+
+    function CheckCredentials : boolean; override;
+  end;
+
+implementation
+
+uses
+  SysUtils,
+  ElbrusTypes, Elbrus,
+  Config, Radars, Description, Users;
+
+{ TPulseWS }
+
+function TPulseWS.CheckCredentials: boolean;
+begin
+  result := CheckAuthHeader( Self as ISoapHeaders ) >= ul_Service;
+end;
+
+function TPulseWS.Get_Frecuencia: Integer;
+begin
+  Result := Snapshot.Trigger_Rate;
+end;
+
+function TPulseWS.Get_N1CH1: Integer;
+begin
+  Result := Snapshot.Counter_Times[N1CH1_Counter];
+end;
+
+function TPulseWS.Get_N1CH2: Integer;
+begin
+  Result := Snapshot.Counter_Times[N1CH2_Counter];
+end;
+
+function TPulseWS.Get_N2: Integer;
+begin
+  Result := Snapshot.Counter_Times[N2_Counter];
+end;
+
+function TPulseWS.Get_N3: Integer;
+begin
+  Result := Snapshot.Counter_Times[N3_Counter];
+end;
+
+function TPulseWS.Get_N4: Integer;
+begin
+  Result := Snapshot.Counter_Times[N4_Counter];
+end;
+
+function TPulseWS.Get_N5: Integer;
+begin
+  Result := Snapshot.Counter_Times[N5_Counter];
+end;
+
+function TPulseWS.Get_N6: Integer;
+begin
+  Result := Snapshot.Counter_Times[N6_Counter];
+end;
+
+function TPulseWS.Get_TxRxPulso: TxPulseEnum;
+begin
+  result := TxPulseEnum( Snapshot.Pulse );
+end;
+
+procedure TPulseWS.Set_Frecuencia(Value: Integer);
+begin
+  if InControl
+    then Elbrus.Set_Frecuencia_N1(Value);
+end;
+
+procedure TPulseWS.Set_N1CH1(Value: Integer);
+begin
+  if InControl
+    then Elbrus.Set_Counter_Time(N1CH1_Counter, Value);
+end;
+
+procedure TPulseWS.Set_N1CH2(Value: Integer);
+begin
+  if InControl
+    then Elbrus.Set_Counter_Time(N1CH2_Counter, Value);
+end;
+
+procedure TPulseWS.Set_N2(Value: Integer);
+begin
+  if InControl
+    then Elbrus.Set_Counter_Time(N2_Counter, Value);
+end;
+
+procedure TPulseWS.Set_N3(Value: Integer);
+begin
+  if InControl
+    then Elbrus.Set_Counter_Time(N3_Counter, Value);
+end;
+
+procedure TPulseWS.Set_N4(Value: Integer);
+begin
+  if InControl
+    then Elbrus.Set_Counter_Time(N4_Counter, Value);
+end;
+
+procedure TPulseWS.Set_N5(Value: Integer);
+begin
+  if InControl
+    then Elbrus.Set_Counter_Time(N5_Counter, Value);
+end;
+
+procedure TPulseWS.Set_N6(Value: Integer);
+begin
+  if InControl
+    then Elbrus.Set_Counter_Time(N6_Counter, Value);
+end;
+
+initialization
+  { Invokable classes must be registered }
+  InvRegistry.RegisterInvokableClass(TPulseWS);
+
+end.
+ 

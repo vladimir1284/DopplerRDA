@@ -1,0 +1,21 @@
+#ifndef   TxRxH
+#define   TxRxH
+
+#include <System.hpp>
+#include <InvokeRegistry.hpp>
+#include <XSBuiltIns.hpp>
+#include <Types.hpp>
+
+
+
+__interface INTERFACE_UUID("{D3657E24-6783-4283-9F27-5A5D10EAE4CF}") ITxRxWS : public IInvokable
+{
+public:
+};
+typedef DelphiInterface<ITxRxWS> _di_ITxRxWS;
+
+
+#endif // TxRxWSH
+//---------------------------------------------------------------------------
+
+

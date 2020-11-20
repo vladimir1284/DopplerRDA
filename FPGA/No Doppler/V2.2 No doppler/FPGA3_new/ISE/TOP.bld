@@ -1,0 +1,64 @@
+Release 10.1 ngdbuild K.31 (nt)
+Copyright (c) 1995-2008 Xilinx, Inc.  All rights reserved.
+
+Command Line: C:\Xilinx\10.1\ISE\bin\nt\unwrapped\ngdbuild.exe -ise
+E:/Robert/Proyecto Radar CSB/NO Doppler/V_2/FPGA3_new/ISE/Ex1_Fpga3v.ise
+-intstyle ise -dd _ngo -aul -nt timestamp -i -p xc2v1000-fg456-4 TOP.ngc TOP.ngd
+
+Reading NGO file "E:/Robert/Proyecto Radar CSB/NO
+Doppler/V_2/FPGA3_new/ISE/TOP.ngc" ...
+Reading module "times360.ngo" ( "times360.ngo" unchanged since last run )...
+Loading design module "E:\Robert\Proyecto Radar CSB\NO
+Doppler\V_2\FPGA3_new\ISE\_ngo\times360.ngo"...
+Reading module "outputfifo.ngo" ( "outputfifo.ngo" unchanged since last run )...
+Loading design module "E:\Robert\Proyecto Radar CSB\NO
+Doppler\V_2\FPGA3_new\ISE\_ngo\outputfifo.ngo"...
+Reading in constraint information from 'Ex1_Fpga3v.ucf'...
+Gathering constraint information from source properties...
+Done.
+
+Resolving constraint associations...
+Checking Constraint Associations...
+Done...
+Checking Partitions ...
+
+Checking expanded design ...
+WARNING:NgdBuild:440 - FF primitive 'iRD/iSEL5' has unconnected output pin
+WARNING:NgdBuild:440 - FF primitive 'iRD/iSEL4' has unconnected output pin
+WARNING:NgdBuild:440 - FF primitive 'iRD/iSEL2' has unconnected output pin
+WARNING:NgdBuild:440 - FF primitive 'iWR/iAF5' has unconnected output pin
+WARNING:NgdBuild:440 - FF primitive 'iWR/iAF4' has unconnected output pin
+WARNING:NgdBuild:440 - FF primitive 'iWR/iAF3' has unconnected output pin
+WARNING:NgdBuild:440 - FF primitive 'iWR/iAF2' has unconnected output pin
+WARNING:NgdBuild:440 - FF primitive 'iWR/iAF1' has unconnected output pin
+WARNING:NgdBuild:440 - FF primitive 'iWR/iFF5' has unconnected output pin
+WARNING:NgdBuild:440 - FF primitive 'iWR/iFF4' has unconnected output pin
+WARNING:NgdBuild:440 - FF primitive 'iWR/iFF3' has unconnected output pin
+WARNING:NgdBuild:440 - FF primitive 'iWR/iFF2' has unconnected output pin
+WARNING:NgdBuild:440 - FF primitive 'iWR/iFF1' has unconnected output pin
+WARNING:NgdBuild:440 - FF primitive 'iWR/iFF0' has unconnected output pin
+WARNING:NgdBuild:440 - FF primitive 'iUSER_AP/AngPosBy360/BU419' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive 'iUSER_AP/AngPosBy360/BU421' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive 'iUSER_AP/myOUTFIFO/BU1327' has unconnected
+   output pin
+WARNING:NgdBuild:440 - FF primitive 'iUSER_AP/myOUTFIFO/BU1614' has unconnected
+   output pin
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+NGDBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings:  18
+
+Total memory usage is 78056 kilobytes
+
+Writing NGD file "TOP.ngd" ...
+
+Writing NGDBUILD log file "TOP.bld"...

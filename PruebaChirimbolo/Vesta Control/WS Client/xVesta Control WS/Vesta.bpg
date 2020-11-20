@@ -1,0 +1,32 @@
+#------------------------------------------------------------------------------
+VERSION = BWS.01
+#------------------------------------------------------------------------------
+!ifndef ROOT
+ROOT = $(MAKEDIR)\..
+!endif
+#------------------------------------------------------------------------------
+MAKE = $(ROOT)\bin\make.exe -$(MAKEFLAGS) -f$**
+DCC = $(ROOT)\bin\dcc32.exe $**
+BRCC = $(ROOT)\bin\brcc32.exe $**
+#------------------------------------------------------------------------------
+PROJECTS = RdaClient.exe RdaService.exe Chirbolo.exe Rda.exe LogView.exe
+#------------------------------------------------------------------------------
+default: $(PROJECTS)
+#------------------------------------------------------------------------------
+
+RdaClient.exe: RDA\RdaClient.dpr
+  $(DCC)
+
+RdaService.exe: VestaSrv\RdaService.dpr
+  $(DCC)
+
+Chirbolo.exe: Chirimbolo\Chirbolo.dpr
+  $(DCC)
+
+Rda.exe: Win32Rda\Rda.dpr
+  $(DCC)
+
+LogView.exe: LogView\LogView.dpr
+  $(DCC)
+
+

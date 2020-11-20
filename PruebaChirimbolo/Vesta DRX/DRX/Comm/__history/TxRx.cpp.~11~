@@ -1,0 +1,114 @@
+#include <stdio.h>
+#include <vcl.h>
+#pragma hdrstop
+
+#if !defined(__TxRxWS_h__)
+#include "TxRx.h"
+#include "Site.h"
+#include "DataParameters.h"
+#endif
+
+// ************************************************************************ //
+//  TTxRxWSImpl implements interface ITxRxWS
+// ************************************************************************ //
+class TTxRxWSImpl : public TInvokableClass, public ITxRxWS
+{
+public:
+	bool Get_Pulse_Mode();
+	bool Get_Output_Mode();
+	int  Get_Sector_Mode();
+	bool Get_PRF_Mode();
+	int  Get_PRF_Rate();
+
+	void Set_Pulso_Largo();
+	void Set_Pulso_Corto();
+	void Set_Output_On();
+	void Set_Output_Off();
+	void Set_Sector_Mode(int count);
+	void Set_Single_PRF();
+	void Set_Dual_PRF(int rate);
+public:
+	HRESULT STDMETHODCALLTYPE QueryInterface(const GUID& IID, void **Obj){return GetInterface(IID, Obj) ? S_OK : E_NOINTERFACE;}
+	ULONG STDMETHODCALLTYPE AddRef(){return TInvokableClass::_AddRef();}
+	ULONG STDMETHODCALLTYPE Release(){return TInvokableClass::_Release();}
+};
+
+bool TTxRxWSImpl::Get_Pulse_Mode(){
+	int pulse = ThisSite->TheRadar->getPulseMode();
+	return pulse != LongPulse;
+}
+
+bool TTxRxWSImpl::Get_Output_Mode(){
+	return ThisSite->TheRadar->getOutputMode();
+}
+
+int  TTxRxWSImpl::Get_Sector_Mode(){
+	return ThisSite->TheRadar->getSectorMode();
+}
+
+bool TTxRxWSImpl::Get_PRF_Mode(){
+	return (ThisSite->TheRadar->getPRF_Mode() == DualPRF);
+}
+
+int  TTxRxWSImpl::Get_PRF_Rate(){
+	return ThisSite->TheRadar->getPRF_Rate();
+}
+
+void TTxRxWSImpl::Set_Output_On(){
+	ThisSite->TheRadar->setOutputMode(true);
+	ThisSite->TheRadar->SetSyncWord();
+}
+
+void TTxRxWSImpl::Set_Output_Off(){
+	ThisSite->TheRadar->setOutputMode(false);
+	ThisSite->TheRadar->SetSyncWord();
+}
+
+void TTxRxWSImpl::Set_Sector_Mode(int count){
+	ThisSite->TheRadar->setSectorMode(count);
+	ThisSite->TheRadar->SetSyncWord();
+}
+
+void TTxRxWSImpl::Set_Single_PRF(){
+	ThisSite->TheRadar->setPulseMode(ShortPulse);
+	ThisSite->TheRadar->setPRF_Mode(SinglePRF);
+	ThisSite->TheRadar->SetSyncWord();
+}
+
+void TTxRxWSImpl::Set_Dual_PRF(int rate){
+	ThisSite->TheRadar->setPulseMode(ShortPulse);
+	ThisSite->TheRadar->setPRF_Mode(DualPRF);
+	ThisSite->TheRadar->setPRF_Rate(rate);
+	ThisSite->TheRadar->SetSyncWord();
+}
+
+void TTxRxWSImpl::Set_Pulso_Largo(){
+	ThisSite->TheRadar->setPulseMode(LongPulse);
+	ThisSite->TheRadar->SetSyncWord();
+}
+
+void TTxRxWSImpl::Set_Pulso_Corto(){
+	ThisSite->TheRadar->setPulseMode(ShortPulse);
+	ThisSite->TheRadar->SetSyncWord();
+}
+
+
+static void __fastcall TxRxWSFactory(System::TObject* &obj)
+{
+  static _di_ITxRxWS iInstance;
+  static TTxRxWSImpl *instance = 0;
+  if (!instance)
+  {
+    instance = new TTxRxWSImpl();
+    instance->GetInterface(iInstance);
+  }
+  obj = instance;
+}
+
+static void RegTypes()
+{
+  InvRegistry()->RegisterInterface(__delphirtti(ITxRxWS));
+  InvRegistry()->RegisterInvokableClass(__classid(TTxRxWSImpl), TxRxWSFactory);
+}
+#pragma startup RegTypes 32
+

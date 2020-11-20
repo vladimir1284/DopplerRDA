@@ -1,0 +1,255 @@
+unit FrameTx;
+
+interface
+
+uses
+  SysUtils, Forms, 
+  Rda_TLB, Tune, Onoff, ExtCtrls, StdCtrls, Controls, Classes, ComCtrls;
+
+type
+  TFrame_Tx = class(TFrame)
+    Label10: TLabel;
+    TuneGauge1: TTuneGauge;
+    GroupBox5: TGroupBox;
+    ledHV: TLed;
+    ledFilamento: TLed;
+    Label3: TLabel;
+    Label2: TLabel;
+    ledAveriaFilamento: TLed;
+    Label4: TLabel;
+    btnOnOff: TButton;
+    btnHV: TButton;
+    Label1: TLabel;
+    ledListo: TLed;
+    ledOn: TLed;
+    StaticText13: TStaticText;
+    Label5: TLabel;
+    TuneGauge2: TTuneGauge;
+    StaticText1: TStaticText;
+    Label6: TLabel;
+    TuneGauge3: TTuneGauge;
+    StaticText2: TStaticText;
+    TuneGauge4: TTuneGauge;
+    StaticText3: TStaticText;
+    Label8: TLabel;
+    Label9: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
+    Label13: TLabel;
+    Label14: TLabel;
+    TuneGauge6: TTuneGauge;
+    TuneGauge7: TTuneGauge;
+    TuneGauge8: TTuneGauge;
+    TuneGauge9: TTuneGauge;
+    TuneGauge10: TTuneGauge;
+    StaticText5: TStaticText;
+    StaticText6: TStaticText;
+    StaticText7: TStaticText;
+    StaticText8: TStaticText;
+    StaticText9: TStaticText;
+    ledVentilacion: TLed;
+    Label16: TLabel;
+    Label18: TLabel;
+    ledAveriaVentilador: TLed;
+    Label19: TLabel;
+    Label20: TLabel;
+    ledAveriaMPS: TLed;
+    ledInterLock: TLed;
+    ledAveria: TLed;
+    Label7: TLabel;
+    Label21: TLabel;
+    ledLocal: TLed;
+    GroupBox1: TGroupBox;
+    Label15: TLabel;
+    Label17: TLabel;
+    Label22: TLabel;
+    Label23: TLabel;
+    Label24: TLabel;
+    Label25: TLabel;
+    Label26: TLabel;
+    Label27: TLabel;
+    Label28: TLabel;
+    procedure btnOnOffClick(Sender: TObject);
+    procedure btnHVClick(Sender: TObject);
+    procedure PanelClick(Sender: TObject);
+    procedure ledTurnOn(Sender: TObject);
+    procedure ledTurnOff(Sender: TObject);
+  private
+    fTx      : ITxStatus;
+    fTxRx    : ITxRxStatus;
+    fMeasure : ITxRxMeasure;
+    fControl : ITxControl;
+    procedure SetTxRx( Value : ITxRxStatus );
+    procedure SetGaugeParameters(Gauge : TTuneGauge; Min, Max, GoogMin, GoodMax : integer);
+  public
+    procedure UpdateView;
+  published
+    property TxRx    : ITxRxStatus  read fTxRx write SetTxRx;
+    property Tx      : ITxStatus    read fTx;
+    property Measure : ITxRxMeasure read fMeasure;
+    property Control : ITxControl   read fControl;
+  end;
+
+implementation
+
+uses Shell_Client;
+
+{$R *.DFM}
+
+{ TFrame_TxRx }
+
+procedure TFrame_Tx.SetTxRx(Value: ITxRxStatus);
+begin
+  fTxRx := Value;
+  if assigned(fTxRx)
+    then
+      begin
+        Value.QueryInterface(ITxStatus, fTx);
+        Value.QueryInterface(ITxControl, fControl);
+        Value.QueryInterface(ITxRxMeasure, fMeasure);
+      end
+    else
+      begin
+        fTx      := nil;
+        fMeasure := nil;
+        fControl := nil;
+      end;
+  btnOnOff.Enabled := false;
+  btnHV.Enabled    := false;
+end;
+
+procedure TFrame_Tx.UpdateView;
+var
+  radar_on : boolean;
+begin
+  if assigned(Measure)
+    then
+      with Measure do
+        begin
+          SetGaugeParameters(TuneGauge1 , MaxMin(Rango_Tx_Potencia        ).Min, MaxMin(Rango_Tx_Potencia        ).Max, MaxMin(Sector_Tx_Potencia        ).Min, MaxMin(Sector_Tx_Potencia        ).Max);
+          SetGaugeParameters(TuneGauge2 , MaxMin(Rango_Tx_MPS_Volt        ).Min, MaxMin(Rango_Tx_MPS_Volt        ).Max, MaxMin(Sector_Tx_MPS_Volt        ).Min, MaxMin(Sector_Tx_MPS_Volt        ).Max);
+          SetGaugeParameters(TuneGauge3 , MaxMin(Rango_Tx_MPS_Corr        ).Min, MaxMin(Rango_Tx_MPS_Corr        ).Max, MaxMin(Sector_Tx_MPS_Corr        ).Min, MaxMin(Sector_Tx_MPS_Corr        ).Max);
+          SetGaugeParameters(TuneGauge4 , MaxMin(Rango_Tx_Fuente24V_N     ).Min, MaxMin(Rango_Tx_Fuente24V_N     ).Max, MaxMin(Sector_Tx_Fuente24V_N     ).Min, MaxMin(Sector_Tx_Fuente24V_N     ).Max);
+          SetGaugeParameters(TuneGauge10, MaxMin(Rango_Tx_Fuente24V_P     ).Min, MaxMin(Rango_Tx_Fuente24V_P     ).Max, MaxMin(Sector_Tx_Fuente24V_P     ).Min, MaxMin(Sector_Tx_Fuente24V_P     ).Max);
+          SetGaugeParameters(TuneGauge9 , MaxMin(Rango_Tx_Fuente50V       ).Min, MaxMin(Rango_Tx_Fuente50V       ).Max, MaxMin(Sector_Tx_Fuente50V       ).Min, MaxMin(Sector_Tx_Fuente50V       ).Max);
+          SetGaugeParameters(TuneGauge8 , MaxMin(Rango_Tx_Fuente100V      ).Min, MaxMin(Rango_Tx_Fuente100V      ).Max, MaxMin(Sector_Tx_Fuente100V      ).Min, MaxMin(Sector_Tx_Fuente100V      ).Max);
+          SetGaugeParameters(TuneGauge7 , MaxMin(Rango_Tx_Fuente400V      ).Min, MaxMin(Rango_Tx_Fuente400V      ).Max, MaxMin(Sector_Tx_Fuente400V      ).Min, MaxMin(Sector_Tx_Fuente400V      ).Max);
+          SetGaugeParameters(TuneGauge6 , MaxMin(Rango_Tx_Fuente_Filamento).Min, MaxMin(Rango_Tx_Fuente_Filamento).Max, MaxMin(Sector_Tx_Fuente_Filamento).Min, MaxMin(Sector_Tx_Fuente_Filamento).Max);
+        end;
+  if Assigned(Tx)
+    then
+      with Tx do
+        begin
+          TuneGauge1.Position  := Potencia_Code;
+          TuneGauge2.Position  := MPS_Volt_Code;
+          TuneGauge3.Position  := MPS_Corr_Code;
+          TuneGauge4.Position  := Fuente_24VN_Code;
+          TuneGauge10.Position := Fuente_24VP_Code;
+          TuneGauge9.Position  := Fuente_50V_Code;
+          TuneGauge8.Position  := Fuente_100V_Code;
+          TuneGauge7.Position  := Fuente_400V_Code;
+          TuneGauge6.Position  := Fuente_Filamento_Code;
+
+          StaticText13.Caption := FormatFloat('0.00', Potencia_Unit);
+          StaticText1.Caption  := FormatFloat('0.00', MPS_Volt_Unit);
+          StaticText2.Caption  := FormatFloat('0.00', MPS_Corr_Unit);
+          StaticText3.Caption  := FormatFloat('0.00', Fuente_24VN_Unit);
+          StaticText9.Caption  := FormatFloat('0.00', Fuente_24VP_Unit);
+          StaticText8.Caption  := FormatFloat('0.00', Fuente_50V_Unit);
+          StaticText7.Caption  := FormatFloat('0.00', Fuente_100V_Unit);
+          StaticText6.Caption  := FormatFloat('0.00', Fuente_400V_Unit);
+          StaticText5.Caption  := FormatFloat('0.00', Fuente_Filamento_Unit);
+
+          radar_on := ShellClient.Radar.Radar.Status <> rsOff;
+
+          ledOn.State := radar_on and (Tx_Status <> rsOff);
+
+          if (Tx_Status = rsFailure) and ledOn.State
+            then ledOn.Color := ldRed
+            else ledOn.Color := ldGreen;
+
+          ledInterLock.State := radar_on;
+          ledLocal.State     := radar_on;
+          ledAveria.State    := radar_on and Averia;
+
+          ledFilamento.State        := ledOn.State;
+          ledVentilacion.State      := ledOn.State;
+          ledAveriaFilamento.State  := ledOn.State and Averia_Fuente_Filamento;
+          ledAveriaVentilador.State := ledOn.State and Averia_Ventilador;
+          ledAveriaMPS.State        := ledOn.State and Averia_MPS;
+
+          ledListo.State   := ledOn.State and Listo;
+          ledHV.State      := ledListo.State and HV;
+
+          if ledInterLock.State and not Inter_Lock
+            then ledInterLock.Color := ldRed
+            else ledInterLock.Color := ldGreen;
+          if ledLocal.State and Local
+            then ledLocal.Color := ldRed
+            else ledLocal.Color := ldGreen;
+          if ledFilamento.State and not Encendido
+            then ledFilamento.Color := ldRed
+            else ledFilamento.Color := ldGreen;
+          if ledVentilacion.State and not Ventilacion
+            then ledVentilacion.Color := ldRed
+            else ledVentilacion.Color := ldGreen;
+
+          btnOnOff.Enabled := radar_on and not Local;
+          btnHV.Enabled    := (Tx_Status = rsOk) and not Local;
+
+          if Tx_Status = rsOff
+            then btnOnOff.Caption := 'Encender'
+            else btnOnOff.Caption := 'Apagar';
+
+          if HV
+            then btnHV.Caption := 'StandBy'
+            else btnHV.Caption := 'Conectar HV';
+        end;
+end;
+
+procedure TFrame_Tx.btnOnOffClick(Sender: TObject);
+begin
+  if assigned(Control)
+    then if (Tx.Tx_Status = rsOff) and not Tx.Local
+           then Control.Tx_Encender
+           else Control.Tx_Apagar;
+end;
+
+procedure TFrame_Tx.btnHVClick(Sender: TObject);
+begin
+  if assigned(Control)
+    then if (Tx.Tx_Status = rsOk) and not Tx.Local
+           then Control.HV := not Tx.HV;
+end;
+
+procedure TFrame_Tx.PanelClick(Sender: TObject);
+begin
+  with Sender as TPanel do
+    begin
+      BevelOuter := bvLowered;
+      Update;
+      BevelOuter := bvRaised;
+      Update;
+    end;
+end;
+
+procedure TFrame_Tx.SetGaugeParameters(Gauge: TTuneGauge; Min, Max, GoogMin, GoodMax : integer);
+begin
+  Gauge.Min      := Min;
+  Gauge.Max      := Max;
+  Gauge.GoodMin  := GoogMin;
+  Gauge.GoodMax  := GoodMax;
+end;
+
+procedure TFrame_Tx.ledTurnOn(Sender: TObject);
+begin
+  (Sender as TLed).Color := ldGreen;
+end;
+
+procedure TFrame_Tx.ledTurnOff(Sender: TObject);
+begin
+  (Sender as TLed).Color := ldRed;
+end;
+
+end.
+

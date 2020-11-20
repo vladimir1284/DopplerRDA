@@ -1,0 +1,146 @@
+unit ObservationReceiver;
+
+interface
+
+uses
+  Classes, IdTCPClient, Constants, Observation;
+
+type
+  TObservationDataReceiver = class(TThread)
+  private
+    DataReceiver : TIdTCPClient;
+    fChannel : smallint;
+    fOwnerObs : TObservation;
+  private
+    procedure ReceiveMovement;
+    function  ValidOwner : boolean;
+  protected
+    procedure Execute; override;
+  public
+    constructor Create(Owner : TObservation; Channel : smallint; Host : string; Port : integer);
+  end;
+
+implementation
+
+uses
+  Windows, SysUtils;
+
+{ TDataBlockReceiver }
+
+constructor TObservationDataReceiver.Create(Owner: TObservation; Channel: smallint; Host: string; Port: integer);
+begin
+  inherited Create( true );
+  FreeOnTerminate := true;
+  Priority  := tpHigher;
+  fOwnerObs := Owner;
+  fChannel  := Channel;
+
+  DataReceiver      := TIdTCPClient.Create( nil );
+  DataReceiver.Port := Port;
+  DataReceiver.Host := Host;
+  Resume;
+end;
+
+procedure TObservationDataReceiver.Execute;
+var
+  Command : string;
+  ErrorMsg : string;
+begin
+  try
+    DataReceiver.Connect(deMaxTimeServerConnect);
+
+    while (not Terminated) and ValidOwner do
+    begin
+      Command := DataReceiver.ReadLn('', deClientCommandTimeOut);
+
+      if Command = Obs_Move_Command
+        then ReceiveMovement
+        else if Command = Obs_Finalize_Command
+               then
+                 begin
+                   fOwnerObs.DataComplete(fChannel);
+                   Terminate;
+                 end
+               else if Command = Obs_Cancel_Command
+                    then Terminate
+                    else if Command = Obs_Error_Command
+                           then
+                             begin
+                               ErrorMsg := DataReceiver.ReadLn();
+                               fOwnerObs.SetError(ErrorMsg);
+                               Terminate;
+                             end
+                           else
+                             if Command = ''
+                               then
+                                 begin
+                                   DataReceiver.CheckForDisconnect;
+                                   DataReceiver.CheckForGracefulDisconnect;
+                                   Sleep(1000);
+                                 end
+                               else
+                                 begin
+                                   fOwnerObs.SetError('Error recibiendo datos...comando desconocido...');
+                                   Terminate;
+                                 end;
+    end;
+  except
+    on E : Exception do
+    begin
+      if ValidOwner
+        then fOwnerObs.SetError('Error recibiendo datos...' + E.Message);
+      Terminate;
+    end;
+  end;
+
+  if DataReceiver.Connected
+    then DataReceiver.Disconnect;
+  DataReceiver.Free;
+end;
+
+procedure TObservationDataReceiver.ReceiveMovement;
+var
+  dBZ, dBT, V, W : PSingles;
+  El, Spd, Sectors, Cells, Size : smallint;
+  BufferSize : integer;
+  DataDateTime  :double;
+begin
+  DataDateTime := Now;
+
+  El      := DataReceiver.ReadSmallInt;
+  Spd     := DataReceiver.ReadSmallInt;
+  Sectors := DataReceiver.ReadSmallInt;
+  Cells   := DataReceiver.ReadSmallInt;
+  Size    := DataReceiver.ReadSmallInt;
+
+  BufferSize := Sectors * Cells * sizeof(single);
+  dBZ := AllocMem(BufferSize);
+  dBT := AllocMem(BufferSize);
+  V   := AllocMem(BufferSize);
+  W   := AllocMem(BufferSize);
+
+  try
+    DataReceiver.ReadBuffer(dBZ^, BufferSize);
+    DataReceiver.ReadBuffer(dBT^, BufferSize);
+    DataReceiver.ReadBuffer(V^, BufferSize);
+    DataReceiver.ReadBuffer(W^, BufferSize);
+
+    fOwnerObs.ReceiveData(fChannel, DataDateTime, Spd, El, Sectors, Cells, Size, dBZ, dBT, V, W);
+  finally
+    FreeMem(dBZ);
+    FreeMem(dBT);
+    FreeMem(V);
+    FreeMem(W);
+  end;
+end;
+
+function TObservationDataReceiver.ValidOwner: boolean;
+begin
+  try
+    result := Assigned(fOwnerObs) and (not fOwnerObs.ObsStopped);
+  except
+    result := false;
+  end;
+end;
+
+end.

@@ -1,0 +1,433 @@
+unit Operator;
+
+interface
+
+uses
+  Mutex;
+
+type
+  TOperator = class
+  public
+    constructor Create;
+    destructor  Destroy;  override;
+  public
+    function  Execute( Layout, Client : string; When : TDateTime ) : boolean;
+    procedure Cancel;
+  end;
+
+var
+  theOperator : TOperator = nil;
+  OperatorMutex  : TMutex  = nil;
+
+const
+  OperatorMutexName = 'Elbrus_Operator_Mutex';
+
+implementation
+
+uses
+  SysUtils, Classes,
+  Rda_TLB,
+  Layout,
+  Observation,
+  Elbrus, ElbrusTypes,
+  Calib, Config, DateUtils, Constants, EventLog, LogTools,
+  Users, Windows;
+
+var
+  OperatorThread : TThread = nil;
+
+const
+  AutoClient  = 'Automatico';
+  ts_TurnOff  = 'Apagado automatico';
+  ms_RadarOff = 'Esperando para apagar radar';
+  ms_TxRxOff  = 'Esperando para apagar transceptores';
+  ts_TurnRadarStandBy  = 'Poniendo en Standby el radar';
+  ms_RadarStandBy = 'Esperando para poner en Standby el radar';
+  MaxFailedObs = 5;
+
+type
+  TObsThread = class(TThread)
+  public
+    constructor Create( Template : ITemplate;
+                        Client : string;
+                        When : TDateTime );
+  protected
+    procedure Execute; override;
+  private
+    fTemplate : ITemplate;
+    fClient   : string;
+    fTime     : TDateTime;
+  end;
+
+type
+  TOperatorThread = class(TThread)
+  private
+    Index : word;
+    Start : cardinal;
+    FailedObs : integer;
+  public
+    constructor Create;
+  protected
+    procedure Execute;  override;
+  private
+    procedure UpdateTimes( Template : ITemplate; ObsTime : TDateTime);
+    procedure CheckTemplates;
+    function  NextAutoTime : TDateTime;
+    function  CheckTemplate( Name : string ) : TDateTime;
+    procedure CheckAutoPowerOff;
+    procedure TurnRadarOff;
+    procedure TurnRadarStandBy;
+  end;
+
+{ TObsThread }
+
+constructor TObsThread.Create(Template : ITemplate; Client : string; When: TDateTime);
+begin
+  inherited Create(true);
+  fTemplate := Template;
+  fClient   := Client;
+  fTime     := When;
+  Resume;
+end;
+
+procedure TObsThread.Execute;
+begin
+  OperatorMutex.Acquire;
+  try
+    Elbrus.Acquire_Control;
+    try
+      with TObservation.Create(fTemplate, fClient, fTime) do
+        try
+          ReturnValue := Execute;
+        finally
+          Free;
+        end;
+    finally
+      Elbrus.Release_Control;
+    end;
+  finally
+    OperatorMutex.Release;
+  end;
+end;
+
+{ TOperatorThread }
+
+constructor TOperatorThread.Create;
+begin
+  inherited Create(true);
+  Priority := tpLowest;
+  FailedObs := 0;
+  Index := 0;
+  Start := GetTickCount;
+  Resume;
+end;
+
+procedure TOperatorThread.Execute;
+var
+  Temp   : ITemplate;
+  Thread : TThread;
+  Templates : TStrings;
+  InitialIndex : integer;
+  ObsResult : integer;
+  CurrentTime : TDateTime;
+begin
+  while not Terminated do
+  try
+      if GetTickCount - Start > 60000
+        then
+          begin
+            theCalibration.Update;
+            theConfiguration.Update;
+            Start := GetTickCount;
+          end;
+      if theConfiguration.AutoObs
+        then CheckTemplates;
+      if (not theConfiguration.AutoObs) and (theConfiguration.ContinuosRegime)
+        then
+          begin
+            Templates := EnumTemplates;
+            try
+              if Templates.Count > 0
+                then
+                  begin
+                    if Index >= Templates.Count
+                      then Index := 0;
+                    InitialIndex := Index;
+                    repeat
+                      Temp := TLayout.Create( Templates[Index] );
+                      Index := (Index+1) mod Templates.Count;
+                      if Temp.Automatica
+                        then
+                          begin
+                            CurrentTime := Now;
+                            Thread := TObsThread.Create(Temp, AutoClient, CurrentTime);
+                            ObsResult := Thread.WaitFor;
+                            if ObsResult = obs_Failed
+                              then Inc(FailedObs);
+                            Sleep( 1000 );
+                            if FailedObs >= MaxFailedObs
+                              then UpdateTimes(Temp, CurrentTime);
+                            Break;
+                          end;
+                    until Index = InitialIndex;
+                  end;
+            finally
+              Templates.Free;
+            end;
+          end;
+      if (not theConfiguration.ContinuosRegime) and (theConfiguration.AutoPowerOff)
+        then CheckAutoPowerOff;
+      Sleep(1000);
+  except
+    Sleep(5000);
+  end;
+end;
+
+procedure TOperatorThread.CheckTemplates;
+var
+  I, J   : integer;
+  Time   : array of TDateTime;
+  Min    : TDateTime;
+  Temp   : ITemplate;
+  Thread : TThread;
+  Flag   : boolean;
+  ObsResult : integer;
+begin
+  with EnumTemplates do
+    try
+      Flag := false;
+      SetLength(Time, Count);
+      for I := 0 to Count-1 do
+        Time[I] := CheckTemplate(Strings[I]);
+      repeat
+        J := 0;
+        Min := 0;
+        for I := 0 to Count - 1 do
+          if Time[I] > 0
+            then
+              if (Min = 0) or (Time[I] < Min)
+                then
+                  begin
+                    J := I;
+                    Min := Time[I];
+                  end;
+        if (Min > 0)
+          then
+            begin
+              Temp := TLayout.Create(Strings[J]);
+              Thread := TObsThread.Create(Temp, AutoClient, Temp.Proxima);
+              ObsResult := Thread.WaitFor;
+              if ObsResult = obs_Failed
+                then Inc(FailedObs);
+              Sleep( 1000 );
+              if FailedObs >= MaxFailedObs
+                then UpdateTimes(Temp, Temp.Proxima);
+              Time[J] := 0;
+              Flag := true;
+            end;
+      until Min = 0;
+    finally
+      Free;
+    end;
+  Sleep(1000);
+  if Flag and theConfiguration.AutoPowerOff and
+     ((NextAutoTime - Now) > (theConfiguration.RadarTimeout * AMinute))
+    then if (NextAutoTime - Now) >= (theConfiguration.RadarRestTime * AMinute)
+           then TurnRadarOff
+           else TurnRadarStandBy;
+end;
+
+function TOperatorThread.NextAutoTime: TDateTime;
+var
+  I : integer;
+begin
+  Result := IncYear( Now, 1 );
+  try
+    OperatorMutex.Acquire;
+    try
+      with EnumTemplates do
+        try
+          for I := 0 to Count-1 do
+            if TemplateExists(Strings[I])
+              then
+                with TLayout.Create(Strings[I]) as ITemplate do
+                  if Automatica and (Proxima < Result)
+                    then Result := Proxima;
+        finally
+          Free;
+        end;
+    finally
+      OperatorMutex.Release;
+    end;
+  except
+  end;
+end;
+
+function TOperatorThread.CheckTemplate(Name: string) : TDateTime;
+var
+  WarmTime : TDateTime;
+  WaitTime : TDateTime;
+  TR1, TR2 : boolean;
+  Template : ITemplate;
+  I        : integer;
+  W, C, L  : integer;
+const
+  Mask1 = di_Tx1_Caldeo or di_Tx1_Listo or di_Rx1_Caldeo or di_Rx1_Anodo;
+  Mask2 = di_Tx2_Caldeo or di_Tx2_Listo or di_Rx2_Caldeo or di_Rx2_Anodo;
+  OneMinute = 1/24/60;
+begin
+  Result := 0;
+  if TemplateExists(Name)
+    then
+      begin
+        Template := TLayout.Create(Name);
+        if Template.Automatica
+          then
+            begin
+              TR1 := false;
+              TR2 := false;
+              for I := 0 to Template.Formatos - 1 do
+                begin
+                  Template.Formato(I, W, C, L);
+                  case W of
+                    wl_3cm:  TR1 := true;
+                    wl_10cm: TR2 := true;
+                  end;
+                end;
+              if (not TR1 or (Snapshot.Digital_Input and Mask1 = Mask1)) and
+                 (not TR2 or (Snapshot.Digital_Input and Mask2 = Mask2))
+                then WarmTime := OneMinute/6
+                else WarmTime := theConfiguration.RadarWarmTime * OneMinute;
+              WaitTime := Template.Proxima - Now;
+              if WaitTime <= WarmTime
+                then Result := Template.Proxima;
+            end;
+      end;
+end;
+
+procedure TOperatorThread.CheckAutoPowerOff;
+const
+  Radar_On_Mask = di_Radar_On_P or di_Radar_On_N;
+  Tx1Tx2_On_Mask = di_Tx1_Anodo or di_Tx2_Anodo;
+begin
+  if (Elbrus.Snapshot.Digital_Input and Radar_On_Mask <> 0) and
+     (MinutesBetween(Now, Snapshot.Last_Action_Time) >= theConfiguration.RadarTimeout)
+    then if (MinutesBetween( NextAutoTime, Now) - theConfiguration.RadarWarmTime) >= theConfiguration.RadarRestTime
+           then TurnRadarOff
+           else if Elbrus.Snapshot.Digital_Input and Tx1Tx2_On_Mask <> 0
+                  then TurnRadarStandBy;
+end;
+
+procedure TOperatorThread.TurnRadarOff;
+var
+  P : integer;
+  T : TDateTime;
+begin
+  Elbrus.Report_Obs_Start( ' ' + ts_TurnOff, AutoClient );
+  try
+    P := 0;
+    T := Snapshot.Last_Action_Time;
+    while (P < 100) and (Snapshot.Last_Action_Time = T) do
+      begin
+        Elbrus.Report_Obs_Progress(P, ts_TurnOff, ms_RadarOff);
+        inc(P);
+        Sleep(300);
+      end;
+    if Snapshot.Last_Action_Time = T
+      then
+        begin
+          Elbrus.Apagar_Radar;
+          LogMessages.AddLogMessage( Now, lcInformation, Snapshot.ObsClient, 'Apagado Automatico', 'Radar apagado', 'Radar apagado' );
+        end
+      else LogMessages.AddLogMessage( Now, lcInformation, GetController, 'Apagado Automatico', 'Cancelado el apagado automatico', 'Cancelado el apagado automatico' );
+  finally
+    Elbrus.Report_Obs_Finish( obs_Nothing );
+  end;
+end;
+
+procedure TOperatorThread.TurnRadarStandBy;
+var
+  P : integer;
+  T : TDateTime;
+begin
+  Elbrus.Report_Obs_Start('', AutoClient);
+  try
+    P := 0;
+    T := Snapshot.Last_Action_Time;
+    while (P < 100) and (Snapshot.Last_Action_Time = T) do
+      begin
+        Elbrus.Report_Obs_Progress(P, ts_TurnRadarStandBy, ms_RadarStandBy);
+        inc(P);
+        Sleep(300);
+      end;
+    if Snapshot.Last_Action_Time = T
+      then
+        begin
+          Elbrus.Tx1_Standby( true );
+          Elbrus.Tx2_Standby( true );
+        end;
+  finally
+    Elbrus.Report_Obs_Finish(obs_OK);
+  end;
+end;
+
+procedure TOperatorThread.UpdateTimes(Template : ITemplate; ObsTime : TDateTime);
+begin
+  FailedObs := 0;
+  with Template as ITemplateControl do
+    begin
+      Anterior := ObsTime;
+      if Template.Automatica
+        then
+          begin
+            while Template.Proxima < Now do
+              Proxima := Template.Proxima + Template.Periodo;
+            if Template.Proxima <= ObsTime
+              then Proxima := ObsTime + Template.Periodo;
+          end
+        else Proxima := 0;
+    end;
+  LogMessages.AddLogMessage( Now, lcError, Snapshot.ObsClient, 'Ejecutando Observacion', 'Posponiendo Observacion',
+                             'Se pospuso la observacion porque fallo el maximo de veces' );
+end;
+
+{ TOperator }
+
+constructor TOperator.Create;
+begin
+  inherited Create;
+  OperatorMutex := TMutex.Create( nil, false, OperatorMutexName );
+  OperatorThread := TOperatorThread.Create;
+end;
+
+destructor TOperator.Destroy;
+begin
+  inherited;
+  FreeAndNil( OperatorThread );
+  if Assigned( OperatorMutex )
+    then OperatorMutex.Free;
+end;
+
+function TOperator.Execute(Layout, Client: string; When: TDateTime): boolean;
+begin
+  if OperatorMutex.WaitFor(0)
+    then
+      try
+        Result := TemplateExists(Layout);
+        if Result
+          then TObsThread.Create(TLayout.Create(Layout), Client, When);
+      finally
+        OperatorMutex.Release;
+      end
+    else Result := false;
+end;
+
+procedure TOperator.Cancel;
+begin
+  if assigned(theObservation)
+    then theObservation.Cancel;
+  WriteView.Last_Action_Time := now;
+end;
+
+end.
+

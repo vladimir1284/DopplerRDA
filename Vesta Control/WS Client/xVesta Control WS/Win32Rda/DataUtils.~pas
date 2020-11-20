@@ -1,0 +1,86 @@
+unit DataUtils;
+
+interface
+
+uses
+  IdFTP, IdTCPServer, IdComponent, IdTCPConnection,
+  IdTCPClient, IdMessageClient, IdSMTP, IdBaseComponent, IdMessage, Classes;
+
+const
+  MaxConnectionError = 'Muchos usuarios conectados, espere a que alguno se desconecte';
+
+type
+  TUtils = class(TDataModule)
+    EMailMessage: TIdMessage;
+    SMTPServer: TIdSMTP;
+    FTP: TIdFTP;
+    OsciloscopeServer: TIdTCPServer;
+    procedure DataModuleCreate(Sender: TObject);
+    procedure DataModuleDestroy(Sender: TObject);
+  public
+    procedure InitOsciloscope;
+    procedure DoneOsciloscope;
+    procedure ConnectOsciloscope;
+    procedure DisconnectOsciloscope;
+  end;
+
+var
+  Utils : TUtils;
+
+implementation
+
+uses
+  Config, IniFiles, SysUtils, Constants, Deva,
+  Elbrus, ElbrusTypes, dialogs, OsciloscopeServer;
+
+{$R *.dfm}
+
+{ TUtils }
+
+procedure TUtils.ConnectOsciloscope;
+begin
+  if OsciloscopeServer.Active
+    then OsciloscopeServer.Active := false;
+  OsciloscopeServer.DefaultPort := 88888;
+  OsciloscopeServer.MaxConnections := 3;
+  OsciloscopeServer.Active := true;
+end;
+
+procedure TUtils.DisconnectOsciloscope;
+begin
+  try
+    if OsciloscopeServer.Active
+      then OsciloscopeServer.Active := false;
+    DoneOsciloscope;
+  except
+  end;
+end;
+
+procedure TUtils.DoneOsciloscope;
+begin
+end;
+
+procedure TUtils.InitOsciloscope;
+begin
+  OsciloscopeServer.MaxConnectionReply.Clear;
+  OsciloscopeServer.MaxConnectionReply.Text.Add( MaxConnectionError );
+  OsciloscopeServer.ThreadClass := TOsciloscopeServerThread;
+  try
+    OsciloscopeServer.DefaultPort := 88888;
+    OsciloscopeServer.Active := true;
+  except
+    OsciloscopeServer.Active := false;
+  end;
+end;
+
+procedure TUtils.DataModuleCreate(Sender: TObject);
+begin
+  InitOsciloscope;
+end;
+
+procedure TUtils.DataModuleDestroy(Sender: TObject);
+begin
+  DisconnectOsciloscope;
+end;
+
+end.

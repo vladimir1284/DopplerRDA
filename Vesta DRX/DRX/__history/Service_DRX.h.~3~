@@ -1,0 +1,36 @@
+//---------------------------------------------------------------------------
+#ifndef Service_DRXH
+#define Service_DRXH
+//---------------------------------------------------------------------------
+#include <SysUtils.hpp>
+#include <Classes.hpp>
+#include <SvcMgr.hpp>
+#include <vcl.h>
+#include <heapi.h>
+#include "FFTReal.h"
+
+#include "IdHTTPWebBrokerBridge.hpp"
+//---------------------------------------------------------------------------
+class TDRX_srv : public TService
+{
+__published:    // IDE-managed Components
+private:
+	TIdHTTPWebBrokerBridge* FWebBrokerBridge;
+	unsigned long StartTime;
+	unsigned long TxPackTime;
+	unsigned long RxPackTime;
+
+	void __fastcall ConnectionEvent(TIdContext *AThread );
+public:
+	void __fastcall AFC_NewData(System::TObject* Sender, __int64 IF, __int64 Tx, double power, HE_PINT32BUFFER data, FFTReal* fft);
+	void __fastcall Sector_NewData(System::TObject* Sender, int Az, int El, int rays, int mode, int ndata, float *RawPower, float *CorrectedPower, float *Power, float *Doppler, float *Width, float *SQI, float *CI);
+public:         // User declarations
+	__fastcall TDRX_srv(TComponent* Owner);
+	TServiceController __fastcall GetServiceController(void);
+
+	friend void __stdcall ServiceController(unsigned CtrlCode);
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TDRX_srv *DRX_srv;
+//---------------------------------------------------------------------------
+#endif

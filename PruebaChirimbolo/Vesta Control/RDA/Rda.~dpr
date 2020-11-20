@@ -1,0 +1,104 @@
+program Rda;
+
+// Conditional defines:
+//   Exclude_External_DLLs in Elbrus -> Don't bind to external DLLs, i.e. registration only
+//   RDA_Simulation in Observation and Elbrus -> Don't check observation parameters, as in Camaguey 02/2000
+//   DMA_TimeoutByTime in Advantech -> To count the time for checking acquisition state
+
+{%ToDo 'Rda.todo'}
+
+uses
+  Windows,
+  Forms,
+  Shell_Rda in 'Modules\Shell_Rda.pas' {ShellRDA},
+  VestaRDA in 'Units\VestaRDA.pas' {VestaRDA: CoClass},
+  Radar in 'Units\Radar.pas',
+  TxsRxs in 'Units\TxsRxs.pas',
+  Antenna in 'Units\Antenna.pas',
+  MotorAz in 'Units\MotorAz.pas',
+  MotorEl in 'Units\MotorEl.pas',
+  TxRx1 in 'Units\TxRx1.pas',
+  TxRx2 in 'Units\TxRx2.pas',
+  Users in 'Units\Users.pas',
+  RDAReg in 'Units\RDAReg.pas',
+  Template in 'Units\Template.pas',
+  Configuration in 'Units\Configuration.pas',
+  Observations in 'Units\Observations.pas',
+  Layout in 'Units\Layout.pas',
+  ElbrusTypes in '..\General\ElbrusTypes.pas',
+  Operator in 'Units\Operator.pas',
+  Observation in 'Units\Observation.pas',
+  Calib in 'Units\Calib.pas',
+  Config in 'Units\Config.pas',
+  Statistics in 'Units\Statistics.pas',
+  EventLog in 'Units\EventLog.pas',
+  Advantech in 'Units\Advantech.pas',
+  Deva in '..\General\Deva.pas',
+  Parameters in 'Units\Parameters.pas',
+  Elbrus in 'Units\Elbrus.pas',
+  IniFiles,
+  SysUtils,
+  DataUtils in 'Units\DataUtils.pas' {Utils: TDataModule},
+  ServerThread in 'Units\ServerThread.pas',
+  Constants in '..\General\Constants.pas',
+  RTManager in 'Units\RTManager.pas',
+  AcquireShots in 'Units\AcquireShots.pas',
+  RDAObj in 'Units\RDAObj.pas',
+  Rda_TLB in 'Rda_TLB.pas';
+
+{$R *.TLB}
+
+{$R *.RES}
+
+var
+  CurrentProcess : integer;
+  Setup : TIniFile;
+  MinWorkingSetSize,
+  MaxWorkingSetSize : Cardinal;
+
+const
+  //Default Values
+  MinWorkingSetSizeDefault = 64;
+  MaxWorkingSetSizeDefault = 128;
+
+  //Config Keys
+  ConfigFile = 'Config.ini';
+  MemoryKey = 'Memory';
+  MinWorkingSetSizeValue = 'MinimumWorkingSetSize';
+  MaxWorkingSetSizeValue = 'MaximumWorkingSetSize';
+
+begin
+  CurrentProcess := GetCurrentProcess;
+  SetPriorityClass(CurrentProcess, REALTIME_PRIORITY_CLASS);
+  Setup := TIniFile.Create( ExtractFilePath( ParamStr(0) ) + ConfigFile );
+  try
+    //Lo leo en MBs y lo convierto en Bytes multiplicando por $100000
+    if Assigned( Setup )
+      then
+        begin
+          MinWorkingSetSize := Setup.ReadInteger( MemoryKey, MinWorkingSetSizeValue, MinWorkingSetSizeDefault ) * $100000;
+          MaxWorkingSetSize := Setup.ReadInteger( MemoryKey, MaxWorkingSetSizeValue, MaxWorkingSetSizeDefault ) * $100000;
+        end
+      else
+        begin
+          MinWorkingSetSize := MinWorkingSetSizeDefault * $100000;
+          MaxWorkingSetSize := MaxWorkingSetSizeDefault * $100000;
+        end;
+    //Reservo memoria en RAM
+    SetProcessWorkingSetSize(CurrentProcess, MinWorkingSetSize, MaxWorkingSetSize );
+    try
+      Application.Initialize;
+      Application.Title := 'RDA';
+      Application.ShowMainForm := true;
+      Application.CreateForm(TShellRDA, ShellRDA);
+      Application.CreateForm(TUtils, Utils);
+      Application.Run;
+    except
+    end;
+  finally
+    SetPriorityClass(CurrentProcess, NORMAL_PRIORITY_CLASS);
+    if Assigned( Setup )
+      then Setup.Free;
+  end;
+end.
+

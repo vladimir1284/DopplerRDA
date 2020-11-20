@@ -1,0 +1,86 @@
+#ifndef AFCprocessorH
+#define AFCprocessorH
+//---------------------------------------------------------------------------
+#include <Classes.hpp>
+#include <complex>
+
+#include "AFCRead.h"
+#include "FFTReal.h"
+//---------------------------------------------------------------------------
+
+static const int NUM_ESTIMATES = 200;
+
+//---------------------------------------------------------------------------
+
+class AFCProcessingThread : public TThread
+{
+public:
+		__fastcall AFCProcessingThread(bool CreateSuspended);
+
+		UINT64  GetIFFrequencyEstimate();
+		UINT64  GetTxPulsePowerEstimate();
+		UINT64  GetTxFrequencyEstimate();
+		bool    GetDataReady();
+
+private:
+		AFCRead *fReadThread;
+
+		bool fDataReady;
+
+        FFTReal *TheFFT;
+		int FFTSize;
+		double *FFTIn;
+		double *FFTOut;
+		double *FFTAbs;
+
+		int CurrentBuffer;
+
+		UINT64 *outputbuffer;
+		UINT64 *LPIFEstimates;
+		UINT64 *SPIFEstimates;
+		UINT64 *LPTxEstimates;
+		UINT64 *SPTxEstimates;
+
+		UINT64 FreqEst;
+		UINT64 HqFreqEst;
+		UINT64 IFEstimate;
+		UINT64 IFEstimateOut;
+		UINT64 TxEstimateOut;
+
+		UINT64 CurrentIFEstimate;
+		UINT64 CurrentTxEstimate;
+
+		unsigned int *ModeData[2];
+
+		//Saving data
+		UINT64 fFreqCrossingZero;
+		UINT64 fFreqFFT;
+		UINT64 fTxPowerEstimate;
+		int StartCell, StopCell;
+
+		UINT64 TxPowerEstimate;
+		UINT64  __fastcall UpdateFreqEst(UINT64 IFFrequency, UINT64* TXEstimates, UINT64* IFEstimates, int Nsamples);
+		UINT64  __fastcall GetFreqEst(UINT64* TXEstimates, UINT64* IFEstimates);
+		void __fastcall OutputValues(UINT64);
+
+		void ResetFreqEstimate();
+
+		UINT64 DoZeroCrossing(HE_PINT32BUFFER DataIn, int StartSample, int StopSample);
+		float DoPowerEstimation( HE_PINT32BUFFER DataIn,int StartSample, int StopSample);
+		UINT64 GetMode(UINT64* FreqEstimateArray);
+		float DoFFT(HE_PINT32BUFFER DataIn);
+		double InterpolateFFT();
+
+		void ScaleData(HE_PINT32BUFFER DataIn, int NBuffers, int DataSize);
+protected:
+		void __fastcall Execute();
+private:
+		UINT64 FreqZeroCrossing(HE_PINT32BUFFER DataIn, int StartSample, int StopSample);
+		float FreqPowerEstimation( HE_PINT32BUFFER DataIn,int StartSample, int StopSample);
+		float FreqFFT(HE_PINT32BUFFER DataIn, int Shot);
+};
+
+extern    AFCProcessingThread *   TheACFProcessingThread;
+
+//---------------------------------------------------------------------------
+#endif

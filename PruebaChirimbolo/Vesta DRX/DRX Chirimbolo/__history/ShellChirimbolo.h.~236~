@@ -1,0 +1,227 @@
+//---------------------------------------------------------------------------
+#ifndef ShellChirimboloH
+#define ShellChirimboloH
+//---------------------------------------------------------------------------
+#include <Classes.hpp>
+#include <Controls.hpp>
+#include <StdCtrls.hpp>
+#include <Forms.hpp>
+#include <ComCtrls.hpp>
+#include <Buttons.hpp>
+#include <ExtCtrls.hpp>
+#include <Dialogs.hpp>
+#include "perfgrap.h"
+
+#include "Radar.h"
+#include "IntegratedData.h"
+#include "FFTReal.h"
+#include "Chart.hpp"
+#include "TeEngine.hpp"
+#include "TeeProcs.hpp"
+#include "Series.hpp"
+#include "IdHTTPWebBrokerBridge.hpp"
+
+//---------------------------------------------------------------------------
+class TForm1 : public TForm
+{
+__published:	// IDE-managed Components
+	TPageControl *PageControl1;
+	TTabSheet *TabSheet1;
+	TRadioGroup *rgPLPC;
+	TRadioGroup *rgModePRF;
+	TButton *Button1;
+	TTabSheet *TabSheet4;
+	TPanel *Panel1;
+	TLabel *Label6;
+	TLabel *AverageValue;
+	TLabel *Label7;
+	TLabel *TxFreqLabel;
+	TLabel *Label8;
+	TLabel *PowLabel;
+	TPanel *Panel2;
+	TTabSheet *TabSheet6;
+	TLabel *Label4;
+	TLabel *Label5;
+	TEdit *txAzimut;
+	TEdit *txElevation;
+	TPanel *Panel4;
+	TEdit *txSamplesIQ;
+	TRadioGroup *rgRate;
+	TTabSheet *Stalo;
+	TButton *Button2;
+	TButton *Button3;
+	TButton *Button4;
+	TButton *Button5;
+	TEdit *txFreq;
+	TButton *Button6;
+	TEdit *txPower;
+	TEdit *txTemp;
+	TEdit *txPow;
+	TEdit *txFrequency;
+	TButton *Button10;
+	TCheckBox *cbRFUnlocked;
+	TCheckBox *cbRF_Output;
+	TCheckBox *cbVoltageErr;
+	TCheckBox *cbExtRef;
+	TCheckBox *cbRefOutput;
+	TCheckBox *cbRef_Unlocked;
+	TCheckBox *cbBlanking;
+	TCheckBox *cbLockRecovery;
+	TLabel *Label1;
+	TLabel *Label2;
+	TLabel *Label3;
+	TLabel *Label9;
+	TLabel *Label10;
+	TCheckBox *ckOutput;
+	TButton *Button7;
+	TProgressBar *pbGathering;
+	TPanel *Panel3;
+	TPageControl *afcCharts;
+	TTabSheet *TabSheet3;
+	TTabSheet *TabSheet5;
+	TChart *txChart;
+	TFastLineSeries *Series1;
+	TChart *fftChart;
+	TFastLineSeries *FastLineSeries1;
+	TButton *btnPause;
+	TPanel *Panel5;
+	TPageControl *IQ_Charts;
+	TTabSheet *TabSheet7;
+	TTabSheet *TabSheet8;
+	TChart *chartSpeed;
+	TFastLineSeries *FastLineSeries2;
+	TTabSheet *TabSheet9;
+	TChart *chartSQI;
+	TFastLineSeries *FastLineSeries3;
+	TChart *chartT;
+	TFastLineSeries *FastLineSeries4;
+	TButton *btnIQPause;
+	TEdit *Edit1;
+	TLabel *Label11;
+	TEdit *txNData;
+	TLabel *Label12;
+	TEdit *txMode;
+	TTabSheet *TabSheet10;
+	TChart *chartCI;
+	TFastLineSeries *FastLineSeries5;
+	TLabel *Rayos;
+	TEdit *txRays;
+	TTabSheet *tabW;
+	TChart *chartW;
+	TFastLineSeries *FastLineSeries6;
+	TEdit *Edit2;
+	TUpDown *udSectors;
+	TLabel *Label16;
+	TCheckBox *CheckBox1;
+	TPanel *Panel7;
+	TCheckBox *cbMarcas;
+	TTabSheet *tFilter;
+	TCheckBox *cbFilter;
+	TLabel *Label13;
+	TEdit *txB0;
+	TLabel *Label14;
+	TEdit *txB1;
+	TLabel *Label15;
+	TEdit *txB2;
+	TLabel *Label17;
+	TEdit *txB3;
+	TLabel *Label18;
+	TEdit *txB4;
+	TLabel *Label19;
+	TEdit *txC1;
+	TLabel *Label20;
+	TEdit *txC2;
+	TLabel *Label21;
+	TEdit *txC3;
+	TLabel *Label22;
+	TEdit *txC4;
+	TEdit *txSamplesTX;
+	TButton *Button8;
+	TProgressBar *pbTX_Samples;
+	TProgressBar *pbIQ_Samples;
+	TSaveDialog *Saving;
+	TButton *Button9;
+	TEdit *txTXFileName;
+	TEdit *txIQFileName;
+	TButton *Button11;
+	TButton *Button12;
+	TButton *Button13;
+	TLabel *Label23;
+	TEdit *txMaxAngle;
+	TLabel *Label24;
+	TEdit *txMaxHeigh;
+	TLabel *Label25;
+	TEdit *txMaxDistance;
+	TTabSheet *TabSheet11;
+	TChart *chartZ;
+	TFastLineSeries *FastLineSeries7;
+	TCheckBox *ckSQI;
+	TCheckBox *ckCCOR;
+	TCheckBox *ckCI;
+	TCheckBox *ckLOG;
+	TCheckBox *ckSIG;
+	TTabSheet *TabSheet2;
+	TTabSheet *TabSheet12;
+	TTabSheet *TabSheet13;
+	TChart *chartLOG;
+	TFastLineSeries *FastLineSeries8;
+	TChart *chartSIG;
+	TFastLineSeries *FastLineSeries9;
+	TChart *chartCCOR;
+	TFastLineSeries *FastLineSeries10;
+	TLabel *Label26;
+	TEdit *txNoise;
+	TTabSheet *TabSheet14;
+	TChart *chartPower;
+	TFastLineSeries *FastLineSeries11;
+	void __fastcall FormCreate(TObject *Sender);
+	void __fastcall FormDestroy(TObject *Sender);
+	void __fastcall Button1Click(TObject *Sender);
+	void __fastcall PageControl1Change(TObject *Sender);
+	void __fastcall Button2Click(TObject *Sender);
+	void __fastcall Button3Click(TObject *Sender);
+	void __fastcall Button4Click(TObject *Sender);
+	void __fastcall Button5Click(TObject *Sender);
+	void __fastcall Button6Click(TObject *Sender);
+	void __fastcall Button10Click(TObject *Sender);
+	void __fastcall StaloShow(TObject *Sender);
+	void __fastcall btnPauseClick(TObject *Sender);
+	void __fastcall btnIQPauseClick(TObject *Sender);
+	void __fastcall cbFilterClick(TObject *Sender);
+	void __fastcall Button8Click(TObject *Sender);
+	void __fastcall Button7Click(TObject *Sender);
+	void __fastcall Button9Click(TObject *Sender);
+	void __fastcall Button11Click(TObject *Sender);
+	void __fastcall CheckBox1Click(TObject *Sender);
+	void __fastcall Button12Click(TObject *Sender);
+	void __fastcall Button13Click(TObject *Sender);
+
+private:
+	int TX_Samples;
+	int IQ_Samples;
+
+	bool fAcquire;
+	TStringList *acqSamples;
+	TStringList *acqSamplesIQ;
+
+	bool CurrentAFCChangesInhibited;
+	bool AFC_DisplayPause;
+	bool IQ_DisplayPause;
+	unsigned long StartTime;
+	void SetSync();
+	String ModeToText(int mode);
+
+	//AFC
+	void UpdateStalo();
+public:		// User declarations
+	__fastcall TForm1(TComponent* Owner);
+
+	void __fastcall AFC_NewData(System::TObject* Sender, short Mode, __int64 IF, __int64 Tx, double power, HE_PINT32BUFFER data, FFTReal* fft);
+	void __fastcall Sector_NewData(System::TObject* Sender, short Az, short El, short Noise, short rays, short mode, short ndata, float *Power, float *dBT, float *dBZ, float *V, float *W, float *SQI, float *CI, float *LOG, float *SIG, float *CCOR);
+	void __fastcall IQ_NewData(System::TObject* Sender, RawPulseData RawPulseDataIn, RawPulseData PulseDataIn);
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TForm1 *Form1;
+extern ProcessingThread* TheProcessingThread;
+//---------------------------------------------------------------------------
+#endif

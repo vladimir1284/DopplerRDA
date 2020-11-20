@@ -1,0 +1,415 @@
+----------------------------------------------------------------
+Release 6.1.02i - XPower SoftwareVersion:G.25a
+Copyright (c) 1995-2003 Xilinx, Inc.  All rights reserved.
+Design:       user_ap
+Preferences:  user_ap.pcf
+Part:         2v1000fg456-4
+Data version: ADVANCED,v1.0,07-31-02
+
+Power summary:                         Typical  Worst Case  %diff
+                                         P(mW)     P(mW)      (%)
+----------------------------------------------------------------
+Total estimated power consumption:        483       521        8
+
+                   Vccint 1.5 (1.6)V:     150       158        5
+                   Vccaux 3.3 (3.6)V:     330       360        9
+                   Vcco33 3.3 (3.6)V:       3         4        9
+                               ---
+                           Clocks:          0         0        -
+                           Inputs:          0         0        -
+                            Logic:          0         0        -
+                          Outputs:
+                             Vcco33         0         0       -
+                          Signals:          0         0        -
+                               ---
+           Quiescent Vccint  1.5 (1.6)V:  150       158        5
+           Quiescent Vccaux  3.3 (3.6)V:  330       360        9
+           Quiescent Vcco33  3.3 (3.6)V:    3         4        9
+                               ---
+
+Thermal summary:
+----------------------------------------------------------------
+   Estimated junction temperature:                49C
+                      250 LFM    47C
+                      500 LFM    47C
+                      750 LFM    46C
+                  Ambient temp:  40C
+                               ---
+Top power hungry signals:
+                        Clocks:
+                    SCLK_DAC_B_OBUF         0         0       -
+                          SCLK_IBUF         0         0       -
+
+                       Signals:
+                     EN_WriteRAW1/O         0         0       -
+               INFIFO_DVALID_3_IBUF         0         0       -
+                         LED0_CLEAR         0         0       -
+                         LED0_COUNT         0         0       -
+                        LED0_FF_REG         0         0       -
+                   LED0_LEDcount<0>         0         0       -
+                  LED0_LEDcount<10>         0         0       -
+                  LED0_LEDcount<11>         0         0       -
+                  LED0_LEDcount<12>         0         0       -
+                  LED0_LEDcount<13>         0         0       -
+                  LED0_LEDcount<14>         0         0       -
+                  LED0_LEDcount<15>         0         0       -
+                  LED0_LEDcount<16>         0         0       -
+                  LED0_LEDcount<17>         0         0       -
+                  LED0_LEDcount<18>         0         0       -
+                  LED0_LEDcount<19>         0         0       -
+                   LED0_LEDcount<1>         0         0       -
+                  LED0_LEDcount<20>         0         0       -
+                  LED0_LEDcount<21>         0         0       -
+                  LED0_LEDcount<22>         0         0       -
+                  LED0_LEDcount<23>         0         0       -
+                   LED0_LEDcount<2>         0         0       -
+                   LED0_LEDcount<3>         0         0       -
+                   LED0_LEDcount<4>         0         0       -
+                   LED0_LEDcount<5>         0         0       -
+                   LED0_LEDcount<6>         0         0       -
+                   LED0_LEDcount<7>         0         0       -
+                   LED0_LEDcount<8>         0         0       -
+                   LED0_LEDcount<9>         0         0       -
+LED0_LEDcount_Madd__n0000_inst_cy_119         0         0       -
+LED0_LEDcount_Madd__n0000_inst_cy_121         0         0       -
+LED0_LEDcount_Madd__n0000_inst_cy_123         0         0       -
+LED0_LEDcount_Madd__n0000_inst_cy_125         0         0       -
+LED0_LEDcount_Madd__n0000_inst_cy_127         0         0       -
+LED0_LEDcount_Madd__n0000_inst_cy_129         0         0       -
+LED0_LEDcount_Madd__n0000_inst_cy_131         0         0       -
+LED0_LEDcount_Madd__n0000_inst_cy_133         0         0       -
+LED0_LEDcount_Madd__n0000_inst_cy_135         0         0       -
+LED0_LEDcount_Madd__n0000_inst_cy_137         0         0       -
+LED0_LEDcount_Madd__n0000_inst_cy_139         0         0       -
+LED0_LEDcount_Madd__n0000_inst_lut2_78         0         0       -
+           LED0_LEDcount__n0000<10>         0         0       -
+           LED0_LEDcount__n0000<11>         0         0       -
+           LED0_LEDcount__n0000<12>         0         0       -
+           LED0_LEDcount__n0000<13>         0         0       -
+           LED0_LEDcount__n0000<14>         0         0       -
+           LED0_LEDcount__n0000<15>         0         0       -
+           LED0_LEDcount__n0000<16>         0         0       -
+           LED0_LEDcount__n0000<17>         0         0       -
+           LED0_LEDcount__n0000<18>         0         0       -
+           LED0_LEDcount__n0000<19>         0         0       -
+            LED0_LEDcount__n0000<1>         0         0       -
+           LED0_LEDcount__n0000<20>         0         0       -
+           LED0_LEDcount__n0000<21>         0         0       -
+           LED0_LEDcount__n0000<22>         0         0       -
+           LED0_LEDcount__n0000<23>         0         0       -
+            LED0_LEDcount__n0000<2>         0         0       -
+            LED0_LEDcount__n0000<3>         0         0       -
+            LED0_LEDcount__n0000<4>         0         0       -
+            LED0_LEDcount__n0000<5>         0         0       -
+            LED0_LEDcount__n0000<6>         0         0       -
+            LED0_LEDcount__n0000<7>         0         0       -
+            LED0_LEDcount__n0000<8>         0         0       -
+            LED0_LEDcount__n0000<9>         0         0       -
+                        LED0__n0005         0         0       -
+                         LED2_CLEAR         0         0       -
+                         LED2_COUNT         0         0       -
+                        LED2_FF_REG         0         0       -
+                   LED2_LEDcount<0>         0         0       -
+                  LED2_LEDcount<10>         0         0       -
+                  LED2_LEDcount<11>         0         0       -
+                  LED2_LEDcount<12>         0         0       -
+                  LED2_LEDcount<13>         0         0       -
+                  LED2_LEDcount<14>         0         0       -
+                  LED2_LEDcount<15>         0         0       -
+                  LED2_LEDcount<16>         0         0       -
+                  LED2_LEDcount<17>         0         0       -
+                  LED2_LEDcount<18>         0         0       -
+                  LED2_LEDcount<19>         0         0       -
+                   LED2_LEDcount<1>         0         0       -
+                  LED2_LEDcount<20>         0         0       -
+                  LED2_LEDcount<21>         0         0       -
+                  LED2_LEDcount<22>         0         0       -
+                  LED2_LEDcount<23>         0         0       -
+                   LED2_LEDcount<2>         0         0       -
+                   LED2_LEDcount<3>         0         0       -
+                   LED2_LEDcount<4>         0         0       -
+                   LED2_LEDcount<5>         0         0       -
+                   LED2_LEDcount<6>         0         0       -
+                   LED2_LEDcount<7>         0         0       -
+                   LED2_LEDcount<8>         0         0       -
+                   LED2_LEDcount<9>         0         0       -
+LED2_LEDcount_Madd__n0000_inst_cy_119         0         0       -
+LED2_LEDcount_Madd__n0000_inst_cy_121         0         0       -
+LED2_LEDcount_Madd__n0000_inst_cy_123         0         0       -
+LED2_LEDcount_Madd__n0000_inst_cy_125         0         0       -
+LED2_LEDcount_Madd__n0000_inst_cy_127         0         0       -
+LED2_LEDcount_Madd__n0000_inst_cy_129         0         0       -
+LED2_LEDcount_Madd__n0000_inst_cy_131         0         0       -
+LED2_LEDcount_Madd__n0000_inst_cy_133         0         0       -
+LED2_LEDcount_Madd__n0000_inst_cy_135         0         0       -
+LED2_LEDcount_Madd__n0000_inst_cy_137         0         0       -
+LED2_LEDcount_Madd__n0000_inst_cy_139         0         0       -
+LED2_LEDcount_Madd__n0000_inst_lut2_78         0         0       -
+           LED2_LEDcount__n0000<10>         0         0       -
+           LED2_LEDcount__n0000<11>         0         0       -
+           LED2_LEDcount__n0000<12>         0         0       -
+           LED2_LEDcount__n0000<13>         0         0       -
+           LED2_LEDcount__n0000<14>         0         0       -
+           LED2_LEDcount__n0000<15>         0         0       -
+           LED2_LEDcount__n0000<16>         0         0       -
+           LED2_LEDcount__n0000<17>         0         0       -
+           LED2_LEDcount__n0000<18>         0         0       -
+           LED2_LEDcount__n0000<19>         0         0       -
+            LED2_LEDcount__n0000<1>         0         0       -
+           LED2_LEDcount__n0000<20>         0         0       -
+           LED2_LEDcount__n0000<21>         0         0       -
+           LED2_LEDcount__n0000<22>         0         0       -
+           LED2_LEDcount__n0000<23>         0         0       -
+            LED2_LEDcount__n0000<2>         0         0       -
+            LED2_LEDcount__n0000<3>         0         0       -
+            LED2_LEDcount__n0000<4>         0         0       -
+            LED2_LEDcount__n0000<5>         0         0       -
+            LED2_LEDcount__n0000<6>         0         0       -
+            LED2_LEDcount__n0000<7>         0         0       -
+            LED2_LEDcount__n0000<8>         0         0       -
+            LED2_LEDcount__n0000<9>         0         0       -
+                        LED2__n0005         0         0       -
+                        LEDcount<0>         0         0       -
+                       LEDcount<10>         0         0       -
+                       LEDcount<11>         0         0       -
+                       LEDcount<12>         0         0       -
+                       LEDcount<13>         0         0       -
+                       LEDcount<14>         0         0       -
+                       LEDcount<15>         0         0       -
+                       LEDcount<16>         0         0       -
+                       LEDcount<17>         0         0       -
+                       LEDcount<18>         0         0       -
+                       LEDcount<19>         0         0       -
+                        LEDcount<1>         0         0       -
+                       LEDcount<20>         0         0       -
+                       LEDcount<21>         0         0       -
+                       LEDcount<22>         0         0       -
+                       LEDcount<23>         0         0       -
+                       LEDcount<24>         0         0       -
+                        LEDcount<2>         0         0       -
+                        LEDcount<3>         0         0       -
+                        LEDcount<4>         0         0       -
+                        LEDcount<5>         0         0       -
+                        LEDcount<6>         0         0       -
+                        LEDcount<7>         0         0       -
+                        LEDcount<8>         0         0       -
+                        LEDcount<9>         0         0       -
+    LEDcount_Madd__n0000_inst_cy_74         0         0       -
+    LEDcount_Madd__n0000_inst_cy_76         0         0       -
+    LEDcount_Madd__n0000_inst_cy_78         0         0       -
+    LEDcount_Madd__n0000_inst_cy_80         0         0       -
+    LEDcount_Madd__n0000_inst_cy_82         0         0       -
+    LEDcount_Madd__n0000_inst_cy_84         0         0       -
+    LEDcount_Madd__n0000_inst_cy_86         0         0       -
+    LEDcount_Madd__n0000_inst_cy_88         0         0       -
+    LEDcount_Madd__n0000_inst_cy_90         0         0       -
+    LEDcount_Madd__n0000_inst_cy_92         0         0       -
+    LEDcount_Madd__n0000_inst_cy_94         0         0       -
+    LEDcount_Madd__n0000_inst_cy_96         0         0       -
+  LEDcount_Madd__n0000_inst_lut2_33         0         0       -
+                LEDcount__n0000<10>         0         0       -
+                LEDcount__n0000<11>         0         0       -
+                LEDcount__n0000<12>         0         0       -
+                LEDcount__n0000<13>         0         0       -
+                LEDcount__n0000<14>         0         0       -
+                LEDcount__n0000<15>         0         0       -
+                LEDcount__n0000<16>         0         0       -
+                LEDcount__n0000<17>         0         0       -
+                LEDcount__n0000<18>         0         0       -
+                LEDcount__n0000<19>         0         0       -
+                 LEDcount__n0000<1>         0         0       -
+                LEDcount__n0000<20>         0         0       -
+                LEDcount__n0000<21>         0         0       -
+                LEDcount__n0000<22>         0         0       -
+                LEDcount__n0000<23>         0         0       -
+                LEDcount__n0000<24>         0         0       -
+                 LEDcount__n0000<2>         0         0       -
+                 LEDcount__n0000<3>         0         0       -
+                 LEDcount__n0000<4>         0         0       -
+                 LEDcount__n0000<5>         0         0       -
+                 LEDcount__n0000<6>         0         0       -
+                 LEDcount__n0000<7>         0         0       -
+                 LEDcount__n0000<8>         0         0       -
+                 LEDcount__n0000<9>         0         0       -
+                       MSG_CLK_OBUF         0         0       -
+          Mcompar__n0007_inst_cy_27         0         0       -
+          Mcompar__n0007_inst_cy_29         0         0       -
+          Mcompar__n0007_inst_cy_31         0         0       -
+          Mcompar__n0007_inst_cy_33         0         0       -
+          Mcompar__n0007_inst_cy_35         0         0       -
+          Mcompar__n0007_inst_cy_37         0         0       -
+          Mcompar__n0007_inst_cy_39         0         0       -
+          Mcompar__n0007_inst_cy_41         0         0       -
+           Mcompar__n0009_inst_cy_1         0         0       -
+          Mcompar__n0009_inst_cy_11         0         0       -
+          Mcompar__n0009_inst_cy_13         0         0       -
+          Mcompar__n0009_inst_cy_15         0         0       -
+          Mcompar__n0009_inst_cy_17         0         0       -
+          Mcompar__n0009_inst_cy_19         0         0       -
+          Mcompar__n0009_inst_cy_21         0         0       -
+          Mcompar__n0009_inst_cy_23         0         0       -
+           Mcompar__n0009_inst_cy_3         0         0       -
+           Mcompar__n0009_inst_cy_5         0         0       -
+           Mcompar__n0009_inst_cy_7         0         0       -
+           Mcompar__n0009_inst_cy_9         0         0       -
+                   OUTFIFO_D_0_OBUF         0         0       -
+                  OUTFIFO_D_10_OBUF         0         0       -
+                  OUTFIFO_D_11_OBUF         0         0       -
+                  OUTFIFO_D_12_OBUF         0         0       -
+                  OUTFIFO_D_13_OBUF         0         0       -
+                   OUTFIFO_D_1_OBUF         0         0       -
+                   OUTFIFO_D_2_OBUF         0         0       -
+                   OUTFIFO_D_3_OBUF         0         0       -
+                   OUTFIFO_D_4_OBUF         0         0       -
+                   OUTFIFO_D_5_OBUF         0         0       -
+                   OUTFIFO_D_6_OBUF         0         0       -
+                   OUTFIFO_D_7_OBUF         0         0       -
+                   OUTFIFO_D_8_OBUF         0         0       -
+                   OUTFIFO_D_9_OBUF         0         0       -
+               OUTFIFO_READY_1_IBUF         0         0       -
+                        PRFcount<0>         0         0       -
+                       PRFcount<10>         0         0       -
+                       PRFcount<11>         0         0       -
+                       PRFcount<12>         0         0       -
+                       PRFcount<13>         0         0       -
+                       PRFcount<14>         0         0       -
+                       PRFcount<15>         0         0       -
+                       PRFcount<16>         0         0       -
+                       PRFcount<17>         0         0       -
+                       PRFcount<18>         0         0       -
+                       PRFcount<19>         0         0       -
+                        PRFcount<1>         0         0       -
+                       PRFcount<20>         0         0       -
+                       PRFcount<21>         0         0       -
+                       PRFcount<22>         0         0       -
+                       PRFcount<23>         0         0       -
+                       PRFcount<24>         0         0       -
+                       PRFcount<25>         0         0       -
+                       PRFcount<26>         0         0       -
+                       PRFcount<27>         0         0       -
+                       PRFcount<28>         0         0       -
+                        PRFcount<2>         0         0       -
+                        PRFcount<3>         0         0       -
+                        PRFcount<4>         0         0       -
+                        PRFcount<5>         0         0       -
+                        PRFcount<6>         0         0       -
+                        PRFcount<7>         0         0       -
+                        PRFcount<8>         0         0       -
+                        PRFcount<9>         0         0       -
+    PRFcount_Madd__n0000_inst_cy_45         0         0       -
+    PRFcount_Madd__n0000_inst_cy_47         0         0       -
+    PRFcount_Madd__n0000_inst_cy_49         0         0       -
+    PRFcount_Madd__n0000_inst_cy_51         0         0       -
+    PRFcount_Madd__n0000_inst_cy_53         0         0       -
+    PRFcount_Madd__n0000_inst_cy_55         0         0       -
+    PRFcount_Madd__n0000_inst_cy_57         0         0       -
+    PRFcount_Madd__n0000_inst_cy_59         0         0       -
+    PRFcount_Madd__n0000_inst_cy_61         0         0       -
+    PRFcount_Madd__n0000_inst_cy_63         0         0       -
+    PRFcount_Madd__n0000_inst_cy_65         0         0       -
+    PRFcount_Madd__n0000_inst_cy_67         0         0       -
+    PRFcount_Madd__n0000_inst_cy_69         0         0       -
+    PRFcount_Madd__n0000_inst_cy_71         0         0       -
+   PRFcount_Madd__n0000_inst_lut2_4         0         0       -
+                PRFcount__n0000<10>         0         0       -
+                PRFcount__n0000<11>         0         0       -
+                PRFcount__n0000<12>         0         0       -
+                PRFcount__n0000<13>         0         0       -
+                PRFcount__n0000<14>         0         0       -
+                PRFcount__n0000<15>         0         0       -
+                PRFcount__n0000<16>         0         0       -
+                PRFcount__n0000<17>         0         0       -
+                PRFcount__n0000<18>         0         0       -
+                PRFcount__n0000<19>         0         0       -
+                 PRFcount__n0000<1>         0         0       -
+                PRFcount__n0000<20>         0         0       -
+                PRFcount__n0000<21>         0         0       -
+                PRFcount__n0000<22>         0         0       -
+                PRFcount__n0000<23>         0         0       -
+                PRFcount__n0000<24>         0         0       -
+                PRFcount__n0000<25>         0         0       -
+                PRFcount__n0000<26>         0         0       -
+                PRFcount__n0000<27>         0         0       -
+                PRFcount__n0000<28>         0         0       -
+                 PRFcount__n0000<2>         0         0       -
+                 PRFcount__n0000<3>         0         0       -
+                 PRFcount__n0000<4>         0         0       -
+                 PRFcount__n0000<5>         0         0       -
+                 PRFcount__n0000<6>         0         0       -
+                 PRFcount__n0000<7>         0         0       -
+                 PRFcount__n0000<8>         0         0       -
+                 PRFcount__n0000<9>         0         0       -
+                           PRFreset         0         0       -
+                         RESET_IBUF         0         0       -
+                      RawFIFO_empty         0         0       -
+                       RawFIFO_full         0         0       -
+                     UMI_OUT_0_OBUF         0         0       -
+                             _n0005         0         0       -
+                             _n0009         0         0       -
+             iRawFifo255x14/BU164/O         0         0       -
+             iRawFifo255x14/BU343/O         0         0       -
+                 iRawFifo255x14/N10         0         0       -
+                 iRawFifo255x14/N11         0         0       -
+                 iRawFifo255x14/N12         0         0       -
+                 iRawFifo255x14/N13         0         0       -
+                 iRawFifo255x14/N14         0         0       -
+               iRawFifo255x14/N1487         0         0       -
+                 iRawFifo255x14/N15         0         0       -
+               iRawFifo255x14/N1518         0         0       -
+               iRawFifo255x14/N1519         0         0       -
+               iRawFifo255x14/N1520         0         0       -
+               iRawFifo255x14/N1521         0         0       -
+               iRawFifo255x14/N1522         0         0       -
+               iRawFifo255x14/N1523         0         0       -
+               iRawFifo255x14/N1524         0         0       -
+               iRawFifo255x14/N1525         0         0       -
+               iRawFifo255x14/N1534         0         0       -
+               iRawFifo255x14/N1535         0         0       -
+               iRawFifo255x14/N1536         0         0       -
+               iRawFifo255x14/N1537         0         0       -
+               iRawFifo255x14/N1538         0         0       -
+               iRawFifo255x14/N1539         0         0       -
+               iRawFifo255x14/N1540         0         0       -
+               iRawFifo255x14/N1541         0         0       -
+               iRawFifo255x14/N1542         0         0       -
+               iRawFifo255x14/N1543         0         0       -
+               iRawFifo255x14/N1544         0         0       -
+               iRawFifo255x14/N1545         0         0       -
+               iRawFifo255x14/N1546         0         0       -
+               iRawFifo255x14/N1547         0         0       -
+               iRawFifo255x14/N1548         0         0       -
+               iRawFifo255x14/N1549         0         0       -
+                 iRawFifo255x14/N16         0         0       -
+                 iRawFifo255x14/N17         0         0       -
+                 iRawFifo255x14/N18         0         0       -
+               iRawFifo255x14/N1827         0         0       -
+               iRawFifo255x14/N1828         0         0       -
+               iRawFifo255x14/N1829         0         0       -
+               iRawFifo255x14/N1830         0         0       -
+               iRawFifo255x14/N1831         0         0       -
+               iRawFifo255x14/N1832         0         0       -
+               iRawFifo255x14/N1833         0         0       -
+               iRawFifo255x14/N1834         0         0       -
+               iRawFifo255x14/N1842         0         0       -
+               iRawFifo255x14/N1852         0         0       -
+               iRawFifo255x14/N1862         0         0       -
+               iRawFifo255x14/N2182         0         0       -
+               iRawFifo255x14/N2222         0         0       -
+               iRawFifo255x14/N2262         0         0       -
+               iRawFifo255x14/N2302         0         0       -
+               iRawFifo255x14/N2342         0         0       -
+               iRawFifo255x14/N2382         0         0       -
+               iRawFifo255x14/N2422         0         0       -
+               iRawFifo255x14/N2495         0         0       -
+               iRawFifo255x14/N2497         0         0       -
+               iRawFifo255x14/N2499         0         0       -
+               iRawFifo255x14/N2502         0         0       -
+               iRawFifo255x14/N2503         0         0       -
+               iRawFifo255x14/N3533         0         0       -
+               iRawFifo255x14/N3535         0         0       -
+               iRawFifo255x14/N3537         0         0       -
+               iRawFifo255x14/N3541         0         0       -
+                               ---
+
+Analysis completed: Wed Jan 07 15:34:00 2004
+----------------------------------------------------------------

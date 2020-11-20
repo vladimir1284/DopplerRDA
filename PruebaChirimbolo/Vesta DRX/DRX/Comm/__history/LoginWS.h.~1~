@@ -1,0 +1,21 @@
+#ifndef   LoginWSH
+#define   LoginWSH
+
+#include <System.hpp>
+#include <InvokeRegistry.hpp>
+#include <XSBuiltIns.hpp>
+#include <Types.hpp>
+
+
+
+__interface INTERFACE_UUID("{9C8992A1-3638-413A-BD38-184A20869C05}") ILoginWS : public IInvokable
+{
+public:
+};
+typedef DelphiInterface<ILoginWS> _di_ILoginWS;
+
+
+#endif // LoginWSH
+//---------------------------------------------------------------------------
+
+

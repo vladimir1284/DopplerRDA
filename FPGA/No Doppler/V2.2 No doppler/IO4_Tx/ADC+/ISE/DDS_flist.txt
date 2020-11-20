@@ -1,0 +1,12 @@
+# Output products list for <DDS>
+DDS.asy
+DDS.ngc
+DDS.sym
+DDS.v
+DDS.veo
+DDS.vhd
+DDS.vho
+DDS.xco
+DDS_SINCOS_TABLE_TRIG_ROM.mif
+DDS_flist.txt
+DDS_xmdf.tcl

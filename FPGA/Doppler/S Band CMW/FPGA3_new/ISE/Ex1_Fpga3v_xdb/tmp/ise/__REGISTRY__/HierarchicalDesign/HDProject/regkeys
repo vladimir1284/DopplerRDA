@@ -1,0 +1,24 @@
+CommandLine-Map
+
+s
+CommandLine-Ngdbuild
+C:\Xilinx\10.1\ISE\bin\nt\unwrapped\ngdbuild.exe -ise D:/Robert/Proyecto Radar Doppler/Proyecto Cyclos_Cuba/FPGA/New_Cyclop/S Band/FPGA3_new/ISE/Ex1_Fpga3v.ise -intstyle ise -dd _ngo -aul -nt timestamp -i -p xc2v1000-fg456-4 TOP.ngc TOP.ngd
+s
+CommandLine-Par
+
+s
+CommandLine-Xst
+
+s
+Previous-NGD
+TOP_prev_built.ngd
+s
+Previous-NGM
+
+s
+Previous-Packed-NCD
+
+s
+Previous-Routed-NCD
+
+s

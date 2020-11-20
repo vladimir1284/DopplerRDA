@@ -1,0 +1,10 @@
+# Output products list for <lpfilter>
+lpfilter.asy
+lpfilter.edn
+lpfilter.mif
+lpfilter.sym
+lpfilter.vhd
+lpfilter.vho
+lpfilter.xco
+lpfilter_flist.txt
+lpfilter_xmdf.tcl

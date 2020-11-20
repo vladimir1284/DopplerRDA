@@ -1,0 +1,49 @@
+unit RadarWSIntf;
+
+interface
+
+uses InvokeRegistry, Types, XSBuiltIns;
+
+type
+
+  IRadarWS = interface(IInvokable)
+  ['{67A4EA08-C272-44E0-A63A-6918E7E61ED5}']
+    function Get_Red_Listo: WordBool; safecall;
+    function Get_Radar_On: WordBool; safecall;
+    function Get_Tx1Status: RadarStatusEnum; safecall;
+    function Get_Tx2Status: RadarStatusEnum; safecall;
+    function Get_Rx1Status: RadarStatusEnum; safecall;
+    function Get_Rx2Status: RadarStatusEnum; safecall;
+    function Get_AntennaStatus: RadarStatusEnum; safecall;
+    function Get_Status: RadarStatusEnum; safecall;
+
+    procedure Encender_Radar; safecall;
+    procedure Apagar_Radar; safecall;
+
+    function Get_Red_Listo: WordBool; safecall;
+    function Get_Radar_On: WordBool; safecall;
+    function Get_Tx1Status: RadarStatus; safecall;
+    function Get_Tx2Status: RadarStatus; safecall;
+    function Get_Rx1Status: RadarStatus; safecall;
+    function Get_Rx2Status: RadarStatus; safecall;
+    function Get_AntennaStatus: RadarStatus; safecall;
+    function Get_Status: RadarStatus; safecall;
+
+    property Red_Listo: WordBool read Get_Red_Listo;
+    property Radar_On: WordBool read Get_Radar_On;
+
+    property Get_Tx1Status    : RadarStatus read Get_Tx1Status;
+    property Get_Tx2Status    : RadarStatus read Get_Tx2Status;
+    property Get_Rx1Status    : RadarStatus read Get_Rx1Status;
+    property Get_Rx2Status    : RadarStatus read Get_Rx2Status;
+    property Get_AntennaStatus: RadarStatus read Get_AntennaStatus;
+    property Get_Status       : RadarStatus read Get_Status;
+  end;
+
+implementation
+
+initialization
+  InvRegistry.RegisterInterface(TypeInfo(IRadarWS));
+
+end.
+ 

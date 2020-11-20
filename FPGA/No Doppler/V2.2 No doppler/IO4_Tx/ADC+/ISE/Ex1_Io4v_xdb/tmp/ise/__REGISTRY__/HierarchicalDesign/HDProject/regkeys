@@ -1,0 +1,24 @@
+CommandLine-Map
+
+s
+CommandLine-Ngdbuild
+C:\Xilinx\10.1\ISE\bin\nt\unwrapped\ngdbuild.exe -ise D:/Programacion FPGA/Proyecto Radar CSB/NO Doppler/V2.2 No doppler/IO4_Tx/ADC+/ISE/Ex1_Io4v.ise -intstyle ise -dd _ngo -nt timestamp -i -p xc2v1000-fg456-4 top.ngc TOP.ngd
+s
+CommandLine-Par
+
+s
+CommandLine-Xst
+
+s
+Previous-NGD
+TOP_prev_built.ngd
+s
+Previous-NGM
+
+s
+Previous-Packed-NCD
+
+s
+Previous-Routed-NCD
+
+s

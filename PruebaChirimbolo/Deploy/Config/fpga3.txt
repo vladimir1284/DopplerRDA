@@ -1,0 +1,14 @@
+Lees la posicion de la antena por la FIFO 4
+
+
+D31..D16 Az
+D15..D0  El
+---------------------------------------------
+
+Para escribir
+Escribes por la FIFO 1
+
+D20 salida por el conector E
+D21 salida por el conector F
+
+LO que se escribe para los conectores va en D14..D0

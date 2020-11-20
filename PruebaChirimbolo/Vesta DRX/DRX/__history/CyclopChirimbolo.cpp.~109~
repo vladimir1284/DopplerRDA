@@ -1,0 +1,66 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#include <hesl.h>
+#include <heapi.h>
+
+#include "Site.h"
+#include "AFCprocessor.h"
+#include "ProcessingThread.h"
+
+#pragma hdrstop
+
+//---------------------------------------------------------------------------
+
+USEFORM("ShellChirimbolo.cpp", Form1);
+USEFORM("Comm\CommModule.cpp", CommunicationModule); /* TWebModule: File Type */
+//---------------------------------------------------------------------------
+#pragma link "WebReq.obj"
+#pragma link "SockAppHlpr.obj"
+#pragma link "IndySystem.lib"
+#pragma link "IndyCore.lib"
+
+//---------------------------------------------------------------------------
+
+Site 				*ThisSite;
+ProcessingThread    *TheProcessingThread;
+AFCProcessingThread *TheACFProcessingThread;
+
+
+WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
+{
+	try
+	{
+		SetPriorityClass(GetCurrentProcess(), REALTIME_PRIORITY_CLASS);
+		Application->Initialize();
+
+		hesl sl;
+		String heartFileName = ExtractFileDir(ParamStr(0)) + "\\Config\\Heart.net";
+
+		sl.serverloader("-rla", "G:\\radar\\Config\\Heart.net");
+		//sl.serverloader("-rla", heartFileName.c_str());
+
+		ThisSite = new Site();
+
+		Application->Title = "Cyclops-Chirimbolo";
+		SetApplicationMainFormOnTaskBar(Application, true);
+		Application->CreateForm(__classid(TCommunicationModule), &CommunicationModule);
+		Application->CreateForm(__classid(TForm1), &Form1);
+		ThisSite->TheRadar->SetAFCChangesInhibited(true);
+
+		TheACFProcessingThread = new AFCProcessingThread(true);
+		TheProcessingThread    = new ProcessingThread(true);
+
+		TheACFProcessingThread->Resume();
+		TheProcessingThread->Resume();
+		ThisSite->TheRadar->Resume();
+
+		Application->Run();
+	}
+	catch (Exception &exception)
+	{
+		Application->ShowException(&exception);
+	}
+	return 0;
+}
+//---------------------------------------------------------------------------

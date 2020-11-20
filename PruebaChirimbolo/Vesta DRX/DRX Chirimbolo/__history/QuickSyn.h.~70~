@@ -1,0 +1,76 @@
+//---------------------------------------------------------------------------
+#ifndef QuickSynH
+#define QuickSynH
+
+#include <SyncObjs.hpp>
+
+#define ZylSerialPort
+#ifdef ZylSerialPort
+	#include "ZylSerialPort.hpp"
+#endif
+//---------------------------------------------------------------------------
+
+class QuickSyn{
+
+private:
+
+#ifdef ZylSerialPort
+	TZylSerialPort *ComPort;
+#endif
+
+	TCriticalSection* lock;
+	TCommPort staloPort;
+
+	String parameter;
+	String cmdResult;
+
+	bool fExtRef;
+	bool fRF_Unlocked;
+	bool fRef_Unlocked;
+	bool fRF_Output;
+	bool fVoltageErr;
+	bool fRefOutput;
+	bool fBlanking;
+	bool fLockRecovery;
+private:
+	bool SendCommand(String header, String parameter);
+	String QueryCommand(String header, String parameter);
+
+	void __fastcall QuickSyn::OnReceive(TObject *Sender, AnsiString Buffer);
+	String DecToHexString(UINT64 value, short length);
+	UINT64 HexStringToDec(String value, short length);
+	UINT64 PowerXY(int base, int exp);
+	int HexDigit(char hexValue);
+
+public:
+
+	QuickSyn();
+	~QuickSyn();
+	void Reset();
+
+	void Connect();
+	void Disconnect();
+
+	void SetOutputON();
+	void SetOutputOff();
+	void SetFrequency(UINT64 freq);
+	void SetPower(double power);
+
+	UINT64 GetFrequency();
+	double GetPower();
+	double GetTemperature();
+	void   GetStatus();
+	bool   Ping();
+
+	bool GetExtRef();
+	bool GetRF_Unlocked();
+	bool GetRef_Unlocked();
+	bool GetRF_Output();
+	bool GetVoltageErr();
+	bool GetRefOutput();
+	bool GetBlanking();
+	bool GetLockRecovery();
+
+};
+
+#endif

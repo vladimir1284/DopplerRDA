@@ -1,0 +1,392 @@
+unit ElbrusTypes;
+
+interface
+
+uses
+  Constants;
+
+type
+  DigitalInput  = Int64;
+  DigitalOutput = Int64;
+
+  TSignalNames = array of string;
+
+  TConditionFunction = function : boolean;
+
+type
+  DIRange      = 0..44;
+  DORange      = 0..20;
+  AIRange      = 0..23;
+  AORange      = 0..3;
+  AnalogSample = 0..4095;
+  AnalogCode   = 0..4095;
+  GainCode     = word;      // Gain_...
+
+type
+  AnalogInput    = array[AIRange] of AnalogSample;
+  AnalogGains    = array[AIRange] of GainCode;
+  AnalogOutput   = array[AORange] of AnalogCode;
+  AnalogVoltages = array[AIRange] of single;
+
+const
+  Gain_1   = 0;
+  Gain_2   = 1;
+  Gain_4   = 2;
+  Gain_8   = 3;
+  Gain_16  = 4;
+  Gain_0_5 = 4;
+
+type
+  TAIRange = packed record
+    Min : smallint;
+    Max : smallint;
+  end;
+
+type
+  AnalogRange   = array[AIRange] of TAIRange;
+
+const
+  Max_ShotCount   = 256;
+  Sample_Excluded = $FFFF;
+  Data_Excluded   = $FF;
+
+const
+  Plantilla_PPI = 'PPI';
+  Plantilla_RHI = 'RHI';
+
+// Digital Input Bits
+  dib_Cupula_Cerrada              =  0;
+  dib_Antena_Local                =  1;  // Acc_Auto_Az + Acc_Auto_El
+  dib_Acc_Listo_Az                =  2;  // Chopper Azimut
+  dib_Acc_Listo_El                =  3;  // Chopper Elevacion
+  dib_Averia_Excitacion           =  4;
+  dib_Antena_Limite_N             =  5;  // Limite de  -4
+  dib_Antena_Limite_P             =  6;  // Limite de +98
+  dib_Antena_Ventilacion_On       =  7;
+  dib_Tx1_Filamento_On            =  8;
+  dib_Tx1_Listo                   =  9;
+  dib_Tx1_HV                      = 10;
+  dib_Tx1_Inter_Lock              = 11;
+  dib_Tx1_Ventilacion_On          = 12;
+  dib_Tx1_Averia                  = 13;
+  dib_Tx1_Averia_MPS              = 14;
+  dib_Tx1_Averia_Ventilador       = 15;
+  dib_Tx1_Averia_Fuente_Filamento = 16;
+  dib_Rx1_Encendido               = 17;
+  dib_Rx1_Fuente5V_P              = 18;
+  dib_Rx1_Fuente5V_N              = 19;
+  dib_Rx1_Fuente15V_P             = 20;
+  dib_Rx1_Fuente15V_N             = 21;
+  dib_Rx1_Stalo_Locked            = 22;
+  dib_TxRx1_Pulso_Largo           = 23;
+  dib_Tx2_Filamento_On            = 24;
+  dib_Tx2_Listo                   = 25;
+  dib_Tx2_HV                      = 26;
+  dib_Tx2_Inter_Lock              = 27;
+  dib_Tx2_Ventilacion_On          = 28;
+  dib_Tx2_Averia                  = 29;
+  dib_Tx2_Averia_MPS              = 30;
+  dib_Tx2_Averia_Ventilador       = 31;
+  dib_Tx2_Averia_Fuente_Filamento = 32;
+  dib_Rx2_Encendido               = 33;
+  dib_Rx2_Fuente5V_P              = 34;
+  dib_Rx2_Fuente5V_N              = 35;
+  dib_Rx2_Fuente15V_P             = 36;
+  dib_Rx2_Fuente15V_N             = 37;
+  dib_Rx2_Stalo_Locked            = 38;
+  dib_TxRx2_Pulso_Largo           = 39;
+  dib_TxRx1_Local                 = 40;
+  dib_TxRx2_Local                 = 41;
+  dib_Red_Listo                   = 42;
+  dib_Radar_On                    = 43;
+  dib_Fuente_Encoders             = 44;
+
+// Digital Output Bits
+  dob_Radar_Encender  =  0;
+  dob_Radar_Apagar    =  1;
+  dob_Acc_Encender    =  2;
+  dob_Alarma_Sonora   =  3;
+  dob_Habilitar_Az    =  4;
+  dob_Habilitar_El    =  5;
+  dob_Tx1_Encender    =  6;
+  dob_Tx1_Apagar      =  7;
+  dob_Tx1_HV          =  8;
+  dob_Tx1_MPS_On      =  9;
+  dob_Rx1_Encender    = 10;
+  dob_Rx1_Apagar      = 11;
+  dob_Tx2_Encender    = 12;
+  dob_Tx2_Apagar      = 13;
+  dob_Tx2_HV          = 14;
+  dob_Tx2_MPS_On      = 15;
+  dob_Rx2_Encender    = 16;
+  dob_Rx2_Apagar      = 17;
+  dob_Aire_1          = 18;
+  dob_Aire_2          = 19;
+  dob_Aire_3          = 20;
+
+//Analog Inputs
+
+  ai_Fuente_Excitacion    =  0;
+  ai_Fuente_5V_P          =  1;
+  ai_Fuente_12V_P         =  2;
+  ai_Fuente_24V_P         =  3;
+  ai_Taco_Az              =  4;
+  ai_Taco_El              =  5;
+  ai_Tx1_Potencia         =  6;
+  ai_Tx1_MPS_Voltaje      =  7;
+  ai_Tx1_MPS_Corriente    =  8;
+  ai_Tx1_fuente_24V_P     =  9;
+  ai_Tx1_fuente_24V_N     = 10;
+  ai_Tx1_fuente_50V_P     = 11;
+  ai_Tx1_fuente_100V_P    = 12;
+  ai_Tx1_fuente_400V_P    = 13;
+  ai_Tx1_Fuente_Filamento = 14;
+  ai_Tx2_Potencia         = 15;
+  ai_Tx2_MPS_Voltaje      = 16;
+  ai_Tx2_MPS_Corriente    = 17;
+  ai_Tx2_fuente_24V_P     = 18;
+  ai_Tx2_fuente_24V_N     = 19;
+  ai_Tx2_fuente_50V_P     = 20;
+  ai_Tx2_fuente_100V_P    = 21;
+  ai_Tx2_fuente_400V_P    = 22;
+  ai_Tx2_Fuente_Filamento = 23;
+
+//Analog Outputs
+  ao_Azimut    = 0;
+  ao_Elevacion = 1;
+  ao_Tx1_MPS   = 2;
+  ao_Tx2_MPS   = 3;
+
+// Digital Input masks
+  di_Cupula_Cerrada              = DigitalInput(1) shl dib_Cupula_Cerrada;
+  di_Antena_Local                = DigitalInput(1) shl dib_Antena_Local;
+  di_Acc_Listo_Az                = DigitalInput(1) shl dib_Acc_Listo_Az;
+  di_Acc_Listo_El                = DigitalInput(1) shl dib_Acc_Listo_El;
+  di_Averia_Excitacion           = DigitalInput(1) shl dib_Averia_Excitacion;
+  di_Antena_Limite_N             = DigitalInput(1) shl dib_Antena_Limite_N;
+  di_Antena_Limite_P             = DigitalInput(1) shl dib_Antena_Limite_P;
+  di_Antena_Ventilacion_On       = DigitalInput(1) shl dib_Antena_Ventilacion_On;
+  di_Tx1_Filamento_On            = DigitalInput(1) shl dib_Tx1_Filamento_On;
+  di_Tx1_Listo                   = DigitalInput(1) shl dib_Tx1_Listo;
+  di_Tx1_HV                      = DigitalInput(1) shl dib_Tx1_HV;
+  di_Tx1_Inter_Lock              = DigitalInput(1) shl dib_Tx1_Inter_Lock;
+  di_Tx1_Ventilacion_On          = DigitalInput(1) shl dib_Tx1_Ventilacion_On;
+  di_Tx1_Averia                  = DigitalInput(1) shl dib_Tx1_Averia;
+  di_Tx1_Averia_MPS              = DigitalInput(1) shl dib_Tx1_Averia_MPS;
+  di_Tx1_Averia_Ventilador       = DigitalInput(1) shl dib_Tx1_Averia_Ventilador;
+  di_Tx1_Averia_Fuente_Filamento = DigitalInput(1) shl dib_Tx1_Averia_Fuente_Filamento;
+  di_Rx1_Encendido               = DigitalInput(1) shl dib_Rx1_Encendido;
+  di_Rx1_Fuente5V_P              = DigitalInput(1) shl dib_Rx1_Fuente5V_P;
+  di_Rx1_Fuente5V_N              = DigitalInput(1) shl dib_Rx1_Fuente5V_N;
+  di_Rx1_Fuente15V_P             = DigitalInput(1) shl dib_Rx1_Fuente15V_P;
+  di_Rx1_Fuente15V_N             = DigitalInput(1) shl dib_Rx1_Fuente15V_N;
+  di_Rx1_Stalo_Locked            = DigitalInput(1) shl dib_Rx1_Stalo_Locked;
+  di_TxRx1_Pulso_Largo           = DigitalInput(1) shl dib_TxRx1_Pulso_Largo;
+  di_Tx2_Filamento_On            = DigitalInput(1) shl dib_Tx2_Filamento_On;
+  di_Tx2_Listo                   = DigitalInput(1) shl dib_Tx2_Listo;
+  di_Tx2_HV                      = DigitalInput(1) shl dib_Tx2_HV;
+  di_Tx2_Inter_Lock              = DigitalInput(1) shl dib_Tx2_Inter_Lock;
+  di_Tx2_Ventilacion_On          = DigitalInput(1) shl dib_Tx2_Ventilacion_On;
+  di_Tx2_Averia                  = DigitalInput(1) shl dib_Tx2_Averia;
+  di_Tx2_Averia_MPS              = DigitalInput(1) shl dib_Tx2_Averia_MPS;
+  di_Tx2_Averia_Ventilador       = DigitalInput(1) shl dib_Tx2_Averia_Ventilador;
+  di_Tx2_Averia_Fuente_Filamento = DigitalInput(1) shl dib_Tx2_Averia_Fuente_Filamento;
+  di_Rx2_Encendido               = DigitalInput(1) shl dib_Rx2_Encendido;
+  di_Rx2_Fuente5V_P              = DigitalInput(1) shl dib_Rx2_Fuente5V_P;
+  di_Rx2_Fuente5V_N              = DigitalInput(1) shl dib_Rx2_Fuente5V_N;
+  di_Rx2_Fuente15V_P             = DigitalInput(1) shl dib_Rx2_Fuente15V_P;
+  di_Rx2_Fuente15V_N             = DigitalInput(1) shl dib_Rx2_Fuente15V_N;
+  di_Rx2_Stalo_Locked            = DigitalInput(1) shl dib_Rx2_Stalo_Locked;
+  di_TxRx2_Pulso_Largo           = DigitalInput(1) shl dib_TxRx2_Pulso_Largo;
+  di_TxRx1_Local                 = DigitalInput(1) shl dib_TxRx1_Local;
+  di_TxRx2_Local                 = DigitalInput(1) shl dib_TxRx2_Local;
+  di_Red_Listo                   = DigitalInput(1) shl dib_Red_Listo;
+  di_Radar_On                    = DigitalInput(1) shl dib_Radar_On;
+  di_Fuente_Encoders             = DigitalInput(1) shl dib_Fuente_Encoders;
+
+// Digital Output masks
+  do_Radar_Encender  = DigitalOutput(1) shl dob_Radar_Encender;
+  do_Radar_Apagar    = DigitalOutput(1) shl dob_Radar_Apagar;
+  do_Acc_Encender    = DigitalOutput(1) shl dob_Acc_Encender;
+  do_Alarma_Sonora   = DigitalOutput(1) shl dob_Alarma_Sonora;
+  do_Habilitar_Az    = DigitalOutput(1) shl dob_Habilitar_Az;
+  do_Habilitar_El    = DigitalOutput(1) shl dob_Habilitar_El;
+  do_Tx1_Encender    = DigitalOutput(1) shl dob_Tx1_Encender;
+  do_Tx1_Apagar      = DigitalOutput(1) shl dob_Tx1_Apagar;
+  do_Tx1_HV          = DigitalOutput(1) shl dob_Tx1_HV;
+  do_Tx1_MPS_On      = DigitalOutput(1) shl dob_Tx1_MPS_On;
+  do_Rx1_Encender    = DigitalOutput(1) shl dob_Rx1_Encender;
+  do_Rx1_Apagar      = DigitalOutput(1) shl dob_Rx1_Apagar;
+  do_Tx2_Encender    = DigitalOutput(1) shl dob_Tx2_Encender;
+  do_Tx2_Apagar      = DigitalOutput(1) shl dob_Tx2_Apagar;
+  do_Tx2_HV          = DigitalOutput(1) shl dob_Tx2_HV;
+  do_Tx2_MPS_On      = DigitalOutput(1) shl dob_Tx2_MPS_On;
+  do_Rx2_Encender    = DigitalOutput(1) shl dob_Rx2_Encender;
+  do_Rx2_Apagar      = DigitalOutput(1) shl dob_Rx2_Apagar;
+  do_Aire_1          = DigitalOutput(1) shl dob_Aire_1;
+  do_Aire_2          = DigitalOutput(1) shl dob_Aire_2;
+  do_Aire_3          = DigitalOutput(1) shl dob_Aire_3;
+
+//masks
+const
+  //Radar
+  RadarOnQuery   = di_Radar_On;
+  RadarOkQuery   = di_Radar_On or di_Fuente_Encoders;
+  RadarOkResult  = di_Radar_On or di_Fuente_Encoders;
+
+  //Antenna
+  AntennaOnQuery  = do_Acc_Encender;
+  AntennaOkQuery  = di_Antena_Ventilacion_On or di_Fuente_Encoders or di_Antena_Local or di_Averia_Excitacion or di_Antena_Limite_N or di_Antena_Limite_P or di_Cupula_Cerrada;
+  AntennaOkResult = di_Antena_Ventilacion_On or di_Fuente_Encoders or di_Cupula_Cerrada;
+
+  //Motors
+  MotorAzOnQuery  = do_Acc_Encender or do_Habilitar_Az;
+  MotorAzOkQuery  = di_Acc_Listo_Az;
+  MotorAzOkResult = di_Acc_Listo_Az;
+
+  MotorElOnQuery  = do_Acc_Encender or do_Habilitar_El;
+  MotorElOkQuery  = di_Acc_Listo_El;
+  MotorElOkResult = di_Acc_Listo_El;
+
+  //Tx1
+  Tx1OnQuery       = di_Tx1_Filamento_On;
+  Tx1OkQuery       = di_Tx1_Filamento_On or di_Tx1_Listo or di_Tx1_Inter_Lock or di_Tx1_Ventilacion_On or di_Tx1_Averia or di_Tx1_Averia_MPS or di_Tx1_Averia_Ventilador or di_Tx1_Averia_Fuente_Filamento;
+  Tx1OkResult      = di_Tx1_Filamento_On or di_Tx1_Listo or di_Tx1_Inter_Lock or di_Tx1_Ventilacion_On;
+  Tx1StandbyQuery  = di_Tx1_HV;
+
+  //Tx2
+  Tx2OnQuery       = di_Tx2_Filamento_On;
+  Tx2OkQuery       = di_Tx2_Filamento_On or di_Tx2_Listo or di_Tx2_Inter_Lock or di_Tx2_Ventilacion_On or di_Tx2_Averia or di_Tx2_Averia_MPS or di_Tx2_Averia_Ventilador or di_Tx2_Averia_Fuente_Filamento;
+  Tx2OkResult      = di_Tx2_Filamento_On or di_Tx2_Listo or di_Tx2_Inter_Lock or di_Tx2_Ventilacion_On;
+  Tx2StandbyQuery  = di_Tx2_HV;
+
+  //Rx1
+  Rx1OnQuery  = di_Rx1_Encendido;
+  Rx1OkQuery  = di_Rx1_Fuente5V_P or di_Rx1_Fuente5V_N or di_Rx1_Fuente15V_P or di_Rx1_Fuente15V_N or di_Rx1_Stalo_Locked;
+  Rx1OkResult = di_Rx1_Fuente5V_P or di_Rx1_Fuente5V_N or di_Rx1_Fuente15V_P or di_Rx1_Fuente15V_N or di_Rx1_Stalo_Locked;
+
+  //Rx2
+  Rx2OnQuery  = di_Rx2_Encendido;
+  Rx2OkQuery  = di_Rx2_Fuente5V_P or di_Rx2_Fuente5V_N or di_Rx2_Fuente15V_P or di_Rx2_Fuente15V_N or di_Rx2_Stalo_Locked;
+  Rx2OkResult = di_Rx2_Fuente5V_P or di_Rx2_Fuente5V_N or di_Rx2_Fuente15V_P or di_Rx2_Fuente15V_N or di_Rx2_Stalo_Locked;
+
+//Names
+var
+  DI_Names : TSignalNames;
+  DO_Names : TSignalNames;
+  AI_Names : TSignalNames;
+  AO_Names : TSignalNames;
+
+implementation
+
+initialization
+
+  SetLength(DI_Names, High(DIRange)+1);
+  DI_Names[dib_Cupula_Cerrada             ] := 'Cupula_Cerrada';
+  DI_Names[dib_Antena_Local               ] := 'Antena_Local';
+  DI_Names[dib_Acc_Listo_Az               ] := 'Acc_Listo_Az';
+  DI_Names[dib_Acc_Listo_El               ] := 'Acc_Listo_El';
+  DI_Names[dib_Averia_Excitacion          ] := 'Averia_Excitacion';
+  DI_Names[dib_Antena_Limite_N            ] := 'Antena_Limite_N';
+  DI_Names[dib_Antena_Limite_P            ] := 'Antena_Limite_P';
+  DI_Names[dib_Antena_Ventilacion_On      ] := 'Antena_Ventilacion_On';
+  DI_Names[dib_Tx1_Filamento_On           ] := 'Tx1_Filamento_On';
+  DI_Names[dib_Tx1_Listo                  ] := 'Tx1_Listo';
+  DI_Names[dib_Tx1_HV                     ] := 'Tx1_HV';
+  DI_Names[dib_Tx1_Inter_Lock             ] := 'Tx1_Inter_Lock';
+  DI_Names[dib_Tx1_Ventilacion_On         ] := 'Tx1_Ventilacion_On';
+  DI_Names[dib_Tx1_Averia                 ] := 'Tx1_Averia';
+  DI_Names[dib_Tx1_Averia_MPS             ] := 'Tx1_Averia_MPS';
+  DI_Names[dib_Tx1_Averia_Ventilador      ] := 'Tx1_Averia_Ventilador';
+  DI_Names[dib_Tx1_Averia_Fuente_Filamento] := 'Tx1_Averia_Fuente_Filamento';
+  DI_Names[dib_Rx1_Encendido              ] := 'Rx1_Encendido';
+  DI_Names[dib_Rx1_Fuente5V_P             ] := 'Rx1_Fuente5V_P';
+  DI_Names[dib_Rx1_Fuente5V_N             ] := 'Rx1_Fuente5V_N';
+  DI_Names[dib_Rx1_Fuente15V_P            ] := 'Rx1_Fuente15V_P';
+  DI_Names[dib_Rx1_Fuente15V_N            ] := 'Rx1_Fuente15V_N';
+  DI_Names[dib_Rx1_Stalo_Locked           ] := 'Rx1_Stalo_Locked';
+  DI_Names[dib_TxRx1_Pulso_Largo          ] := 'TxRx1_Pulso_Largo';
+  DI_Names[dib_Tx2_Filamento_On           ] := 'Tx2_Filamento_On';
+  DI_Names[dib_Tx2_Listo                  ] := 'Tx2_Listo';
+  DI_Names[dib_Tx2_HV                     ] := 'Tx2_HV';
+  DI_Names[dib_Tx2_Inter_Lock             ] := 'Tx2_Inter_Lock';
+  DI_Names[dib_Tx2_Ventilacion_On         ] := 'Tx2_Ventilacion_On';
+  DI_Names[dib_Tx2_Averia                 ] := 'Tx2_Averia';
+  DI_Names[dib_Tx2_Averia_MPS             ] := 'Tx2_Averia_MPS';
+  DI_Names[dib_Tx2_Averia_Ventilador      ] := 'Tx2_Averia_Ventilador';
+  DI_Names[dib_Tx2_Averia_Fuente_Filamento] := 'Tx2_Averia_Fuente_Filamento';
+  DI_Names[dib_Rx2_Encendido              ] := 'Rx2_Encendido';
+  DI_Names[dib_Rx2_Fuente5V_P             ] := 'Rx2_Fuente5V_P';
+  DI_Names[dib_Rx2_Fuente5V_N             ] := 'Rx2_Fuente5V_N';
+  DI_Names[dib_Rx2_Fuente15V_P            ] := 'Rx2_Fuente15V_P';
+  DI_Names[dib_Rx2_Fuente15V_N            ] := 'Rx2_Fuente15V_N';
+  DI_Names[dib_Rx2_Stalo_Locked           ] := 'Rx2_Stalo_Locked';
+  DI_Names[dib_TxRx2_Pulso_Largo          ] := 'TxRx2_Pulso_Largo';
+  DI_Names[dib_TxRx1_Local                ] := 'TxRx1_Local';
+  DI_Names[dib_TxRx2_Local                ] := 'TxRx2_Local';
+  DI_Names[dib_Red_Listo                  ] := 'Red_Listo';
+  DI_Names[dib_Radar_On                   ] := 'Radar_On';
+  DI_Names[dib_Fuente_Encoders            ] := 'Fuente_Encoders';
+
+  SetLength(DO_Names, High(DORange)+1);
+  DO_Names[dob_Radar_Encender ] := 'Radar_Encender';
+  DO_Names[dob_Radar_Apagar   ] := 'Radar_Apagar';
+  DO_Names[dob_Acc_Encender   ] := 'Acc_Encender';
+  DO_Names[dob_Alarma_Sonora  ] := 'Alarma_Sonora';
+  DO_Names[dob_Habilitar_Az   ] := 'Habilitar_Az';
+  DO_Names[dob_Habilitar_El   ] := 'Habilitar_El';
+  DO_Names[dob_Tx1_Encender   ] := 'Tx1_Encender';
+  DO_Names[dob_Tx1_Apagar     ] := 'Tx1_Apagar';
+  DO_Names[dob_Tx1_HV         ] := 'Tx1_HV';
+  DO_Names[dob_Tx1_MPS_On     ] := 'Tx1_MPS_On';
+  DO_Names[dob_Rx1_Encender   ] := 'Rx1_Encender';
+  DO_Names[dob_Rx1_Apagar     ] := 'Rx1_Apagar';
+  DO_Names[dob_Tx2_Encender   ] := 'Tx2_Encender';
+  DO_Names[dob_Tx2_Apagar     ] := 'Tx2_Apagar';
+  DO_Names[dob_Tx2_HV         ] := 'Tx2_HV';
+  DO_Names[dob_Tx2_MPS_On     ] := 'Tx2_MPS_On';
+  DO_Names[dob_Rx2_Encender   ] := 'Rx2_Encender';
+  DO_Names[dob_Rx2_Apagar     ] := 'Rx2_Apagar';
+  DO_Names[dob_Aire_1         ] := 'Aire_1';
+  DO_Names[dob_Aire_2         ] := 'Aire_2';
+  DO_Names[dob_Aire_3         ] := 'Aire_3';
+
+  SetLength(AI_Names, High(AIRange)+1);
+  AI_Names[ai_Fuente_Excitacion   ] := 'Fuente_Excitacion';
+  AI_Names[ai_Fuente_5V_P         ] := 'Fuente_5V_P';
+  AI_Names[ai_Fuente_12V_P        ] := 'Fuente_12V_P';
+  AI_Names[ai_Fuente_24V_P        ] := 'Fuente_24V_P';
+  AI_Names[ai_Taco_Az             ] := 'Taco_Az';
+  AI_Names[ai_Taco_El             ] := 'Taco_El';
+  AI_Names[ai_Tx1_Potencia        ] := 'Tx1_Potencia';
+  AI_Names[ai_Tx1_MPS_Voltaje     ] := 'Tx1_MPS_Voltaje';
+  AI_Names[ai_Tx1_MPS_Corriente   ] := 'Tx1_MPS_Corriente';
+  AI_Names[ai_Tx1_fuente_24V_P    ] := 'Tx1_fuente_24V_P';
+  AI_Names[ai_Tx1_fuente_24V_N    ] := 'Tx1_fuente_24V_N';
+  AI_Names[ai_Tx1_fuente_50V_P    ] := 'Tx1_fuente_50V_P';
+  AI_Names[ai_Tx1_fuente_100V_P   ] := 'Tx1_fuente_100V_P';
+  AI_Names[ai_Tx1_fuente_400V_P   ] := 'Tx1_fuente_400V_P';
+  AI_Names[ai_Tx1_Fuente_Filamento] := 'Tx1_Fuente_Filamento';
+  AI_Names[ai_Tx2_Potencia        ] := 'Tx2_Potencia';
+  AI_Names[ai_Tx2_MPS_Voltaje     ] := 'Tx2_MPS_Voltaje';
+  AI_Names[ai_Tx2_MPS_Corriente   ] := 'Tx2_MPS_Corriente';
+  AI_Names[ai_Tx2_fuente_24V_P    ] := 'Tx2_fuente_24V_P';
+  AI_Names[ai_Tx2_fuente_24V_N    ] := 'Tx2_fuente_24V_N';
+  AI_Names[ai_Tx2_fuente_50V_P    ] := 'Tx2_fuente_50V_P';
+  AI_Names[ai_Tx2_fuente_100V_P   ] := 'Tx2_fuente_100V_P';
+  AI_Names[ai_Tx2_fuente_400V_P   ] := 'Tx2_fuente_400V_P';
+  AI_Names[ai_Tx2_Fuente_Filamento] := 'Tx2_Fuente_Filamento';
+
+  SetLength(AO_Names, High(AORange)+1);
+  AO_Names[ao_Azimut   ] := 'Azimut';
+  AO_Names[ao_Elevacion] := 'Elevation';
+  AO_Names[ao_Tx1_MPS  ] := 'Tx1_MPS';
+  AO_Names[ao_Tx2_MPS  ] := 'Tx2_MPS';
+
+finalization
+  DI_Names := nil;
+  DO_Names := nil;
+  AI_Names := nil;;
+  AO_Names := nil;;
+
+end.

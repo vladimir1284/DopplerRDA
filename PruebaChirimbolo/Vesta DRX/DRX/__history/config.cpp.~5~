@@ -1,0 +1,19 @@
+//---------------------------------------------------------------------------
+
+
+#pragma hdrstop
+
+#include "config.h"
+
+//---------------------------------------------------------------------------
+
+TFloatArray Settings::getConv_table(){
+	return NULL;
+}
+
+
+#pragma package(smart_init)
+
+
+
+

@@ -1,0 +1,55 @@
+unit ObservationsWSIntf;
+
+interface
+
+uses InvokeRegistry, Types, XSBuiltIns, CommunicationObj;
+
+type
+
+  IObservationsWS = interface(IInvokable)
+  ['{0BE52D29-72D8-4915-8E47-143D7E61A3EE}']
+      // IObservations
+        function  Get_Plantillas: Integer; safecall;
+        procedure Ejecutar(const Name: string); safecall;
+        function  Plantilla(Index: integer): TTemplateInfo; safecall;
+        function  Buscar(const Name: string): TTemplateInfo; safecall;
+        procedure ChequearRadar; safecall;
+      //IObservationsControl
+        procedure Borrar(const Name: WideString); safecall;
+        function  Nueva: TTemplateInfo; safecall;
+        function  Control(const Name: WideString): TTemplateInfo; safecall;
+        function  Clonar(const TemplateName: WideString): TTemplateInfo; safecall;
+        procedure Save(Template: TTemplateInfo); safecall;
+        procedure Automatica(TemplateName : string; Value: boolean); safecall;
+      // IObservation
+        function  Get_InProgress: boolean; safecall;
+        function  Get_Name: string; safecall;
+        function  Get_Client: string; safecall;
+        function  Get_StartTime: TDateTime; safecall;
+        function  Get_LastTime: TDateTime; safecall;
+        function  Get_Progress: Integer; safecall;
+        function  Get_Message: string; safecall;
+        function  Get_SubMsg: string; safecall;
+        function  Get_Result: Integer; safecall;
+        procedure Cancel; safecall;
+
+        property Plantillas: Integer read Get_Plantillas;
+
+        property InProgress: boolean read Get_InProgress;
+        property Name: string read Get_Name;
+        property Client: string read Get_Client;
+        property StartTime: TDateTime read Get_StartTime;
+        property LastTime: TDateTime read Get_LastTime;
+        property Progress: Integer read Get_Progress;
+        property Message: string read Get_Message;
+        property SubMsg: string read Get_SubMsg;
+        property Result: Integer read Get_Result;
+  end;
+
+implementation
+
+initialization
+  InvRegistry.RegisterInterface(TypeInfo(IObservationsWS));
+
+end.
+ 

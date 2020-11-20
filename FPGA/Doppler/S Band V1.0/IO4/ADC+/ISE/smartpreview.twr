@@ -1,0 +1,41 @@
+Number of Timing Constraints that were not applied: 1
+
+Asterisk (*) preceding a constraint indicates it was not met.
+   This may be due to a setup or hold violation.
+
+------------------------------------------------------------------------------------------------------
+  Constraint                                |  Check  | Worst Case |  Best Case | Timing |   Timing   
+                                            |         |    Slack   | Achievable | Errors |    Score   
+------------------------------------------------------------------------------------------------------
+* TS_drdy = PERIOD TIMEGRP "drdy" 100 MHz H | SETUP   |    -1.150ns|    12.300ns|      10|        4472
+  IGH 50%                                   | HOLD    |     1.232ns|            |       0|           0
+------------------------------------------------------------------------------------------------------
+  TS_gNV2ES_FIFO_gFCKG_iGCLK_CLK0 = PERIOD  | SETUP   |     2.013ns|     7.987ns|       0|           0
+  TIMEGRP         "gNV2ES_FIFO_gFCKG_iGCLK_ | HOLD    |     1.295ns|            |       0|           0
+  CLK0" TS_diclk HIGH 50%                   |         |            |            |        |            
+------------------------------------------------------------------------------------------------------
+  TS_osc3_pin = PERIOD TIMEGRP "osc3_pin" 1 | SETUP   |     5.010ns|     4.990ns|       0|           0
+  00 MHz HIGH 50%                           | HOLD    |     1.416ns|            |       0|           0
+------------------------------------------------------------------------------------------------------
+  TS_diclk = PERIOD TIMEGRP "diclk" 100 MHz | N/A     |         N/A|         N/A|     N/A|         N/A
+   HIGH 50%                                 |         |            |            |        |            
+------------------------------------------------------------------------------------------------------
+
+
+Derived Constraint Report
+Derived Constraints for TS_diclk
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+|                               |   Period    |       Actual Period       |      Timing Errors        |      Paths Analyzed       |
+|           Constraint          | Requirement |-------------+-------------|-------------+-------------|-------------+-------------|
+|                               |             |   Direct    | Derivative  |   Direct    | Derivative  |   Direct    | Derivative  |
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+|TS_diclk                       |     10.000ns|          N/A|      7.987ns|            0|            0|            0|         1683|
+| TS_gNV2ES_FIFO_gFCKG_iGCLK_CLK|     10.000ns|      7.987ns|          N/A|            0|            0|         1683|            0|
+| 0                             |             |             |             |             |             |             |             |
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+
+1 constraint not met.
+INFO:Timing:2761 - N/A entries in the Constraints list may indicate that the 
+   constraint does not cover any paths or that it has no requested value.
+
+

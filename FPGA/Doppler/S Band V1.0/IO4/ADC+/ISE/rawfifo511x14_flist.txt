@@ -1,0 +1,9 @@
+# Output products list for <rawfifo511x14>
+rawfifo511x14.ngc
+rawfifo511x14.v
+rawfifo511x14.veo
+rawfifo511x14.vhd
+rawfifo511x14.vho
+rawfifo511x14.xco
+rawfifo511x14_flist.txt
+rawfifo511x14_xmdf.tcl

@@ -1,0 +1,321 @@
+unit Calib;
+
+interface
+
+uses
+  ActiveX;
+
+type
+  CalibrationTable = PSafeArray;  // safearray of word
+
+type
+  TCalib = class
+  public
+    constructor Create;
+    destructor  Destroy;  override;
+    procedure   Update;
+  private
+    fPotencia    : array[0..1] of integer;
+    fCRadar      : array[0..3] of single;
+    fSensibility : array[0..3] of integer;
+    fDinamicRange: array[0..3] of integer;
+    fMPS_Voltage : array[0..1] of double;
+  private
+    procedure SetDinamicRange(const Index, Value: integer);
+    procedure SetSensibility(const Index, Value: integer);
+    procedure SetPotencia   ( Index : integer; Value : integer );
+    procedure SetCRadar     ( Index : integer; Value : single );
+    function  GetPotMetPL1 : single;
+    function  GetPotMetPL2 : single;
+    function  GetPotMetPC1 : single;
+    function  GetPotMetPC2 : single;
+
+    procedure SetMPS_Voltage( Index : integer; Value : double );
+  public
+    property SensibilityPL1 : integer  index 0 read fSensibility[0]  write SetSensibility;
+    property SensibilityPL2 : integer  index 1 read fSensibility[1]  write SetSensibility;
+    property SensibilityPC1 : integer  index 2 read fSensibility[2]  write SetSensibility;
+    property SensibilityPC2 : integer  index 3 read fSensibility[3]  write SetSensibility;
+    property DinamicRangePL1: integer  index 0 read fDinamicRange[0] write SetDinamicRange;
+    property DinamicRangePL2: integer  index 1 read fDinamicRange[1] write SetDinamicRange;
+    property DinamicRangePC1: integer  index 2 read fDinamicRange[2] write SetDinamicRange;
+    property DinamicRangePC2: integer  index 3 read fDinamicRange[3] write SetDinamicRange;
+    property Potencia1      : integer  index 0 read fPotencia[0]     write SetPotencia;
+    property Potencia2      : integer  index 1 read fPotencia[1]     write SetPotencia;
+    property CRadarPL1      : single   index 0 read fCRadar  [0]     write SetCRadar;
+    property CRadarPL2      : single   index 1 read fCRadar  [1]     write SetCRadar;
+    property CRadarPC1      : single   index 2 read fCRadar  [2]     write SetCRadar;
+    property CRadarPC2      : single   index 3 read fCRadar  [3]     write SetCRadar;
+    property PotMetPL1      : single           read GetPotMetPL1;
+    property PotMetPL2      : single           read GetPotMetPL2;
+    property PotMetPC1      : single           read GetPotMetPC1;
+    property PotMetPC2      : single           read GetPotMetPC2;
+    property MPS_Voltage1   : double   index 0 read fMPS_Voltage[0] write SetMPS_Voltage;
+    property MPS_Voltage2   : double   index 1 read fMPS_Voltage[1] write SetMPS_Voltage;
+  private
+    procedure LoadCalib;
+    procedure SaveCalib;
+    function  PotMet( Pt, Po, C : single ) : single;
+  end;
+
+var
+  theCalibration : TCalib = nil;
+
+implementation
+
+uses
+  Mutex,
+  Math,
+  Registry,
+  RDAReg, ManagerDRX, DRX_AFC_WS, DRX_Configuration_WS;
+
+const
+  CalibrationMutexName = 'Elbrus_Calibration_Mutex';
+
+var
+  CalibrationMutex : TMutex  = nil;
+
+const
+  MutexTime = 1000;
+
+const
+  CalibKey          = RDARootKey + '\Calibration\';
+  Ch1Key            = 'Channel1';
+  Ch2Key            = 'Channel2';
+  StartValue        = 'Start';
+  CountValue        = 'Count';
+  P1Value           = 'Potencia1';
+  P2Value           = 'Potencia2';
+  CR1PLValue        = 'CRadarPL1';
+  CR2PLValue        = 'CRadarPL2';
+  CR1PCValue        = 'CRadarPC1';
+  CR2PCValue        = 'CRadarPC2';
+  MPS_Delay1Value   = 'MPS_Delay1';
+  MPS_Voltage1Value = 'MPS_Voltage1';
+  MPS_Delay2Value   = 'MPS_Delay2';
+  MPS_Voltage2Value = 'MPS_Voltage2';
+
+{ TCalib }
+
+constructor TCalib.Create;
+begin
+  inherited Create;
+  CalibrationMutex := TMutex.Create(nil, false, CalibrationMutexName);
+  Update;
+end;
+
+destructor TCalib.Destroy;
+begin
+  SaveCalib;
+  CalibrationMutex.Free;
+  inherited;
+end;
+
+procedure TCalib.Update;
+begin
+  if CalibrationMutex.WaitFor(MutexTime)
+    then
+      try
+        LoadCalib;
+
+        if DRX1.Ready
+          then
+            begin
+              SensibilityPL1  := DRX1.Config_WS.Get_DRX_Sensibility_LP;
+              SensibilityPC1  := DRX1.Config_WS.Get_DRX_Sensibility_SP;
+              DinamicRangePL1 := DRX1.Config_WS.Get_DRX_Dinamic_Range_LP;
+              DinamicRangePC1 := DRX1.Config_WS.Get_DRX_Dinamic_Range_SP;
+            end
+          else
+            begin
+              SensibilityPL1  := 0;
+              SensibilityPC1  := 0;
+              DinamicRangePL1 := 0;
+              DinamicRangePC1 := 0;
+            end;
+
+        if DRX2.Ready
+          then
+            begin
+              SensibilityPL2  := DRX2.Config_WS.Get_DRX_Sensibility_LP;
+              SensibilityPC2  := DRX2.Config_WS.Get_DRX_Sensibility_SP;
+              DinamicRangePL2 := DRX2.Config_WS.Get_DRX_Dinamic_Range_LP;
+              DinamicRangePC2 := DRX2.Config_WS.Get_DRX_Dinamic_Range_SP;
+            end
+          else
+            begin
+              SensibilityPL2  := 0;
+              SensibilityPC2  := 0;
+              DinamicRangePL2 := 0;
+              DinamicRangePC2 := 0;
+            end;
+      finally
+        CalibrationMutex.Release;
+      end;
+end;
+
+function TCalib.GetPotMetPC1: single;
+begin
+  Result := PotMet(Potencia1, SensibilityPC1, CRadarPC1);
+end;
+
+function TCalib.GetPotMetPC2: single;
+begin
+  Result := PotMet(Potencia2, SensibilityPC2, CRadarPC2);
+end;
+
+function TCalib.GetPotMetPL1: single;
+begin
+  Result := PotMet(Potencia1, SensibilityPL1, CRadarPL1);
+end;
+
+function TCalib.GetPotMetPL2: single;
+begin
+  Result := PotMet(Potencia2, SensibilityPL2, CRadarPL2);
+end;
+
+procedure TCalib.LoadCalib;
+var
+  Reg : TRegistry;
+begin
+  Reg := TRDAReg.Create;
+  try
+    if Reg.OpenKey(CalibKey, true)
+      then
+        with Reg do
+          begin
+            if ValueExists(P1Value)
+              then fPotencia[0] := ReadInteger(P1Value);
+            if ValueExists(P2Value)
+              then fPotencia[1] := ReadInteger(P2Value);
+            if ValueExists(CR1PLValue)
+              then fCRadar[0] := ReadFloat(CR1PLValue);
+            if ValueExists(CR2PLValue)
+              then fCRadar[1] := ReadFloat(CR2PLValue);
+            if ValueExists(CR1PCValue)
+              then fCRadar[2] := ReadFloat(CR1PCValue);
+            if ValueExists(CR2PCValue)
+              then fCRadar[3] := ReadFloat(CR2PCValue);
+            if ValueExists(MPS_Voltage1Value)
+              then fMPS_Voltage[0] := ReadFloat(MPS_Voltage1Value);
+            if ValueExists(MPS_Voltage2Value)
+              then fMPS_Voltage[1] := ReadFloat(MPS_Voltage2Value);
+            CloseKey;
+          end;
+  finally
+    Reg.Free;
+  end;
+end;
+
+function TCalib.PotMet( Pt, Po, C : single ) : single;
+begin
+  Result := 240.0 - C - (10 * log10(1000 * Pt)) + Po;
+end;
+
+procedure TCalib.SaveCalib;
+var
+  Reg : TRegistry;
+begin
+  Reg := TRDAReg.Create;
+  try
+    if Reg.OpenKey(CalibKey, true)
+      then
+        with Reg do
+          begin
+            WriteInteger(P1Value, fPotencia[0]);
+            WriteInteger(P2Value, fPotencia[1]);
+            WriteFloat  (CR1PLValue, fCRadar[0]);
+            WriteFloat  (CR2PLValue, fCRadar[1]);
+            WriteFloat  (CR1PCValue, fCRadar[2]);
+            WriteFloat  (CR2PCValue, fCRadar[3]);
+            WriteFloat  (MPS_Voltage1Value, fMPS_Voltage[0]);
+            WriteFloat  (MPS_Voltage2Value, fMPS_Voltage[1]);
+            CloseKey;
+          end;
+  finally
+    Reg.Free;
+  end;
+end;
+
+procedure TCalib.SetCRadar(Index: integer; Value: single);
+begin
+  if CalibrationMutex.WaitFor(MutexTime)
+    then
+      try
+        fCRadar[Index] := Value;
+        SaveCalib;
+      finally
+        CalibrationMutex.Release;
+      end;
+end;
+
+procedure TCalib.SetPotencia(Index, Value: integer);
+begin
+  if CalibrationMutex.WaitFor(MutexTime)
+    then
+      try
+        fPotencia[Index] := Value;
+        SaveCalib;
+      finally
+        CalibrationMutex.Release;
+      end;
+end;
+
+procedure TCalib.SetMPS_Voltage(Index: integer; Value: double);
+begin
+  if CalibrationMutex.WaitFor(MutexTime)
+    then
+      try
+        fMPS_Voltage[Index] := Value;
+        SaveCalib;
+      finally
+        CalibrationMutex.Release;
+      end;
+end;
+
+procedure TCalib.SetSensibility(const Index, Value: integer);
+begin
+  try
+    case Index of
+      0: if DRX1.Ready
+           then DRX1.Config_WS.Set_DRX_Sensibility_LP(Value);
+      1: if DRX2.Ready
+           then DRX2.Config_WS.Set_DRX_Sensibility_LP(Value);
+      2: if DRX1.Ready
+           then DRX1.Config_WS.Set_DRX_Sensibility_SP(Value);
+      3: if DRX2.Ready
+           then DRX2.Config_WS.Set_DRX_Sensibility_SP(Value);
+    end;
+    fSensibility[Index] := Value;
+  except
+    case Index of
+      0, 2: DRX1.Validate;
+      1, 3: DRX2.Validate;
+    end;
+  end;
+end;
+
+procedure TCalib.SetDinamicRange(const Index, Value: integer);
+begin
+  try
+    case Index of
+      0: if DRX1.Ready
+           then DRX1.Config_WS.Set_DRX_Dinamic_Range_LP(Value);
+      1: if DRX2.Ready
+           then DRX2.Config_WS.Set_DRX_Dinamic_Range_LP(Value);
+      2: if DRX1.Ready
+           then DRX1.Config_WS.Set_DRX_Dinamic_Range_SP(Value);
+      3: if DRX2.Ready
+           then DRX2.Config_WS.Set_DRX_Dinamic_Range_SP(Value);
+    end;
+    fDinamicRange[Index] := Value;
+  except
+    case Index of
+      0, 2: DRX1.Validate;
+      1, 3: DRX2.Validate;
+    end;
+  end;
+end;
+
+end.
+

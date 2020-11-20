@@ -1,0 +1,964 @@
+Release 7.1.04i Map H.42
+Xilinx Mapping Report File for Design 'top'
+
+Design Information
+------------------
+Command Line   : C:/Xilinx/bin/nt/map.exe -ise
+c:\mide\cyclops-d\development\source\fpga\io4\adc+\ise\Ex1_Io4v.ise -intstyle
+ise -p xc2v1000-fg456-4 -timing -ol med -t 1 -cm area -pr b -k 4 -c 100 -tx off
+-o top_map.ncd top.ngd top.pcf 
+Target Device  : xc2v1000
+Target Package : fg456
+Target Speed   : -4
+Mapper Version : virtex2 -- $Revision: 1.26.6.4 $
+Mapped Date    : Wed Jun 25 14:44:12 2008
+
+Design Summary
+--------------
+Number of errors:      0
+Number of warnings:    4
+Logic Utilization:
+  Number of Slice Flip Flops:       5,548 out of  10,240   54%
+  Number of 4 input LUTs:           3,802 out of  10,240   37%
+Logic Distribution:
+  Number of occupied Slices:        3,285 out of   5,120   64%
+Total Number 4 input LUTs:          4,888 out of  10,240   47%
+  Number used as logic:             3,802
+  Number used as a route-thru:        389
+  Number used as Shift registers:     697
+
+  Number of bonded IOBs:              179 out of     324   55%
+    IOB Flip Flops:                    86
+    IOB Master Pads:                    1
+    IOB Slave Pads:                     1
+  Number of Block RAMs:                 4 out of      40   10%
+  Number of MULT18X18s:                 2 out of      40    5%
+  Number of GCLKs:                      3 out of      16   18%
+  Number of DCMs:                       1 out of       8   12%
+
+Total equivalent gate count for design:  406,787
+Additional JTAG gate count for IOBs:  8,592
+Peak Memory Usage:  264 MB
+
+Table of Contents
+-----------------
+Section 1 - Errors
+Section 2 - Warnings
+Section 3 - Informational
+Section 4 - Removed Logic Summary
+Section 5 - Removed Logic
+Section 6 - IOB Properties
+Section 7 - RPMs
+Section 8 - Guide Report
+Section 9 - Area Group Summary
+Section 10 - Modular Design Summary
+Section 11 - Timing Report
+Section 12 - Configuration String Information
+Section 13 - Additional Device Resource Counts
+
+Section 1 - Errors
+------------------
+
+Section 2 - Warnings
+--------------------
+WARNING:Map:120 - The command line option -c can not be used when running in
+   timing mode.  The option will be ignored.
+WARNING:LIT:243 - Logical network clki2 has no load.
+WARNING:LIT:374 - The above warning message base_net_load_rule is repeated 87
+   more times for the following (max. 5 shown):
+   clki3,
+   osc2_pin,
+   r1out,
+   clkin0,
+   clkin1
+   To see the details of these warning messages, please use the -detail switch.
+WARNING:MapLib:701 - Signal vinit connected to top level port vinit has been
+   removed.
+
+Section 3 - Informational
+-------------------------
+INFO:MapLib:562 - No environment variables are currently set.
+INFO:MapLib:535 - The following Virtex BUFG(s) is/are being retargetted to
+   Virtex2 BUFGMUX(s) with input tied to I0 and Select pin tied to constant 0:
+   BUFG symbol "OSC3_BUFG" (output signal=OSC3),
+   BUFG symbol "iGCLK_bGCK" (output signal=xFCLK_G),
+   BUFG symbol "iSCLK_iSCLK" (output signal=SCLK)
+INFO:MapLib:534 - The following XORCY(s) is/are demoted to LUTs because there is
+   no MUXCY associated with them. Therefore, we cannot recognize the standard
+   carry chain structure:
+   XORCY symbol "iUSER_AP_myDDCi/BU19401" (output
+   signal=iUSER_AP_myDDCi/N148969),
+   XORCY symbol "iUSER_AP_myDDCi/BU25391" (output
+   signal=iUSER_AP_myDDCi/N176843)
+INFO:Pack:1716 - Initializing temperature to 85.000 Celcius. (default - Range:
+   0.000 to 85.000 Celcius)
+INFO:Pack:1721 - Initializing voltage to 1.500 Volts. (derated - Range: 1.425 to
+   1.575 Volts)
+INFO:Pack:1650 - Map created a placed design.
+
+Section 4 - Removed Logic Summary
+---------------------------------
+ 165 block(s) removed
+ 120 block(s) optimized away
+ 193 signal(s) removed
+
+Section 5 - Removed Logic
+-------------------------
+
+The trimmed logic report below shows the logic removed from your design due to
+sourceless or loadless signals, and VCC or ground connections.  If the removal
+of a signal or symbol results in the subsequent removal of an additional signal
+or symbol, the message explaining that second removal will be indented.  This
+indentation will be repeated as a chain of related logic is removed.
+
+To quickly locate the original cause for the removal of a chain of logic, look
+above the place where that logic is listed in the trimming report, then locate
+the lines that are least indented (begin at the leftmost edge).
+
+Loadless block "iUSER_AP_iRawFifo255x14/BU144" (FF) removed.
+Loadless block "iUSER_AP_iRawFifo255x14/BU166" (ROM) removed.
+Loadless block "iUSER_AP_iRawFifo255x14/BU323" (FF) removed.
+Loadless block "iUSER_AP_iRawFifo255x14/BU345" (ROM) removed.
+Loadless block "iUSER_AP_iq_out_fifoI/BU105" (FF) removed.
+Loadless block "iUSER_AP_iq_out_fifoI/BU118" (ROM) removed.
+Loadless block "iUSER_AP_iq_out_fifoI/BU230" (FF) removed.
+Loadless block "iUSER_AP_iq_out_fifoI/BU243" (ROM) removed.
+Loadless block "iUSER_AP_myDDCi/BU1011" (AND) removed.
+Loadless block "iUSER_AP_myDDCi/BU1014" (FF) removed.
+ The signal "iUSER_AP_myDDCi/N4477" is loadless and has been removed.
+  Loadless block "iUSER_AP_myDDCi/BU1012" (XOR) removed.
+   The signal "iUSER_AP_myDDCi/N5262" is loadless and has been removed.
+    Loadless block "iUSER_AP_myDDCi/BU1005" (MUX) removed.
+     The signal "iUSER_AP_myDDCi/N5261" is loadless and has been removed.
+      Loadless block "iUSER_AP_myDDCi/BU1004" (AND) removed.
+   The signal "iUSER_AP_myDDCi/N5265" is loadless and has been removed.
+    Loadless block "iUSER_AP_myDDCi/BU1010" (ROM) removed.
+Loadless block "iUSER_AP_myDDCi/BU1513" (BUF) removed.
+Loadless block "iUSER_AP_myDDCi/BU1626" (XOR) removed.
+ The signal "iUSER_AP_myDDCi/N39330" is loadless and has been removed.
+  Loadless block "iUSER_AP_myDDCi/BU1622" (MUX) removed.
+ The signal "iUSER_AP_myDDCi/N39332" is loadless and has been removed.
+  Loadless block "iUSER_AP_myDDCi/BU1625" (ROM) removed.
+Loadless block "iUSER_AP_myDDCi/BU19050" (AND) removed.
+Loadless block "iUSER_AP_myDDCi/BU19257" (XOR) removed.
+ The signal "iUSER_AP_myDDCi/N147548" is loadless and has been removed.
+  Loadless block "iUSER_AP_myDDCi/BU19253" (MUX) removed.
+ The signal "iUSER_AP_myDDCi/N147550" is loadless and has been removed.
+  Loadless block "iUSER_AP_myDDCi/BU19256" (ROM) removed.
+Loadless block "iUSER_AP_myDDCi/BU1950" (BUF) removed.
+ The signal "iUSER_AP_myDDCi/N40431" is loadless and has been removed.
+  Loadless block "iUSER_AP_myDDCi/BU1762" (FF) removed.
+   The signal "iUSER_AP_myDDCi/N70759" is loadless and has been removed.
+Loadless block "iUSER_AP_myDDCi/BU1951" (BUF) removed.
+Loadless block "iUSER_AP_myDDCi/BU2064" (XOR) removed.
+ The signal "iUSER_AP_myDDCi/N71090" is loadless and has been removed.
+  Loadless block "iUSER_AP_myDDCi/BU2060" (MUX) removed.
+ The signal "iUSER_AP_myDDCi/N71092" is loadless and has been removed.
+  Loadless block "iUSER_AP_myDDCi/BU2063" (ROM) removed.
+Loadless block "iUSER_AP_myDDCi/BU25317" (AND) removed.
+Loadless block "iUSER_AP_myDDCi/BU25551" (XOR) removed.
+ The signal "iUSER_AP_myDDCi/N177360" is loadless and has been removed.
+  Loadless block "iUSER_AP_myDDCi/BU25547" (MUX) removed.
+ The signal "iUSER_AP_myDDCi/N177362" is loadless and has been removed.
+  Loadless block "iUSER_AP_myDDCi/BU25550" (ROM) removed.
+Loadless block "iUSER_AP_myDDCi/BU25834" (XOR) removed.
+ The signal "iUSER_AP_myDDCi/N178581" is loadless and has been removed.
+  Loadless block "iUSER_AP_myDDCi/BU25830" (MUX) removed.
+ The signal "iUSER_AP_myDDCi/N178583" is loadless and has been removed.
+  Loadless block "iUSER_AP_myDDCi/BU25833" (ROM) removed.
+Loadless block "iUSER_AP_myDDCi/BU2589" (XOR) removed.
+ The signal "iUSER_AP_myDDCi/N72514" is loadless and has been removed.
+  Loadless block "iUSER_AP_myDDCi/BU2585" (MUX) removed.
+ The signal "iUSER_AP_myDDCi/N72516" is loadless and has been removed.
+  Loadless block "iUSER_AP_myDDCi/BU2588" (ROM) removed.
+Loadless block "iUSER_AP_myDDCi/BU4736" (ROM) removed.
+Loadless block "iUSER_AP_myDDCi/BU7615" (XOR) removed.
+ The signal "iUSER_AP_myDDCi/N73530" is loadless and has been removed.
+  Loadless block "iUSER_AP_myDDCi/BU7611" (MUX) removed.
+ The signal "iUSER_AP_myDDCi/N73532" is loadless and has been removed.
+  Loadless block "iUSER_AP_myDDCi/BU7614" (ROM) removed.
+Loadless block "iUSER_AP_myDDCi/BU842" (AND) removed.
+Loadless block "iUSER_AP_myDDCi/BU845" (FF) removed.
+ The signal "iUSER_AP_myDDCi/N4368" is loadless and has been removed.
+  Loadless block "iUSER_AP_myDDCi/BU843" (XOR) removed.
+   The signal "iUSER_AP_myDDCi/N4706" is loadless and has been removed.
+    Loadless block "iUSER_AP_myDDCi/BU836" (MUX) removed.
+     The signal "iUSER_AP_myDDCi/N4705" is loadless and has been removed.
+      Loadless block "iUSER_AP_myDDCi/BU835" (AND) removed.
+   The signal "iUSER_AP_myDDCi/N4709" is loadless and has been removed.
+    Loadless block "iUSER_AP_myDDCi/BU841" (ROM) removed.
+Loadless block "iUSER_AP_myDDCi/BU9762" (ROM) removed.
+Loadless block "iUSER_AP_myDDCi/BU9766" (FF) removed.
+The signal "iUMI0/O" is sourceless and has been removed.
+The signal "iUMI3/O" is sourceless and has been removed.
+The signal "iDIO0/O" is sourceless and has been removed.
+The signal "iDIO1/O" is sourceless and has been removed.
+The signal "iDIO2/O" is sourceless and has been removed.
+The signal "iDIO3/O" is sourceless and has been removed.
+The signal "iDIO4/O" is sourceless and has been removed.
+The signal "iDIO5/O" is sourceless and has been removed.
+The signal "iDIO6/O" is sourceless and has been removed.
+The signal "iDIO7/O" is sourceless and has been removed.
+The signal "iUSER_AP_iRawFifo255x14/N2504" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_iRawFifo255x14/BU140" (MUX) removed.
+  The signal "iUSER_AP_iRawFifo255x14/BU140/O" is sourceless and has been removed.
+   Sourceless block "iUSER_AP_iRawFifo255x14/BU140/MUXCY_L_BUF" (BUF) removed.
+    The signal "iUSER_AP_iRawFifo255x14/BU140/LO" is sourceless and has been
+removed.
+The signal "iUSER_AP_iRawFifo255x14/N3542" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_iRawFifo255x14/BU319" (MUX) removed.
+  The signal "iUSER_AP_iRawFifo255x14/BU319/O" is sourceless and has been removed.
+   Sourceless block "iUSER_AP_iRawFifo255x14/BU319/MUXCY_L_BUF" (BUF) removed.
+    The signal "iUSER_AP_iRawFifo255x14/BU319/LO" is sourceless and has been
+removed.
+The signal "iUSER_AP_iRawFifo255x14/BU137/O" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_iRawFifo255x14/BU137/MUXCY_L_BUF" (BUF) removed.
+  The signal "iUSER_AP_iRawFifo255x14/BU137/LO" is sourceless and has been
+removed.
+The signal "iUSER_AP_iRawFifo255x14/BU137/S" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_iRawFifo255x14/BU137" (MUX) removed.
+The signal "iUSER_AP_iRawFifo255x14/BU316/O" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_iRawFifo255x14/BU316/MUXCY_L_BUF" (BUF) removed.
+  The signal "iUSER_AP_iRawFifo255x14/BU316/LO" is sourceless and has been
+removed.
+The signal "iUSER_AP_iRawFifo255x14/BU316/S" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_iRawFifo255x14/BU316" (MUX) removed.
+The signal "iUSER_AP_iq_out_fifoI/N3362" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_iq_out_fifoI/BU101" (MUX) removed.
+  The signal "iUSER_AP_iq_out_fifoI/BU101/O" is sourceless and has been removed.
+   Sourceless block "iUSER_AP_iq_out_fifoI/BU101/MUXCY_L_BUF" (BUF) removed.
+    The signal "iUSER_AP_iq_out_fifoI/BU101/LO" is sourceless and has been removed.
+The signal "iUSER_AP_iq_out_fifoI/N4058" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_iq_out_fifoI/BU226" (MUX) removed.
+  The signal "iUSER_AP_iq_out_fifoI/BU226/O" is sourceless and has been removed.
+   Sourceless block "iUSER_AP_iq_out_fifoI/BU226/MUXCY_L_BUF" (BUF) removed.
+    The signal "iUSER_AP_iq_out_fifoI/BU226/LO" is sourceless and has been removed.
+The signal "iUSER_AP_iq_out_fifoI/BU98/O" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_iq_out_fifoI/BU98/MUXCY_L_BUF" (BUF) removed.
+  The signal "iUSER_AP_iq_out_fifoI/BU98/LO" is sourceless and has been removed.
+The signal "iUSER_AP_iq_out_fifoI/BU98/S" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_iq_out_fifoI/BU98" (MUX) removed.
+The signal "iUSER_AP_iq_out_fifoI/BU223/O" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_iq_out_fifoI/BU223/MUXCY_L_BUF" (BUF) removed.
+  The signal "iUSER_AP_iq_out_fifoI/BU223/LO" is sourceless and has been removed.
+The signal "iUSER_AP_iq_out_fifoI/BU223/S" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_iq_out_fifoI/BU223" (MUX) removed.
+The signal "iUSER_AP_myDDCi/DOUT_I<29>" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/DOUT_I<28>" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/DOUT_I<27>" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/DOUT_I<26>" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/DOUT_I<25>" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/DOUT_I<24>" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/DOUT_I<23>" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/DOUT_I<5>" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/DOUT_I<4>" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/DOUT_I<3>" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/DOUT_I<2>" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/DOUT_I<1>" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/DOUT_I<0>" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/DOUT_Q<29>" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/DOUT_Q<28>" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/DOUT_Q<27>" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/DOUT_Q<26>" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/DOUT_Q<25>" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/DOUT_Q<24>" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/DOUT_Q<23>" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/DOUT_Q<5>" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/DOUT_Q<4>" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/DOUT_Q<3>" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/DOUT_Q<2>" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/DOUT_Q<1>" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/DOUT_Q<0>" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N122231" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N122326" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N122152" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N122641" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N122736" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N122565" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N122104" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N123313" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N123450" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N123195" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N122035" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N136083" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N136244" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N135968" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N136805" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N136966" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N136693" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N135902" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N137951" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N138154" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N137797" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N135815" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N153167" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N153380" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N158051" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N158052" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N158055" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N158218" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N158219" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N158222" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N163331" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N163335" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N163338" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N163341" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N163343" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N163555" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N163559" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N163562" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N163565" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N163567" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N168264" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N168266" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N168267" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N168268" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N168272" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N168273" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N168275" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N168464" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N168466" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N168467" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N168468" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N168472" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N168473" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N168475" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N173986" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N174210" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N176911" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_myDDCi/BU25559" (ROM) removed.
+  The signal "iUSER_AP_myDDCi/N177722" is sourceless and has been removed.
+   Sourceless block "iUSER_AP_myDDCi/BU25560" (FF) removed.
+The signal "iUSER_AP_myDDCi/N176912" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_myDDCi/BU25566" (ROM) removed.
+  The signal "iUSER_AP_myDDCi/N177734" is sourceless and has been removed.
+   Sourceless block "iUSER_AP_myDDCi/BU25567" (FF) removed.
+The signal "iUSER_AP_myDDCi/N176913" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_myDDCi/BU25570" (ROM) removed.
+  The signal "iUSER_AP_myDDCi/N177746" is sourceless and has been removed.
+   Sourceless block "iUSER_AP_myDDCi/BU25571" (FF) removed.
+The signal "iUSER_AP_myDDCi/N176914" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_myDDCi/BU25574" (ROM) removed.
+  The signal "iUSER_AP_myDDCi/N177758" is sourceless and has been removed.
+   Sourceless block "iUSER_AP_myDDCi/BU25575" (FF) removed.
+The signal "iUSER_AP_myDDCi/N176915" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_myDDCi/BU25578" (ROM) removed.
+  The signal "iUSER_AP_myDDCi/N177770" is sourceless and has been removed.
+   Sourceless block "iUSER_AP_myDDCi/BU25579" (FF) removed.
+The signal "iUSER_AP_myDDCi/N176916" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_myDDCi/BU25582" (ROM) removed.
+  The signal "iUSER_AP_myDDCi/N177782" is sourceless and has been removed.
+   Sourceless block "iUSER_AP_myDDCi/BU25583" (FF) removed.
+The signal "iUSER_AP_myDDCi/N176934" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_myDDCi/BU25654" (ROM) removed.
+  The signal "iUSER_AP_myDDCi/N177998" is sourceless and has been removed.
+   Sourceless block "iUSER_AP_myDDCi/BU25655" (FF) removed.
+The signal "iUSER_AP_myDDCi/N176935" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_myDDCi/BU25658" (ROM) removed.
+  The signal "iUSER_AP_myDDCi/N178010" is sourceless and has been removed.
+   Sourceless block "iUSER_AP_myDDCi/BU25659" (FF) removed.
+The signal "iUSER_AP_myDDCi/N176936" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_myDDCi/BU25662" (ROM) removed.
+  The signal "iUSER_AP_myDDCi/N178022" is sourceless and has been removed.
+   Sourceless block "iUSER_AP_myDDCi/BU25663" (FF) removed.
+The signal "iUSER_AP_myDDCi/N176937" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_myDDCi/BU25666" (ROM) removed.
+  The signal "iUSER_AP_myDDCi/N178034" is sourceless and has been removed.
+   Sourceless block "iUSER_AP_myDDCi/BU25667" (FF) removed.
+The signal "iUSER_AP_myDDCi/N176938" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_myDDCi/BU25670" (ROM) removed.
+  The signal "iUSER_AP_myDDCi/N178046" is sourceless and has been removed.
+   Sourceless block "iUSER_AP_myDDCi/BU25671" (FF) removed.
+The signal "iUSER_AP_myDDCi/N176939" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_myDDCi/BU25674" (ROM) removed.
+  The signal "iUSER_AP_myDDCi/N178058" is sourceless and has been removed.
+   Sourceless block "iUSER_AP_myDDCi/BU25675" (FF) removed.
+The signal "iUSER_AP_myDDCi/N178070" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_myDDCi/BU25680" (FF) removed.
+The signal "iUSER_AP_myDDCi/N178088" is sourceless and has been removed.
+The signal "iUSER_AP_myDDCi/N178132" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_myDDCi/BU25842" (ROM) removed.
+  The signal "iUSER_AP_myDDCi/N178943" is sourceless and has been removed.
+   Sourceless block "iUSER_AP_myDDCi/BU25843" (FF) removed.
+The signal "iUSER_AP_myDDCi/N178133" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_myDDCi/BU25849" (ROM) removed.
+  The signal "iUSER_AP_myDDCi/N178955" is sourceless and has been removed.
+   Sourceless block "iUSER_AP_myDDCi/BU25850" (FF) removed.
+The signal "iUSER_AP_myDDCi/N178134" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_myDDCi/BU25853" (ROM) removed.
+  The signal "iUSER_AP_myDDCi/N178967" is sourceless and has been removed.
+   Sourceless block "iUSER_AP_myDDCi/BU25854" (FF) removed.
+The signal "iUSER_AP_myDDCi/N178135" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_myDDCi/BU25857" (ROM) removed.
+  The signal "iUSER_AP_myDDCi/N178979" is sourceless and has been removed.
+   Sourceless block "iUSER_AP_myDDCi/BU25858" (FF) removed.
+The signal "iUSER_AP_myDDCi/N178136" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_myDDCi/BU25861" (ROM) removed.
+  The signal "iUSER_AP_myDDCi/N178991" is sourceless and has been removed.
+   Sourceless block "iUSER_AP_myDDCi/BU25862" (FF) removed.
+The signal "iUSER_AP_myDDCi/N178137" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_myDDCi/BU25865" (ROM) removed.
+  The signal "iUSER_AP_myDDCi/N179003" is sourceless and has been removed.
+   Sourceless block "iUSER_AP_myDDCi/BU25866" (FF) removed.
+The signal "iUSER_AP_myDDCi/N178155" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_myDDCi/BU25937" (ROM) removed.
+  The signal "iUSER_AP_myDDCi/N179219" is sourceless and has been removed.
+   Sourceless block "iUSER_AP_myDDCi/BU25938" (FF) removed.
+The signal "iUSER_AP_myDDCi/N178156" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_myDDCi/BU25941" (ROM) removed.
+  The signal "iUSER_AP_myDDCi/N179231" is sourceless and has been removed.
+   Sourceless block "iUSER_AP_myDDCi/BU25942" (FF) removed.
+The signal "iUSER_AP_myDDCi/N178157" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_myDDCi/BU25945" (ROM) removed.
+  The signal "iUSER_AP_myDDCi/N179243" is sourceless and has been removed.
+   Sourceless block "iUSER_AP_myDDCi/BU25946" (FF) removed.
+The signal "iUSER_AP_myDDCi/N178158" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_myDDCi/BU25949" (ROM) removed.
+  The signal "iUSER_AP_myDDCi/N179255" is sourceless and has been removed.
+   Sourceless block "iUSER_AP_myDDCi/BU25950" (FF) removed.
+The signal "iUSER_AP_myDDCi/N178159" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_myDDCi/BU25953" (ROM) removed.
+  The signal "iUSER_AP_myDDCi/N179267" is sourceless and has been removed.
+   Sourceless block "iUSER_AP_myDDCi/BU25954" (FF) removed.
+The signal "iUSER_AP_myDDCi/N178160" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_myDDCi/BU25957" (ROM) removed.
+  The signal "iUSER_AP_myDDCi/N179279" is sourceless and has been removed.
+   Sourceless block "iUSER_AP_myDDCi/BU25958" (FF) removed.
+The signal "iUSER_AP_myDDCi/N179291" is sourceless and has been removed.
+ Sourceless block "iUSER_AP_myDDCi/BU25963" (FF) removed.
+The signal "iUSER_AP_myDDCi/N179309" is sourceless and has been removed.
+
+The trimmed logic reported below is either:
+   1. part of a cycle
+   2. part of disabled logic
+   3. a side-effect of other trimmed logic
+
+The signal "vinit" is unused and has been removed.
+ Unused block "vinit_OBUFT" (TRI) removed.
+Unused block "iDIO0/IBUF" (BUF) removed.
+Unused block "iDIO1/IBUF" (BUF) removed.
+Unused block "iDIO2/IBUF" (BUF) removed.
+Unused block "iDIO3/IBUF" (BUF) removed.
+Unused block "iDIO4/IBUF" (BUF) removed.
+Unused block "iDIO5/IBUF" (BUF) removed.
+Unused block "iDIO6/IBUF" (BUF) removed.
+Unused block "iDIO7/IBUF" (BUF) removed.
+Unused block "iUMI0/IBUF" (BUF) removed.
+Unused block "iUMI1/OBUFT" (TRI) removed.
+Unused block "iUMI2/OBUFT" (TRI) removed.
+Unused block "iUMI3/IBUF" (BUF) removed.
+Unused block "iUSER_AP_iRawFifo255x14/BU139" (ROM) removed.
+Unused block "iUSER_AP_iRawFifo255x14/BU318" (ROM) removed.
+Unused block "iUSER_AP_iq_out_fifoI/BU100" (ROM) removed.
+Unused block "iUSER_AP_iq_out_fifoI/BU225" (ROM) removed.
+Unused block "iUSER_AP_myDDCi/BU1760" () removed.
+Unused block "iUSER_AP_myDDCi/BU25432" (XOR) removed.
+Unused block "iUSER_AP_myDDCi/BU25436" (XOR) removed.
+Unused block "iUSER_AP_myDDCi/BU25440" (XOR) removed.
+Unused block "iUSER_AP_myDDCi/BU25444" (XOR) removed.
+Unused block "iUSER_AP_myDDCi/BU25448" (XOR) removed.
+Unused block "iUSER_AP_myDDCi/BU25452" (XOR) removed.
+Unused block "iUSER_AP_myDDCi/BU25524" (XOR) removed.
+Unused block "iUSER_AP_myDDCi/BU25528" (XOR) removed.
+Unused block "iUSER_AP_myDDCi/BU25532" (XOR) removed.
+Unused block "iUSER_AP_myDDCi/BU25536" (XOR) removed.
+Unused block "iUSER_AP_myDDCi/BU25540" (XOR) removed.
+Unused block "iUSER_AP_myDDCi/BU25544" (XOR) removed.
+Unused block "iUSER_AP_myDDCi/BU25679" (ROM) removed.
+Unused block "iUSER_AP_myDDCi/BU25683" (ROM) removed.
+Unused block "iUSER_AP_myDDCi/BU25715" (XOR) removed.
+Unused block "iUSER_AP_myDDCi/BU25719" (XOR) removed.
+Unused block "iUSER_AP_myDDCi/BU25723" (XOR) removed.
+Unused block "iUSER_AP_myDDCi/BU25727" (XOR) removed.
+Unused block "iUSER_AP_myDDCi/BU25731" (XOR) removed.
+Unused block "iUSER_AP_myDDCi/BU25735" (XOR) removed.
+Unused block "iUSER_AP_myDDCi/BU25807" (XOR) removed.
+Unused block "iUSER_AP_myDDCi/BU25811" (XOR) removed.
+Unused block "iUSER_AP_myDDCi/BU25815" (XOR) removed.
+Unused block "iUSER_AP_myDDCi/BU25819" (XOR) removed.
+Unused block "iUSER_AP_myDDCi/BU25823" (XOR) removed.
+Unused block "iUSER_AP_myDDCi/BU25827" (XOR) removed.
+Unused block "iUSER_AP_myDDCi/BU25962" (ROM) removed.
+Unused block "iUSER_AP_myDDCi/BU25966" (ROM) removed.
+Unused block "vcs_IOBUF/OBUFT" (TRI) removed.
+Unused block "vinit" (PAD) removed.
+Unused block "vwrite_IOBUF/OBUFT" (TRI) removed.
+
+Optimized Block(s):
+TYPE 		BLOCK
+GND 		XST_GND
+VCC 		XST_VCC
+GND 		iUSER_AP_iRawFifo255x14/GND
+VCC 		iUSER_AP_iRawFifo255x14/VCC
+GND 		iUSER_AP_iq_out_fifoI/GND
+VCC 		iUSER_AP_iq_out_fifoI/VCC
+LUT4 		iUSER_AP_myDDCi/BU10
+LUT4 		iUSER_AP_myDDCi/BU13860
+FDE 		iUSER_AP_myDDCi/BU13862
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU13881
+FDE 		iUSER_AP_myDDCi/BU13883
+   optimized to 0
+FDE 		iUSER_AP_myDDCi/BU13903
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU13949
+FDE 		iUSER_AP_myDDCi/BU13951
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU13970
+FDE 		iUSER_AP_myDDCi/BU13972
+   optimized to 0
+FDE 		iUSER_AP_myDDCi/BU13989
+   optimized to 0
+FDE 		iUSER_AP_myDDCi/BU14030
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU14098
+FDE 		iUSER_AP_myDDCi/BU14100
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU14129
+FDE 		iUSER_AP_myDDCi/BU14131
+   optimized to 0
+FDE 		iUSER_AP_myDDCi/BU14148
+   optimized to 0
+FDE 		iUSER_AP_myDDCi/BU14189
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU16595
+FDE 		iUSER_AP_myDDCi/BU16597
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU16634
+FDE 		iUSER_AP_myDDCi/BU16636
+   optimized to 0
+FDE 		iUSER_AP_myDDCi/BU16674
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU16756
+FDE 		iUSER_AP_myDDCi/BU16758
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU16795
+FDE 		iUSER_AP_myDDCi/BU16797
+   optimized to 0
+FDE 		iUSER_AP_myDDCi/BU16832
+   optimized to 0
+FDE 		iUSER_AP_myDDCi/BU16909
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU17013
+FDE 		iUSER_AP_myDDCi/BU17015
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU17062
+FDE 		iUSER_AP_myDDCi/BU17064
+   optimized to 0
+FDE 		iUSER_AP_myDDCi/BU17099
+   optimized to 0
+FDE 		iUSER_AP_myDDCi/BU17176
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU20201
+FDE 		iUSER_AP_myDDCi/BU20203
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU20252
+FDE 		iUSER_AP_myDDCi/BU20254
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU21234
+FDE 		iUSER_AP_myDDCi/BU21236
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU21246
+FDE 		iUSER_AP_myDDCi/BU21248
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU21255
+FDE 		iUSER_AP_myDDCi/BU21257
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU21264
+FDE 		iUSER_AP_myDDCi/BU21266
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU21270
+FDE 		iUSER_AP_myDDCi/BU21272
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU21288
+FDE 		iUSER_AP_myDDCi/BU21290
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU21300
+FDE 		iUSER_AP_myDDCi/BU21302
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU21309
+FDE 		iUSER_AP_myDDCi/BU21311
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU21318
+FDE 		iUSER_AP_myDDCi/BU21320
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU21324
+FDE 		iUSER_AP_myDDCi/BU21326
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU22312
+FDE 		iUSER_AP_myDDCi/BU22314
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU22366
+FDE 		iUSER_AP_myDDCi/BU22368
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU23319
+FDE 		iUSER_AP_myDDCi/BU23321
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU23325
+FDE 		iUSER_AP_myDDCi/BU23327
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU23328
+FDE 		iUSER_AP_myDDCi/BU23330
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU23331
+FDE 		iUSER_AP_myDDCi/BU23333
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU23343
+FDE 		iUSER_AP_myDDCi/BU23345
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU23346
+FDE 		iUSER_AP_myDDCi/BU23348
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU23352
+FDE 		iUSER_AP_myDDCi/BU23354
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU23367
+FDE 		iUSER_AP_myDDCi/BU23369
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU23373
+FDE 		iUSER_AP_myDDCi/BU23375
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU23376
+FDE 		iUSER_AP_myDDCi/BU23378
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU23379
+FDE 		iUSER_AP_myDDCi/BU23381
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU23391
+FDE 		iUSER_AP_myDDCi/BU23393
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU23394
+FDE 		iUSER_AP_myDDCi/BU23396
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU23400
+FDE 		iUSER_AP_myDDCi/BU23402
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU24338
+FDE 		iUSER_AP_myDDCi/BU24340
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU24341
+FDE 		iUSER_AP_myDDCi/BU24343
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU24350
+FDE 		iUSER_AP_myDDCi/BU24352
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU24377
+FDE 		iUSER_AP_myDDCi/BU24379
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU24380
+FDE 		iUSER_AP_myDDCi/BU24382
+   optimized to 0
+LUT4 		iUSER_AP_myDDCi/BU24389
+FDE 		iUSER_AP_myDDCi/BU24391
+   optimized to 0
+GND 		iUSER_AP_myDDCi/GND
+VCC 		iUSER_AP_myDDCi/VCC
+MUXCY 		iUSER_AP_myDDCi/BU13993
+MUXCY 		iUSER_AP_myDDCi/BU14036
+MUXCY 		iUSER_AP_myDDCi/BU14152
+MUXCY 		iUSER_AP_myDDCi/BU14195
+MUXCY 		iUSER_AP_myDDCi/BU16836
+MUXCY 		iUSER_AP_myDDCi/BU16915
+MUXCY 		iUSER_AP_myDDCi/BU17103
+MUXCY 		iUSER_AP_myDDCi/BU17182
+MUXCY 		iUSER_AP_myDDCi/BU18466
+
+To enable printing of redundant blocks removed and signals merged, set the
+detailed map report option and rerun map.
+
+Section 6 - IOB Properties
+--------------------------
+
++------------------------------------------------------------------------------------------------------------------------+
+| IOB Name                           | Type    | Direction | IO Standard | Drive    | Slew | Reg (s)  | Resistor | IOB   |
+|                                    |         |           |             | Strength | Rate |          |          | Delay |
++------------------------------------------------------------------------------------------------------------------------+
+| enc_p                              | DIFFM   | OUTPUT    | LVPECL_33   |          |      |          |          |       |
+| adc_data<0>                        | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| adc_data<1>                        | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| adc_data<2>                        | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| adc_data<3>                        | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| adc_data<4>                        | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| adc_data<5>                        | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| adc_data<6>                        | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| adc_data<7>                        | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| adc_data<8>                        | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| adc_data<9>                        | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| adc_data<10>                       | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| adc_data<11>                       | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| adc_data<12>                       | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| adc_data<13>                       | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| booten                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| clkout                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| daa<0>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| daa<1>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| daa<2>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| daa<3>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| daa<4>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| daa<5>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| daa<6>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| daa<7>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| daa<8>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| daa<9>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| daa<10>                            | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| daa<11>                            | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| daa<12>                            | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| daa<13>                            | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| dab<0>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| dab<1>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| dab<2>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| dab<3>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| dab<4>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| dab<5>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| dab<6>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| dab<7>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| dab<8>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| dab<9>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| dab<10>                            | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| dab<11>                            | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| dab<12>                            | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| dab<13>                            | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| di<0>                              | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| di<1>                              | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| di<2>                              | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| di<3>                              | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| di<4>                              | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| di<5>                              | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| di<6>                              | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| di<7>                              | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| di<8>                              | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| di<9>                              | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| di<10>                             | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| di<11>                             | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| di<12>                             | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| di<13>                             | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| di<14>                             | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| di<15>                             | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| di<16>                             | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| di<17>                             | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| di<18>                             | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| di<19>                             | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| di<20>                             | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| di<21>                             | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| di<22>                             | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| di<23>                             | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| di<24>                             | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| di<25>                             | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| di<26>                             | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| di<27>                             | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| di<28>                             | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| di<29>                             | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| di<30>                             | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| di<31>                             | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| diclk                              | IOB     | INPUT     | LVTTL       |          |      |          |          |       |
+| dif_ae<0>                          | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| dif_ef<0>                          | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| dif_oen<0>                         | IOB     | OUTPUT    | LVTTL       | 8        | FAST |          |          |       |
+| dif_oen<1>                         | IOB     | OUTPUT    | LVTTL       | 8        | FAST |          |          |       |
+| dif_oen<2>                         | IOB     | OUTPUT    | LVTTL       | 8        | FAST |          |          |       |
+| dif_oen<3>                         | IOB     | OUTPUT    | LVTTL       | 8        | FAST |          |          |       |
+| dif_oen<4>                         | IOB     | OUTPUT    | LVTTL       | 8        | FAST |          |          |       |
+| dif_oen<5>                         | IOB     | OUTPUT    | LVTTL       | 8        | FAST |          |          |       |
+| dif_ren<0>                         | IOB     | OUTPUT    | LVTTL       | 8        | FAST | OFF1     |          |       |
+| dif_ren<1>                         | IOB     | OUTPUT    | LVTTL       | 8        | FAST |          |          |       |
+| dif_ren<2>                         | IOB     | OUTPUT    | LVTTL       | 8        | FAST |          |          |       |
+| dif_ren<3>                         | IOB     | OUTPUT    | LVTTL       | 8        | FAST |          |          |       |
+| dif_ren<4>                         | IOB     | OUTPUT    | LVTTL       | 8        | FAST |          |          |       |
+| dif_ren<5>                         | IOB     | OUTPUT    | LVTTL       | 8        | FAST |          |          |       |
+| digital_io<0>                      | IOB     | BIDIR     | LVTTL       | 12       | SLOW |          |          |       |
+| digital_io<1>                      | IOB     | BIDIR     | LVTTL       | 12       | SLOW |          |          |       |
+| digital_io<2>                      | IOB     | BIDIR     | LVTTL       | 12       | SLOW |          |          |       |
+| digital_io<3>                      | IOB     | BIDIR     | LVTTL       | 12       | SLOW |          |          |       |
+| digital_io<4>                      | IOB     | BIDIR     | LVTTL       | 12       | SLOW |          |          |       |
+| digital_io<5>                      | IOB     | BIDIR     | LVTTL       | 12       | SLOW |          |          |       |
+| digital_io<6>                      | IOB     | BIDIR     | LVTTL       | 12       | SLOW |          |          |       |
+| digital_io<7>                      | IOB     | BIDIR     | LVTTL       | 12       | SLOW |          |          |       |
+| do<0>                              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| do<1>                              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| do<2>                              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| do<3>                              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| do<4>                              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| do<5>                              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| do<6>                              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| do<7>                              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| do<8>                              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| do<9>                              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| do<10>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| do<11>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| do<12>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| do<13>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| do<14>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| do<15>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| do<16>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| do<17>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| do<18>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| do<19>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| do<20>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| do<21>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| do<22>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| do<23>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| do<24>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| do<25>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| do<26>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| do<27>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| do<28>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| do<29>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| do<30>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| do<31>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| dof_af<1>                          | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| dof_af<2>                          | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          |       |
+| dof_wen<0>                         | IOB     | OUTPUT    | LVTTL       | 8        | FAST |          |          |       |
+| dof_wen<1>                         | IOB     | OUTPUT    | LVTTL       | 8        | FAST | OFF1     |          |       |
+| dof_wen<2>                         | IOB     | OUTPUT    | LVTTL       | 8        | FAST | OFF1     |          |       |
+| dof_wen<3>                         | IOB     | OUTPUT    | LVTTL       | 8        | FAST |          |          |       |
+| dof_wen<4>                         | IOB     | OUTPUT    | LVTTL       | 8        | FAST |          |          |       |
+| dof_wen<5>                         | IOB     | OUTPUT    | LVTTL       | 8        | FAST |          |          |       |
+| drdy                               | IOB     | INPUT     | LVTTL       |          |      |          |          |       |
+| dttl                               | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| f0                                 | IOB     | OUTPUT    | LVTTL       | 24       | FAST |          |          |       |
+| f1                                 | IOB     | OUTPUT    | LVTTL       | 24       | FAST |          |          |       |
+| f2                                 | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| f3                                 | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| fast                               | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| hdplx                              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| led<0>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| led<1>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| led<2>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| led<3>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| led<4>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| osc3_pin                           | IOB     | INPUT     | LVTTL       |          |      |          |          |       |
+| reset_pin                          | IOB     | INPUT     | LVTTL       |          |      |          |          |       |
+| rs485_232                          | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| t1in                               | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| t2in                               | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| trig0                              | IOB     | OUTPUT    | LVTTL       | 12       | FAST |          |          |       |
+| trig1                              | IOB     | OUTPUT    | LVTTL       | 12       | FAST |          |          |       |
+| udpres                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| umi<0>                             | IOB     | BIDIR     | LVTTL       | 12       | SLOW |          |          |       |
+| umi<1>                             | IOB     | BIDIR     | LVTTL       |          |      |          |          |       |
+| umi<2>                             | IOB     | BIDIR     | LVTTL       |          |      |          |          |       |
+| umi<3>                             | IOB     | BIDIR     | LVTTL       | 12       | SLOW |          |          |       |
+| vbusy                              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| vcs                                | IOB     | BIDIR     | LVTTL       |          |      |          |          |       |
+| vpd<0>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| vpd<1>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| vpd<2>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| vpd<3>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| vpd<4>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| vpd<5>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| vpd<6>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| vpd<7>                             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| vwrite                             | IOB     | BIDIR     | LVTTL       |          |      |          |          |       |
+| wrt0                               | IOB     | OUTPUT    | LVTTL       | 8        | FAST |          |          |       |
+| wrt1                               | IOB     | OUTPUT    | LVTTL       | 8        | FAST |          |          |       |
++------------------------------------------------------------------------------------------------------------------------+
+
+Section 7 - RPMs
+----------------
+
+Section 8 - Guide Report
+------------------------
+Guide not run on this design.
+
+Section 9 - Area Group Summary
+------------------------------
+No area groups were found in this design.
+
+Section 10 - Modular Design Summary
+-----------------------------------
+Modular Design not used for this design.
+
+Section 11 - Timing Report
+--------------------------
+Asterisk (*) preceding a constraint indicates it was not met.
+   This may be due to a setup or hold violation.
+
+--------------------------------------------------------------------------------
+  Constraint                                | Requested  | Actual     | Logic 
+                                            |            |            | Levels
+--------------------------------------------------------------------------------
+  TS_osc3_pin = PERIOD TIMEGRP "osc3_pin" 1 | 10.000ns   | 4.438ns    | 5    
+  00 MHz HIGH 50%                           |            |            |      
+--------------------------------------------------------------------------------
+  TS_diclk = PERIOD TIMEGRP "diclk" 100 MHz | N/A        | N/A        | N/A  
+   HIGH 50%                                 |            |            |      
+--------------------------------------------------------------------------------
+* TS_drdy = PERIOD TIMEGRP "drdy" 100 MHz H | 10.000ns   | 10.981ns   | 20   
+  IGH 50%                                   |            |            |      
+--------------------------------------------------------------------------------
+  TS_iGCLK_CLK0 = PERIOD TIMEGRP "iGCLK_CLK | 10.000ns   | 5.941ns    | 2    
+  0" TS_diclk HIGH 50%                      |            |            |      
+--------------------------------------------------------------------------------
+
+
+1 constraint not met.
+INFO:Timing:2761 - N/A entries in the Constraints list may indicate that the
+   constraint does not cover any paths or that it has no requested value.
+
+Section 12 - Configuration String Details
+--------------------------
+Use the "-detail" map option to print out Configuration Strings
+
+Section 13 - Additional Device Resource Counts
+----------------------------------------------
+Number of JTAG Gates for IOBs = 179
+Number of Equivalent Gates for Design = 406,787
+Number of RPM Macros = 0
+Number of Hard Macros = 0
+CAPTUREs = 0
+BSCANs = 0
+STARTUPs = 0
+PCILOGICs = 0
+DCMs = 1
+GCLKs = 3
+ICAPs = 0
+18X18 Multipliers = 2
+Block RAMs = 4
+TBUFs = 0
+Total Registers (Flops & Latches in Slices & IOBs) not driven by LUTs = 4080
+IOB Dual-Rate Flops not driven by LUTs = 0
+IOB Dual-Rate Flops = 0
+IOB Slave Pads = 1
+IOB Master Pads = 1
+IOB Latches not driven by LUTs = 0
+IOB Latches = 0
+IOB Flip Flops not driven by LUTs = 82
+IOB Flip Flops = 86
+Unbonded IOBs = 0
+Bonded IOBs = 179
+ORCYs = 0
+XORs = 2858
+CARRY_INITs = 1567
+CARRY_SKIPs = 0
+CARRY_MUXes = 2837
+Total Shift Registers = 697
+Static Shift Registers = 521
+Dynamic Shift Registers = 176
+16x1 ROMs = 0
+16x1 RAMs = 0
+32x1 RAMs = 0
+Dual Port RAMs = 0
+MUXFs = 1
+MULT_ANDs = 69
+4 input LUTs used as Route-Thrus = 389
+4 input LUTs = 3802
+Slice Latches not driven by LUTs = 0
+Slice Latches = 0
+Slice Flip Flops not driven by LUTs = 3998
+Slice Flip Flops = 5548
+Slices = 3285
+Multiplier(18,18) =   
+F6 Muxes = 0
+F5 Muxes = 1
+F8 Muxes = 0
+F7 Muxes = 0
+Xilinx Core async_fifo_v5_1, Coregen 6.3.03i_ip1.1 = 2
+Xilinx Core C_DDC_V1_0, Coregen 6.3.03i = 1
+Number of LUT signals with 4 loads = 8
+Number of LUT signals with 3 loads = 2
+Number of LUT signals with 2 loads = 2445
+Number of LUT signals with 1 load = 1310
+NGM Average fanout of LUT = 2.24
+NGM Maximum fanout of LUT = 706
+NGM Average fanin for LUT = 2.4616
+Number of LUT symbols = 3802
